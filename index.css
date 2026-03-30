@@ -289,3 +289,161 @@
   --textarea-disabled-placeholder: #374151;
   --textarea-disabled-border:      #1A1D27;
 }
+
+/* ============================================================
+   LIGHT THEME — Semantic overrides
+   Apply via: <html data-theme="light">
+   ============================================================ */
+[data-theme="light"] {
+  /* SEMANTIC — Background */
+  --bg-app:      #F8F9FC;
+  --bg-surface:  #FFFFFF;
+  --bg-elevated: #F0F1F5;
+  --bg-overlay:  rgba(0,0,0,0.5);
+
+  /* SEMANTIC — Text */
+  --text-primary:   #13151E;
+  --text-secondary: #6B7280;
+  --text-disabled:  #C0C4CC;
+
+  /* SEMANTIC — Border */
+  --border-default: #E4E6EB;
+  --border-strong:  #D1D5DB;
+
+  /* SEMANTIC — Accent */
+  --accent-primary: #3B82F6;
+  --accent-success: #10B981;
+  --accent-warning: #EAB308;
+  --accent-error:   #EF4444;
+
+  /* SEMANTIC — Interactive */
+  --interactive-default: #3B82F6;
+  --interactive-hover:   #2563EB;
+  --interactive-pressed: #1D4ED8;
+
+  /* COMPONENT — Button Primary */
+  --btn-primary-default-bg:     #3B82F6;
+  --btn-primary-default-text:   #FFFFFF;
+  --btn-primary-default-border: #3B82F6;
+  --btn-primary-hover-bg:     #2563EB;
+  --btn-primary-hover-text:   #FFFFFF;
+  --btn-primary-hover-border: #2563EB;
+  --btn-primary-focus-bg:     #3B82F6;
+  --btn-primary-focus-text:   #FFFFFF;
+  --btn-primary-focus-border: #2563EB;
+  --btn-primary-focus-ring:   #3B82F6;
+  --btn-primary-pressed-bg:     #1D4ED8;
+  --btn-primary-pressed-text:   #FFFFFF;
+  --btn-primary-pressed-border: #1D4ED8;
+  --btn-primary-disabled-bg:     #F0F1F5;
+  --btn-primary-disabled-text:   #C0C4CC;
+  --btn-primary-disabled-border: #E4E6EB;
+
+  /* COMPONENT — Button Secondary */
+  --btn-secondary-default-bg:     #FFFFFF;
+  --btn-secondary-default-text:   #3B82F6;
+  --btn-secondary-default-border: #E4E6EB;
+  --btn-secondary-hover-bg:     #F0F1F5;
+  --btn-secondary-hover-text:   #3B82F6;
+  --btn-secondary-hover-border: #D1D5DB;
+  --btn-secondary-focus-bg:     #FFFFFF;
+  --btn-secondary-focus-text:   #3B82F6;
+  --btn-secondary-focus-border: #3B82F6;
+  --btn-secondary-pressed-bg:     #F8F9FC;
+  --btn-secondary-pressed-text:   #2563EB;
+  --btn-secondary-pressed-border: #2563EB;
+  --btn-secondary-disabled-bg:     #F8F9FC;
+  --btn-secondary-disabled-text:   #C0C4CC;
+  --btn-secondary-disabled-border: #F0F1F5;
+
+  /* COMPONENT — Button Ghost */
+  --btn-ghost-default-bg:     transparent;
+  --btn-ghost-default-text:   #6B7280;
+  --btn-ghost-default-border: transparent;
+  --btn-ghost-hover-bg:     #F0F1F5;
+  --btn-ghost-hover-text:   #13151E;
+  --btn-ghost-hover-border: transparent;
+  --btn-ghost-focus-bg:     #F0F1F5;
+  --btn-ghost-focus-text:   #13151E;
+  --btn-ghost-focus-border: #E4E6EB;
+  --btn-ghost-pressed-bg:     #E4E6EB;
+  --btn-ghost-pressed-text:   #13151E;
+  --btn-ghost-pressed-border: transparent;
+  --btn-ghost-disabled-bg:     transparent;
+  --btn-ghost-disabled-text:   #C0C4CC;
+  --btn-ghost-disabled-border: transparent;
+
+  /* COMPONENT — TextField Filled */
+  --textfield-filled-default-bg:          #F0F1F5;
+  --textfield-filled-default-text:        #13151E;
+  --textfield-filled-default-placeholder: #C0C4CC;
+  --textfield-filled-default-border:      #E4E6EB;
+  --textfield-filled-hover-bg:     #E4E6EB;
+  --textfield-filled-hover-border: #D1D5DB;
+  --textfield-filled-focus-bg:     #FFFFFF;
+  --textfield-filled-focus-border: #3B82F6;
+  --textfield-filled-error-bg:     #FFFFFF;
+  --textfield-filled-error-border: #EF4444;
+  --textfield-filled-disabled-bg:          #F8F9FC;
+  --textfield-filled-disabled-text:        #C0C4CC;
+  --textfield-filled-disabled-placeholder: #D1D5DB;
+  --textfield-filled-disabled-border:      #F0F1F5;
+
+  /* COMPONENT — TextField Outlined */
+  --textfield-outlined-default-bg:          transparent;
+  --textfield-outlined-default-text:        #13151E;
+  --textfield-outlined-default-placeholder: #C0C4CC;
+  --textfield-outlined-default-border:      #E4E6EB;
+  --textfield-outlined-hover-bg:     transparent;
+  --textfield-outlined-hover-border: #D1D5DB;
+  --textfield-outlined-focus-bg:     transparent;
+  --textfield-outlined-focus-border: #3B82F6;
+  --textfield-outlined-error-bg:     transparent;
+  --textfield-outlined-error-border: #EF4444;
+  --textfield-outlined-disabled-bg:          transparent;
+  --textfield-outlined-disabled-text:        #C0C4CC;
+  --textfield-outlined-disabled-placeholder: #D1D5DB;
+  --textfield-outlined-disabled-border:      #F0F1F5;
+
+  /* COMPONENT — Search */
+  --search-default-bg:          #F0F1F5;
+  --search-default-text:        #13151E;
+  --search-default-placeholder: #C0C4CC;
+  --search-default-border:      #E4E6EB;
+  --search-default-icon:        #6B7280;
+  --search-focus-bg:     #FFFFFF;
+  --search-focus-border: #3B82F6;
+  --search-focus-icon:   #3B82F6;
+
+  /* COMPONENT — Dropdown */
+  --dropdown-trigger-default-bg:     #FFFFFF;
+  --dropdown-trigger-default-text:   #13151E;
+  --dropdown-trigger-default-border: #E4E6EB;
+  --dropdown-trigger-default-icon:   #6B7280;
+  --dropdown-trigger-hover-bg:     #F0F1F5;
+  --dropdown-trigger-hover-border: #D1D5DB;
+  --dropdown-trigger-open-bg:     #FFFFFF;
+  --dropdown-trigger-open-border: #3B82F6;
+  --dropdown-menu-bg:             #FFFFFF;
+  --dropdown-menu-border:         #E4E6EB;
+  --dropdown-item-hover:          #F0F1F5;
+  --dropdown-item-selected:       #F8F9FC;
+  --dropdown-item-text:           #13151E;
+  --dropdown-item-selected-text:  #3B82F6;
+
+  /* COMPONENT — Textarea */
+  --textarea-default-bg:          #F0F1F5;
+  --textarea-default-text:        #13151E;
+  --textarea-default-placeholder: #C0C4CC;
+  --textarea-default-border:      #E4E6EB;
+  --textarea-hover-bg:     #E4E6EB;
+  --textarea-hover-border: #D1D5DB;
+  --textarea-focus-bg:     #FFFFFF;
+  --textarea-focus-border: #3B82F6;
+  --textarea-error-bg:     #FFFFFF;
+  --textarea-error-border: #EF4444;
+  --textarea-disabled-bg:          #F8F9FC;
+  --textarea-disabled-text:        #C0C4CC;
+  --textarea-disabled-placeholder: #D1D5DB;
+  --textarea-disabled-border:      #F0F1F5;
+}

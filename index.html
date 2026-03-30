@@ -11,6 +11,12 @@
 /* ============================================================
    CSS CUSTOM PROPERTIES (from index.css)
    ============================================================ */
+
+/* Theme transition on all color-bearing properties */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
 :root {
   --color-blue-100: #EFF6FF;
   --color-blue-200: #DBEAFE;
@@ -181,6 +187,142 @@
 }
 
 /* ============================================================
+   LIGHT THEME OVERRIDES
+   ============================================================ */
+[data-theme="light"] {
+  --bg-app:      #F8F9FC;
+  --bg-surface:  #FFFFFF;
+  --bg-elevated: #F0F1F5;
+  --bg-overlay:  rgba(0,0,0,0.5);
+
+  --text-primary:   #13151E;
+  --text-secondary: #6B7280;
+  --text-disabled:  #C0C4CC;
+
+  --border-default: #E4E6EB;
+  --border-strong:  #D1D5DB;
+
+  --accent-primary: #3B82F6;
+  --accent-success: #10B981;
+  --accent-warning: #EAB308;
+  --accent-error:   #EF4444;
+
+  --interactive-default: #3B82F6;
+  --interactive-hover:   #2563EB;
+  --interactive-pressed: #1D4ED8;
+
+  /* Button Primary — light */
+  --btn-primary-default-bg:     #3B82F6;
+  --btn-primary-default-text:   #FFFFFF;
+  --btn-primary-default-border: #3B82F6;
+  --btn-primary-hover-bg:     #2563EB;
+  --btn-primary-hover-text:   #FFFFFF;
+  --btn-primary-hover-border: #2563EB;
+  --btn-primary-focus-bg:     #3B82F6;
+  --btn-primary-focus-text:   #FFFFFF;
+  --btn-primary-focus-border: #2563EB;
+  --btn-primary-focus-ring:   #3B82F6;
+  --btn-primary-pressed-bg:     #1D4ED8;
+  --btn-primary-pressed-text:   #FFFFFF;
+  --btn-primary-pressed-border: #1D4ED8;
+  --btn-primary-disabled-bg:     #F0F1F5;
+  --btn-primary-disabled-text:   #C0C4CC;
+  --btn-primary-disabled-border: #E4E6EB;
+
+  /* Button Secondary — light */
+  --btn-secondary-default-bg:     #FFFFFF;
+  --btn-secondary-default-text:   #3B82F6;
+  --btn-secondary-default-border: #E4E6EB;
+  --btn-secondary-hover-bg:     #F0F1F5;
+  --btn-secondary-hover-text:   #3B82F6;
+  --btn-secondary-hover-border: #D1D5DB;
+  --btn-secondary-focus-bg:     #FFFFFF;
+  --btn-secondary-focus-text:   #3B82F6;
+  --btn-secondary-focus-border: #3B82F6;
+  --btn-secondary-pressed-bg:     #F8F9FC;
+  --btn-secondary-pressed-text:   #2563EB;
+  --btn-secondary-pressed-border: #2563EB;
+  --btn-secondary-disabled-bg:     #F8F9FC;
+  --btn-secondary-disabled-text:   #C0C4CC;
+  --btn-secondary-disabled-border: #F0F1F5;
+
+  /* Button Ghost — light */
+  --btn-ghost-default-bg:     transparent;
+  --btn-ghost-default-text:   #6B7280;
+  --btn-ghost-default-border: transparent;
+  --btn-ghost-hover-bg:     #F0F1F5;
+  --btn-ghost-hover-text:   #13151E;
+  --btn-ghost-hover-border: transparent;
+  --btn-ghost-focus-bg:     #F0F1F5;
+  --btn-ghost-focus-text:   #13151E;
+  --btn-ghost-focus-border: #E4E6EB;
+  --btn-ghost-pressed-bg:     #E4E6EB;
+  --btn-ghost-pressed-text:   #13151E;
+  --btn-ghost-pressed-border: transparent;
+  --btn-ghost-disabled-bg:     transparent;
+  --btn-ghost-disabled-text:   #C0C4CC;
+  --btn-ghost-disabled-border: transparent;
+
+  /* TextField Filled — light */
+  --textfield-filled-default-bg:          #F0F1F5;
+  --textfield-filled-default-text:        #13151E;
+  --textfield-filled-default-placeholder: #C0C4CC;
+  --textfield-filled-default-border:      #E4E6EB;
+  --textfield-filled-hover-bg:     #E4E6EB;
+  --textfield-filled-hover-border: #D1D5DB;
+  --textfield-filled-focus-bg:     #FFFFFF;
+  --textfield-filled-focus-border: #3B82F6;
+  --textfield-filled-error-bg:     #FFFFFF;
+  --textfield-filled-error-border: #EF4444;
+  --textfield-filled-disabled-bg:          #F8F9FC;
+  --textfield-filled-disabled-text:        #C0C4CC;
+  --textfield-filled-disabled-placeholder: #D1D5DB;
+  --textfield-filled-disabled-border:      #F0F1F5;
+
+  /* TextField Outlined — light */
+  --textfield-outlined-default-bg:          transparent;
+  --textfield-outlined-default-text:        #13151E;
+  --textfield-outlined-default-placeholder: #C0C4CC;
+  --textfield-outlined-default-border:      #E4E6EB;
+  --textfield-outlined-hover-bg:     transparent;
+  --textfield-outlined-hover-border: #D1D5DB;
+  --textfield-outlined-focus-bg:     transparent;
+  --textfield-outlined-focus-border: #3B82F6;
+  --textfield-outlined-error-bg:     transparent;
+  --textfield-outlined-error-border: #EF4444;
+  --textfield-outlined-disabled-bg:          transparent;
+  --textfield-outlined-disabled-text:        #C0C4CC;
+  --textfield-outlined-disabled-placeholder: #D1D5DB;
+  --textfield-outlined-disabled-border:      #F0F1F5;
+
+  /* Search — light */
+  --search-default-bg:          #F0F1F5;
+  --search-default-text:        #13151E;
+  --search-default-placeholder: #C0C4CC;
+  --search-default-border:      #E4E6EB;
+  --search-default-icon:        #6B7280;
+  --search-focus-bg:     #FFFFFF;
+  --search-focus-border: #3B82F6;
+  --search-focus-icon:   #3B82F6;
+
+  /* Dropdown — light */
+  --dropdown-trigger-default-bg:     #FFFFFF;
+  --dropdown-trigger-default-text:   #13151E;
+  --dropdown-trigger-default-border: #E4E6EB;
+  --dropdown-trigger-default-icon:   #6B7280;
+  --dropdown-trigger-hover-bg:     #F0F1F5;
+  --dropdown-trigger-hover-border: #D1D5DB;
+  --dropdown-trigger-open-bg:     #FFFFFF;
+  --dropdown-trigger-open-border: #3B82F6;
+  --dropdown-menu-bg:             #FFFFFF;
+  --dropdown-menu-border:         #E4E6EB;
+  --dropdown-item-hover:          #F0F1F5;
+  --dropdown-item-selected:       #F8F9FC;
+  --dropdown-item-text:           #13151E;
+  --dropdown-item-selected-text:  #3B82F6;
+}
+
+/* ============================================================
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -206,6 +348,11 @@ body {
   background: rgba(19, 21, 30, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-default);
+  transition: background 0.25s ease;
+}
+
+[data-theme="light"] .site-header {
+  background: rgba(248, 249, 252, 0.92);
 }
 
 .site-header-inner {
@@ -1701,6 +1848,60 @@ body {
 }
 
 /* ============================================================
+   INTERACTIVE HINT
+   ============================================================ */
+.interactive-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: 6px var(--spacing-24) 0;
+  opacity: 0.75;
+}
+
+/* ============================================================
+   THEME TOGGLE BUTTON
+   ============================================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-8);
+  border: 1px solid var(--border-default);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root .theme-toggle .icon-moon {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .site-footer {
@@ -1727,6 +1928,10 @@ body {
   .swatch-color { width: 64px; height: 44px; }
 }
 </style>
+<!-- Anti-flash theme init: runs before paint -->
+<script>
+(function(){var t=localStorage.getItem('ds-theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
 </head>
 <body>
 
@@ -1750,6 +1955,24 @@ body {
       <a href="#forms">Forms</a>
       <a href="#howto">How to Use</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Switch theme" onclick="toggleTheme()">
+      <!-- Moon icon (shown in dark mode) -->
+      <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+      </svg>
+      <!-- Sun icon (shown in light mode) -->
+      <svg class="icon-sun" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
   </div>
 </header>
 
@@ -1964,6 +2187,7 @@ body {
         <span class="component-block-subtitle">Filled — main actions</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <button class="btn btn-primary" id="btn-primary-preview">Save Changes</button>
         </div>
@@ -2015,6 +2239,7 @@ body {
         <span class="component-block-subtitle">Outlined — secondary actions</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <button class="btn btn-secondary" id="btn-secondary-preview">Cancel</button>
         </div>
@@ -2057,6 +2282,7 @@ body {
         <span class="component-block-subtitle">Text only — low-emphasis actions</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <button class="btn btn-ghost" id="btn-ghost-preview">Learn more</button>
         </div>
@@ -2109,6 +2335,7 @@ body {
         <span class="component-block-subtitle">Dark background variant</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <input class="input-base input-filled" id="input-filled-preview" type="text" placeholder="Enter value...">
         </div>
@@ -2154,6 +2381,7 @@ body {
         <span class="component-block-subtitle">Transparent background variant</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <input class="input-base input-outlined" id="input-outlined-preview" type="text" placeholder="Enter value...">
         </div>
@@ -2208,6 +2436,7 @@ body {
         <span class="component-block-subtitle">Click to switch on / off</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(document.getElementById('toggle-preview'));updateToggleInfo()">
             <button class="toggle" id="toggle-preview" aria-label="Toggle"></button>
@@ -2251,6 +2480,7 @@ body {
         <span class="component-block-subtitle">Click to check / uncheck</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <label class="checkbox-wrap" onclick="toggleCheckbox(this)" style="cursor:pointer">
             <div class="checkbox" id="checkbox-preview">
@@ -2300,6 +2530,7 @@ body {
         <span class="component-block-subtitle">Click to select an option</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <div style="display:flex;flex-direction:column;gap:var(--spacing-12)">
             <label class="radio-wrap" onclick="selectRadio('radio-a')" style="cursor:pointer">
@@ -2464,6 +2695,7 @@ body {
         <span class="component-block-subtitle">Sidebar navigation link</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <button class="nav-item" id="navitem-preview">
             <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -2668,6 +2900,7 @@ body {
         <span class="component-block-subtitle">With icon and shortcut hint</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview">
           <div class="search-wrap" id="search-wrap-preview">
             <span class="search-icon" id="search-icon-preview">
@@ -2713,6 +2946,7 @@ body {
         <span class="component-block-subtitle">Click to open / close</span>
       </div>
       <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
         <div class="state-preview" style="align-items:flex-start;padding-bottom:var(--spacing-24)">
           <div class="dropdown-wrap" id="dropdown1">
             <button class="dropdown-trigger" id="dropdown1-trigger" onclick="toggleDropdown('dropdown1')">
@@ -2805,7 +3039,7 @@ function toggleDropdown(id) {
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  AI Manufactury Design System · v1.0 · Dark theme · Inter + JetBrains Mono
+  AI Manufactury Design System · v1.1 · Dark &amp; Light themes · Inter + JetBrains Mono
 </footer>
 
 <!-- COPY TOAST -->
@@ -3237,8 +3471,7 @@ function setComponentState(previewId, state, tabEl, stateMap) {
   // Add new classes
   (def.classes || []).forEach(cls => el.classList.add(cls));
 
-  // Update label text if provided
-  if (def.label !== undefined) el.textContent = def.label;
+  // NOTE: button text is intentionally NOT updated here — component label stays static
 
   // Rebuild info panel
   const infoId = previewId.replace('-preview', '-info');
@@ -3415,10 +3648,32 @@ document.querySelectorAll('#dropdown1 .dropdown-item').forEach(item => {
     wrap.classList.remove('open');
     const t = wrap.querySelector('.dropdown-trigger');
     if (t) t.classList.remove('open');
-    // reset state tabs to default
-    const defaultTab = document.querySelector('.state-tabs .state-tab.active');
   });
 });
+
+/* ============================================================
+   THEME SWITCHER
+   ============================================================ */
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  localStorage.setItem('ds-theme', next);
+}
+
+function applyTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+}
+
+// Init theme from localStorage on load
+(function() {
+  var saved = localStorage.getItem('ds-theme');
+  if (saved) applyTheme(saved);
+})();
 </script>
 </body>
 </html>
