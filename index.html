@@ -776,10 +776,15 @@ body {
   scrollbar-width: thin;
 }
 
-.code-copy-btn {
+.code-block:hover .code-copy-btn,
+.code-block:hover .code-download-btn {
+  opacity: 1;
+}
+
+.code-copy-btn,
+.code-download-btn {
   position: absolute;
   top: var(--spacing-12);
-  right: var(--spacing-12);
   background: var(--bg-surface);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-4);
@@ -788,12 +793,84 @@ body {
   font-family: 'Inter', sans-serif;
   padding: 4px 10px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
+  opacity: 0.3;
+  transition: border-color 0.15s, color 0.15s, opacity 0.15s;
 }
 
-.code-copy-btn:hover {
+.code-copy-btn {
+  right: var(--spacing-12);
+}
+
+.code-download-btn {
+  right: 72px;
+}
+
+.code-copy-btn:hover,
+.code-download-btn:hover {
   border-color: var(--border-strong);
   color: var(--text-primary);
+  opacity: 1;
+}
+
+/* Inline color swatch in code */
+.code-color-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.15);
+  vertical-align: middle;
+  margin-right: 4px;
+  flex-shrink: 0;
+  position: relative;
+  top: -1px;
+}
+
+/* ============================================================
+   STATIC STATES ROW
+   ============================================================ */
+.states-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+  padding: var(--spacing-20) var(--spacing-24);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  align-items: flex-end;
+}
+
+.state-row-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  cursor: pointer;
+  border-radius: var(--radius-8);
+  padding: var(--spacing-12);
+  border: 2px solid transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.state-row-item:hover {
+  background: rgba(96, 165, 250, 0.05);
+}
+
+.state-row-item.highlighted {
+  border-color: var(--accent-primary);
+  background: rgba(96, 165, 250, 0.06);
+}
+
+.state-row-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.state-row-item.highlighted .state-row-label {
+  color: var(--accent-primary);
 }
 
 /* ============================================================
@@ -2216,12 +2293,35 @@ body {
         <div class="state-preview">
           <button class="btn btn-primary" id="btn-primary-preview">Save Changes</button>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="btn-primary-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setComponentState('btn-primary-preview','default',document.querySelector('#buttons .state-tab.active'),btnPrimaryStates);highlightStateRow('btn-primary-states-row','default')">
+            <button class="btn btn-primary" tabindex="-1" style="pointer-events:none">Save</button>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setComponentState('btn-primary-preview','hover',null,btnPrimaryStates);highlightStateRow('btn-primary-states-row','hover')">
+            <button class="btn btn-primary force-hover" tabindex="-1" style="pointer-events:none">Save</button>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="pressed" onclick="setComponentState('btn-primary-preview','pressed',null,btnPrimaryStates);highlightStateRow('btn-primary-states-row','pressed')">
+            <button class="btn btn-primary force-pressed" tabindex="-1" style="pointer-events:none">Save</button>
+            <span class="state-row-label">Pressed</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setComponentState('btn-primary-preview','disabled',null,btnPrimaryStates);highlightStateRow('btn-primary-states-row','disabled')">
+            <button class="btn btn-primary force-disabled" tabindex="-1" style="pointer-events:none">Save</button>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setComponentState('btn-primary-preview','focus',null,btnPrimaryStates);highlightStateRow('btn-primary-states-row','focus')">
+            <button class="btn btn-primary force-focus" tabindex="-1" style="pointer-events:none">Save</button>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-primary-preview', 'default', this, btnPrimaryStates)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'hover', this, btnPrimaryStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'pressed', this, btnPrimaryStates)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'disabled', this, btnPrimaryStates)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates)">Focus</button>
+          <button class="state-tab active" onclick="setComponentState('btn-primary-preview', 'default', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'hover', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'pressed', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','pressed')">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'disabled', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="btn-primary-info">
           <div class="state-info-name">State: Default</div>
@@ -2233,6 +2333,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'button-primary.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="btn btn-primary"&gt;Save Changes&lt;/button&gt;
 
@@ -2268,12 +2369,35 @@ body {
         <div class="state-preview">
           <button class="btn btn-secondary" id="btn-secondary-preview">Cancel</button>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="btn-secondary-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setComponentState('btn-secondary-preview','default',null,btnSecondaryStates);highlightStateRow('btn-secondary-states-row','default')">
+            <button class="btn btn-secondary" tabindex="-1" style="pointer-events:none">Cancel</button>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setComponentState('btn-secondary-preview','hover',null,btnSecondaryStates);highlightStateRow('btn-secondary-states-row','hover')">
+            <button class="btn btn-secondary force-hover" tabindex="-1" style="pointer-events:none">Cancel</button>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="pressed" onclick="setComponentState('btn-secondary-preview','pressed',null,btnSecondaryStates);highlightStateRow('btn-secondary-states-row','pressed')">
+            <button class="btn btn-secondary force-pressed" tabindex="-1" style="pointer-events:none">Cancel</button>
+            <span class="state-row-label">Pressed</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setComponentState('btn-secondary-preview','disabled',null,btnSecondaryStates);highlightStateRow('btn-secondary-states-row','disabled')">
+            <button class="btn btn-secondary force-disabled" tabindex="-1" style="pointer-events:none">Cancel</button>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setComponentState('btn-secondary-preview','focus',null,btnSecondaryStates);highlightStateRow('btn-secondary-states-row','focus')">
+            <button class="btn btn-secondary force-focus" tabindex="-1" style="pointer-events:none">Cancel</button>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-secondary-preview', 'default', this, btnSecondaryStates)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'hover', this, btnSecondaryStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'pressed', this, btnSecondaryStates)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'disabled', this, btnSecondaryStates)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates)">Focus</button>
+          <button class="state-tab active" onclick="setComponentState('btn-secondary-preview', 'default', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'hover', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'pressed', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','pressed')">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'disabled', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="btn-secondary-info">
           <div class="state-info-name">State: Default</div>
@@ -2285,6 +2409,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'button-secondary.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="btn btn-secondary"&gt;Cancel&lt;/button&gt;
 
@@ -2311,12 +2436,35 @@ body {
         <div class="state-preview">
           <button class="btn btn-ghost" id="btn-ghost-preview">Learn more</button>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="btn-ghost-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setComponentState('btn-ghost-preview','default',null,btnGhostStates);highlightStateRow('btn-ghost-states-row','default')">
+            <button class="btn btn-ghost" tabindex="-1" style="pointer-events:none">Learn more</button>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setComponentState('btn-ghost-preview','hover',null,btnGhostStates);highlightStateRow('btn-ghost-states-row','hover')">
+            <button class="btn btn-ghost force-hover" tabindex="-1" style="pointer-events:none">Learn more</button>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="pressed" onclick="setComponentState('btn-ghost-preview','pressed',null,btnGhostStates);highlightStateRow('btn-ghost-states-row','pressed')">
+            <button class="btn btn-ghost force-pressed" tabindex="-1" style="pointer-events:none">Learn more</button>
+            <span class="state-row-label">Pressed</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setComponentState('btn-ghost-preview','disabled',null,btnGhostStates);highlightStateRow('btn-ghost-states-row','disabled')">
+            <button class="btn btn-ghost force-disabled" tabindex="-1" style="pointer-events:none">Learn more</button>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setComponentState('btn-ghost-preview','focus',null,btnGhostStates);highlightStateRow('btn-ghost-states-row','focus')">
+            <button class="btn btn-ghost force-focus" tabindex="-1" style="pointer-events:none">Learn more</button>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-ghost-preview', 'default', this, btnGhostStates)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'hover', this, btnGhostStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'pressed', this, btnGhostStates)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'disabled', this, btnGhostStates)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates)">Focus</button>
+          <button class="state-tab active" onclick="setComponentState('btn-ghost-preview', 'default', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'hover', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'pressed', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','pressed')">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'disabled', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="btn-ghost-info">
           <div class="state-info-name">State: Default</div>
@@ -2328,6 +2476,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'button-ghost.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="btn btn-ghost"&gt;Learn more&lt;/button&gt;
 
@@ -2364,13 +2513,40 @@ body {
         <div class="state-preview">
           <input class="input-base input-filled" id="input-filled-preview" type="text" placeholder="Enter value...">
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="input-filled-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setInputState('input-filled-preview','default',null,inputFilledStates);highlightStateRow('input-filled-states-row','default')">
+            <input class="input-base input-filled" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Enter..." readonly>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="filled" onclick="setInputState('input-filled-preview','filled',null,inputFilledStates);highlightStateRow('input-filled-states-row','filled')">
+            <input class="input-base input-filled" tabindex="-1" style="pointer-events:none;width:120px" value="Hello World" readonly>
+            <span class="state-row-label">Filled</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setInputState('input-filled-preview','hover',null,inputFilledStates);highlightStateRow('input-filled-states-row','hover')">
+            <input class="input-base input-filled force-hover" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Enter..." readonly>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="error" onclick="setInputState('input-filled-preview','error',null,inputFilledStates);highlightStateRow('input-filled-states-row','error')">
+            <input class="input-base input-filled error" tabindex="-1" style="pointer-events:none;width:120px" value="invalid@" readonly>
+            <span class="state-row-label">Error</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setInputState('input-filled-preview','disabled',null,inputFilledStates);highlightStateRow('input-filled-states-row','disabled')">
+            <input class="input-base input-filled force-disabled" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Disabled" disabled>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setInputState('input-filled-preview','focus',null,inputFilledStates);highlightStateRow('input-filled-states-row','focus')">
+            <input class="input-base input-filled force-focus" tabindex="-1" style="pointer-events:none;width:120px" value="Focused" readonly>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setInputState('input-filled-preview', 'default', this, inputFilledStates)">Default</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'filled', this, inputFilledStates)">Filled</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'hover', this, inputFilledStates)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'error', this, inputFilledStates)">Error</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'disabled', this, inputFilledStates)">Disabled</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates)">Focus</button>
+          <button class="state-tab active" onclick="setInputState('input-filled-preview', 'default', this, inputFilledStates);highlightStateRow('input-filled-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'filled', this, inputFilledStates);highlightStateRow('input-filled-states-row','filled')">Filled</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'hover', this, inputFilledStates);highlightStateRow('input-filled-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'error', this, inputFilledStates);highlightStateRow('input-filled-states-row','error')">Error</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'disabled', this, inputFilledStates);highlightStateRow('input-filled-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates);highlightStateRow('input-filled-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="input-filled-info">
           <div class="state-info-name">State: Default</div>
@@ -2381,6 +2557,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'input-filled.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;input class="input-base input-filled" type="text" placeholder="Enter value..."&gt;
 
@@ -2411,13 +2588,40 @@ body {
         <div class="state-preview">
           <input class="input-base input-outlined" id="input-outlined-preview" type="text" placeholder="Enter value...">
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="input-outlined-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setInputState('input-outlined-preview','default',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','default')">
+            <input class="input-base input-outlined" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Enter..." readonly>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="filled" onclick="setInputState('input-outlined-preview','filled',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','filled')">
+            <input class="input-base input-outlined" tabindex="-1" style="pointer-events:none;width:120px" value="Hello World" readonly>
+            <span class="state-row-label">Filled</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setInputState('input-outlined-preview','hover',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','hover')">
+            <input class="input-base input-outlined force-hover" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Enter..." readonly>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="error" onclick="setInputState('input-outlined-preview','error',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','error')">
+            <input class="input-base input-outlined error" tabindex="-1" style="pointer-events:none;width:120px" value="invalid@" readonly>
+            <span class="state-row-label">Error</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setInputState('input-outlined-preview','disabled',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','disabled')">
+            <input class="input-base input-outlined force-disabled" tabindex="-1" style="pointer-events:none;width:120px" placeholder="Disabled" disabled>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setInputState('input-outlined-preview','focus',null,inputOutlinedStates);highlightStateRow('input-outlined-states-row','focus')">
+            <input class="input-base input-outlined force-focus" tabindex="-1" style="pointer-events:none;width:120px" value="Focused" readonly>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setInputState('input-outlined-preview', 'default', this, inputOutlinedStates)">Default</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'filled', this, inputOutlinedStates)">Filled</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'hover', this, inputOutlinedStates)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'error', this, inputOutlinedStates)">Error</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'disabled', this, inputOutlinedStates)">Disabled</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates)">Focus</button>
+          <button class="state-tab active" onclick="setInputState('input-outlined-preview', 'default', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'filled', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','filled')">Filled</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'hover', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'error', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','error')">Error</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'disabled', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="input-outlined-info">
           <div class="state-info-name">State: Default</div>
@@ -2428,6 +2632,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'input-outlined.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;input class="input-base input-outlined" type="text" placeholder="Enter value..."&gt;
 
@@ -2473,10 +2678,34 @@ body {
             <span class="search-shortcut">⌘K</span>
           </div>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="search-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setSearchState('default',null);highlightStateRow('search-states-row','default')">
+            <div class="search-wrap" style="width:160px">
+              <span class="search-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+              <input class="search-input" tabindex="-1" style="pointer-events:none" placeholder="Search..." readonly>
+            </div>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="filled" onclick="setSearchState('filled',null);highlightStateRow('search-states-row','filled')">
+            <div class="search-wrap" style="width:160px">
+              <span class="search-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+              <input class="search-input" tabindex="-1" style="pointer-events:none" value="Agent Architect" readonly>
+            </div>
+            <span class="state-row-label">Filled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setSearchState('focus',null);highlightStateRow('search-states-row','focus')">
+            <div class="search-wrap force-focus" style="width:160px">
+              <span class="search-icon" style="color:var(--search-focus-icon)"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+              <input class="search-input force-focus" tabindex="-1" style="pointer-events:none" value="Trend Scout" readonly>
+            </div>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setSearchState('default', this)">Default</button>
-          <button class="state-tab" onclick="setSearchState('filled', this)">Filled</button>
-          <button class="state-tab" onclick="setSearchState('focus', this)">Focus</button>
+          <button class="state-tab active" onclick="setSearchState('default', this);highlightStateRow('search-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setSearchState('filled', this);highlightStateRow('search-states-row','filled')">Filled</button>
+          <button class="state-tab" onclick="setSearchState('focus', this);highlightStateRow('search-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="search-info">
           <div class="state-info-name">State: Default</div>
@@ -2488,6 +2717,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'search-input.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="search-wrap"&gt;
   &lt;span class="search-icon"&gt;[svg]&lt;/span&gt;
@@ -2537,6 +2767,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'toggle.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="toggle" onclick="this.classList.toggle('on')"&gt;&lt;/button&gt;
 
@@ -2583,6 +2814,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'checkbox.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;label class="checkbox-wrap" onclick="toggleCheckbox(this)"&gt;
   &lt;div class="checkbox"&gt;
@@ -2641,6 +2873,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'radio.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="radio selected"&gt;
   &lt;div class="radio-inner"&gt;&lt;/div&gt;
@@ -2703,6 +2936,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'badge.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;span class="badge badge-success"&gt;
   &lt;span class="badge-dot"&gt;&lt;/span&gt;
@@ -2748,6 +2982,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'status-dot.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="status-dot"&gt;
   &lt;span class="dot dot-online"&gt;&lt;/span&gt;
@@ -2786,12 +3021,45 @@ body {
             Pipeline
           </button>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="navitem-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setComponentState('navitem-preview','default',null,navItemStates);highlightStateRow('navitem-states-row','default')">
+            <button class="nav-item" tabindex="-1" style="pointer-events:none">
+              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline
+            </button>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setComponentState('navitem-preview','hover',null,navItemStates);highlightStateRow('navitem-states-row','hover')">
+            <button class="nav-item force-hover" tabindex="-1" style="pointer-events:none">
+              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline
+            </button>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="active" onclick="setComponentState('navitem-preview','active',null,navItemStates);highlightStateRow('navitem-states-row','active')">
+            <button class="nav-item active" tabindex="-1" style="pointer-events:none">
+              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline
+            </button>
+            <span class="state-row-label">Active</span>
+          </div>
+          <div class="state-row-item" data-state="disabled" onclick="setComponentState('navitem-preview','disabled',null,navItemStates);highlightStateRow('navitem-states-row','disabled')">
+            <button class="nav-item force-disabled" tabindex="-1" style="pointer-events:none">
+              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline
+            </button>
+            <span class="state-row-label">Disabled</span>
+          </div>
+          <div class="state-row-item" data-state="focus" onclick="setComponentState('navitem-preview','focus',null,navItemStates);highlightStateRow('navitem-states-row','focus')">
+            <button class="nav-item force-focus" tabindex="-1" style="pointer-events:none">
+              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Pipeline
+            </button>
+            <span class="state-row-label">Focus</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('navitem-preview', 'default', this, navItemStates)">Default</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'hover', this, navItemStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'active', this, navItemStates)">Active</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'disabled', this, navItemStates)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates)">Focus</button>
+          <button class="state-tab active" onclick="setComponentState('navitem-preview', 'default', this, navItemStates);highlightStateRow('navitem-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'hover', this, navItemStates);highlightStateRow('navitem-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'active', this, navItemStates);highlightStateRow('navitem-states-row','active')">Active</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'disabled', this, navItemStates);highlightStateRow('navitem-states-row','disabled')">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates);highlightStateRow('navitem-states-row','focus')">Focus</button>
         </div>
         <div class="state-info" id="navitem-info">
           <div class="state-info-name">State: Default</div>
@@ -2802,6 +3070,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'nav-item.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;a class="nav-item active" href="/pipeline"&gt;Pipeline&lt;/a&gt;
 
@@ -2837,6 +3106,7 @@ body {
         </nav>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'breadcrumb.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;nav class="breadcrumb"&gt;
   &lt;a class="breadcrumb-item" href="#"&gt;Dashboard&lt;/a&gt;
@@ -2860,6 +3130,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'divider.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;hr class="divider"&gt;
 
@@ -2937,6 +3208,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'cards.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>/* Metric Card */
 &lt;div class="card card-metric"&gt;
@@ -3002,10 +3274,38 @@ body {
             </div>
           </div>
         </div>
+        <!-- Static states row -->
+        <div class="states-row" id="dropdown-states-row">
+          <div class="state-row-item highlighted" data-state="default" onclick="setDropdownState('default',null);highlightStateRow('dropdown-states-row','default')">
+            <div class="dropdown-wrap" style="width:160px;position:relative">
+              <button class="dropdown-trigger" tabindex="-1" style="pointer-events:none;width:100%">
+                <span>Select agent</span>
+                <svg class="dropdown-chevron" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+            <span class="state-row-label">Default</span>
+          </div>
+          <div class="state-row-item" data-state="hover" onclick="setDropdownState('hover',null);highlightStateRow('dropdown-states-row','hover')">
+            <div class="dropdown-wrap" style="width:160px;position:relative">
+              <button class="dropdown-trigger force-hover" tabindex="-1" style="pointer-events:none;width:100%">
+                <span>Select agent</span>
+                <svg class="dropdown-chevron" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+            </div>
+            <span class="state-row-label">Hover</span>
+          </div>
+          <div class="state-row-item" data-state="open" onclick="setDropdownState('open',null);highlightStateRow('dropdown-states-row','open')">
+            <div style="display:inline-flex;align-items:center;width:160px;padding:8px 12px;background:var(--dropdown-trigger-default-bg);border:1px solid var(--dropdown-trigger-open-border);border-radius:var(--radius-8);font-size:var(--font-size-13);color:var(--dropdown-trigger-default-text);justify-content:space-between">
+              <span>Select agent</span>
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="transform:rotate(180deg);color:var(--dropdown-trigger-default-icon)"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <span class="state-row-label">Open</span>
+          </div>
+        </div>
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setDropdownState('default', this)">Default</button>
-          <button class="state-tab" onclick="setDropdownState('hover', this)">Hover</button>
-          <button class="state-tab" onclick="setDropdownState('open', this)">Open</button>
+          <button class="state-tab active" onclick="setDropdownState('default', this);highlightStateRow('dropdown-states-row','default')">Default</button>
+          <button class="state-tab" onclick="setDropdownState('hover', this);highlightStateRow('dropdown-states-row','hover')">Hover</button>
+          <button class="state-tab" onclick="setDropdownState('open', this);highlightStateRow('dropdown-states-row','open')">Open</button>
         </div>
         <div class="state-info" id="dropdown-info">
           <div class="state-info-name">State: Default</div>
@@ -3016,6 +3316,7 @@ body {
         </div>
       </div>
       <div class="code-block">
+        <button class="code-download-btn" onclick="downloadCode(this,'dropdown.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="dropdown-wrap" id="myDropdown"&gt;
   &lt;button class="dropdown-trigger" onclick="toggleDropdown('myDropdown')"&gt;
@@ -3101,8 +3402,78 @@ function copyCode(btn) {
   if (!pre) return;
   navigator.clipboard.writeText(pre.textContent).then(() => {
     btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy', 1500);
+    setTimeout(() => btn.textContent = 'Copy', 2000);
   });
+}
+
+/* ============================================================
+   DOWNLOAD CODE BLOCK
+   ============================================================ */
+function downloadCode(btn, filename) {
+  const pre = btn.parentElement.querySelector('pre');
+  if (!pre) return;
+  const content = pre.textContent;
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename || 'component.css';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  btn.textContent = 'Saved!';
+  setTimeout(() => btn.textContent = 'Download', 2000);
+}
+
+/* ============================================================
+   COLOR SWATCHES IN CODE BLOCKS
+   Parse hex colors and inject inline color indicators
+   ============================================================ */
+function injectCodeColorSwatches() {
+  // Regex: matches #RRGGBB or #RRGGBBAA (6 or 8 hex chars)
+  const hexRegex = /(#[0-9A-Fa-f]{6,8})\b/g;
+
+  document.querySelectorAll('.code-block pre').forEach(pre => {
+    // Escape HTML then inject spans
+    const rawText = pre.textContent;
+    const escaped = rawText
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    const withSwatches = escaped.replace(hexRegex, (match, hex) => {
+      const color = hex.length > 7 ? hex.slice(0,7) : hex; // use first 6 chars for display
+      return `<span class="code-color-swatch" style="background:${color}" title="${hex}"></span>${match}`;
+    });
+
+    pre.innerHTML = withSwatches;
+  });
+}
+
+/* ============================================================
+   HIGHLIGHT STATE ROW ITEM + SYNC TAB
+   ============================================================ */
+function highlightStateRow(rowId, state) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+
+  // Highlight correct state row item
+  row.querySelectorAll('.state-row-item').forEach(item => {
+    item.classList.toggle('highlighted', item.dataset.state === state);
+  });
+
+  // Also sync the tab highlight in the parent state-explorer
+  const explorer = row.closest('.state-explorer') || row.parentElement;
+  if (explorer) {
+    const tabs = explorer.querySelector('.state-tabs');
+    if (tabs) {
+      tabs.querySelectorAll('.state-tab').forEach(tab => {
+        const matches = tab.textContent.trim().toLowerCase() === state.toLowerCase();
+        tab.classList.toggle('active', matches);
+      });
+    }
+  }
 }
 
 /* ============================================================
@@ -3801,6 +4172,11 @@ function applyTheme(theme) {
 })();
 
 /* State sync removed — tabs are independent from live preview interaction */
+
+/* ============================================================
+   INIT COLOR SWATCHES ON LOAD
+   ============================================================ */
+injectCodeColorSwatches();
 
 /* ============================================================
    PREVIEW SANDBOX — interactive on hover, forced state on leave
