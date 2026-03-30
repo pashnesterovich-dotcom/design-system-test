@@ -3787,6 +3787,60 @@ function applyTheme(theme) {
 })();
 
 /* State sync removed — tabs are independent from live preview interaction */
+
+/* ============================================================
+   PREVIEW SANDBOX — interactive on hover, forced state on leave
+   ============================================================ */
+(function initPreviewSandbox() {
+  const FORCE_CLASSES = ['force-hover', 'force-focus', 'force-pressed', 'force-disabled', 'force-filled', 'force-open'];
+
+  document.querySelectorAll('.state-explorer').forEach(explorer => {
+    const preview = explorer.querySelector('.state-preview');
+    if (!preview) return;
+
+    preview.addEventListener('mouseenter', () => {
+      // Buttons and nav-item
+      const btn = preview.querySelector('button:not(.state-tab), .nav-item');
+      if (btn) {
+        FORCE_CLASSES.forEach(cls => btn.classList.remove(cls));
+        btn.removeAttribute('disabled');
+      }
+
+      // Text inputs (filled / outlined)
+      const input = preview.querySelector('input.input-filled, input.input-outlined');
+      if (input) {
+        FORCE_CLASSES.forEach(cls => input.classList.remove(cls));
+        input.removeAttribute('disabled');
+        // Restore default placeholder so the input is usable
+        if (!input.value) input.placeholder = 'Enter value...';
+      }
+
+      // Search input
+      const searchInput = preview.querySelector('#search-preview, .search-input');
+      if (searchInput) {
+        FORCE_CLASSES.forEach(cls => searchInput.classList.remove(cls));
+        const searchWrap = preview.querySelector('#search-wrap-preview, .search-wrap');
+        if (searchWrap) FORCE_CLASSES.forEach(cls => searchWrap.classList.remove(cls));
+        const searchIcon = preview.querySelector('#search-icon-preview');
+        if (searchIcon) searchIcon.style.color = '';
+      }
+
+      // Dropdown trigger
+      const dropTrigger = preview.querySelector('.dropdown-trigger');
+      if (dropTrigger) {
+        FORCE_CLASSES.forEach(cls => dropTrigger.classList.remove(cls));
+      }
+    });
+
+    preview.addEventListener('mouseleave', () => {
+      // Re-trigger the active tab to restore forced state
+      const activeTab = explorer.querySelector('.state-tab.active');
+      if (activeTab) {
+        activeTab.click();
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
