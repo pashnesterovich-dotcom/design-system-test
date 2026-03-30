@@ -197,6 +197,8 @@
   --textfield-filled-default-placeholder: #4B5563;
   --textfield-filled-default-border:      #2E3140;
 
+  --textfield-filled-filled-text: #FFFFFF;
+
   --textfield-filled-hover-bg:     #21242F;
   --textfield-filled-hover-border: #3E4150;
 
@@ -241,6 +243,8 @@
   --search-default-placeholder: #4B5563;
   --search-default-border:      #2E3140;
   --search-default-icon:        #8B8FA3;
+
+  --search-filled-text: #FFFFFF;
 
   --search-focus-bg:     #1A1D27;
   --search-focus-border: #60A5FA;
@@ -378,6 +382,7 @@
   --textfield-filled-default-text:        #13151E;
   --textfield-filled-default-placeholder: #C0C4CC;
   --textfield-filled-default-border:      #E4E6EB;
+  --textfield-filled-filled-text: #13151E;
   --textfield-filled-hover-bg:     #E4E6EB;
   --textfield-filled-hover-border: #D1D5DB;
   --textfield-filled-focus-bg:     #FFFFFF;
@@ -411,6 +416,7 @@
   --search-default-placeholder: #C0C4CC;
   --search-default-border:      #E4E6EB;
   --search-default-icon:        #6B7280;
+  --search-filled-text: #13151E;
   --search-focus-bg:     #FFFFFF;
   --search-focus-border: #3B82F6;
   --search-focus-icon:   #3B82F6;

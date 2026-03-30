@@ -138,6 +138,7 @@
   --textfield-filled-default-text:        #FFFFFF;
   --textfield-filled-default-placeholder: #4B5563;
   --textfield-filled-default-border:      #2E3140;
+  --textfield-filled-filled-text:         #FFFFFF;
   --textfield-filled-hover-bg:     #21242F;
   --textfield-filled-hover-border: #3E4150;
   --textfield-filled-focus-bg:     #1A1D27;
@@ -167,6 +168,7 @@
   --search-default-placeholder: #4B5563;
   --search-default-border:      #2E3140;
   --search-default-icon:        #8B8FA3;
+  --search-filled-text:         #FFFFFF;
   --search-focus-bg:     #1A1D27;
   --search-focus-border: #60A5FA;
   --search-focus-icon:   #60A5FA;
@@ -268,6 +270,7 @@
   --textfield-filled-default-text:        #13151E;
   --textfield-filled-default-placeholder: #C0C4CC;
   --textfield-filled-default-border:      #E4E6EB;
+  --textfield-filled-filled-text:         #13151E;
   --textfield-filled-hover-bg:     #E4E6EB;
   --textfield-filled-hover-border: #D1D5DB;
   --textfield-filled-focus-bg:     #FFFFFF;
@@ -296,6 +299,7 @@
   --textfield-outlined-disabled-border:      #F0F1F5;
 
   /* Search — light */
+  --search-filled-text:         #13151E;
   --search-default-bg:          #F0F1F5;
   --search-default-text:        #13151E;
   --search-default-placeholder: #C0C4CC;
@@ -2201,9 +2205,9 @@ body {
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setComponentState('btn-primary-preview', 'default', this, btnPrimaryStates)">Default</button>
           <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'hover', this, btnPrimaryStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates)">Focus</button>
           <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'pressed', this, btnPrimaryStates)">Pressed</button>
           <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'disabled', this, btnPrimaryStates)">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates)">Focus</button>
         </div>
         <div class="state-info" id="btn-primary-info">
           <div class="state-info-name">State: Default</div>
@@ -2253,9 +2257,9 @@ body {
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setComponentState('btn-secondary-preview', 'default', this, btnSecondaryStates)">Default</button>
           <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'hover', this, btnSecondaryStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates)">Focus</button>
           <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'pressed', this, btnSecondaryStates)">Pressed</button>
           <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'disabled', this, btnSecondaryStates)">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates)">Focus</button>
         </div>
         <div class="state-info" id="btn-secondary-info">
           <div class="state-info-name">State: Default</div>
@@ -2296,9 +2300,9 @@ body {
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setComponentState('btn-ghost-preview', 'default', this, btnGhostStates)">Default</button>
           <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'hover', this, btnGhostStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates)">Focus</button>
           <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'pressed', this, btnGhostStates)">Pressed</button>
           <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'disabled', this, btnGhostStates)">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates)">Focus</button>
         </div>
         <div class="state-info" id="btn-ghost-info">
           <div class="state-info-name">State: Default</div>
@@ -2348,10 +2352,11 @@ body {
         </div>
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setInputState('input-filled-preview', 'default', this, inputFilledStates)">Default</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'filled', this, inputFilledStates)">Filled</button>
           <button class="state-tab" onclick="setInputState('input-filled-preview', 'hover', this, inputFilledStates)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates)">Focus</button>
           <button class="state-tab" onclick="setInputState('input-filled-preview', 'error', this, inputFilledStates)">Error</button>
           <button class="state-tab" onclick="setInputState('input-filled-preview', 'disabled', this, inputFilledStates)">Disabled</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates)">Focus</button>
         </div>
         <div class="state-info" id="input-filled-info">
           <div class="state-info-name">State: Default</div>
@@ -2394,10 +2399,11 @@ body {
         </div>
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setInputState('input-outlined-preview', 'default', this, inputOutlinedStates)">Default</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'filled', this, inputOutlinedStates)">Filled</button>
           <button class="state-tab" onclick="setInputState('input-outlined-preview', 'hover', this, inputOutlinedStates)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates)">Focus</button>
           <button class="state-tab" onclick="setInputState('input-outlined-preview', 'error', this, inputOutlinedStates)">Error</button>
           <button class="state-tab" onclick="setInputState('input-outlined-preview', 'disabled', this, inputOutlinedStates)">Disabled</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates)">Focus</button>
         </div>
         <div class="state-info" id="input-outlined-info">
           <div class="state-info-name">State: Default</div>
@@ -2455,6 +2461,7 @@ body {
         </div>
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setSearchState('default', this)">Default</button>
+          <button class="state-tab" onclick="setSearchState('filled', this)">Filled</button>
           <button class="state-tab" onclick="setSearchState('focus', this)">Focus</button>
         </div>
         <div class="state-info" id="search-info">
@@ -2768,9 +2775,9 @@ body {
         <div class="state-tabs" role="tablist">
           <button class="state-tab active" onclick="setComponentState('navitem-preview', 'default', this, navItemStates)">Default</button>
           <button class="state-tab" onclick="setComponentState('navitem-preview', 'hover', this, navItemStates)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates)">Focus</button>
           <button class="state-tab" onclick="setComponentState('navitem-preview', 'active', this, navItemStates)">Active</button>
           <button class="state-tab" onclick="setComponentState('navitem-preview', 'disabled', this, navItemStates)">Disabled</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates)">Focus</button>
         </div>
         <div class="state-info" id="navitem-info">
           <div class="state-info-name">State: Default</div>
@@ -3318,6 +3325,18 @@ const inputFilledStates = {
       'border: 1px solid var(--textfield-filled-default-border) — #2E3140'
     ]
   },
+  filled: {
+    placeholder: '',
+    value: 'Hello World',
+    classes: [],
+    disabled: false,
+    info: 'State: Filled',
+    changes: [
+      'value: "Hello World" — user has entered text',
+      'color: var(--textfield-filled-default-text) — #FFFFFF',
+      'placeholder hidden — actual text replaces it'
+    ]
+  },
   hover: {
     placeholder: 'Enter value...',
     value: '',
@@ -3377,6 +3396,18 @@ const inputOutlinedStates = {
     changes: [
       'background: transparent',
       'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'
+    ]
+  },
+  filled: {
+    placeholder: '',
+    value: 'Hello World',
+    classes: [],
+    disabled: false,
+    info: 'State: Filled',
+    changes: [
+      'value: "Hello World" — user has entered text',
+      'color: var(--textfield-outlined-default-text) — #FFFFFF',
+      'placeholder hidden — actual text replaces it'
     ]
   },
   hover: {
@@ -3546,6 +3577,15 @@ function setSearchState(state, tabEl) {
       'background: var(--search-default-bg) — #1A1D27',
       'border: 1px solid var(--search-default-border) — #2E3140',
       'icon color: var(--search-default-icon) — #8B8FA3'
+    ]);
+  } else if (state === 'filled') {
+    input.value = 'Agent Architect';
+    input.placeholder = '';
+    if (icon) icon.style.color = '';
+    updateInfoPanel('search-info', 'State: Filled', [
+      'value: "Agent Architect" — user has entered text',
+      'color: var(--search-default-text) — #FFFFFF',
+      'placeholder hidden — actual text replaces it'
     ]);
   } else if (state === 'focus') {
     input.value = 'Trend Scout';
@@ -3746,89 +3786,7 @@ function applyTheme(theme) {
   });
 })();
 
-/* ============================================================
-   STATE SYNC — live interactions → auto-activate tabs
-   ============================================================ */
-(function initStateSyncListeners() {
-
-  // Map: stateName → tab label text (case-insensitive match)
-  const stateToTabLabel = {
-    hover: 'Hover',
-    pressed: 'Pressed',
-    focus: 'Focus',
-    default: 'Default'
-  };
-
-  function activateTabByState(stateExplorer, stateName) {
-    const label = stateToTabLabel[stateName];
-    if (!label) return;
-    const tabs = stateExplorer.querySelectorAll('.state-tab');
-    let target = null;
-    tabs.forEach(tab => {
-      if (tab.textContent.trim() === label) target = tab;
-    });
-    if (target && !target.classList.contains('active')) {
-      target.click();
-    }
-  }
-
-  // Wait for DOM ready, then attach listeners to all .state-preview interactive elements
-  function attachListeners() {
-    document.querySelectorAll('.state-explorer').forEach(explorer => {
-      const preview = explorer.querySelector('.state-preview');
-      if (!preview) return;
-
-      // Find the interactive element (button, input, or .search-wrap/.dropdown-wrap/.nav-item)
-      // We attach on the preview container itself for bubbling coverage
-      preview.addEventListener('mouseenter', (e) => {
-        // Only trigger if the hover is on/within a relevant interactive child
-        const interactive = preview.querySelector('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
-        if (!interactive) return;
-        activateTabByState(explorer, 'hover');
-      }, false);
-
-      preview.addEventListener('mouseleave', (e) => {
-        activateTabByState(explorer, 'default');
-      }, false);
-
-      preview.addEventListener('mousedown', (e) => {
-        const interactive = preview.querySelector('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
-        if (!interactive) return;
-        activateTabByState(explorer, 'pressed');
-      }, false);
-
-      preview.addEventListener('mouseup', (e) => {
-        // After mouseup check if still hovering
-        const rect = preview.getBoundingClientRect();
-        const x = e.clientX, y = e.clientY;
-        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-          activateTabByState(explorer, 'hover');
-        } else {
-          activateTabByState(explorer, 'default');
-        }
-      }, false);
-
-      preview.addEventListener('focusin', (e) => {
-        const interactive = e.target.closest('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
-        if (!interactive) return;
-        activateTabByState(explorer, 'focus');
-      }, false);
-
-      preview.addEventListener('focusout', (e) => {
-        // Small delay so blur doesn't immediately override a click-triggered state
-        setTimeout(() => {
-          activateTabByState(explorer, 'default');
-        }, 100);
-      }, false);
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attachListeners);
-  } else {
-    attachListeners();
-  }
-})();
+/* State sync removed — tabs are independent from live preview interaction */
 </script>
 </body>
 </html>
