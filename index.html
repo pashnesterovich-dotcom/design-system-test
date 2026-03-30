@@ -1465,6 +1465,242 @@ body {
 }
 
 /* ============================================================
+   STATE EXPLORER
+   ============================================================ */
+.state-explorer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Live preview area */
+.state-preview {
+  padding: var(--spacing-40) var(--spacing-24);
+  background: var(--bg-app);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 96px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+/* State tabs row */
+.state-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 var(--spacing-20);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-surface);
+}
+
+.state-tab {
+  font-size: var(--font-size-12);
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 10px 14px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.state-tab:hover {
+  color: var(--text-primary);
+}
+
+.state-tab.active {
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
+}
+
+/* State info panel */
+.state-info {
+  padding: var(--spacing-16) var(--spacing-20);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.state-info-name {
+  font-size: var(--font-size-12);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--spacing-8);
+}
+
+.state-info-changes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.state-info-change {
+  font-size: var(--font-size-12);
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-8);
+}
+
+.state-info-change::before {
+  content: '•';
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+/* Force states via CSS */
+/* Button primary */
+.btn-primary.force-hover {
+  background: var(--btn-primary-hover-bg) !important;
+  border-color: var(--btn-primary-hover-border) !important;
+  color: var(--btn-primary-hover-text) !important;
+}
+.btn-primary.force-focus {
+  background: var(--btn-primary-focus-bg) !important;
+  border-color: var(--btn-primary-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3) !important;
+  outline: none !important;
+}
+.btn-primary.force-pressed {
+  background: var(--btn-primary-pressed-bg) !important;
+  border-color: var(--btn-primary-pressed-border) !important;
+  color: var(--btn-primary-pressed-text) !important;
+}
+.btn-primary.force-disabled {
+  background: var(--btn-primary-disabled-bg) !important;
+  border-color: var(--btn-primary-disabled-border) !important;
+  color: var(--btn-primary-disabled-text) !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Button secondary */
+.btn-secondary.force-hover {
+  background: var(--btn-secondary-hover-bg) !important;
+  border-color: var(--btn-secondary-hover-border) !important;
+}
+.btn-secondary.force-focus {
+  background: var(--btn-secondary-focus-bg) !important;
+  border-color: var(--btn-secondary-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2) !important;
+  outline: none !important;
+}
+.btn-secondary.force-pressed {
+  background: var(--btn-secondary-pressed-bg) !important;
+  border-color: var(--btn-secondary-pressed-border) !important;
+  color: var(--btn-secondary-pressed-text) !important;
+}
+.btn-secondary.force-disabled {
+  background: var(--btn-secondary-disabled-bg) !important;
+  border-color: var(--btn-secondary-disabled-border) !important;
+  color: var(--btn-secondary-disabled-text) !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Button ghost */
+.btn-ghost.force-hover {
+  background: var(--btn-ghost-hover-bg) !important;
+  color: var(--btn-ghost-hover-text) !important;
+}
+.btn-ghost.force-focus {
+  background: var(--btn-ghost-focus-bg) !important;
+  border-color: var(--btn-ghost-focus-border) !important;
+  color: var(--btn-ghost-focus-text) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15) !important;
+  outline: none !important;
+}
+.btn-ghost.force-pressed {
+  background: var(--btn-ghost-pressed-bg) !important;
+  color: var(--btn-ghost-pressed-text) !important;
+}
+.btn-ghost.force-disabled {
+  background: var(--btn-ghost-disabled-bg) !important;
+  color: var(--btn-ghost-disabled-text) !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Input filled */
+.input-filled.force-hover {
+  background: var(--textfield-filled-hover-bg) !important;
+  border-color: var(--textfield-filled-hover-border) !important;
+}
+.input-filled.force-focus {
+  background: var(--textfield-filled-focus-bg) !important;
+  border-color: var(--textfield-filled-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15) !important;
+  outline: none !important;
+}
+.input-filled.force-disabled {
+  background: var(--textfield-filled-disabled-bg) !important;
+  color: var(--textfield-filled-disabled-text) !important;
+  border-color: var(--textfield-filled-disabled-border) !important;
+  cursor: not-allowed !important;
+}
+
+/* Input outlined */
+.input-outlined.force-hover {
+  border-color: var(--textfield-outlined-hover-border) !important;
+}
+.input-outlined.force-focus {
+  border-color: var(--textfield-outlined-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15) !important;
+  outline: none !important;
+}
+.input-outlined.force-disabled {
+  color: var(--textfield-outlined-disabled-text) !important;
+  border-color: var(--textfield-outlined-disabled-border) !important;
+  cursor: not-allowed !important;
+}
+
+/* Search input */
+.search-input.force-focus {
+  border-color: var(--search-focus-border) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15) !important;
+  outline: none !important;
+}
+.search-wrap.force-focus .search-icon {
+  color: var(--search-focus-icon) !important;
+}
+
+/* Dropdown */
+.dropdown-trigger.force-hover {
+  background: var(--dropdown-trigger-hover-bg) !important;
+  border-color: var(--dropdown-trigger-hover-border) !important;
+}
+.dropdown-trigger.force-open {
+  border-color: var(--dropdown-trigger-open-border) !important;
+}
+
+/* NavItem */
+.nav-item.force-hover {
+  background: var(--bg-elevated) !important;
+  color: var(--text-primary) !important;
+}
+.nav-item.force-focus {
+  outline: 2px solid var(--accent-primary) !important;
+  outline-offset: 2px !important;
+  background: var(--bg-elevated) !important;
+  color: var(--text-primary) !important;
+}
+.nav-item.force-pressed {
+  background: rgba(96, 165, 250, 0.12) !important;
+  color: var(--accent-primary) !important;
+  transform: scale(0.98) !important;
+}
+.nav-item.force-disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .site-footer {
@@ -1721,39 +1957,35 @@ body {
       <span class="section-tag">Interactive</span>
     </div>
 
-    <!-- Primary -->
+    <!-- Primary Button -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Primary Button</span>
         <span class="component-block-subtitle">Filled — main actions</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <button class="btn btn-primary">Default</button>
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-primary" style="background:var(--btn-primary-hover-bg);border-color:var(--btn-primary-hover-border)">Hover</button>
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-primary focus-state">Focus</button>
-            <span class="state-label">Focus</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-primary pressed">Pressed</button>
-            <span class="state-label">Pressed</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-primary" disabled>Disabled</button>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <button class="btn btn-primary" id="btn-primary-preview">Save Changes</button>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setComponentState('btn-primary-preview', 'default', this, btnPrimaryStates)">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'hover', this, btnPrimaryStates)">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates)">Focus</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'pressed', this, btnPrimaryStates)">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'disabled', this, btnPrimaryStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="btn-primary-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--btn-primary-default-bg) — #60A5FA</span>
+            <span class="state-info-change">color: var(--btn-primary-default-text) — #13151E</span>
+            <span class="state-info-change">border: 1px solid var(--btn-primary-default-border)</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;button class="btn btn-primary"&gt;Label&lt;/button&gt;
+        <pre>&lt;button class="btn btn-primary"&gt;Save Changes&lt;/button&gt;
 
 /* CSS */
 .btn-primary {
@@ -1764,86 +1996,89 @@ body {
   border-radius: var(--radius-8);
   font-size: var(--font-size-13);
   font-weight: 500;
+}
+.btn-primary:hover  { background: var(--btn-primary-hover-bg); }
+.btn-primary:focus  { box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3); outline: none; }
+.btn-primary:active { background: var(--btn-primary-pressed-bg); }
+.btn-primary:disabled {
+  background: var(--btn-primary-disabled-bg);
+  color: var(--btn-primary-disabled-text);
+  cursor: not-allowed;
 }</pre>
       </div>
     </div>
 
-    <!-- Secondary -->
+    <!-- Secondary Button -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Secondary Button</span>
         <span class="component-block-subtitle">Outlined — secondary actions</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <button class="btn btn-secondary">Default</button>
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-secondary" style="background:var(--btn-secondary-hover-bg);border-color:var(--btn-secondary-hover-border)">Hover</button>
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-secondary focus-state">Focus</button>
-            <span class="state-label">Focus</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-secondary pressed">Pressed</button>
-            <span class="state-label">Pressed</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-secondary" disabled>Disabled</button>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <button class="btn btn-secondary" id="btn-secondary-preview">Cancel</button>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setComponentState('btn-secondary-preview', 'default', this, btnSecondaryStates)">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'hover', this, btnSecondaryStates)">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates)">Focus</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'pressed', this, btnSecondaryStates)">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'disabled', this, btnSecondaryStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="btn-secondary-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--btn-secondary-default-bg) — #1A1D27</span>
+            <span class="state-info-change">color: var(--btn-secondary-default-text) — #60A5FA</span>
+            <span class="state-info-change">border: 1px solid var(--btn-secondary-default-border) — #2E3140</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;button class="btn btn-secondary"&gt;Label&lt;/button&gt;
+        <pre>&lt;button class="btn btn-secondary"&gt;Cancel&lt;/button&gt;
 
 /* CSS */
 .btn-secondary {
   background: var(--btn-secondary-default-bg);   /* #1A1D27 */
   color: var(--btn-secondary-default-text);       /* #60A5FA */
   border: 1px solid var(--btn-secondary-default-border); /* #2E3140 */
-}</pre>
+}
+.btn-secondary:hover  { background: var(--btn-secondary-hover-bg); border-color: var(--btn-secondary-hover-border); }
+.btn-secondary:focus  { border-color: var(--btn-secondary-focus-border); box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2); }
+.btn-secondary:active { background: var(--btn-secondary-pressed-bg); }</pre>
       </div>
     </div>
 
-    <!-- Ghost -->
+    <!-- Ghost Button -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Ghost Button</span>
         <span class="component-block-subtitle">Text only — low-emphasis actions</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <button class="btn btn-ghost">Default</button>
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-ghost" style="background:var(--btn-ghost-hover-bg);color:var(--btn-ghost-hover-text)">Hover</button>
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-ghost" style="background:var(--btn-ghost-focus-bg);color:var(--btn-ghost-focus-text);border-color:var(--btn-ghost-focus-border);box-shadow:0 0 0 3px rgba(96,165,250,0.15)">Focus</button>
-            <span class="state-label">Focus</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-ghost pressed">Pressed</button>
-            <span class="state-label">Pressed</span>
-          </div>
-          <div class="state-item">
-            <button class="btn btn-ghost" disabled>Disabled</button>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <button class="btn btn-ghost" id="btn-ghost-preview">Learn more</button>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setComponentState('btn-ghost-preview', 'default', this, btnGhostStates)">Default</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'hover', this, btnGhostStates)">Hover</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates)">Focus</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'pressed', this, btnGhostStates)">Pressed</button>
+          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'disabled', this, btnGhostStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="btn-ghost-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: transparent</span>
+            <span class="state-info-change">color: var(--btn-ghost-default-text) — #8B8FA3</span>
+            <span class="state-info-change">border: 1px solid transparent</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;button class="btn btn-ghost"&gt;Label&lt;/button&gt;
+        <pre>&lt;button class="btn btn-ghost"&gt;Learn more&lt;/button&gt;
 
 /* CSS */
 .btn-ghost {
@@ -1851,10 +2086,9 @@ body {
   color: var(--btn-ghost-default-text);   /* #8B8FA3 */
   border: 1px solid transparent;
 }
-.btn-ghost:hover {
-  background: var(--btn-ghost-hover-bg);  /* #1A1D27 */
-  color: var(--text-primary);
-}</pre>
+.btn-ghost:hover  { background: var(--btn-ghost-hover-bg); color: var(--text-primary); }
+.btn-ghost:focus  { border-color: var(--btn-ghost-focus-border); box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15); }
+.btn-ghost:active { background: var(--btn-ghost-pressed-bg); }</pre>
       </div>
     </div>
   </section>
@@ -1868,39 +2102,34 @@ body {
       <span class="section-tag">Form</span>
     </div>
 
-    <!-- Filled -->
+    <!-- Filled TextField -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Filled TextField</span>
         <span class="component-block-subtitle">Dark background variant</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <input class="input-base input-filled" type="text" placeholder="Placeholder">
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-filled" type="text" placeholder="Hover" style="background:var(--textfield-filled-hover-bg);border-color:var(--textfield-filled-hover-border)">
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-filled" type="text" value="Focused" style="border-color:var(--textfield-filled-focus-border);box-shadow:0 0 0 3px rgba(96,165,250,0.15)">
-            <span class="state-label">Focus</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-filled error" type="text" value="Invalid email">
-            <span class="state-label">Error</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-filled" type="text" placeholder="Disabled" disabled>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <input class="input-base input-filled" id="input-filled-preview" type="text" placeholder="Enter value...">
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setInputState('input-filled-preview', 'default', this, inputFilledStates)">Default</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'hover', this, inputFilledStates)">Hover</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates)">Focus</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'error', this, inputFilledStates)">Error</button>
+          <button class="state-tab" onclick="setInputState('input-filled-preview', 'disabled', this, inputFilledStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="input-filled-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--textfield-filled-default-bg) — #1A1D27</span>
+            <span class="state-info-change">border: 1px solid var(--textfield-filled-default-border) — #2E3140</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;input class="input-filled" type="text" placeholder="Label"&gt;
+        <pre>&lt;input class="input-base input-filled" type="text" placeholder="Enter value..."&gt;
 
 /* CSS */
 .input-filled {
@@ -1911,46 +2140,41 @@ body {
   border-radius: var(--radius-8);
   font-size: var(--font-size-13);
 }
-.input-filled:focus {
-  border-color: var(--textfield-filled-focus-border); /* #60A5FA */
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
-}</pre>
+.input-filled:hover { background: var(--textfield-filled-hover-bg); border-color: var(--textfield-filled-hover-border); }
+.input-filled:focus { border-color: var(--textfield-filled-focus-border); box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15); }
+.input-filled.error { border-color: var(--textfield-filled-error-border); box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15); }
+.input-filled:disabled { background: var(--textfield-filled-disabled-bg); cursor: not-allowed; }</pre>
       </div>
     </div>
 
-    <!-- Outlined -->
+    <!-- Outlined TextField -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Outlined TextField</span>
         <span class="component-block-subtitle">Transparent background variant</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <input class="input-base input-outlined" type="text" placeholder="Placeholder">
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-outlined" type="text" placeholder="Hover" style="border-color:var(--textfield-outlined-hover-border)">
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-outlined" type="text" value="Focused" style="border-color:var(--textfield-outlined-focus-border);box-shadow:0 0 0 3px rgba(96,165,250,0.15)">
-            <span class="state-label">Focus</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-outlined error" type="text" value="Invalid">
-            <span class="state-label">Error</span>
-          </div>
-          <div class="state-item">
-            <input class="input-base input-outlined" type="text" placeholder="Disabled" disabled>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <input class="input-base input-outlined" id="input-outlined-preview" type="text" placeholder="Enter value...">
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setInputState('input-outlined-preview', 'default', this, inputOutlinedStates)">Default</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'hover', this, inputOutlinedStates)">Hover</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates)">Focus</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'error', this, inputOutlinedStates)">Error</button>
+          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'disabled', this, inputOutlinedStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="input-outlined-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: transparent</span>
+            <span class="state-info-change">border: 1px solid var(--textfield-outlined-default-border) — #2E3140</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;input class="input-outlined" type="text" placeholder="Label"&gt;
+        <pre>&lt;input class="input-base input-outlined" type="text" placeholder="Enter value..."&gt;
 
 /* CSS */
 .input-outlined {
@@ -1960,10 +2184,10 @@ body {
   padding: 8px 12px;
   border-radius: var(--radius-8);
 }
-.input-outlined:focus {
-  border-color: var(--textfield-outlined-focus-border); /* #60A5FA */
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
-}</pre>
+.input-outlined:hover { border-color: var(--textfield-outlined-hover-border); }
+.input-outlined:focus { border-color: var(--textfield-outlined-focus-border); box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15); }
+.input-outlined.error { border-color: var(--textfield-outlined-error-border); }
+.input-outlined:disabled { color: var(--textfield-outlined-disabled-text); border-color: var(--textfield-outlined-disabled-border); }</pre>
       </div>
     </div>
   </section>
@@ -1981,27 +2205,21 @@ body {
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Toggle</span>
-        <span class="component-block-subtitle">Click to switch</span>
+        <span class="component-block-subtitle">Click to switch on / off</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <label class="toggle-wrap">
-              <button class="toggle" id="toggle1" onclick="toggleSwitch(this)" aria-label="Toggle off"></button>
-            </label>
-            <span class="state-label">Off</span>
-          </div>
-          <div class="state-item">
-            <label class="toggle-wrap">
-              <button class="toggle on" id="toggle2" onclick="toggleSwitch(this)" aria-label="Toggle on"></button>
-            </label>
-            <span class="state-label">On</span>
-          </div>
-          <div class="state-item">
-            <label class="toggle-wrap">
-              <button class="toggle" style="opacity:0.4;cursor:not-allowed" aria-label="Toggle disabled"></button>
-            </label>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(document.getElementById('toggle-preview'));updateToggleInfo()">
+            <button class="toggle" id="toggle-preview" aria-label="Toggle"></button>
+            <span id="toggle-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Off — click to toggle</span>
+          </label>
+        </div>
+        <div class="state-info" style="border-top:none">
+          <div class="state-info-name">States</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">Off: background: var(--border-strong) — #3E4150</span>
+            <span class="state-info-change">On: background: var(--accent-success) — #34D399</span>
+            <span class="state-info-change">Knob slides via transform: translateX(18px)</span>
           </div>
         </div>
       </div>
@@ -2012,11 +2230,11 @@ body {
 /* CSS */
 .toggle {
   width: 40px; height: 22px;
-  background: var(--border-strong);
+  background: var(--border-strong);   /* Off: #3E4150 */
   border-radius: var(--radius-full);
   transition: background 0.2s;
 }
-.toggle.on { background: var(--accent-success); /* #34D399 */ }
+.toggle.on { background: var(--accent-success); /* On: #34D399 */ }
 .toggle::after {
   content: ''; position: absolute; top: 3px; left: 3px;
   width: 16px; height: 16px; border-radius: 50%;
@@ -2030,44 +2248,34 @@ body {
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Checkbox</span>
-        <span class="component-block-subtitle">Click to toggle</span>
+        <span class="component-block-subtitle">Click to check / uncheck</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <label class="checkbox-wrap" onclick="toggleCheckbox(this)">
-              <div class="checkbox" id="cb1">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked</span>
-            </label>
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <label class="checkbox-wrap" onclick="toggleCheckbox(this)">
-              <div class="checkbox checked" id="cb2">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span style="font-size:var(--font-size-13);color:var(--text-primary)">Checked</span>
-            </label>
-            <span class="state-label">Checked</span>
-          </div>
-          <div class="state-item">
-            <label class="checkbox-wrap">
-              <div class="checkbox disabled">
-                <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span style="font-size:var(--font-size-13);color:var(--text-disabled)">Disabled</span>
-            </label>
-            <span class="state-label">Disabled</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <label class="checkbox-wrap" onclick="toggleCheckbox(this)" style="cursor:pointer">
+            <div class="checkbox" id="checkbox-preview">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span id="checkbox-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked — click to toggle</span>
+          </label>
+        </div>
+        <div class="state-info" style="border-top:none">
+          <div class="state-info-name">States</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">Unchecked: border: 1px solid var(--border-strong), background: transparent</span>
+            <span class="state-info-change">Checked: background: var(--accent-primary) — #60A5FA, checkmark visible</span>
+            <span class="state-info-change">Disabled: opacity: 0.4, cursor: not-allowed</span>
           </div>
         </div>
       </div>
       <div class="code-block">
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;div class="checkbox" onclick="this.classList.toggle('checked')"&gt;
-  &lt;svg ...&gt; &lt;!-- checkmark icon --&gt;
-&lt;/div&gt;
+        <pre>&lt;label class="checkbox-wrap" onclick="toggleCheckbox(this)"&gt;
+  &lt;div class="checkbox"&gt;
+    &lt;svg ...&gt;&lt;/svg&gt; &lt;!-- checkmark --&gt;
+  &lt;/div&gt;
+  Label
+&lt;/label&gt;
 
 /* CSS */
 .checkbox {
@@ -2079,7 +2287,9 @@ body {
 .checkbox.checked {
   background: var(--accent-primary); /* #60A5FA */
   border-color: var(--accent-primary);
-}</pre>
+}
+.checkbox svg { display: none; }
+.checkbox.checked svg { display: block; }</pre>
       </div>
     </div>
 
@@ -2087,30 +2297,31 @@ body {
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Radio</span>
-        <span class="component-block-subtitle">Single selection</span>
+        <span class="component-block-subtitle">Click to select an option</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <label class="radio-wrap">
-              <div class="radio"><div class="radio-inner"></div></div>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <div style="display:flex;flex-direction:column;gap:var(--spacing-12)">
+            <label class="radio-wrap" onclick="selectRadio('radio-a')" style="cursor:pointer">
+              <div class="radio" id="radio-a"><div class="radio-inner"></div></div>
               <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Option A</span>
             </label>
-            <span class="state-label">Unselected</span>
-          </div>
-          <div class="state-item">
-            <label class="radio-wrap">
-              <div class="radio selected"><div class="radio-inner"></div></div>
+            <label class="radio-wrap" onclick="selectRadio('radio-b')" style="cursor:pointer">
+              <div class="radio selected" id="radio-b"><div class="radio-inner"></div></div>
               <span style="font-size:var(--font-size-13);color:var(--text-primary)">Option B</span>
             </label>
-            <span class="state-label">Selected</span>
-          </div>
-          <div class="state-item">
-            <label class="radio-wrap">
+            <label class="radio-wrap" style="cursor:not-allowed;opacity:0.4">
               <div class="radio disabled"><div class="radio-inner"></div></div>
-              <span style="font-size:var(--font-size-13);color:var(--text-disabled)">Disabled</span>
+              <span style="font-size:var(--font-size-13);color:var(--text-disabled)">Option C (disabled)</span>
             </label>
-            <span class="state-label">Disabled</span>
+          </div>
+        </div>
+        <div class="state-info" style="border-top:none">
+          <div class="state-info-name">States</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">Unselected: border: 2px solid var(--border-strong) — #3E4150</span>
+            <span class="state-info-change">Selected: border-color: var(--accent-success) — #34D399, inner dot visible</span>
+            <span class="state-info-change">Disabled: opacity: 0.4, cursor: not-allowed</span>
           </div>
         </div>
       </div>
@@ -2130,7 +2341,9 @@ body {
 .radio-inner {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--accent-success);
-}</pre>
+  display: none;
+}
+.radio.selected .radio-inner { display: block; }</pre>
       </div>
     </div>
   </section>
@@ -2250,28 +2463,25 @@ body {
         <span class="component-block-title">NavItem</span>
         <span class="component-block-subtitle">Sidebar navigation link</span>
       </div>
-      <div class="component-preview">
-        <div style="display:flex;gap:var(--spacing-24);flex-wrap:wrap;align-items:flex-start">
-          <div class="state-item">
-            <button class="nav-item">
-              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              Dashboard
-            </button>
-            <span class="state-label">Default</span>
-          </div>
-          <div class="state-item">
-            <button class="nav-item" style="background:var(--bg-elevated);color:var(--text-primary)">
-              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-              Agents
-            </button>
-            <span class="state-label">Hover</span>
-          </div>
-          <div class="state-item">
-            <button class="nav-item active">
-              <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-              Pipeline
-            </button>
-            <span class="state-label">Active</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <button class="nav-item" id="navitem-preview">
+            <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Pipeline
+          </button>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setComponentState('navitem-preview', 'default', this, navItemStates)">Default</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'hover', this, navItemStates)">Hover</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates)">Focus</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'active', this, navItemStates)">Active</button>
+          <button class="state-tab" onclick="setComponentState('navitem-preview', 'disabled', this, navItemStates)">Disabled</button>
+        </div>
+        <div class="state-info" id="navitem-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: transparent</span>
+            <span class="state-info-change">color: var(--text-secondary) — #8B8FA3</span>
           </div>
         </div>
       </div>
@@ -2280,6 +2490,8 @@ body {
         <pre>&lt;a class="nav-item active" href="/pipeline"&gt;Pipeline&lt;/a&gt;
 
 /* CSS */
+.nav-item { color: var(--text-secondary); background: transparent; }
+.nav-item:hover { background: var(--bg-elevated); color: var(--text-primary); }
 .nav-item.active {
   background: rgba(96, 165, 250, 0.08);
   color: var(--accent-primary);
@@ -2449,32 +2661,32 @@ body {
       <span class="section-tag">Form</span>
     </div>
 
-    <!-- Search -->
+    <!-- Search Input -->
     <div class="component-block">
       <div class="component-block-header">
         <span class="component-block-title">Search Input</span>
         <span class="component-block-subtitle">With icon and shortcut hint</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <div class="search-wrap">
-              <span class="search-icon">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              </span>
-              <input class="search-input" type="text" placeholder="Search...">
-              <span class="search-shortcut">⌘K</span>
-            </div>
-            <span class="state-label">Default</span>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <div class="search-wrap" id="search-wrap-preview">
+            <span class="search-icon" id="search-icon-preview">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </span>
+            <input class="search-input" id="search-preview" type="text" placeholder="Search agents...">
+            <span class="search-shortcut">⌘K</span>
           </div>
-          <div class="state-item">
-            <div class="search-wrap">
-              <span class="search-icon" style="color:var(--search-focus-icon)">
-                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              </span>
-              <input class="search-input" type="text" value="Trend Scout" style="border-color:var(--search-focus-border);box-shadow:0 0 0 3px rgba(96,165,250,0.15)">
-            </div>
-            <span class="state-label">Focus</span>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setSearchState('default', this)">Default</button>
+          <button class="state-tab" onclick="setSearchState('focus', this)">Focus</button>
+        </div>
+        <div class="state-info" id="search-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--search-default-bg) — #1A1D27</span>
+            <span class="state-info-change">border: 1px solid var(--search-default-border) — #2E3140</span>
+            <span class="state-info-change">icon color: var(--search-default-icon) — #8B8FA3</span>
           </div>
         </div>
       </div>
@@ -2484,7 +2696,13 @@ body {
   &lt;span class="search-icon"&gt;[svg]&lt;/span&gt;
   &lt;input class="search-input" placeholder="Search..."&gt;
   &lt;span class="search-shortcut"&gt;⌘K&lt;/span&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;
+
+/* CSS */
+.search-input:focus {
+  border-color: var(--search-focus-border); /* #60A5FA */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+}</pre>
       </div>
     </div>
 
@@ -2494,42 +2712,34 @@ body {
         <span class="component-block-title">Dropdown</span>
         <span class="component-block-subtitle">Click to open / close</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid" style="align-items:flex-start">
-          <div class="state-item" style="align-items:flex-start">
-            <div class="dropdown-wrap" id="dropdown1">
-              <button class="dropdown-trigger" onclick="toggleDropdown('dropdown1')">
-                <span>Select agent</span>
-                <svg class="dropdown-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="dropdown-menu">
-                <div class="dropdown-item selected">
-                  Trend Scout
-                  <svg class="dropdown-item-check" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="dropdown-item">Ideation Engine</div>
-                <div class="dropdown-item">Discovery Lead</div>
-                <div class="dropdown-item">UX Researcher</div>
+      <div class="state-explorer">
+        <div class="state-preview" style="align-items:flex-start;padding-bottom:var(--spacing-24)">
+          <div class="dropdown-wrap" id="dropdown1">
+            <button class="dropdown-trigger" id="dropdown1-trigger" onclick="toggleDropdown('dropdown1')">
+              <span id="dropdown1-label">Select agent</span>
+              <svg class="dropdown-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-menu">
+              <div class="dropdown-item selected">
+                Trend Scout
+                <svg class="dropdown-item-check" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
+              <div class="dropdown-item">Ideation Engine</div>
+              <div class="dropdown-item">Discovery Lead</div>
+              <div class="dropdown-item">UX Researcher</div>
             </div>
-            <span class="state-label" style="margin-top:8px">Closed</span>
           </div>
-          <div class="state-item" style="align-items:flex-start">
-            <div class="dropdown-wrap open" id="dropdown2" style="pointer-events:none">
-              <button class="dropdown-trigger open">
-                <span>Trend Scout</span>
-                <svg class="dropdown-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-              </button>
-              <div class="dropdown-menu">
-                <div class="dropdown-item selected">
-                  Trend Scout
-                  <svg class="dropdown-item-check" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="dropdown-item">Ideation Engine</div>
-                <div class="dropdown-item">Discovery Lead</div>
-              </div>
-            </div>
-            <span class="state-label" style="margin-top:8px">Open</span>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setDropdownState('default', this)">Default</button>
+          <button class="state-tab" onclick="setDropdownState('hover', this)">Hover</button>
+          <button class="state-tab" onclick="setDropdownState('open', this)">Open</button>
+        </div>
+        <div class="state-info" id="dropdown-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--dropdown-trigger-default-bg) — #1A1D27</span>
+            <span class="state-info-change">border: 1px solid var(--dropdown-trigger-default-border) — #2E3140</span>
           </div>
         </div>
       </div>
@@ -2548,7 +2758,11 @@ body {
 
 function toggleDropdown(id) {
   document.getElementById(id).classList.toggle('open');
-}</pre>
+}
+
+/* CSS */
+.dropdown-trigger:hover { background: var(--dropdown-trigger-hover-bg); border-color: var(--dropdown-trigger-hover-border); }
+.dropdown-trigger.open  { border-color: var(--dropdown-trigger-open-border); /* #60A5FA */ }</pre>
       </div>
     </div>
   </section>
@@ -2631,52 +2845,560 @@ function showToast(msg) {
 }
 
 /* ============================================================
-   TOGGLE SWITCH
+   TOGGLE SWITCH (live interactive)
    ============================================================ */
 function toggleSwitch(el) {
   el.classList.toggle('on');
 }
 
+function updateToggleInfo() {
+  const toggle = document.getElementById('toggle-preview');
+  const label = document.getElementById('toggle-label');
+  if (!toggle || !label) return;
+  const isOn = toggle.classList.contains('on');
+  label.textContent = isOn ? 'On — click to toggle' : 'Off — click to toggle';
+  label.style.color = isOn ? 'var(--text-primary)' : 'var(--text-secondary)';
+}
+
 /* ============================================================
-   TOGGLE CHECKBOX
+   CHECKBOX (live interactive)
    ============================================================ */
 function toggleCheckbox(wrap) {
   const cb = wrap.querySelector('.checkbox');
   if (!cb || cb.classList.contains('disabled')) return;
   cb.classList.toggle('checked');
-  const label = wrap.querySelector('span');
+  const label = document.getElementById('checkbox-label') || wrap.querySelector('span');
   if (label) {
-    label.textContent = cb.classList.contains('checked') ? 'Checked' : 'Unchecked';
+    label.textContent = cb.classList.contains('checked') ? 'Checked — click to toggle' : 'Unchecked — click to toggle';
     label.style.color = cb.classList.contains('checked')
       ? 'var(--text-primary)' : 'var(--text-secondary)';
   }
 }
 
 /* ============================================================
-   DROPDOWN
+   RADIO (live interactive)
+   ============================================================ */
+function selectRadio(activeId) {
+  ['radio-a', 'radio-b'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const label = el.closest('.radio-wrap')?.querySelector('span');
+    if (id === activeId) {
+      el.classList.add('selected');
+      if (label) label.style.color = 'var(--text-primary)';
+    } else {
+      el.classList.remove('selected');
+      if (label) label.style.color = 'var(--text-secondary)';
+    }
+  });
+}
+
+/* ============================================================
+   STATE DEFINITIONS
+   ============================================================ */
+
+const btnPrimaryStates = {
+  default: {
+    label: 'Default',
+    classes: [],
+    info: 'State: Default',
+    changes: [
+      'background: var(--btn-primary-default-bg) — #60A5FA',
+      'color: var(--btn-primary-default-text) — #13151E',
+      'border: 1px solid var(--btn-primary-default-border)'
+    ]
+  },
+  hover: {
+    label: 'Save Changes',
+    classes: ['force-hover'],
+    info: 'State: Hover',
+    changes: [
+      'background: var(--btn-primary-hover-bg) — #3B82F6',
+      'border-color: var(--btn-primary-hover-border) — #3B82F6',
+      'transition: 150ms ease'
+    ]
+  },
+  focus: {
+    label: 'Save Changes',
+    classes: ['force-focus'],
+    info: 'State: Focus',
+    changes: [
+      'border: 2px solid var(--btn-primary-focus-border) — #3B82F6',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)',
+      'outline: none'
+    ]
+  },
+  pressed: {
+    label: 'Save Changes',
+    classes: ['force-pressed'],
+    info: 'State: Pressed',
+    changes: [
+      'background: var(--btn-primary-pressed-bg) — #2563EB',
+      'border-color: var(--btn-primary-pressed-border) — #2563EB',
+      'color: var(--btn-primary-pressed-text) — #FFFFFF'
+    ]
+  },
+  disabled: {
+    label: 'Save Changes',
+    classes: ['force-disabled'],
+    info: 'State: Disabled',
+    changes: [
+      'background: var(--btn-primary-disabled-bg) — #1A1D27',
+      'color: var(--btn-primary-disabled-text) — #4B5563',
+      'border-color: var(--btn-primary-disabled-border) — #2E3140',
+      'cursor: not-allowed; pointer-events: none'
+    ]
+  }
+};
+
+const btnSecondaryStates = {
+  default: {
+    label: 'Cancel',
+    classes: [],
+    info: 'State: Default',
+    changes: [
+      'background: var(--btn-secondary-default-bg) — #1A1D27',
+      'color: var(--btn-secondary-default-text) — #60A5FA',
+      'border: 1px solid var(--btn-secondary-default-border) — #2E3140'
+    ]
+  },
+  hover: {
+    label: 'Cancel',
+    classes: ['force-hover'],
+    info: 'State: Hover',
+    changes: [
+      'background: var(--btn-secondary-hover-bg) — #21242F',
+      'border-color: var(--btn-secondary-hover-border) — #3E4150'
+    ]
+  },
+  focus: {
+    label: 'Cancel',
+    classes: ['force-focus'],
+    info: 'State: Focus',
+    changes: [
+      'border-color: var(--btn-secondary-focus-border) — #60A5FA',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)',
+      'outline: none'
+    ]
+  },
+  pressed: {
+    label: 'Cancel',
+    classes: ['force-pressed'],
+    info: 'State: Pressed',
+    changes: [
+      'background: var(--btn-secondary-pressed-bg) — #13151E',
+      'border-color: var(--btn-secondary-pressed-border) — #3B82F6',
+      'color: var(--btn-secondary-pressed-text) — #3B82F6'
+    ]
+  },
+  disabled: {
+    label: 'Cancel',
+    classes: ['force-disabled'],
+    info: 'State: Disabled',
+    changes: [
+      'background: var(--btn-secondary-disabled-bg) — #13151E',
+      'color: var(--btn-secondary-disabled-text) — #4B5563',
+      'border-color: var(--btn-secondary-disabled-border) — #1A1D27',
+      'cursor: not-allowed'
+    ]
+  }
+};
+
+const btnGhostStates = {
+  default: {
+    label: 'Learn more',
+    classes: [],
+    info: 'State: Default',
+    changes: [
+      'background: transparent',
+      'color: var(--btn-ghost-default-text) — #8B8FA3',
+      'border: 1px solid transparent'
+    ]
+  },
+  hover: {
+    label: 'Learn more',
+    classes: ['force-hover'],
+    info: 'State: Hover',
+    changes: [
+      'background: var(--btn-ghost-hover-bg) — #1A1D27',
+      'color: var(--btn-ghost-hover-text) — #FFFFFF'
+    ]
+  },
+  focus: {
+    label: 'Learn more',
+    classes: ['force-focus'],
+    info: 'State: Focus',
+    changes: [
+      'background: var(--btn-ghost-focus-bg) — #1A1D27',
+      'border-color: var(--btn-ghost-focus-border) — #2E3140',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
+      'outline: none'
+    ]
+  },
+  pressed: {
+    label: 'Learn more',
+    classes: ['force-pressed'],
+    info: 'State: Pressed',
+    changes: [
+      'background: var(--btn-ghost-pressed-bg) — #21242F',
+      'color: var(--btn-ghost-pressed-text) — #FFFFFF'
+    ]
+  },
+  disabled: {
+    label: 'Learn more',
+    classes: ['force-disabled'],
+    info: 'State: Disabled',
+    changes: [
+      'color: var(--btn-ghost-disabled-text) — #4B5563',
+      'cursor: not-allowed'
+    ]
+  }
+};
+
+const inputFilledStates = {
+  default: {
+    placeholder: 'Enter value...',
+    value: '',
+    classes: [],
+    disabled: false,
+    info: 'State: Default',
+    changes: [
+      'background: var(--textfield-filled-default-bg) — #1A1D27',
+      'border: 1px solid var(--textfield-filled-default-border) — #2E3140'
+    ]
+  },
+  hover: {
+    placeholder: 'Enter value...',
+    value: '',
+    classes: ['force-hover'],
+    disabled: false,
+    info: 'State: Hover',
+    changes: [
+      'background: var(--textfield-filled-hover-bg) — #21242F',
+      'border-color: var(--textfield-filled-hover-border) — #3E4150'
+    ]
+  },
+  focus: {
+    placeholder: '',
+    value: 'Focused value',
+    classes: ['force-focus'],
+    disabled: false,
+    info: 'State: Focus',
+    changes: [
+      'border-color: var(--textfield-filled-focus-border) — #60A5FA',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
+      'outline: none'
+    ]
+  },
+  error: {
+    placeholder: '',
+    value: 'invalid@',
+    classes: ['error'],
+    disabled: false,
+    info: 'State: Error',
+    changes: [
+      'border-color: var(--textfield-filled-error-border) — #F87171',
+      'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'
+    ]
+  },
+  disabled: {
+    placeholder: 'Disabled field',
+    value: '',
+    classes: ['force-disabled'],
+    disabled: true,
+    info: 'State: Disabled',
+    changes: [
+      'background: var(--textfield-filled-disabled-bg) — #13151E',
+      'color: var(--textfield-filled-disabled-text) — #4B5563',
+      'border-color: var(--textfield-filled-disabled-border) — #1A1D27',
+      'cursor: not-allowed'
+    ]
+  }
+};
+
+const inputOutlinedStates = {
+  default: {
+    placeholder: 'Enter value...',
+    value: '',
+    classes: [],
+    disabled: false,
+    info: 'State: Default',
+    changes: [
+      'background: transparent',
+      'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'
+    ]
+  },
+  hover: {
+    placeholder: 'Enter value...',
+    value: '',
+    classes: ['force-hover'],
+    disabled: false,
+    info: 'State: Hover',
+    changes: [
+      'border-color: var(--textfield-outlined-hover-border) — #3E4150'
+    ]
+  },
+  focus: {
+    placeholder: '',
+    value: 'Focused value',
+    classes: ['force-focus'],
+    disabled: false,
+    info: 'State: Focus',
+    changes: [
+      'border-color: var(--textfield-outlined-focus-border) — #60A5FA',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
+      'outline: none'
+    ]
+  },
+  error: {
+    placeholder: '',
+    value: 'invalid@',
+    classes: ['error'],
+    disabled: false,
+    info: 'State: Error',
+    changes: [
+      'border-color: var(--textfield-outlined-error-border) — #F87171',
+      'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'
+    ]
+  },
+  disabled: {
+    placeholder: 'Disabled field',
+    value: '',
+    classes: ['force-disabled'],
+    disabled: true,
+    info: 'State: Disabled',
+    changes: [
+      'color: var(--textfield-outlined-disabled-text) — #4B5563',
+      'border-color: var(--textfield-outlined-disabled-border) — #1A1D27',
+      'cursor: not-allowed'
+    ]
+  }
+};
+
+const navItemStates = {
+  default: {
+    classes: [],
+    info: 'State: Default',
+    changes: [
+      'background: transparent',
+      'color: var(--text-secondary) — #8B8FA3'
+    ]
+  },
+  hover: {
+    classes: ['force-hover'],
+    info: 'State: Hover',
+    changes: [
+      'background: var(--bg-elevated) — #21242F',
+      'color: var(--text-primary) — #FFFFFF'
+    ]
+  },
+  focus: {
+    classes: ['force-focus'],
+    info: 'State: Focus',
+    changes: [
+      'outline: 2px solid var(--accent-primary) — #60A5FA',
+      'background: var(--bg-elevated) — #21242F'
+    ]
+  },
+  active: {
+    classes: ['active'],
+    info: 'State: Active',
+    changes: [
+      'background: rgba(96, 165, 250, 0.08)',
+      'color: var(--accent-primary) — #60A5FA',
+      '::before accent bar: left edge, width 3px, blue'
+    ]
+  },
+  disabled: {
+    classes: ['force-disabled'],
+    info: 'State: Disabled',
+    changes: [
+      'opacity: 0.4',
+      'cursor: not-allowed',
+      'pointer-events: none'
+    ]
+  }
+};
+
+/* ============================================================
+   GENERIC STATE SETTER (for buttons, nav-item)
+   ============================================================ */
+function setComponentState(previewId, state, tabEl, stateMap) {
+  const el = document.getElementById(previewId);
+  if (!el) return;
+
+  const def = stateMap[state];
+  if (!def) return;
+
+  // Remove all force classes and special state classes
+  const allClasses = Object.values(stateMap).flatMap(s => s.classes || []);
+  allClasses.forEach(cls => el.classList.remove(cls));
+
+  // Add new classes
+  (def.classes || []).forEach(cls => el.classList.add(cls));
+
+  // Update label text if provided
+  if (def.label !== undefined) el.textContent = def.label;
+
+  // Rebuild info panel
+  const infoId = previewId.replace('-preview', '-info');
+  updateInfoPanel(infoId, def.info, def.changes);
+
+  // Update active tab
+  updateActiveTabs(tabEl);
+}
+
+/* ============================================================
+   INPUT STATE SETTER
+   ============================================================ */
+function setInputState(previewId, state, tabEl, stateMap) {
+  const el = document.getElementById(previewId);
+  if (!el) return;
+
+  const def = stateMap[state];
+  if (!def) return;
+
+  // Remove all force classes
+  const allClasses = Object.values(stateMap).flatMap(s => s.classes || []);
+  allClasses.forEach(cls => el.classList.remove(cls));
+
+  // Apply state
+  (def.classes || []).forEach(cls => el.classList.add(cls));
+  el.disabled = !!def.disabled;
+  el.value = def.value || '';
+  el.placeholder = def.placeholder || '';
+
+  // Update info panel
+  const infoId = previewId.replace('-preview', '-info');
+  updateInfoPanel(infoId, def.info, def.changes);
+
+  updateActiveTabs(tabEl);
+}
+
+/* ============================================================
+   SEARCH STATE SETTER
+   ============================================================ */
+function setSearchState(state, tabEl) {
+  const input = document.getElementById('search-preview');
+  const wrap = document.getElementById('search-wrap-preview');
+  const icon = document.getElementById('search-icon-preview');
+  const infoEl = document.getElementById('search-info');
+  if (!input) return;
+
+  input.classList.remove('force-focus');
+  if (wrap) wrap.classList.remove('force-focus');
+
+  if (state === 'default') {
+    input.value = '';
+    input.placeholder = 'Search agents...';
+    if (icon) icon.style.color = '';
+    updateInfoPanel('search-info', 'State: Default', [
+      'background: var(--search-default-bg) — #1A1D27',
+      'border: 1px solid var(--search-default-border) — #2E3140',
+      'icon color: var(--search-default-icon) — #8B8FA3'
+    ]);
+  } else if (state === 'focus') {
+    input.value = 'Trend Scout';
+    input.placeholder = '';
+    input.classList.add('force-focus');
+    if (wrap) wrap.classList.add('force-focus');
+    if (icon) icon.style.color = 'var(--search-focus-icon)';
+    updateInfoPanel('search-info', 'State: Focus', [
+      'border-color: var(--search-focus-border) — #60A5FA',
+      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
+      'icon color: var(--search-focus-icon) — #60A5FA',
+      'outline: none'
+    ]);
+  }
+
+  updateActiveTabs(tabEl);
+}
+
+/* ============================================================
+   DROPDOWN STATE SETTER
+   ============================================================ */
+function setDropdownState(state, tabEl) {
+  const wrap = document.getElementById('dropdown1');
+  const trigger = document.getElementById('dropdown1-trigger');
+  if (!wrap || !trigger) return;
+
+  // Reset
+  trigger.classList.remove('force-hover', 'force-open', 'open');
+  wrap.classList.remove('open');
+
+  if (state === 'default') {
+    updateInfoPanel('dropdown-info', 'State: Default', [
+      'background: var(--dropdown-trigger-default-bg) — #1A1D27',
+      'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'
+    ]);
+  } else if (state === 'hover') {
+    trigger.classList.add('force-hover');
+    updateInfoPanel('dropdown-info', 'State: Hover', [
+      'background: var(--dropdown-trigger-hover-bg) — #21242F',
+      'border-color: var(--dropdown-trigger-hover-border) — #3E4150'
+    ]);
+  } else if (state === 'open') {
+    wrap.classList.add('open');
+    trigger.classList.add('open');
+    updateInfoPanel('dropdown-info', 'State: Open', [
+      'border-color: var(--dropdown-trigger-open-border) — #60A5FA',
+      '.dropdown-chevron: transform: rotate(180deg)',
+      '.dropdown-menu: display: block'
+    ]);
+  }
+
+  updateActiveTabs(tabEl);
+}
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function updateInfoPanel(infoId, title, changes) {
+  const infoEl = document.getElementById(infoId);
+  if (!infoEl) return;
+  infoEl.innerHTML = `
+    <div class="state-info-name">${title}</div>
+    <div class="state-info-changes">
+      ${changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
+    </div>
+  `;
+}
+
+function updateActiveTabs(activeTab) {
+  if (!activeTab) return;
+  const tabs = activeTab.closest('.state-tabs');
+  if (!tabs) return;
+  tabs.querySelectorAll('.state-tab').forEach(t => t.classList.remove('active'));
+  activeTab.classList.add('active');
+}
+
+/* ============================================================
+   DROPDOWN (live interactive)
    ============================================================ */
 function toggleDropdown(id) {
   const wrap = document.getElementById(id);
   if (!wrap) return;
   const isOpen = wrap.classList.contains('open');
-  // close all dropdowns first
+  // close all open dropdowns first
   document.querySelectorAll('.dropdown-wrap.open').forEach(d => {
-    if (d.id !== 'dropdown2') d.classList.remove('open');
+    d.classList.remove('open');
+    const t = d.querySelector('.dropdown-trigger');
+    if (t) t.classList.remove('open');
   });
-  if (!isOpen) wrap.classList.add('open');
-  const trigger = wrap.querySelector('.dropdown-trigger');
-  if (trigger) trigger.classList.toggle('open', wrap.classList.contains('open'));
+  if (!isOpen) {
+    wrap.classList.add('open');
+    const trigger = wrap.querySelector('.dropdown-trigger');
+    if (trigger) trigger.classList.add('open');
+  }
 }
 
 // close dropdown on outside click
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.dropdown-wrap')) {
     document.querySelectorAll('.dropdown-wrap.open').forEach(d => {
-      if (d.id !== 'dropdown2') {
-        d.classList.remove('open');
-        const t = d.querySelector('.dropdown-trigger');
-        if (t) t.classList.remove('open');
-      }
+      d.classList.remove('open');
+      const t = d.querySelector('.dropdown-trigger');
+      if (t) t.classList.remove('open');
     });
   }
 });
@@ -2688,11 +3410,13 @@ document.querySelectorAll('#dropdown1 .dropdown-item').forEach(item => {
     const wrap = item.closest('.dropdown-wrap');
     wrap.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
     item.classList.add('selected');
-    const trigger = wrap.querySelector('.dropdown-trigger span');
-    if (trigger) trigger.textContent = item.textContent.trim();
+    const labelEl = document.getElementById('dropdown1-label');
+    if (labelEl) labelEl.textContent = item.textContent.trim();
     wrap.classList.remove('open');
     const t = wrap.querySelector('.dropdown-trigger');
     if (t) t.classList.remove('open');
+    // reset state tabs to default
+    const defaultTab = document.querySelector('.state-tabs .state-tab.active');
   });
 });
 </script>
