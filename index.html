@@ -1787,6 +1787,24 @@ body {
   flex-shrink: 0;
 }
 
+/* ============================================================
+   VARIANT EXPLORER (for Badge, StatusDot, Toggle, Checkbox, Radio, Breadcrumb, Cards)
+   ============================================================ */
+.variant-explorer {
+  display: flex;
+  flex-direction: column;
+}
+
+.variant-preview {
+  padding: var(--spacing-40) var(--spacing-24);
+  background: var(--bg-app);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 96px;
+  border-bottom: 1px solid var(--border-default);
+}
+
 /* Force states via CSS */
 /* Button primary */
 .btn-primary.force-hover {
@@ -2746,24 +2764,20 @@ body {
         <span class="component-block-title">Toggle</span>
         <span class="component-block-subtitle">Click to switch on / off</span>
       </div>
-      <div class="state-explorer">
-        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
-        <div class="state-preview">
-          <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(document.getElementById('toggle-preview'));updateToggleInfo()">
-            <button class="toggle" id="toggle-preview" aria-label="Toggle"></button>
-            <span id="toggle-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Off — click to toggle</span>
+      <div class="variant-explorer" id="toggle-explorer">
+        <div class="variant-preview" id="toggle-preview-wrap">
+          <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(this.querySelector('.toggle'));updateToggleVariantLabel(this)">
+            <button class="toggle" aria-label="Toggle"></button>
+            <span class="toggle-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Off — click to toggle</span>
           </label>
         </div>
-        <div class="state-info" style="border-top:none">
-          <div class="state-info-name">States</div>
-          <div class="state-info-changes">
-            <span class="state-info-change">Off: background: var(--border-strong) — #3E4150</span>
-            <span class="state-info-change">On: background: var(--accent-success) — #34D399</span>
-            <span class="state-info-change">Knob slides via transform: translateX(18px)</span>
-          </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('toggle-explorer',0)">Off</button>
+          <button class="variant-tab" onclick="switchVariant('toggle-explorer',1)">On</button>
+          <button class="variant-tab" onclick="switchVariant('toggle-explorer',2)">Disabled</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="toggle-code">
         <button class="code-download-btn" onclick="downloadCode(this,'toggle.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="toggle" onclick="this.classList.toggle('on')"&gt;&lt;/button&gt;
@@ -2791,26 +2805,22 @@ body {
         <span class="component-block-title">Checkbox</span>
         <span class="component-block-subtitle">Click to check / uncheck</span>
       </div>
-      <div class="state-explorer">
-        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
-        <div class="state-preview">
-          <label class="checkbox-wrap" onclick="toggleCheckbox(this)" style="cursor:pointer">
-            <div class="checkbox" id="checkbox-preview">
+      <div class="variant-explorer" id="checkbox-explorer">
+        <div class="variant-preview" id="checkbox-preview-wrap">
+          <label class="checkbox-wrap" onclick="toggleCheckboxVariant(this)" style="cursor:pointer">
+            <div class="checkbox">
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <span id="checkbox-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked — click to toggle</span>
+            <span class="checkbox-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked — click to toggle</span>
           </label>
         </div>
-        <div class="state-info" style="border-top:none">
-          <div class="state-info-name">States</div>
-          <div class="state-info-changes">
-            <span class="state-info-change">Unchecked: border: 1px solid var(--border-strong), background: transparent</span>
-            <span class="state-info-change">Checked: background: var(--accent-primary) — #60A5FA, checkmark visible</span>
-            <span class="state-info-change">Disabled: opacity: 0.4, cursor: not-allowed</span>
-          </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('checkbox-explorer',0)">Unchecked</button>
+          <button class="variant-tab" onclick="switchVariant('checkbox-explorer',1)">Checked</button>
+          <button class="variant-tab" onclick="switchVariant('checkbox-explorer',2)">Disabled</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="checkbox-code">
         <button class="code-download-btn" onclick="downloadCode(this,'checkbox.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;label class="checkbox-wrap" onclick="toggleCheckbox(this)"&gt;
@@ -2842,34 +2852,20 @@ body {
         <span class="component-block-title">Radio</span>
         <span class="component-block-subtitle">Click to select an option</span>
       </div>
-      <div class="state-explorer">
-        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
-        <div class="state-preview">
-          <div style="display:flex;flex-direction:column;gap:var(--spacing-12)">
-            <label class="radio-wrap" onclick="selectRadio('radio-a')" style="cursor:pointer">
-              <div class="radio" id="radio-a"><div class="radio-inner"></div></div>
-              <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Option A</span>
-            </label>
-            <label class="radio-wrap" onclick="selectRadio('radio-b')" style="cursor:pointer">
-              <div class="radio selected" id="radio-b"><div class="radio-inner"></div></div>
-              <span style="font-size:var(--font-size-13);color:var(--text-primary)">Option B</span>
-            </label>
-            <label class="radio-wrap" style="cursor:not-allowed;opacity:0.4">
-              <div class="radio disabled"><div class="radio-inner"></div></div>
-              <span style="font-size:var(--font-size-13);color:var(--text-disabled)">Option C (disabled)</span>
-            </label>
-          </div>
+      <div class="variant-explorer" id="radio-explorer">
+        <div class="variant-preview" id="radio-preview-wrap">
+          <label class="radio-wrap" onclick="toggleRadioVariant(this)" style="cursor:pointer">
+            <div class="radio"><div class="radio-inner"></div></div>
+            <span class="radio-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unselected — click to select</span>
+          </label>
         </div>
-        <div class="state-info" style="border-top:none">
-          <div class="state-info-name">States</div>
-          <div class="state-info-changes">
-            <span class="state-info-change">Unselected: border: 2px solid var(--border-strong) — #3E4150</span>
-            <span class="state-info-change">Selected: border-color: var(--accent-success) — #34D399, inner dot visible</span>
-            <span class="state-info-change">Disabled: opacity: 0.4, cursor: not-allowed</span>
-          </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('radio-explorer',0)">Unselected</button>
+          <button class="variant-tab" onclick="switchVariant('radio-explorer',1)">Selected</button>
+          <button class="variant-tab" onclick="switchVariant('radio-explorer',2)">Disabled</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="radio-code">
         <button class="code-download-btn" onclick="downloadCode(this,'radio.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="radio selected"&gt;
@@ -2908,31 +2904,18 @@ body {
         <span class="component-block-title">Badge / Status Pill</span>
         <span class="component-block-subtitle">Semantic color states</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <span class="badge badge-success"><span class="badge-dot"></span>Success</span>
-            <span class="state-label">Success</span>
-          </div>
-          <div class="state-item">
-            <span class="badge badge-running"><span class="badge-dot"></span>Running</span>
-            <span class="state-label">Running</span>
-          </div>
-          <div class="state-item">
-            <span class="badge badge-error"><span class="badge-dot"></span>Error</span>
-            <span class="state-label">Error</span>
-          </div>
-          <div class="state-item">
-            <span class="badge badge-warning"><span class="badge-dot"></span>Warning</span>
-            <span class="state-label">Warning</span>
-          </div>
-          <div class="state-item">
-            <span class="badge badge-neutral"><span class="badge-dot"></span>Idle</span>
-            <span class="state-label">Neutral</span>
-          </div>
+      <div class="variant-explorer" id="badge-explorer">
+        <div class="variant-preview" id="badge-preview">
+          <span class="badge badge-success"><span class="badge-dot"></span>Success</span>
+        </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('badge-explorer',0)">Success</button>
+          <button class="variant-tab" onclick="switchVariant('badge-explorer',1)">Running</button>
+          <button class="variant-tab" onclick="switchVariant('badge-explorer',2)">Error</button>
+          <button class="variant-tab" onclick="switchVariant('badge-explorer',3)">Info</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="badge-code">
         <button class="code-download-btn" onclick="downloadCode(this,'badge.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;span class="badge badge-success"&gt;
@@ -2958,27 +2941,18 @@ body {
         <span class="component-block-title">StatusDot</span>
         <span class="component-block-subtitle">Inline presence indicator</span>
       </div>
-      <div class="component-preview">
-        <div class="states-grid">
-          <div class="state-item">
-            <div class="status-dot"><span class="dot dot-online"></span>Online</div>
-            <span class="state-label">Online</span>
-          </div>
-          <div class="state-item">
-            <div class="status-dot"><span class="dot dot-busy"></span>Busy</div>
-            <span class="state-label">Busy</span>
-          </div>
-          <div class="state-item">
-            <div class="status-dot"><span class="dot dot-idle"></span>Idle</div>
-            <span class="state-label">Idle</span>
-          </div>
-          <div class="state-item">
-            <div class="status-dot"><span class="dot dot-error"></span>Error</div>
-            <span class="state-label">Error</span>
-          </div>
+      <div class="variant-explorer" id="statusdot-explorer">
+        <div class="variant-preview" id="statusdot-preview">
+          <div class="status-dot"><span class="dot dot-online"></span>Online</div>
+        </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('statusdot-explorer',0)">Online</button>
+          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',1)">Busy</button>
+          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',2)">Idle</button>
+          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',3)">Error</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="statusdot-code">
         <button class="code-download-btn" onclick="downloadCode(this,'status-dot.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="status-dot"&gt;
@@ -3093,22 +3067,30 @@ body {
         <span class="component-block-title">Breadcrumb</span>
         <span class="component-block-subtitle">Hierarchical navigation</span>
       </div>
-      <div class="component-preview">
-        <nav class="breadcrumb">
-          <a class="breadcrumb-item" href="#">Dashboard</a>
-          <span class="breadcrumb-sep">/</span>
-          <a class="breadcrumb-item" href="#">Agents</a>
-          <span class="breadcrumb-sep">/</span>
-          <span class="breadcrumb-item current">Trend Scout</span>
-        </nav>
+      <div class="variant-explorer" id="breadcrumb-explorer">
+        <div class="variant-preview" id="breadcrumb-preview">
+          <nav class="breadcrumb">
+            <a class="breadcrumb-item" href="#">Dashboard</a>
+            <span class="breadcrumb-sep">/</span>
+            <a class="breadcrumb-item" href="#">Agents</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-item current">Trend Scout</span>
+          </nav>
+        </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('breadcrumb-explorer',0)">With Links</button>
+          <button class="variant-tab" onclick="switchVariant('breadcrumb-explorer',1)">Current Only</button>
+        </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="breadcrumb-code">
         <button class="code-download-btn" onclick="downloadCode(this,'breadcrumb.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;nav class="breadcrumb"&gt;
   &lt;a class="breadcrumb-item" href="#"&gt;Dashboard&lt;/a&gt;
   &lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;
-  &lt;span class="breadcrumb-item current"&gt;Current&lt;/span&gt;
+  &lt;a class="breadcrumb-item" href="#"&gt;Agents&lt;/a&gt;
+  &lt;span class="breadcrumb-sep"&gt;/&lt;/span&gt;
+  &lt;span class="breadcrumb-item current"&gt;Trend Scout&lt;/span&gt;
 &lt;/nav&gt;</pre>
       </div>
     </div>
@@ -3155,71 +3137,28 @@ body {
         <span class="component-block-title">Card Variants</span>
         <span class="component-block-subtitle">Hover to see elevation</span>
       </div>
-      <div class="component-preview">
-        <div class="cards-row">
-
-          <!-- Metric Card -->
-          <div class="card card-metric">
+      <div class="variant-explorer" id="cards-explorer">
+        <div class="variant-preview" id="cards-preview" style="justify-content:flex-start">
+          <div class="card card-metric" style="min-width:200px;max-width:260px">
             <div class="card-metric-label">Total Runs</div>
             <div class="card-metric-value">2,847</div>
             <div class="card-metric-delta">+12.4% this week</div>
           </div>
-
-          <!-- Department Card -->
-          <div class="card card-dept">
-            <div class="card-dept-icon">🔵</div>
-            <div>
-              <div class="card-dept-name">Product Lab</div>
-              <div class="card-dept-count">4 agents active</div>
-            </div>
-          </div>
-
-          <!-- Agent Card -->
-          <div class="card card-agent">
-            <div class="card-agent-header">
-              <div class="card-agent-info">
-                <div class="card-agent-avatar">🔍</div>
-                <div>
-                  <div class="card-agent-name">Trend Scout</div>
-                  <div class="card-agent-role">Discovery</div>
-                </div>
-              </div>
-              <span class="badge badge-running"><span class="badge-dot"></span>Running</span>
-            </div>
-            <div class="card-agent-last">Last run: 2 min ago</div>
-          </div>
-
-          <!-- Run Card -->
-          <div class="card card-run">
-            <div class="card-run-header">
-              <span class="card-run-agent">Ideation Engine</span>
-              <span class="badge badge-success"><span class="badge-dot"></span>Done</span>
-            </div>
-            <div class="card-run-project">Project: AI Manufactury</div>
-            <div class="card-run-footer">
-              <span class="card-run-time">14:32:01</span>
-              <span style="font-size:var(--font-size-11);color:var(--text-secondary)">3m 14s</span>
-            </div>
-          </div>
-
+        </div>
+        <div class="variant-tabs" role="tablist">
+          <button class="variant-tab active" onclick="switchVariant('cards-explorer',0)">Metric</button>
+          <button class="variant-tab" onclick="switchVariant('cards-explorer',1)">Department</button>
+          <button class="variant-tab" onclick="switchVariant('cards-explorer',2)">Agent</button>
+          <button class="variant-tab" onclick="switchVariant('cards-explorer',3)">Run</button>
         </div>
       </div>
-      <div class="code-block">
+      <div class="code-block" id="cards-code">
         <button class="code-download-btn" onclick="downloadCode(this,'cards.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>/* Metric Card */
-&lt;div class="card card-metric"&gt;
+        <pre>&lt;div class="card card-metric"&gt;
   &lt;div class="card-metric-label"&gt;Total Runs&lt;/div&gt;
   &lt;div class="card-metric-value"&gt;2,847&lt;/div&gt;
   &lt;div class="card-metric-delta"&gt;+12.4%&lt;/div&gt;
-&lt;/div&gt;
-
-/* Agent Card */
-&lt;div class="card card-agent"&gt;
-  &lt;div class="card-agent-header"&gt;
-    &lt;div class="card-agent-info"&gt;...&lt;/div&gt;
-    &lt;span class="badge badge-running"&gt;Running&lt;/span&gt;
-  &lt;/div&gt;
 &lt;/div&gt;
 
 /* CSS base */
@@ -3531,6 +3470,192 @@ function selectRadio(activeId) {
       if (label) label.style.color = 'var(--text-secondary)';
     }
   });
+}
+
+/* ============================================================
+   VARIANT EXPLORER — data + switcher
+   ============================================================ */
+
+const variantData = {
+
+  'badge-explorer': {
+    previewHTML: [
+      `<span class="badge badge-success"><span class="badge-dot"></span>Success</span>`,
+      `<span class="badge badge-running"><span class="badge-dot"></span>Running</span>`,
+      `<span class="badge badge-error"><span class="badge-dot"></span>Error</span>`,
+      `<span class="badge badge-neutral"><span class="badge-dot"></span>Info</span>`
+    ],
+    codeText: [
+      `<span class="badge badge-success">\n  <span class="badge-dot"></span>\n  Success\n</span>\n\n/* CSS */\n.badge-success {\n  background: rgba(52, 211, 153, 0.12);\n  color: var(--accent-success);         /* #34D399 */\n  border: 1px solid rgba(52, 211, 153, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+      `<span class="badge badge-running">\n  <span class="badge-dot"></span>\n  Running\n</span>\n\n/* CSS */\n.badge-running {\n  background: rgba(96, 165, 250, 0.12);\n  color: var(--accent-primary);         /* #60A5FA */\n  border: 1px solid rgba(96, 165, 250, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+      `<span class="badge badge-error">\n  <span class="badge-dot"></span>\n  Error\n</span>\n\n/* CSS */\n.badge-error {\n  background: rgba(248, 113, 113, 0.12);\n  color: var(--accent-error);           /* #F87171 */\n  border: 1px solid rgba(248, 113, 113, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+      `<span class="badge badge-neutral">\n  <span class="badge-dot"></span>\n  Info\n</span>\n\n/* CSS */\n.badge-neutral {\n  background: rgba(139, 143, 163, 0.12);\n  color: var(--text-secondary);         /* #8B8FA3 */\n  border: 1px solid rgba(139, 143, 163, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`
+    ]
+  },
+
+  'statusdot-explorer': {
+    previewHTML: [
+      `<div class="status-dot"><span class="dot dot-online"></span>Online</div>`,
+      `<div class="status-dot"><span class="dot dot-busy"></span>Busy</div>`,
+      `<div class="status-dot"><span class="dot dot-idle"></span>Idle</div>`,
+      `<div class="status-dot"><span class="dot dot-error"></span>Error</div>`
+    ],
+    codeText: [
+      `<div class="status-dot">\n  <span class="dot dot-online"></span>\n  Online\n</div>\n\n.dot { width: 8px; height: 8px; border-radius: 50%; }\n.dot-online { background: var(--accent-success); /* #34D399 */ }`,
+      `<div class="status-dot">\n  <span class="dot dot-busy"></span>\n  Busy\n</div>\n\n.dot-busy { background: var(--accent-warning); /* #FBBF24 */ }`,
+      `<div class="status-dot">\n  <span class="dot dot-idle"></span>\n  Idle\n</div>\n\n.dot-idle { background: var(--text-disabled); /* #4B5563 */ }`,
+      `<div class="status-dot">\n  <span class="dot dot-error"></span>\n  Error\n</div>\n\n.dot-error { background: var(--accent-error); /* #F87171 */ }`
+    ]
+  },
+
+  'toggle-explorer': {
+    previewHTML: [
+      `<label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(this.querySelector('.toggle'));updateToggleVariantLabel(this)"><button class="toggle" aria-label="Toggle"></button><span class="toggle-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Off — click to toggle</span></label>`,
+      `<label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(this.querySelector('.toggle'));updateToggleVariantLabel(this)"><button class="toggle on" aria-label="Toggle"></button><span class="toggle-variant-label" style="font-size:var(--font-size-13);color:var(--text-primary)">On — click to toggle</span></label>`,
+      `<label class="toggle-wrap" style="gap:var(--spacing-12);cursor:not-allowed;opacity:0.4"><button class="toggle" aria-label="Toggle" disabled></button><span class="toggle-variant-label" style="font-size:var(--font-size-13);color:var(--text-disabled)">Disabled</span></label>`
+    ],
+    codeText: [
+      `<!-- Off state -->\n<button class="toggle" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle {\n  width: 40px; height: 22px;\n  background: var(--border-strong);   /* Off: #3E4150 */\n  border-radius: var(--radius-full);\n  transition: background 0.2s;\n}\n.toggle::after {\n  content: ''; position: absolute; top: 3px; left: 3px;\n  width: 16px; height: 16px; border-radius: 50%;\n  background: white; transition: transform 0.2s;\n}`,
+      `<!-- On state -->\n<button class="toggle on" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle.on { background: var(--accent-success); /* On: #34D399 */ }\n.toggle.on::after { transform: translateX(18px); }`,
+      `<!-- Disabled state -->\n<button class="toggle" disabled></button>\n\n/* CSS */\n.toggle:disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    ]
+  },
+
+  'checkbox-explorer': {
+    previewHTML: [
+      `<label class="checkbox-wrap" onclick="toggleCheckboxVariant(this)" style="cursor:pointer"><div class="checkbox"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked — click to toggle</span></label>`,
+      `<label class="checkbox-wrap" onclick="toggleCheckboxVariant(this)" style="cursor:pointer"><div class="checkbox checked"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-variant-label" style="font-size:var(--font-size-13);color:var(--text-primary)">Checked — click to toggle</span></label>`,
+      `<label class="checkbox-wrap" style="cursor:not-allowed;opacity:0.4"><div class="checkbox disabled"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="checkbox-variant-label" style="font-size:var(--font-size-13);color:var(--text-disabled)">Disabled</span></label>`
+    ],
+    codeText: [
+      `<!-- Unchecked -->\n<label class="checkbox-wrap" onclick="toggleCheckbox(this)">\n  <div class="checkbox">\n    <svg ...></svg> <!-- checkmark -->\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox {\n  width: 18px; height: 18px;\n  border-radius: var(--radius-4);\n  border: 1px solid var(--border-strong);\n  background: transparent;\n}\n.checkbox svg { display: none; }`,
+      `<!-- Checked -->\n<label class="checkbox-wrap">\n  <div class="checkbox checked">\n    <svg ...></svg>\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.checked {\n  background: var(--accent-primary); /* #60A5FA */\n  border-color: var(--accent-primary);\n}\n.checkbox.checked svg { display: block; }`,
+      `<!-- Disabled -->\n<label class="checkbox-wrap" style="cursor:not-allowed;opacity:0.4">\n  <div class="checkbox disabled"></div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    ]
+  },
+
+  'radio-explorer': {
+    previewHTML: [
+      `<label class="radio-wrap" onclick="toggleRadioVariant(this)" style="cursor:pointer"><div class="radio"><div class="radio-inner"></div></div><span class="radio-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unselected — click to select</span></label>`,
+      `<label class="radio-wrap" onclick="toggleRadioVariant(this)" style="cursor:pointer"><div class="radio selected"><div class="radio-inner"></div></div><span class="radio-variant-label" style="font-size:var(--font-size-13);color:var(--text-primary)">Selected — click to deselect</span></label>`,
+      `<label class="radio-wrap" style="cursor:not-allowed;opacity:0.4"><div class="radio disabled"><div class="radio-inner"></div></div><span class="radio-variant-label" style="font-size:var(--font-size-13);color:var(--text-disabled)">Disabled</span></label>`
+    ],
+    codeText: [
+      `<!-- Unselected -->\n<div class="radio"><div class="radio-inner"></div></div>\n\n/* CSS */\n.radio {\n  width: 18px; height: 18px;\n  border-radius: 50%;\n  border: 2px solid var(--border-strong); /* #3E4150 */\n}\n.radio-inner { display: none; }`,
+      `<!-- Selected -->\n<div class="radio selected"><div class="radio-inner"></div></div>\n\n/* CSS */\n.radio.selected { border-color: var(--accent-success); /* #34D399 */ }\n.radio-inner {\n  width: 8px; height: 8px; border-radius: 50%;\n  background: var(--accent-success);\n}\n.radio.selected .radio-inner { display: block; }`,
+      `<!-- Disabled -->\n<div class="radio disabled"><div class="radio-inner"></div></div>\n\n/* CSS */\n.radio.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    ]
+  },
+
+  'breadcrumb-explorer': {
+    previewHTML: [
+      `<nav class="breadcrumb"><a class="breadcrumb-item" href="#">Dashboard</a><span class="breadcrumb-sep">/</span><a class="breadcrumb-item" href="#">Agents</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-item current">Trend Scout</span></nav>`,
+      `<nav class="breadcrumb"><span class="breadcrumb-item current">Trend Scout</span></nav>`
+    ],
+    codeText: [
+      `<!-- With Links -->\n<nav class="breadcrumb">\n  <a class="breadcrumb-item" href="#">Dashboard</a>\n  <span class="breadcrumb-sep">/</span>\n  <a class="breadcrumb-item" href="#">Agents</a>\n  <span class="breadcrumb-sep">/</span>\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>`,
+      `<!-- Current Only -->\n<nav class="breadcrumb">\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>`
+    ]
+  },
+
+  'cards-explorer': {
+    previewHTML: [
+      `<div class="card card-metric" style="min-width:200px;max-width:260px"><div class="card-metric-label">Total Runs</div><div class="card-metric-value">2,847</div><div class="card-metric-delta">+12.4% this week</div></div>`,
+      `<div class="card card-dept" style="min-width:200px;max-width:260px"><div class="card-dept-icon">🔵</div><div><div class="card-dept-name">Product Lab</div><div class="card-dept-count">4 agents active</div></div></div>`,
+      `<div class="card card-agent" style="min-width:220px;max-width:280px"><div class="card-agent-header"><div class="card-agent-info"><div class="card-agent-avatar">🔍</div><div><div class="card-agent-name">Trend Scout</div><div class="card-agent-role">Discovery</div></div></div><span class="badge badge-running"><span class="badge-dot"></span>Running</span></div><div class="card-agent-last">Last run: 2 min ago</div></div>`,
+      `<div class="card card-run" style="min-width:200px;max-width:260px"><div class="card-run-header"><span class="card-run-agent">Ideation Engine</span><span class="badge badge-success"><span class="badge-dot"></span>Done</span></div><div class="card-run-project">Project: AI Manufactury</div><div class="card-run-footer"><span class="card-run-time">14:32:01</span><span style="font-size:var(--font-size-11);color:var(--text-secondary)">3m 14s</span></div></div>`
+    ],
+    codeText: [
+      `<!-- Metric Card -->\n<div class="card card-metric">\n  <div class="card-metric-label">Total Runs</div>\n  <div class="card-metric-value">2,847</div>\n  <div class="card-metric-delta">+12.4%</div>\n</div>\n\n/* CSS */\n.card {\n  background: var(--bg-surface);\n  border: 1px solid var(--border-default);\n  border-radius: var(--radius-12);\n  padding: var(--spacing-20);\n}`,
+      `<!-- Department Card -->\n<div class="card card-dept">\n  <div class="card-dept-icon">🔵</div>\n  <div>\n    <div class="card-dept-name">Product Lab</div>\n    <div class="card-dept-count">4 agents active</div>\n  </div>\n</div>`,
+      `<!-- Agent Card -->\n<div class="card card-agent">\n  <div class="card-agent-header">\n    <div class="card-agent-info">\n      <div class="card-agent-avatar">🔍</div>\n      <div>\n        <div class="card-agent-name">Trend Scout</div>\n        <div class="card-agent-role">Discovery</div>\n      </div>\n    </div>\n    <span class="badge badge-running">\n      <span class="badge-dot"></span>Running\n    </span>\n  </div>\n  <div class="card-agent-last">Last run: 2 min ago</div>\n</div>`,
+      `<!-- Run Card -->\n<div class="card card-run">\n  <div class="card-run-header">\n    <span class="card-run-agent">Ideation Engine</span>\n    <span class="badge badge-success"><span class="badge-dot"></span>Done</span>\n  </div>\n  <div class="card-run-project">Project: AI Manufactury</div>\n  <div class="card-run-footer">\n    <span class="card-run-time">14:32:01</span>\n    <span>3m 14s</span>\n  </div>\n</div>`
+    ]
+  }
+
+};
+
+function switchVariant(explorerId, index) {
+  const explorer = document.getElementById(explorerId);
+  if (!explorer) return;
+
+  const data = variantData[explorerId];
+  if (!data) return;
+
+  // Update preview
+  const preview = explorer.querySelector('.variant-preview');
+  if (preview && data.previewHTML[index] !== undefined) {
+    preview.innerHTML = data.previewHTML[index];
+    // Re-inject color swatches for any new code added (not needed for preview, but good to have)
+  }
+
+  // Update code block (sibling of explorer, id = explorerId.replace('-explorer','-code'))
+  const codeBlockId = explorerId.replace('-explorer', '-code');
+  const codeBlock = document.getElementById(codeBlockId);
+  if (codeBlock && data.codeText[index] !== undefined) {
+    const pre = codeBlock.querySelector('pre');
+    if (pre) {
+      // Escape HTML for display
+      const escaped = data.codeText[index]
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      // Inject color swatches
+      const hexRegex = /(#[0-9A-Fa-f]{6,8})\b/g;
+      const withSwatches = escaped.replace(hexRegex, (match, hex) => {
+        const color = hex.length > 7 ? hex.slice(0,7) : hex;
+        return `<span class="code-color-swatch" style="background:${color}" title="${hex}"></span>${match}`;
+      });
+      pre.innerHTML = withSwatches;
+    }
+  }
+
+  // Update active tab
+  explorer.querySelectorAll('.variant-tab').forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+  });
+}
+
+/* ============================================================
+   TOGGLE VARIANT — interactive helper
+   ============================================================ */
+function updateToggleVariantLabel(wrap) {
+  const toggle = wrap.querySelector('.toggle');
+  const label = wrap.querySelector('.toggle-variant-label');
+  if (!toggle || !label) return;
+  const isOn = toggle.classList.contains('on');
+  label.textContent = isOn ? 'On — click to toggle' : 'Off — click to toggle';
+  label.style.color = isOn ? 'var(--text-primary)' : 'var(--text-secondary)';
+}
+
+/* ============================================================
+   CHECKBOX VARIANT — interactive helper
+   ============================================================ */
+function toggleCheckboxVariant(wrap) {
+  const cb = wrap.querySelector('.checkbox');
+  if (!cb || cb.classList.contains('disabled')) return;
+  cb.classList.toggle('checked');
+  const label = wrap.querySelector('.checkbox-variant-label');
+  if (label) {
+    const checked = cb.classList.contains('checked');
+    label.textContent = checked ? 'Checked — click to toggle' : 'Unchecked — click to toggle';
+    label.style.color = checked ? 'var(--text-primary)' : 'var(--text-secondary)';
+  }
+}
+
+/* ============================================================
+   RADIO VARIANT — interactive helper
+   ============================================================ */
+function toggleRadioVariant(wrap) {
+  const radio = wrap.querySelector('.radio');
+  if (!radio || radio.classList.contains('disabled')) return;
+  const isSelected = radio.classList.contains('selected');
+  radio.classList.toggle('selected');
+  const label = wrap.querySelector('.radio-variant-label');
+  if (label) {
+    label.textContent = !isSelected ? 'Selected — click to deselect' : 'Unselected — click to select';
+    label.style.color = !isSelected ? 'var(--text-primary)' : 'var(--text-secondary)';
+  }
 }
 
 /* ============================================================
