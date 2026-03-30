@@ -1,0 +1,291 @@
+/**
+ * AI Manufactury Design System
+ * CSS Custom Properties — generated from tokens.json
+ * Dark theme only
+ */
+
+/* ============================================================
+   PRIMITIVES — Colors: Blue
+   ============================================================ */
+:root {
+  --color-blue-100: #EFF6FF;
+  --color-blue-200: #DBEAFE;
+  --color-blue-300: #93C5FD;
+  --color-blue-400: #60A5FA;
+  --color-blue-500: #3B82F6;
+  --color-blue-600: #2563EB;
+  --color-blue-700: #1D4ED8;
+
+  /* ============================================================
+     PRIMITIVES — Colors: Gray
+     ============================================================ */
+  --color-gray-50:  #F9FAFB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E5E7EB;
+  --color-gray-300: #D1D5DB;
+  --color-gray-400: #9CA3AF;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #4B5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1F2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  /* ============================================================
+     PRIMITIVES — Colors: Functional
+     ============================================================ */
+  --color-green-400: #34D399;
+  --color-green-500: #10B981;
+  --color-red-400:   #F87171;
+  --color-red-500:   #EF4444;
+  --color-yellow-400: #FBBF24;
+  --color-yellow-500: #F59E0B;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  /* ============================================================
+     PRIMITIVES — Spacing
+     ============================================================ */
+  --spacing-2:  2px;
+  --spacing-4:  4px;
+  --spacing-8:  8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+
+  /* ============================================================
+     PRIMITIVES — Border Radius
+     ============================================================ */
+  --radius-0:    0px;
+  --radius-2:    2px;
+  --radius-4:    4px;
+  --radius-8:    8px;
+  --radius-12:   12px;
+  --radius-16:   16px;
+  --radius-full: 9999px;
+
+  /* ============================================================
+     PRIMITIVES — Font Size
+     ============================================================ */
+  --font-size-11: 11px;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-18: 18px;
+  --font-size-20: 20px;
+  --font-size-24: 24px;
+  --font-size-30: 30px;
+  --font-size-36: 36px;
+
+  /* ============================================================
+     SEMANTIC — Background (Dark Theme)
+     ============================================================ */
+  --bg-app:      #13151E;
+  --bg-surface:  #1A1D27;
+  --bg-elevated: #21242F;
+  --bg-overlay:  #000000;
+
+  /* ============================================================
+     SEMANTIC — Text (Dark Theme)
+     ============================================================ */
+  --text-primary:   #FFFFFF;
+  --text-secondary: #8B8FA3;
+  --text-disabled:  #4B5563;
+
+  /* ============================================================
+     SEMANTIC — Border (Dark Theme)
+     ============================================================ */
+  --border-default: #2E3140;
+  --border-strong:  #3E4150;
+
+  /* ============================================================
+     SEMANTIC — Accent (Dark Theme)
+     ============================================================ */
+  --accent-primary: #60A5FA;
+  --accent-success: #34D399;
+  --accent-warning: #FBBF24;
+  --accent-error:   #F87171;
+
+  /* ============================================================
+     SEMANTIC — Interactive (Dark Theme)
+     ============================================================ */
+  --interactive-default: #60A5FA;
+  --interactive-hover:   #3B82F6;
+  --interactive-pressed: #2563EB;
+
+  /* ============================================================
+     COMPONENT — Button Primary
+     ============================================================ */
+  --btn-primary-default-bg:     #60A5FA;
+  --btn-primary-default-text:   #13151E;
+  --btn-primary-default-border: #60A5FA;
+
+  --btn-primary-hover-bg:     #3B82F6;
+  --btn-primary-hover-text:   #13151E;
+  --btn-primary-hover-border: #3B82F6;
+
+  --btn-primary-focus-bg:     #60A5FA;
+  --btn-primary-focus-text:   #13151E;
+  --btn-primary-focus-border: #3B82F6;
+  --btn-primary-focus-ring:   #60A5FA;
+
+  --btn-primary-pressed-bg:     #2563EB;
+  --btn-primary-pressed-text:   #FFFFFF;
+  --btn-primary-pressed-border: #2563EB;
+
+  --btn-primary-disabled-bg:     #1A1D27;
+  --btn-primary-disabled-text:   #4B5563;
+  --btn-primary-disabled-border: #2E3140;
+
+  /* ============================================================
+     COMPONENT — Button Secondary
+     ============================================================ */
+  --btn-secondary-default-bg:     #1A1D27;
+  --btn-secondary-default-text:   #60A5FA;
+  --btn-secondary-default-border: #2E3140;
+
+  --btn-secondary-hover-bg:     #21242F;
+  --btn-secondary-hover-text:   #60A5FA;
+  --btn-secondary-hover-border: #3E4150;
+
+  --btn-secondary-focus-bg:     #1A1D27;
+  --btn-secondary-focus-text:   #60A5FA;
+  --btn-secondary-focus-border: #60A5FA;
+
+  --btn-secondary-pressed-bg:     #13151E;
+  --btn-secondary-pressed-text:   #3B82F6;
+  --btn-secondary-pressed-border: #3B82F6;
+
+  --btn-secondary-disabled-bg:     #13151E;
+  --btn-secondary-disabled-text:   #4B5563;
+  --btn-secondary-disabled-border: #1A1D27;
+
+  /* ============================================================
+     COMPONENT — Button Ghost
+     ============================================================ */
+  --btn-ghost-default-bg:     transparent;
+  --btn-ghost-default-text:   #8B8FA3;
+  --btn-ghost-default-border: transparent;
+
+  --btn-ghost-hover-bg:     #1A1D27;
+  --btn-ghost-hover-text:   #FFFFFF;
+  --btn-ghost-hover-border: transparent;
+
+  --btn-ghost-focus-bg:     #1A1D27;
+  --btn-ghost-focus-text:   #FFFFFF;
+  --btn-ghost-focus-border: #2E3140;
+
+  --btn-ghost-pressed-bg:     #21242F;
+  --btn-ghost-pressed-text:   #FFFFFF;
+  --btn-ghost-pressed-border: transparent;
+
+  --btn-ghost-disabled-bg:     transparent;
+  --btn-ghost-disabled-text:   #4B5563;
+  --btn-ghost-disabled-border: transparent;
+
+  /* ============================================================
+     COMPONENT — TextField (Filled)
+     ============================================================ */
+  --textfield-filled-default-bg:          #1A1D27;
+  --textfield-filled-default-text:        #FFFFFF;
+  --textfield-filled-default-placeholder: #4B5563;
+  --textfield-filled-default-border:      #2E3140;
+
+  --textfield-filled-hover-bg:     #21242F;
+  --textfield-filled-hover-border: #3E4150;
+
+  --textfield-filled-focus-bg:     #1A1D27;
+  --textfield-filled-focus-border: #60A5FA;
+
+  --textfield-filled-error-bg:     #1A1D27;
+  --textfield-filled-error-border: #F87171;
+
+  --textfield-filled-disabled-bg:          #13151E;
+  --textfield-filled-disabled-text:        #4B5563;
+  --textfield-filled-disabled-placeholder: #374151;
+  --textfield-filled-disabled-border:      #1A1D27;
+
+  /* ============================================================
+     COMPONENT — TextField (Outlined)
+     ============================================================ */
+  --textfield-outlined-default-bg:          transparent;
+  --textfield-outlined-default-text:        #FFFFFF;
+  --textfield-outlined-default-placeholder: #4B5563;
+  --textfield-outlined-default-border:      #2E3140;
+
+  --textfield-outlined-hover-bg:     transparent;
+  --textfield-outlined-hover-border: #3E4150;
+
+  --textfield-outlined-focus-bg:     transparent;
+  --textfield-outlined-focus-border: #60A5FA;
+
+  --textfield-outlined-error-bg:     transparent;
+  --textfield-outlined-error-border: #F87171;
+
+  --textfield-outlined-disabled-bg:          transparent;
+  --textfield-outlined-disabled-text:        #4B5563;
+  --textfield-outlined-disabled-placeholder: #374151;
+  --textfield-outlined-disabled-border:      #1A1D27;
+
+  /* ============================================================
+     COMPONENT — Search
+     ============================================================ */
+  --search-default-bg:          #1A1D27;
+  --search-default-text:        #FFFFFF;
+  --search-default-placeholder: #4B5563;
+  --search-default-border:      #2E3140;
+  --search-default-icon:        #8B8FA3;
+
+  --search-focus-bg:     #1A1D27;
+  --search-focus-border: #60A5FA;
+  --search-focus-icon:   #60A5FA;
+
+  /* ============================================================
+     COMPONENT — Dropdown
+     ============================================================ */
+  --dropdown-trigger-default-bg:     #1A1D27;
+  --dropdown-trigger-default-text:   #FFFFFF;
+  --dropdown-trigger-default-border: #2E3140;
+  --dropdown-trigger-default-icon:   #8B8FA3;
+
+  --dropdown-trigger-hover-bg:     #21242F;
+  --dropdown-trigger-hover-border: #3E4150;
+
+  --dropdown-trigger-open-bg:     #1A1D27;
+  --dropdown-trigger-open-border: #60A5FA;
+
+  --dropdown-menu-bg:             #21242F;
+  --dropdown-menu-border:         #2E3140;
+  --dropdown-item-hover:          #2E3140;
+  --dropdown-item-selected:       #1A1D27;
+  --dropdown-item-text:           #FFFFFF;
+  --dropdown-item-selected-text:  #60A5FA;
+
+  /* ============================================================
+     COMPONENT — Textarea
+     ============================================================ */
+  --textarea-default-bg:          #1A1D27;
+  --textarea-default-text:        #FFFFFF;
+  --textarea-default-placeholder: #4B5563;
+  --textarea-default-border:      #2E3140;
+
+  --textarea-hover-bg:     #21242F;
+  --textarea-hover-border: #3E4150;
+
+  --textarea-focus-bg:     #1A1D27;
+  --textarea-focus-border: #60A5FA;
+
+  --textarea-error-bg:     #1A1D27;
+  --textarea-error-border: #F87171;
+
+  --textarea-disabled-bg:          #13151E;
+  --textarea-disabled-text:        #4B5563;
+  --textarea-disabled-placeholder: #374151;
+  --textarea-disabled-border:      #1A1D27;
+}
