@@ -408,6 +408,12 @@ body {
   background: var(--bg-elevated);
 }
 
+.header-nav a.active {
+  color: var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: 2px;
+}
+
 /* ============================================================
    PAGE LAYOUT
    ============================================================ */
@@ -1948,6 +1954,7 @@ body {
       <a href="#typography">Typography</a>
       <a href="#buttons">Buttons</a>
       <a href="#inputs">Inputs</a>
+      <a href="#search">Search</a>
       <a href="#controls">Controls</a>
       <a href="#badges">Badges</a>
       <a href="#navigation">Navigation</a>
@@ -2421,6 +2428,62 @@ body {
   </section>
 
   <!-- =============================================
+       SECTION: SEARCH
+       ============================================= -->
+  <section class="section" id="search">
+    <div class="section-header">
+      <h2 class="section-title">Search</h2>
+      <span class="section-tag">Form</span>
+    </div>
+
+    <!-- Search Input -->
+    <div class="component-block">
+      <div class="component-block-header">
+        <span class="component-block-title">Search Input</span>
+        <span class="component-block-subtitle">With icon and shortcut hint</span>
+      </div>
+      <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
+        <div class="state-preview">
+          <div class="search-wrap" id="search-wrap-preview">
+            <span class="search-icon" id="search-icon-preview">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </span>
+            <input class="search-input" id="search-preview" type="text" placeholder="Search agents...">
+            <span class="search-shortcut">⌘K</span>
+          </div>
+        </div>
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="setSearchState('default', this)">Default</button>
+          <button class="state-tab" onclick="setSearchState('focus', this)">Focus</button>
+        </div>
+        <div class="state-info" id="search-info">
+          <div class="state-info-name">State: Default</div>
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--search-default-bg) — #1A1D27</span>
+            <span class="state-info-change">border: 1px solid var(--search-default-border) — #2E3140</span>
+            <span class="state-info-change">icon color: var(--search-default-icon) — #8B8FA3</span>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre>&lt;div class="search-wrap"&gt;
+  &lt;span class="search-icon"&gt;[svg]&lt;/span&gt;
+  &lt;input class="search-input" placeholder="Search..."&gt;
+  &lt;span class="search-shortcut"&gt;⌘K&lt;/span&gt;
+&lt;/div&gt;
+
+/* CSS */
+.search-input:focus {
+  border-color: var(--search-focus-border); /* #60A5FA */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
        SECTION: CONTROLS (Toggle, Checkbox, Radio)
        ============================================= -->
   <section class="section" id="controls">
@@ -2885,58 +2948,12 @@ body {
   </section>
 
   <!-- =============================================
-       SECTION: FORMS (Search, Dropdown)
+       SECTION: FORMS (Dropdown)
        ============================================= -->
   <section class="section" id="forms">
     <div class="section-header">
-      <h2 class="section-title">Search &amp; Dropdown</h2>
+      <h2 class="section-title">Dropdown</h2>
       <span class="section-tag">Form</span>
-    </div>
-
-    <!-- Search Input -->
-    <div class="component-block">
-      <div class="component-block-header">
-        <span class="component-block-title">Search Input</span>
-        <span class="component-block-subtitle">With icon and shortcut hint</span>
-      </div>
-      <div class="state-explorer">
-        <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
-        <div class="state-preview">
-          <div class="search-wrap" id="search-wrap-preview">
-            <span class="search-icon" id="search-icon-preview">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            </span>
-            <input class="search-input" id="search-preview" type="text" placeholder="Search agents...">
-            <span class="search-shortcut">⌘K</span>
-          </div>
-        </div>
-        <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setSearchState('default', this)">Default</button>
-          <button class="state-tab" onclick="setSearchState('focus', this)">Focus</button>
-        </div>
-        <div class="state-info" id="search-info">
-          <div class="state-info-name">State: Default</div>
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--search-default-bg) — #1A1D27</span>
-            <span class="state-info-change">border: 1px solid var(--search-default-border) — #2E3140</span>
-            <span class="state-info-change">icon color: var(--search-default-icon) — #8B8FA3</span>
-          </div>
-        </div>
-      </div>
-      <div class="code-block">
-        <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
-        <pre>&lt;div class="search-wrap"&gt;
-  &lt;span class="search-icon"&gt;[svg]&lt;/span&gt;
-  &lt;input class="search-input" placeholder="Search..."&gt;
-  &lt;span class="search-shortcut"&gt;⌘K&lt;/span&gt;
-&lt;/div&gt;
-
-/* CSS */
-.search-input:focus {
-  border-color: var(--search-focus-border); /* #60A5FA */
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
-}</pre>
-      </div>
     </div>
 
     <!-- Dropdown -->
@@ -3673,6 +3690,144 @@ function applyTheme(theme) {
 (function() {
   var saved = localStorage.getItem('ds-theme');
   if (saved) applyTheme(saved);
+})();
+
+/* ============================================================
+   SCROLL SPY
+   ============================================================ */
+(function initScrollSpy() {
+  const sectionIds = ['colors','spacing','typography','buttons','inputs','search','controls','badges','navigation','cards','forms','howto'];
+  const navLinks = {};
+
+  // Build map: section id → nav link element
+  sectionIds.forEach(id => {
+    const link = document.querySelector('.header-nav a[href="#' + id + '"]');
+    if (link) navLinks[id] = link;
+  });
+
+  let activeSectionId = null;
+
+  function setActiveNav(id) {
+    if (id === activeSectionId) return;
+    activeSectionId = id;
+    Object.values(navLinks).forEach(l => l.classList.remove('active'));
+    if (id && navLinks[id]) navLinks[id].classList.add('active');
+  }
+
+  // Track which sections are currently intersecting
+  const visibleSections = new Set();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        visibleSections.add(entry.target.id);
+      } else {
+        visibleSections.delete(entry.target.id);
+      }
+    });
+
+    // Pick the topmost visible section (first in document order)
+    let picked = null;
+    for (const id of sectionIds) {
+      if (visibleSections.has(id)) {
+        picked = id;
+        break;
+      }
+    }
+    setActiveNav(picked);
+  }, {
+    rootMargin: '-10% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+})();
+
+/* ============================================================
+   STATE SYNC — live interactions → auto-activate tabs
+   ============================================================ */
+(function initStateSyncListeners() {
+
+  // Map: stateName → tab label text (case-insensitive match)
+  const stateToTabLabel = {
+    hover: 'Hover',
+    pressed: 'Pressed',
+    focus: 'Focus',
+    default: 'Default'
+  };
+
+  function activateTabByState(stateExplorer, stateName) {
+    const label = stateToTabLabel[stateName];
+    if (!label) return;
+    const tabs = stateExplorer.querySelectorAll('.state-tab');
+    let target = null;
+    tabs.forEach(tab => {
+      if (tab.textContent.trim() === label) target = tab;
+    });
+    if (target && !target.classList.contains('active')) {
+      target.click();
+    }
+  }
+
+  // Wait for DOM ready, then attach listeners to all .state-preview interactive elements
+  function attachListeners() {
+    document.querySelectorAll('.state-explorer').forEach(explorer => {
+      const preview = explorer.querySelector('.state-preview');
+      if (!preview) return;
+
+      // Find the interactive element (button, input, or .search-wrap/.dropdown-wrap/.nav-item)
+      // We attach on the preview container itself for bubbling coverage
+      preview.addEventListener('mouseenter', (e) => {
+        // Only trigger if the hover is on/within a relevant interactive child
+        const interactive = preview.querySelector('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
+        if (!interactive) return;
+        activateTabByState(explorer, 'hover');
+      }, false);
+
+      preview.addEventListener('mouseleave', (e) => {
+        activateTabByState(explorer, 'default');
+      }, false);
+
+      preview.addEventListener('mousedown', (e) => {
+        const interactive = preview.querySelector('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
+        if (!interactive) return;
+        activateTabByState(explorer, 'pressed');
+      }, false);
+
+      preview.addEventListener('mouseup', (e) => {
+        // After mouseup check if still hovering
+        const rect = preview.getBoundingClientRect();
+        const x = e.clientX, y = e.clientY;
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          activateTabByState(explorer, 'hover');
+        } else {
+          activateTabByState(explorer, 'default');
+        }
+      }, false);
+
+      preview.addEventListener('focusin', (e) => {
+        const interactive = e.target.closest('button.btn, button.nav-item, input.input-base, input.search-input, .dropdown-trigger');
+        if (!interactive) return;
+        activateTabByState(explorer, 'focus');
+      }, false);
+
+      preview.addEventListener('focusout', (e) => {
+        // Small delay so blur doesn't immediately override a click-triggered state
+        setTimeout(() => {
+          activateTabByState(explorer, 'default');
+        }, 100);
+      }, false);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachListeners);
+  } else {
+    attachListeners();
+  }
 })();
 </script>
 </body>
