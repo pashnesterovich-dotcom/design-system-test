@@ -3736,8 +3736,18 @@ function switchStateCode(componentId, index) {
   const data = stateCodeData[componentId];
   if (!data || data[index] === undefined) return;
 
-  // Update code block
+  // Update active tab
   const codeBlock = document.querySelector('[data-state-code="' + componentId + '"]');
+  if (codeBlock) {
+    const block = codeBlock.closest('.component-block');
+    if (block) {
+      block.querySelectorAll('.state-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+    }
+  }
+
+  // Update code block
   if (!codeBlock) return;
 
   const pre = codeBlock.querySelector('pre');
