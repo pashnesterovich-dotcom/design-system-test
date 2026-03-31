@@ -771,9 +771,10 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: var(--font-size-12);
   color: var(--text-secondary);
-  overflow-x: auto;
+  overflow: visible;
   line-height: 1.6;
-  scrollbar-width: thin;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 
 .code-block:hover .code-copy-btn,
