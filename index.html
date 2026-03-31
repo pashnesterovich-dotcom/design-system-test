@@ -2762,20 +2762,43 @@ body {
         <span class="component-block-title">Toggle</span>
         <span class="component-block-subtitle">Click to switch on / off</span>
       </div>
-      <div class="variant-explorer" id="toggle-explorer">
-        <div class="variant-preview" id="toggle-preview-wrap">
-          <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(this.querySelector('.toggle'));updateToggleVariantLabel(this)">
+      <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте кликнуть</div>
+        <div class="state-preview">
+          <label class="toggle-wrap" style="gap:var(--spacing-12);cursor:pointer" onclick="toggleSwitch(this.querySelector('.toggle'))">
             <button class="toggle" aria-label="Toggle"></button>
-            <span class="toggle-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Off — click to toggle</span>
+            <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Toggle</span>
           </label>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('toggle-explorer',0)">Off</button>
-          <button class="variant-tab" onclick="switchVariant('toggle-explorer',1)">On</button>
-          <button class="variant-tab" onclick="switchVariant('toggle-explorer',2)">Disabled</button>
+        <!-- Static states showcase — NOT clickable -->
+        <div class="states-row" id="toggle-states-row">
+          <div class="state-row-item highlighted" data-state="off">
+            <button class="toggle" tabindex="-1" aria-label="Off"></button>
+            <span class="state-row-label">Off</span>
+          </div>
+          <div class="state-row-item" data-state="on">
+            <button class="toggle on" tabindex="-1" aria-label="On"></button>
+            <span class="state-row-label">On</span>
+          </div>
+          <div class="state-row-item" data-state="disabled">
+            <button class="toggle" tabindex="-1" aria-label="Disabled" style="opacity:0.4;cursor:not-allowed"></button>
+            <span class="state-row-label">Disabled</span>
+          </div>
+        </div>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('toggle-states-row','off');switchStateCode('toggle',0)">Off</button>
+          <button class="state-tab" onclick="highlightStateRow('toggle-states-row','on');switchStateCode('toggle',1)">On</button>
+          <button class="state-tab" onclick="highlightStateRow('toggle-states-row','disabled');switchStateCode('toggle',2)">Disabled</button>
+        </div>
+        <div class="state-info" id="toggle-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--border-strong) — #3E4150</span>
+            <span class="state-info-change">thumb: translateX(0)</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="toggle-code">
+      <div class="code-block" data-state-code="toggle">
         <button class="code-download-btn" onclick="downloadCode(this,'toggle.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;button class="toggle" onclick="this.classList.toggle('on')"&gt;&lt;/button&gt;
@@ -2803,22 +2826,51 @@ body {
         <span class="component-block-title">Checkbox</span>
         <span class="component-block-subtitle">Click to check / uncheck</span>
       </div>
-      <div class="variant-explorer" id="checkbox-explorer">
-        <div class="variant-preview" id="checkbox-preview-wrap">
+      <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте кликнуть</div>
+        <div class="state-preview">
           <label class="checkbox-wrap" onclick="toggleCheckboxVariant(this)" style="cursor:pointer">
             <div class="checkbox">
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <span class="checkbox-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unchecked — click to toggle</span>
+            <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Checkbox</span>
           </label>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('checkbox-explorer',0)">Unchecked</button>
-          <button class="variant-tab" onclick="switchVariant('checkbox-explorer',1)">Checked</button>
-          <button class="variant-tab" onclick="switchVariant('checkbox-explorer',2)">Disabled</button>
+        <!-- Static states showcase — NOT clickable -->
+        <div class="states-row" id="checkbox-states-row">
+          <div class="state-row-item highlighted" data-state="unchecked">
+            <div class="checkbox" style="pointer-events:none">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="state-row-label">Unchecked</span>
+          </div>
+          <div class="state-row-item" data-state="checked">
+            <div class="checkbox checked" style="pointer-events:none">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="state-row-label">Checked</span>
+          </div>
+          <div class="state-row-item" data-state="disabled">
+            <div class="checkbox disabled" style="pointer-events:none">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="state-row-label">Disabled</span>
+          </div>
+        </div>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('checkbox-states-row','unchecked');switchStateCode('checkbox',0)">Unchecked</button>
+          <button class="state-tab" onclick="highlightStateRow('checkbox-states-row','checked');switchStateCode('checkbox',1)">Checked</button>
+          <button class="state-tab" onclick="highlightStateRow('checkbox-states-row','disabled');switchStateCode('checkbox',2)">Disabled</button>
+        </div>
+        <div class="state-info" id="checkbox-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">background: transparent</span>
+            <span class="state-info-change">border: 1px solid var(--border-strong) — #3E4150</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="checkbox-code">
+      <div class="code-block" data-state-code="checkbox">
         <button class="code-download-btn" onclick="downloadCode(this,'checkbox.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;label class="checkbox-wrap" onclick="toggleCheckbox(this)"&gt;
@@ -2850,20 +2902,43 @@ body {
         <span class="component-block-title">Radio</span>
         <span class="component-block-subtitle">Click to select an option</span>
       </div>
-      <div class="variant-explorer" id="radio-explorer">
-        <div class="variant-preview" id="radio-preview-wrap">
+      <div class="state-explorer">
+        <div class="interactive-hint">Интерактивный элемент — попробуйте кликнуть</div>
+        <div class="state-preview">
           <label class="radio-wrap" onclick="toggleRadioVariant(this)" style="cursor:pointer">
             <div class="radio"><div class="radio-inner"></div></div>
-            <span class="radio-variant-label" style="font-size:var(--font-size-13);color:var(--text-secondary)">Unselected — click to select</span>
+            <span style="font-size:var(--font-size-13);color:var(--text-secondary)">Radio</span>
           </label>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('radio-explorer',0)">Unselected</button>
-          <button class="variant-tab" onclick="switchVariant('radio-explorer',1)">Selected</button>
-          <button class="variant-tab" onclick="switchVariant('radio-explorer',2)">Disabled</button>
+        <!-- Static states showcase — NOT clickable -->
+        <div class="states-row" id="radio-states-row">
+          <div class="state-row-item highlighted" data-state="unselected">
+            <div class="radio" style="pointer-events:none"><div class="radio-inner"></div></div>
+            <span class="state-row-label">Unselected</span>
+          </div>
+          <div class="state-row-item" data-state="selected">
+            <div class="radio selected" style="pointer-events:none"><div class="radio-inner"></div></div>
+            <span class="state-row-label">Selected</span>
+          </div>
+          <div class="state-row-item" data-state="disabled">
+            <div class="radio disabled" style="pointer-events:none"><div class="radio-inner"></div></div>
+            <span class="state-row-label">Disabled</span>
+          </div>
+        </div>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('radio-states-row','unselected');switchStateCode('radio',0)">Unselected</button>
+          <button class="state-tab" onclick="highlightStateRow('radio-states-row','selected');switchStateCode('radio',1)">Selected</button>
+          <button class="state-tab" onclick="highlightStateRow('radio-states-row','disabled');switchStateCode('radio',2)">Disabled</button>
+        </div>
+        <div class="state-info" id="radio-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">border: 2px solid var(--border-strong) — #3E4150</span>
+            <span class="state-info-change">radio-inner: display: none</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="radio-code">
+      <div class="code-block" data-state-code="radio">
         <button class="code-download-btn" onclick="downloadCode(this,'radio.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="radio selected"&gt;
@@ -2902,18 +2977,42 @@ body {
         <span class="component-block-title">Badge / Status Pill</span>
         <span class="component-block-subtitle">Semantic color states</span>
       </div>
-      <div class="variant-explorer" id="badge-explorer">
-        <div class="variant-preview" id="badge-preview">
-          <span class="badge badge-success"><span class="badge-dot"></span>Success</span>
+      <div class="state-explorer">
+        <!-- Static variants row — NOT clickable -->
+        <div class="states-row" id="badge-states-row">
+          <div class="state-row-item highlighted" data-state="success">
+            <span class="badge badge-success"><span class="badge-dot"></span>Success</span>
+            <span class="state-row-label">Success</span>
+          </div>
+          <div class="state-row-item" data-state="running">
+            <span class="badge badge-running"><span class="badge-dot"></span>Running</span>
+            <span class="state-row-label">Running</span>
+          </div>
+          <div class="state-row-item" data-state="error">
+            <span class="badge badge-error"><span class="badge-dot"></span>Error</span>
+            <span class="state-row-label">Error</span>
+          </div>
+          <div class="state-row-item" data-state="info">
+            <span class="badge badge-neutral"><span class="badge-dot"></span>Info</span>
+            <span class="state-row-label">Info</span>
+          </div>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('badge-explorer',0)">Success</button>
-          <button class="variant-tab" onclick="switchVariant('badge-explorer',1)">Running</button>
-          <button class="variant-tab" onclick="switchVariant('badge-explorer',2)">Error</button>
-          <button class="variant-tab" onclick="switchVariant('badge-explorer',3)">Info</button>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('badge-states-row','success');switchStateCode('badge',0)">Success</button>
+          <button class="state-tab" onclick="highlightStateRow('badge-states-row','running');switchStateCode('badge',1)">Running</button>
+          <button class="state-tab" onclick="highlightStateRow('badge-states-row','error');switchStateCode('badge',2)">Error</button>
+          <button class="state-tab" onclick="highlightStateRow('badge-states-row','info');switchStateCode('badge',3)">Info</button>
+        </div>
+        <div class="state-info" id="badge-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">background: rgba(52, 211, 153, 0.12)</span>
+            <span class="state-info-change">color: var(--accent-success) — #34D399</span>
+            <span class="state-info-change">border: 1px solid rgba(52, 211, 153, 0.2)</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="badge-code">
+      <div class="code-block" data-state-code="badge">
         <button class="code-download-btn" onclick="downloadCode(this,'badge.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;span class="badge badge-success"&gt;
@@ -2939,18 +3038,41 @@ body {
         <span class="component-block-title">StatusDot</span>
         <span class="component-block-subtitle">Inline presence indicator</span>
       </div>
-      <div class="variant-explorer" id="statusdot-explorer">
-        <div class="variant-preview" id="statusdot-preview">
-          <div class="status-dot"><span class="dot dot-online"></span>Online</div>
+      <div class="state-explorer">
+        <!-- Static variants row — NOT clickable -->
+        <div class="states-row" id="statusdot-states-row">
+          <div class="state-row-item highlighted" data-state="online">
+            <div class="status-dot"><span class="dot dot-online"></span>Online</div>
+            <span class="state-row-label">Online</span>
+          </div>
+          <div class="state-row-item" data-state="busy">
+            <div class="status-dot"><span class="dot dot-busy"></span>Busy</div>
+            <span class="state-row-label">Busy</span>
+          </div>
+          <div class="state-row-item" data-state="idle">
+            <div class="status-dot"><span class="dot dot-idle"></span>Idle</div>
+            <span class="state-row-label">Idle</span>
+          </div>
+          <div class="state-row-item" data-state="error">
+            <div class="status-dot"><span class="dot dot-error"></span>Error</div>
+            <span class="state-row-label">Error</span>
+          </div>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('statusdot-explorer',0)">Online</button>
-          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',1)">Busy</button>
-          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',2)">Idle</button>
-          <button class="variant-tab" onclick="switchVariant('statusdot-explorer',3)">Error</button>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('statusdot-states-row','online');switchStateCode('statusdot',0)">Online</button>
+          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','busy');switchStateCode('statusdot',1)">Busy</button>
+          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','idle');switchStateCode('statusdot',2)">Idle</button>
+          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','error');switchStateCode('statusdot',3)">Error</button>
+        </div>
+        <div class="state-info" id="statusdot-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--accent-success) — #34D399</span>
+            <span class="state-info-change">box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2)</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="statusdot-code">
+      <div class="code-block" data-state-code="statusdot">
         <button class="code-download-btn" onclick="downloadCode(this,'status-dot.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="status-dot"&gt;
@@ -2959,10 +3081,10 @@ body {
 &lt;/div&gt;
 
 .dot { width: 8px; height: 8px; border-radius: 50%; }
-.dot-online { background: var(--accent-success); }
-.dot-busy   { background: var(--accent-warning); }
-.dot-idle   { background: var(--text-disabled); }
-.dot-error  { background: var(--accent-error); }</pre>
+.dot-online { background: var(--accent-success); /* #34D399 */ }
+.dot-busy   { background: var(--accent-warning); /* #FBBF24 */ }
+.dot-idle   { background: var(--text-disabled);  /* #4B5563 */ }
+.dot-error  { background: var(--accent-error);   /* #F87171 */ }</pre>
       </div>
     </div>
   </section>
@@ -3066,22 +3188,39 @@ body {
         <span class="component-block-title">Breadcrumb</span>
         <span class="component-block-subtitle">Hierarchical navigation</span>
       </div>
-      <div class="variant-explorer" id="breadcrumb-explorer">
-        <div class="variant-preview" id="breadcrumb-preview">
-          <nav class="breadcrumb">
-            <a class="breadcrumb-item" href="#">Dashboard</a>
-            <span class="breadcrumb-sep">/</span>
-            <a class="breadcrumb-item" href="#">Agents</a>
-            <span class="breadcrumb-sep">/</span>
-            <span class="breadcrumb-item current">Trend Scout</span>
-          </nav>
+      <div class="state-explorer">
+        <!-- Static variants row — NOT clickable -->
+        <div class="states-row" id="breadcrumb-states-row" style="align-items:center">
+          <div class="state-row-item highlighted" data-state="with-links">
+            <nav class="breadcrumb">
+              <a class="breadcrumb-item" href="#" onclick="return false">Dashboard</a>
+              <span class="breadcrumb-sep">/</span>
+              <a class="breadcrumb-item" href="#" onclick="return false">Agents</a>
+              <span class="breadcrumb-sep">/</span>
+              <span class="breadcrumb-item current">Trend Scout</span>
+            </nav>
+            <span class="state-row-label">With Links</span>
+          </div>
+          <div class="state-row-item" data-state="current-only">
+            <nav class="breadcrumb">
+              <span class="breadcrumb-item current">Trend Scout</span>
+            </nav>
+            <span class="state-row-label">Current Only</span>
+          </div>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('breadcrumb-explorer',0)">With Links</button>
-          <button class="variant-tab" onclick="switchVariant('breadcrumb-explorer',1)">Current Only</button>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('breadcrumb-states-row','with-links');switchStateCode('breadcrumb',0)">With Links</button>
+          <button class="state-tab" onclick="highlightStateRow('breadcrumb-states-row','current-only');switchStateCode('breadcrumb',1)">Current Only</button>
+        </div>
+        <div class="state-info" id="breadcrumb-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">color: var(--text-secondary) — #8B8FA3</span>
+            <span class="state-info-change">.current: color: var(--text-primary) — #FFFFFF</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="breadcrumb-code">
+      <div class="code-block" data-state-code="breadcrumb">
         <button class="code-download-btn" onclick="downloadCode(this,'breadcrumb.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;nav class="breadcrumb"&gt;
@@ -3136,22 +3275,74 @@ body {
         <span class="component-block-title">Card Variants</span>
         <span class="component-block-subtitle">Hover to see elevation</span>
       </div>
-      <div class="variant-explorer" id="cards-explorer">
-        <div class="variant-preview" id="cards-preview" style="justify-content:flex-start">
-          <div class="card card-metric" style="min-width:200px;max-width:260px">
-            <div class="card-metric-label">Total Runs</div>
-            <div class="card-metric-value">2,847</div>
-            <div class="card-metric-delta">+12.4% this week</div>
+      <div class="state-explorer">
+        <!-- Static variants row — all 4 cards shown side by side, NOT clickable -->
+        <div class="states-row" id="cards-states-row" style="align-items:flex-start;flex-wrap:wrap;gap:var(--spacing-12)">
+          <div class="state-row-item highlighted" data-state="metric" style="align-items:flex-start">
+            <div class="card card-metric" style="min-width:160px;max-width:200px;pointer-events:none">
+              <div class="card-metric-label">Total Runs</div>
+              <div class="card-metric-value">2,847</div>
+              <div class="card-metric-delta">+12.4%</div>
+            </div>
+            <span class="state-row-label">Metric</span>
+          </div>
+          <div class="state-row-item" data-state="department" style="align-items:flex-start">
+            <div class="card card-dept" style="min-width:160px;max-width:200px;pointer-events:none">
+              <div class="card-dept-icon">🔵</div>
+              <div>
+                <div class="card-dept-name">Product Lab</div>
+                <div class="card-dept-count">4 agents active</div>
+              </div>
+            </div>
+            <span class="state-row-label">Department</span>
+          </div>
+          <div class="state-row-item" data-state="agent" style="align-items:flex-start">
+            <div class="card card-agent" style="min-width:180px;max-width:220px;pointer-events:none">
+              <div class="card-agent-header">
+                <div class="card-agent-info">
+                  <div class="card-agent-avatar">🔍</div>
+                  <div>
+                    <div class="card-agent-name">Trend Scout</div>
+                    <div class="card-agent-role">Discovery</div>
+                  </div>
+                </div>
+                <span class="badge badge-running"><span class="badge-dot"></span>Running</span>
+              </div>
+              <div class="card-agent-last">Last run: 2 min ago</div>
+            </div>
+            <span class="state-row-label">Agent</span>
+          </div>
+          <div class="state-row-item" data-state="run" style="align-items:flex-start">
+            <div class="card card-run" style="min-width:180px;max-width:220px;pointer-events:none">
+              <div class="card-run-header">
+                <span class="card-run-agent">Ideation Engine</span>
+                <span class="badge badge-success"><span class="badge-dot"></span>Done</span>
+              </div>
+              <div class="card-run-project">Project: AI Manufactury</div>
+              <div class="card-run-footer">
+                <span class="card-run-time">14:32:01</span>
+                <span style="font-size:var(--font-size-11);color:var(--text-secondary)">3m 14s</span>
+              </div>
+            </div>
+            <span class="state-row-label">Run</span>
           </div>
         </div>
-        <div class="variant-tabs" role="tablist">
-          <button class="variant-tab active" onclick="switchVariant('cards-explorer',0)">Metric</button>
-          <button class="variant-tab" onclick="switchVariant('cards-explorer',1)">Department</button>
-          <button class="variant-tab" onclick="switchVariant('cards-explorer',2)">Agent</button>
-          <button class="variant-tab" onclick="switchVariant('cards-explorer',3)">Run</button>
+        <!-- Code tabs — CLICKABLE -->
+        <div class="state-tabs" role="tablist">
+          <button class="state-tab active" onclick="highlightStateRow('cards-states-row','metric');switchStateCode('cards',0)">Metric</button>
+          <button class="state-tab" onclick="highlightStateRow('cards-states-row','department');switchStateCode('cards',1)">Department</button>
+          <button class="state-tab" onclick="highlightStateRow('cards-states-row','agent');switchStateCode('cards',2)">Agent</button>
+          <button class="state-tab" onclick="highlightStateRow('cards-states-row','run');switchStateCode('cards',3)">Run</button>
+        </div>
+        <div class="state-info" id="cards-info">
+          <div class="state-info-changes">
+            <span class="state-info-change">background: var(--bg-surface) — #1A1D27</span>
+            <span class="state-info-change">border: 1px solid var(--border-default) — #2E3140</span>
+            <span class="state-info-change">border-radius: var(--radius-12)</span>
+          </div>
         </div>
       </div>
-      <div class="code-block" id="cards-code">
+      <div class="code-block" data-state-code="cards">
         <button class="code-download-btn" onclick="downloadCode(this,'cards.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
         <pre>&lt;div class="card card-metric"&gt;
@@ -3636,6 +3827,73 @@ const stateCodeData = {
     `.dropdown-trigger:hover {\n  background: var(--dropdown-trigger-hover-bg);     /* #21242F */\n  border-color: var(--dropdown-trigger-hover-border); /* #3E4150 */\n}`,
     // Open
     `.dropdown-trigger.open {\n  border-color: var(--dropdown-trigger-open-border); /* #60A5FA */\n}\n.dropdown-chevron { transform: rotate(180deg); }\n\n/* Menu */\n.dropdown-menu {\n  background: var(--dropdown-menu-bg);   /* #21242F */\n  border: 1px solid var(--dropdown-menu-border);\n  border-radius: var(--radius-8);\n  box-shadow: 0 8px 24px rgba(0,0,0,0.4);\n}\n\nfunction toggleDropdown(id) {\n  document.getElementById(id).classList.toggle('open');\n}`
+  ],
+
+  'toggle': [
+    // Off
+    `<!-- Off state -->\n<button class="toggle" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle {\n  width: 40px; height: 22px;\n  background: var(--border-strong);   /* Off: #3E4150 */\n  border-radius: var(--radius-full);\n  transition: background 0.2s;\n  position: relative;\n}\n.toggle::after {\n  content: ''; position: absolute; top: 3px; left: 3px;\n  width: 16px; height: 16px; border-radius: 50%;\n  background: white; transition: transform 0.2s;\n}`,
+    // On
+    `<!-- On state -->\n<button class="toggle on" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle.on {\n  background: var(--accent-success); /* #34D399 */\n}\n.toggle.on::after {\n  transform: translateX(18px);\n}`,
+    // Disabled
+    `<!-- Disabled state -->\n<button class="toggle" disabled></button>\n\n/* CSS */\n.toggle:disabled,\n.toggle[disabled] {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+  ],
+
+  'checkbox': [
+    // Unchecked
+    `<!-- Unchecked -->\n<label class="checkbox-wrap" onclick="toggleCheckbox(this)">\n  <div class="checkbox">\n    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">\n      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n    </svg>\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox {\n  width: 18px; height: 18px;\n  border-radius: var(--radius-4);\n  border: 1px solid var(--border-strong); /* #3E4150 */\n  background: transparent;\n}\n.checkbox svg { display: none; }`,
+    // Checked
+    `<!-- Checked -->\n<label class="checkbox-wrap">\n  <div class="checkbox checked">\n    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">\n      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n    </svg>\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.checked {\n  background: var(--accent-primary); /* #60A5FA */\n  border-color: var(--accent-primary);\n}\n.checkbox.checked svg { display: block; }`,
+    // Disabled
+    `<!-- Disabled -->\n<label class="checkbox-wrap" style="cursor:not-allowed;opacity:0.4">\n  <div class="checkbox disabled"></div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+  ],
+
+  'radio': [
+    // Unselected
+    `<!-- Unselected -->\n<div class="radio">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio {\n  width: 18px; height: 18px;\n  border-radius: 50%;\n  border: 2px solid var(--border-strong); /* #3E4150 */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.radio-inner { display: none; }`,
+    // Selected
+    `<!-- Selected -->\n<div class="radio selected">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio.selected {\n  border-color: var(--accent-success); /* #34D399 */\n}\n.radio-inner {\n  width: 8px; height: 8px; border-radius: 50%;\n  background: var(--accent-success); /* #34D399 */\n}\n.radio.selected .radio-inner { display: block; }`,
+    // Disabled
+    `<!-- Disabled -->\n<div class="radio disabled">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+  ],
+
+  'badge': [
+    // Success
+    `<span class="badge badge-success">\n  <span class="badge-dot"></span>\n  Success\n</span>\n\n/* CSS */\n.badge-success {\n  background: rgba(52, 211, 153, 0.12);\n  color: var(--accent-success);         /* #34D399 */\n  border: 1px solid rgba(52, 211, 153, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    // Running
+    `<span class="badge badge-running">\n  <span class="badge-dot"></span>\n  Running\n</span>\n\n/* CSS */\n.badge-running {\n  background: rgba(96, 165, 250, 0.12);\n  color: var(--accent-primary);         /* #60A5FA */\n  border: 1px solid rgba(96, 165, 250, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    // Error
+    `<span class="badge badge-error">\n  <span class="badge-dot"></span>\n  Error\n</span>\n\n/* CSS */\n.badge-error {\n  background: rgba(248, 113, 113, 0.12);\n  color: var(--accent-error);           /* #F87171 */\n  border: 1px solid rgba(248, 113, 113, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    // Info
+    `<span class="badge badge-neutral">\n  <span class="badge-dot"></span>\n  Info\n</span>\n\n/* CSS */\n.badge-neutral {\n  background: rgba(139, 143, 163, 0.12);\n  color: var(--text-secondary);         /* #8B8FA3 */\n  border: 1px solid rgba(139, 143, 163, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`
+  ],
+
+  'statusdot': [
+    // Online
+    `<div class="status-dot">\n  <span class="dot dot-online"></span>\n  Online\n</div>\n\n/* CSS */\n.dot { width: 8px; height: 8px; border-radius: 50%; }\n.dot-online {\n  background: var(--accent-success); /* #34D399 */\n  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2);\n}`,
+    // Busy
+    `<div class="status-dot">\n  <span class="dot dot-busy"></span>\n  Busy\n</div>\n\n/* CSS */\n.dot-busy {\n  background: var(--accent-warning); /* #FBBF24 */\n  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);\n}`,
+    // Idle
+    `<div class="status-dot">\n  <span class="dot dot-idle"></span>\n  Idle\n</div>\n\n/* CSS */\n.dot-idle {\n  background: var(--text-disabled); /* #4B5563 */\n}`,
+    // Error
+    `<div class="status-dot">\n  <span class="dot dot-error"></span>\n  Error\n</div>\n\n/* CSS */\n.dot-error {\n  background: var(--accent-error); /* #F87171 */\n  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2);\n}`
+  ],
+
+  'breadcrumb': [
+    // With Links
+    `<!-- With Links -->\n<nav class="breadcrumb">\n  <a class="breadcrumb-item" href="#">Dashboard</a>\n  <span class="breadcrumb-sep">/</span>\n  <a class="breadcrumb-item" href="#">Agents</a>\n  <span class="breadcrumb-sep">/</span>\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>\n\n/* CSS */\n.breadcrumb-item { color: var(--text-secondary); /* #8B8FA3 */ }\n.breadcrumb-item:hover { color: var(--text-primary); }\n.breadcrumb-item.current { color: var(--text-primary); cursor: default; }\n.breadcrumb-sep { color: var(--text-disabled); }`,
+    // Current Only
+    `<!-- Current Only -->\n<nav class="breadcrumb">\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>\n\n/* CSS */\n.breadcrumb-item.current {\n  color: var(--text-primary); /* #FFFFFF */\n  cursor: default;\n}`
+  ],
+
+  'cards': [
+    // Metric
+    `<!-- Metric Card -->\n<div class="card card-metric">\n  <div class="card-metric-label">Total Runs</div>\n  <div class="card-metric-value">2,847</div>\n  <div class="card-metric-delta">+12.4%</div>\n</div>\n\n/* CSS base */\n.card {\n  background: var(--bg-surface);  /* #1A1D27 */\n  border: 1px solid var(--border-default);\n  border-radius: var(--radius-12);\n  padding: var(--spacing-20);\n}\n.card:hover {\n  border-color: var(--border-strong);\n  box-shadow: 0 4px 24px rgba(0,0,0,0.3);\n}`,
+    // Department
+    `<!-- Department Card -->\n<div class="card card-dept">\n  <div class="card-dept-icon">🔵</div>\n  <div>\n    <div class="card-dept-name">Product Lab</div>\n    <div class="card-dept-count">4 agents active</div>\n  </div>\n</div>\n\n/* CSS */\n.card-dept {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n}\n.card-dept-icon {\n  width: 36px; height: 36px;\n  background: rgba(96, 165, 250, 0.1);\n  border: 1px solid rgba(96, 165, 250, 0.15);\n  border-radius: var(--radius-8);\n  display: flex; align-items: center; justify-content: center;\n}`,
+    // Agent
+    `<!-- Agent Card -->\n<div class="card card-agent">\n  <div class="card-agent-header">\n    <div class="card-agent-info">\n      <div class="card-agent-avatar">🔍</div>\n      <div>\n        <div class="card-agent-name">Trend Scout</div>\n        <div class="card-agent-role">Discovery</div>\n      </div>\n    </div>\n    <span class="badge badge-running">\n      <span class="badge-dot"></span>Running\n    </span>\n  </div>\n  <div class="card-agent-last">Last run: 2 min ago</div>\n</div>`,
+    // Run
+    `<!-- Run Card -->\n<div class="card card-run">\n  <div class="card-run-header">\n    <span class="card-run-agent">Ideation Engine</span>\n    <span class="badge badge-success"><span class="badge-dot"></span>Done</span>\n  </div>\n  <div class="card-run-project">Project: AI Manufactury</div>\n  <div class="card-run-footer">\n    <span class="card-run-time">14:32:01</span>\n    <span>3m 14s</span>\n  </div>\n</div>`
   ]
 
 };
@@ -3705,6 +3963,50 @@ const stateInfoData = {
     { changes: ['background: var(--dropdown-trigger-default-bg) — #1A1D27', 'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'] },
     { changes: ['background: var(--dropdown-trigger-hover-bg) — #21242F', 'border-color: var(--dropdown-trigger-hover-border) — #3E4150'] },
     { changes: ['border-color: var(--dropdown-trigger-open-border) — #60A5FA', '.dropdown-chevron: transform: rotate(180deg)', '.dropdown-menu: display: block'] }
+  ],
+
+  'toggle': [
+    { changes: ['background: var(--border-strong) — #3E4150', 'thumb position: left 3px (translateX 0)'] },
+    { changes: ['background: var(--accent-success) — #34D399', 'thumb: transform: translateX(18px)'] },
+    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
+  ],
+
+  'checkbox': [
+    { changes: ['background: transparent', 'border: 1px solid var(--border-strong) — #3E4150', '.checkbox svg: display: none'] },
+    { changes: ['background: var(--accent-primary) — #60A5FA', 'border-color: var(--accent-primary)', '.checkbox svg: display: block'] },
+    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
+  ],
+
+  'radio': [
+    { changes: ['border: 2px solid var(--border-strong) — #3E4150', '.radio-inner: display: none'] },
+    { changes: ['border-color: var(--accent-success) — #34D399', '.radio-inner: display: block, background: #34D399'] },
+    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
+  ],
+
+  'badge': [
+    { changes: ['background: rgba(52, 211, 153, 0.12)', 'color: var(--accent-success) — #34D399', 'border: 1px solid rgba(52, 211, 153, 0.2)'] },
+    { changes: ['background: rgba(96, 165, 250, 0.12)', 'color: var(--accent-primary) — #60A5FA', 'border: 1px solid rgba(96, 165, 250, 0.2)'] },
+    { changes: ['background: rgba(248, 113, 113, 0.12)', 'color: var(--accent-error) — #F87171', 'border: 1px solid rgba(248, 113, 113, 0.2)'] },
+    { changes: ['background: rgba(139, 143, 163, 0.12)', 'color: var(--text-secondary) — #8B8FA3', 'border: 1px solid rgba(139, 143, 163, 0.2)'] }
+  ],
+
+  'statusdot': [
+    { changes: ['background: var(--accent-success) — #34D399', 'box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2)'] },
+    { changes: ['background: var(--accent-warning) — #FBBF24', 'box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2)'] },
+    { changes: ['background: var(--text-disabled) — #4B5563', 'no box-shadow'] },
+    { changes: ['background: var(--accent-error) — #F87171', 'box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2)'] }
+  ],
+
+  'breadcrumb': [
+    { changes: ['.breadcrumb-item: color: var(--text-secondary) — #8B8FA3', '.breadcrumb-item.current: color: var(--text-primary) — #FFFFFF', '.breadcrumb-sep: color: var(--text-disabled)'] },
+    { changes: ['.breadcrumb-item.current: color: var(--text-primary) — #FFFFFF', 'cursor: default'] }
+  ],
+
+  'cards': [
+    { changes: ['background: var(--bg-surface) — #1A1D27', 'border: 1px solid var(--border-default) — #2E3140', 'padding: var(--spacing-20), border-radius: var(--radius-12)'] },
+    { changes: ['card-dept: display: flex, align-items: center, gap: 12px', 'card-dept-icon: 36×36px, rgba(96,165,250,0.1) bg'] },
+    { changes: ['card-agent-header: flex, space-between', 'card-agent-avatar: 32×32px, rgba(96,165,250,0.1) bg', 'badge badge-running inside header'] },
+    { changes: ['card-run-header: flex, space-between', 'card-run-footer: flex, space-between', 'card-run-time: JetBrains Mono font'] }
   ]
 
 };
