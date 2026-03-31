@@ -852,8 +852,8 @@ body {
 }
 
 .state-row-item.highlighted {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: rgba(96, 165, 250, 0.04);
+  border-color: transparent;
+  background: transparent;
 }
 
 .state-row-label {
@@ -2335,11 +2335,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-primary-preview', 'default', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','default');switchStateCode('btn-primary',0)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'hover', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','hover');switchStateCode('btn-primary',1)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'pressed', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','pressed');switchStateCode('btn-primary',2)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'disabled', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','disabled');switchStateCode('btn-primary',3)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-primary-preview', 'focus', this, btnPrimaryStates);highlightStateRow('btn-primary-states-row','focus');switchStateCode('btn-primary',4)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('btn-primary-states-row','default');switchStateCode('btn-primary',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','hover');switchStateCode('btn-primary',1)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','pressed');switchStateCode('btn-primary',2)">Pressed</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','disabled');switchStateCode('btn-primary',3)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','focus');switchStateCode('btn-primary',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-primary-info">
           <div class="state-info-name">State: Default</div>
@@ -2412,11 +2412,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-secondary-preview', 'default', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','default');switchStateCode('btn-secondary',0)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'hover', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','hover');switchStateCode('btn-secondary',1)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'pressed', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','pressed');switchStateCode('btn-secondary',2)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'disabled', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','disabled');switchStateCode('btn-secondary',3)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-secondary-preview', 'focus', this, btnSecondaryStates);highlightStateRow('btn-secondary-states-row','focus');switchStateCode('btn-secondary',4)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('btn-secondary-states-row','default');switchStateCode('btn-secondary',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','hover');switchStateCode('btn-secondary',1)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','pressed');switchStateCode('btn-secondary',2)">Pressed</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','disabled');switchStateCode('btn-secondary',3)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','focus');switchStateCode('btn-secondary',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-secondary-info">
           <div class="state-info-name">State: Default</div>
@@ -2480,11 +2480,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('btn-ghost-preview', 'default', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','default');switchStateCode('btn-ghost',0)">Default</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'hover', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','hover');switchStateCode('btn-ghost',1)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'pressed', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','pressed');switchStateCode('btn-ghost',2)">Pressed</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'disabled', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','disabled');switchStateCode('btn-ghost',3)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('btn-ghost-preview', 'focus', this, btnGhostStates);highlightStateRow('btn-ghost-states-row','focus');switchStateCode('btn-ghost',4)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('btn-ghost-states-row','default');switchStateCode('btn-ghost',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','hover');switchStateCode('btn-ghost',1)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','pressed');switchStateCode('btn-ghost',2)">Pressed</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','disabled');switchStateCode('btn-ghost',3)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','focus');switchStateCode('btn-ghost',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-ghost-info">
           <div class="state-info-name">State: Default</div>
@@ -2562,12 +2562,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setInputState('input-filled-preview', 'default', this, inputFilledStates);highlightStateRow('input-filled-states-row','default');switchStateCode('input-filled',0)">Default</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'filled', this, inputFilledStates);highlightStateRow('input-filled-states-row','filled');switchStateCode('input-filled',1)">Filled</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'hover', this, inputFilledStates);highlightStateRow('input-filled-states-row','hover');switchStateCode('input-filled',2)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'error', this, inputFilledStates);highlightStateRow('input-filled-states-row','error');switchStateCode('input-filled',3)">Error</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'disabled', this, inputFilledStates);highlightStateRow('input-filled-states-row','disabled');switchStateCode('input-filled',4)">Disabled</button>
-          <button class="state-tab" onclick="setInputState('input-filled-preview', 'focus', this, inputFilledStates);highlightStateRow('input-filled-states-row','focus');switchStateCode('input-filled',5)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('input-filled-states-row','default');switchStateCode('input-filled',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','filled');switchStateCode('input-filled',1)">Filled</button>
+          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','hover');switchStateCode('input-filled',2)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','error');switchStateCode('input-filled',3)">Error</button>
+          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','disabled');switchStateCode('input-filled',4)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','focus');switchStateCode('input-filled',5)">Focus</button>
         </div>
         <div class="state-info" id="input-filled-info">
           <div class="state-info-name">State: Default</div>
@@ -2638,12 +2638,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setInputState('input-outlined-preview', 'default', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','default');switchStateCode('input-outlined',0)">Default</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'filled', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','filled');switchStateCode('input-outlined',1)">Filled</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'hover', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','hover');switchStateCode('input-outlined',2)">Hover</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'error', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','error');switchStateCode('input-outlined',3)">Error</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'disabled', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','disabled');switchStateCode('input-outlined',4)">Disabled</button>
-          <button class="state-tab" onclick="setInputState('input-outlined-preview', 'focus', this, inputOutlinedStates);highlightStateRow('input-outlined-states-row','focus');switchStateCode('input-outlined',5)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('input-outlined-states-row','default');switchStateCode('input-outlined',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','filled');switchStateCode('input-outlined',1)">Filled</button>
+          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','hover');switchStateCode('input-outlined',2)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','error');switchStateCode('input-outlined',3)">Error</button>
+          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','disabled');switchStateCode('input-outlined',4)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','focus');switchStateCode('input-outlined',5)">Focus</button>
         </div>
         <div class="state-info" id="input-outlined-info">
           <div class="state-info-name">State: Default</div>
@@ -2726,9 +2726,9 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setSearchState('default', this);highlightStateRow('search-states-row','default');switchStateCode('search',0)">Default</button>
-          <button class="state-tab" onclick="setSearchState('filled', this);highlightStateRow('search-states-row','filled');switchStateCode('search',1)">Filled</button>
-          <button class="state-tab" onclick="setSearchState('focus', this);highlightStateRow('search-states-row','focus');switchStateCode('search',2)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('search-states-row','default');switchStateCode('search',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('search-states-row','filled');switchStateCode('search',1)">Filled</button>
+          <button class="state-tab" onclick="highlightStateRow('search-states-row','focus');switchStateCode('search',2)">Focus</button>
         </div>
         <div class="state-info" id="search-info">
           <div class="state-info-name">State: Default</div>
@@ -3035,11 +3035,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setComponentState('navitem-preview', 'default', this, navItemStates);highlightStateRow('navitem-states-row','default');switchStateCode('navitem',0)">Default</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'hover', this, navItemStates);highlightStateRow('navitem-states-row','hover');switchStateCode('navitem',1)">Hover</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'active', this, navItemStates);highlightStateRow('navitem-states-row','active');switchStateCode('navitem',2)">Active</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'disabled', this, navItemStates);highlightStateRow('navitem-states-row','disabled');switchStateCode('navitem',3)">Disabled</button>
-          <button class="state-tab" onclick="setComponentState('navitem-preview', 'focus', this, navItemStates);highlightStateRow('navitem-states-row','focus');switchStateCode('navitem',4)">Focus</button>
+          <button class="state-tab active" onclick="highlightStateRow('navitem-states-row','default');switchStateCode('navitem',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','hover');switchStateCode('navitem',1)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','active');switchStateCode('navitem',2)">Active</button>
+          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','disabled');switchStateCode('navitem',3)">Disabled</button>
+          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','focus');switchStateCode('navitem',4)">Focus</button>
         </div>
         <div class="state-info" id="navitem-info">
           <div class="state-info-name">State: Default</div>
@@ -3249,9 +3249,9 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="setDropdownState('default', this);highlightStateRow('dropdown-states-row','default');switchStateCode('dropdown',0)">Default</button>
-          <button class="state-tab" onclick="setDropdownState('hover', this);highlightStateRow('dropdown-states-row','hover');switchStateCode('dropdown',1)">Hover</button>
-          <button class="state-tab" onclick="setDropdownState('open', this);highlightStateRow('dropdown-states-row','open');switchStateCode('dropdown',2)">Open</button>
+          <button class="state-tab active" onclick="highlightStateRow('dropdown-states-row','default');switchStateCode('dropdown',0)">Default</button>
+          <button class="state-tab" onclick="highlightStateRow('dropdown-states-row','hover');switchStateCode('dropdown',1)">Hover</button>
+          <button class="state-tab" onclick="highlightStateRow('dropdown-states-row','open');switchStateCode('dropdown',2)">Open</button>
         </div>
         <div class="state-info" id="dropdown-info">
           <div class="state-info-name">State: Default</div>
