@@ -851,10 +851,6 @@ body {
   border: 2px solid transparent;
 }
 
-.state-row-item.highlighted {
-  border-color: transparent;
-  background: transparent;
-}
 
 .state-row-label {
   font-size: 10px;
@@ -865,9 +861,6 @@ body {
   white-space: nowrap;
 }
 
-.state-row-item.highlighted .state-row-label {
-  color: var(--accent-primary);
-}
 
 /* ============================================================
    BUTTONS
@@ -1746,38 +1739,6 @@ body {
   border-bottom-color: var(--accent-primary);
 }
 
-/* State code+description panel */
-.state-info {
-  padding: var(--spacing-12) var(--spacing-20);
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border-default);
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-16);
-  flex-wrap: wrap;
-}
-
-
-.state-info-changes {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.state-info-change {
-  font-size: var(--font-size-12);
-  color: var(--text-secondary);
-  font-family: 'JetBrains Mono', monospace;
-  display: flex;
-  align-items: baseline;
-  gap: var(--spacing-8);
-}
-
-.state-info-change::before {
-  content: '•';
-  color: var(--accent-primary);
-  flex-shrink: 0;
-}
 
 /* ============================================================
    VARIANT EXPLORER (for Badge, StatusDot, Toggle, Checkbox, Radio, Breadcrumb, Cards)
@@ -2302,7 +2263,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="btn-primary-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <button class="btn btn-primary" tabindex="-1">Button</button>
             <span class="state-row-label">Default</span>
           </div>
@@ -2325,19 +2286,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('btn-primary-states-row','default');switchStateCode('btn-primary',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','hover');switchStateCode('btn-primary',1)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','pressed');switchStateCode('btn-primary',2)">Pressed</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','disabled');switchStateCode('btn-primary',3)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','focus');switchStateCode('btn-primary',4)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('btn-primary',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('btn-primary',1)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('btn-primary',2)">Pressed</button>
+          <button class="state-tab" onclick="switchStateCode('btn-primary',3)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('btn-primary',4)">Focus</button>
         </div>
-        <div class="state-info" id="btn-primary-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--btn-primary-default-bg) — #60A5FA</span>
-            <span class="state-info-change">color: var(--btn-primary-default-text) — #13151E</span>
-            <span class="state-info-change">border: 1px solid var(--btn-primary-default-border)</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="btn-primary">
@@ -2379,7 +2333,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="btn-secondary-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <button class="btn btn-secondary" tabindex="-1">Button</button>
             <span class="state-row-label">Default</span>
           </div>
@@ -2402,19 +2356,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('btn-secondary-states-row','default');switchStateCode('btn-secondary',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','hover');switchStateCode('btn-secondary',1)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','pressed');switchStateCode('btn-secondary',2)">Pressed</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','disabled');switchStateCode('btn-secondary',3)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','focus');switchStateCode('btn-secondary',4)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('btn-secondary',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('btn-secondary',1)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('btn-secondary',2)">Pressed</button>
+          <button class="state-tab" onclick="switchStateCode('btn-secondary',3)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('btn-secondary',4)">Focus</button>
         </div>
-        <div class="state-info" id="btn-secondary-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--btn-secondary-default-bg) — #1A1D27</span>
-            <span class="state-info-change">color: var(--btn-secondary-default-text) — #60A5FA</span>
-            <span class="state-info-change">border: 1px solid var(--btn-secondary-default-border) — #2E3140</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="btn-secondary">
@@ -2447,7 +2394,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="btn-ghost-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <button class="btn btn-ghost" tabindex="-1">Button</button>
             <span class="state-row-label">Default</span>
           </div>
@@ -2470,19 +2417,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('btn-ghost-states-row','default');switchStateCode('btn-ghost',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','hover');switchStateCode('btn-ghost',1)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','pressed');switchStateCode('btn-ghost',2)">Pressed</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','disabled');switchStateCode('btn-ghost',3)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','focus');switchStateCode('btn-ghost',4)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('btn-ghost',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('btn-ghost',1)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('btn-ghost',2)">Pressed</button>
+          <button class="state-tab" onclick="switchStateCode('btn-ghost',3)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('btn-ghost',4)">Focus</button>
         </div>
-        <div class="state-info" id="btn-ghost-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: transparent</span>
-            <span class="state-info-change">color: var(--btn-ghost-default-text) — #8B8FA3</span>
-            <span class="state-info-change">border: 1px solid transparent</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="btn-ghost">
@@ -2525,7 +2465,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="input-filled-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <input class="input-base input-filled" tabindex="-1" style="width:120px" placeholder="Placeholder..." readonly>
             <span class="state-row-label">Default</span>
           </div>
@@ -2552,19 +2492,13 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('input-filled-states-row','default');switchStateCode('input-filled',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','filled');switchStateCode('input-filled',1)">Filled</button>
-          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','hover');switchStateCode('input-filled',2)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','error');switchStateCode('input-filled',3)">Error</button>
-          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','disabled');switchStateCode('input-filled',4)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','focus');switchStateCode('input-filled',5)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('input-filled',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('input-filled',1)">Filled</button>
+          <button class="state-tab" onclick="switchStateCode('input-filled',2)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('input-filled',3)">Error</button>
+          <button class="state-tab" onclick="switchStateCode('input-filled',4)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('input-filled',5)">Focus</button>
         </div>
-        <div class="state-info" id="input-filled-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--textfield-filled-default-bg) — #1A1D27</span>
-            <span class="state-info-change">border: 1px solid var(--textfield-filled-default-border) — #2E3140</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="input-filled">
@@ -2601,7 +2535,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="input-outlined-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <input class="input-base input-outlined" tabindex="-1" style="width:120px" placeholder="Placeholder..." readonly>
             <span class="state-row-label">Default</span>
           </div>
@@ -2628,19 +2562,13 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('input-outlined-states-row','default');switchStateCode('input-outlined',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','filled');switchStateCode('input-outlined',1)">Filled</button>
-          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','hover');switchStateCode('input-outlined',2)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','error');switchStateCode('input-outlined',3)">Error</button>
-          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','disabled');switchStateCode('input-outlined',4)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','focus');switchStateCode('input-outlined',5)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('input-outlined',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('input-outlined',1)">Filled</button>
+          <button class="state-tab" onclick="switchStateCode('input-outlined',2)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('input-outlined',3)">Error</button>
+          <button class="state-tab" onclick="switchStateCode('input-outlined',4)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('input-outlined',5)">Focus</button>
         </div>
-        <div class="state-info" id="input-outlined-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: transparent</span>
-            <span class="state-info-change">border: 1px solid var(--textfield-outlined-default-border) — #2E3140</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="input-outlined">
@@ -2692,7 +2620,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="search-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <div class="search-wrap" style="width:160px">
               <span class="search-icon"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
               <input class="search-input" tabindex="-1" placeholder="Search..." readonly>
@@ -2716,17 +2644,10 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('search-states-row','default');switchStateCode('search',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('search-states-row','filled');switchStateCode('search',1)">Filled</button>
-          <button class="state-tab" onclick="highlightStateRow('search-states-row','focus');switchStateCode('search',2)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('search',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('search',1)">Filled</button>
+          <button class="state-tab" onclick="switchStateCode('search',2)">Focus</button>
         </div>
-        <div class="state-info" id="search-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--search-default-bg) — #1A1D27</span>
-            <span class="state-info-change">border: 1px solid var(--search-default-border) — #2E3140</span>
-            <span class="state-info-change">icon color: var(--search-default-icon) — #8B8FA3</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="search">
@@ -2772,7 +2693,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="toggle-states-row">
-          <div class="state-row-item highlighted" data-state="off">
+          <div class="state-row-item" data-state="off">
             <button class="toggle" tabindex="-1" aria-label="Off"></button>
             <span class="state-row-label">Off</span>
           </div>
@@ -2787,15 +2708,10 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('toggle-states-row','off');switchStateCode('toggle',0)">Off</button>
-          <button class="state-tab" onclick="highlightStateRow('toggle-states-row','on');switchStateCode('toggle',1)">On</button>
-          <button class="state-tab" onclick="highlightStateRow('toggle-states-row','disabled');switchStateCode('toggle',2)">Disabled</button>
+          <button class="state-tab active" onclick="switchStateCode('toggle',0)">Off</button>
+          <button class="state-tab" onclick="switchStateCode('toggle',1)">On</button>
+          <button class="state-tab" onclick="switchStateCode('toggle',2)">Disabled</button>
         </div>
-        <div class="state-info" id="toggle-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--border-strong) — #3E4150</span>
-            <span class="state-info-change">thumb: translateX(0)</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="toggle">
@@ -2838,7 +2754,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="checkbox-states-row">
-          <div class="state-row-item highlighted" data-state="unchecked">
+          <div class="state-row-item" data-state="unchecked">
             <div class="checkbox" style="pointer-events:none">
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
@@ -2859,15 +2775,10 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('checkbox-states-row','unchecked');switchStateCode('checkbox',0)">Unchecked</button>
-          <button class="state-tab" onclick="highlightStateRow('checkbox-states-row','checked');switchStateCode('checkbox',1)">Checked</button>
-          <button class="state-tab" onclick="highlightStateRow('checkbox-states-row','disabled');switchStateCode('checkbox',2)">Disabled</button>
+          <button class="state-tab active" onclick="switchStateCode('checkbox',0)">Unchecked</button>
+          <button class="state-tab" onclick="switchStateCode('checkbox',1)">Checked</button>
+          <button class="state-tab" onclick="switchStateCode('checkbox',2)">Disabled</button>
         </div>
-        <div class="state-info" id="checkbox-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">background: transparent</span>
-            <span class="state-info-change">border: 1px solid var(--border-strong) — #3E4150</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="checkbox">
@@ -2912,7 +2823,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="radio-states-row">
-          <div class="state-row-item highlighted" data-state="unselected">
+          <div class="state-row-item" data-state="unselected">
             <div class="radio" style="pointer-events:none"><div class="radio-inner"></div></div>
             <span class="state-row-label">Unselected</span>
           </div>
@@ -2927,15 +2838,10 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('radio-states-row','unselected');switchStateCode('radio',0)">Unselected</button>
-          <button class="state-tab" onclick="highlightStateRow('radio-states-row','selected');switchStateCode('radio',1)">Selected</button>
-          <button class="state-tab" onclick="highlightStateRow('radio-states-row','disabled');switchStateCode('radio',2)">Disabled</button>
+          <button class="state-tab active" onclick="switchStateCode('radio',0)">Unselected</button>
+          <button class="state-tab" onclick="switchStateCode('radio',1)">Selected</button>
+          <button class="state-tab" onclick="switchStateCode('radio',2)">Disabled</button>
         </div>
-        <div class="state-info" id="radio-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">border: 2px solid var(--border-strong) — #3E4150</span>
-            <span class="state-info-change">radio-inner: display: none</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="radio">
@@ -2980,7 +2886,7 @@ body {
       <div class="state-explorer">
         <!-- Static variants row — NOT clickable -->
         <div class="states-row" id="badge-states-row">
-          <div class="state-row-item highlighted" data-state="success">
+          <div class="state-row-item" data-state="success">
             <span class="badge badge-success"><span class="badge-dot"></span>Success</span>
             <span class="state-row-label">Success</span>
           </div>
@@ -2999,17 +2905,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('badge-states-row','success');switchStateCode('badge',0)">Success</button>
-          <button class="state-tab" onclick="highlightStateRow('badge-states-row','running');switchStateCode('badge',1)">Running</button>
-          <button class="state-tab" onclick="highlightStateRow('badge-states-row','error');switchStateCode('badge',2)">Error</button>
-          <button class="state-tab" onclick="highlightStateRow('badge-states-row','info');switchStateCode('badge',3)">Info</button>
+          <button class="state-tab active" onclick="switchStateCode('badge',0)">Success</button>
+          <button class="state-tab" onclick="switchStateCode('badge',1)">Running</button>
+          <button class="state-tab" onclick="switchStateCode('badge',2)">Error</button>
+          <button class="state-tab" onclick="switchStateCode('badge',3)">Info</button>
         </div>
-        <div class="state-info" id="badge-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">background: rgba(52, 211, 153, 0.12)</span>
-            <span class="state-info-change">color: var(--accent-success) — #34D399</span>
-            <span class="state-info-change">border: 1px solid rgba(52, 211, 153, 0.2)</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="badge">
@@ -3041,7 +2941,7 @@ body {
       <div class="state-explorer">
         <!-- Static variants row — NOT clickable -->
         <div class="states-row" id="statusdot-states-row">
-          <div class="state-row-item highlighted" data-state="online">
+          <div class="state-row-item" data-state="online">
             <div class="status-dot"><span class="dot dot-online"></span>Online</div>
             <span class="state-row-label">Online</span>
           </div>
@@ -3060,16 +2960,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('statusdot-states-row','online');switchStateCode('statusdot',0)">Online</button>
-          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','busy');switchStateCode('statusdot',1)">Busy</button>
-          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','idle');switchStateCode('statusdot',2)">Idle</button>
-          <button class="state-tab" onclick="highlightStateRow('statusdot-states-row','error');switchStateCode('statusdot',3)">Error</button>
+          <button class="state-tab active" onclick="switchStateCode('statusdot',0)">Online</button>
+          <button class="state-tab" onclick="switchStateCode('statusdot',1)">Busy</button>
+          <button class="state-tab" onclick="switchStateCode('statusdot',2)">Idle</button>
+          <button class="state-tab" onclick="switchStateCode('statusdot',3)">Error</button>
         </div>
-        <div class="state-info" id="statusdot-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--accent-success) — #34D399</span>
-            <span class="state-info-change">box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2)</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="statusdot">
@@ -3114,7 +3009,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="navitem-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <button class="nav-item" tabindex="-1">
               <svg class="nav-item-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>NavItem
             </button>
@@ -3147,18 +3042,12 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('navitem-states-row','default');switchStateCode('navitem',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','hover');switchStateCode('navitem',1)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','active');switchStateCode('navitem',2)">Active</button>
-          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','disabled');switchStateCode('navitem',3)">Disabled</button>
-          <button class="state-tab" onclick="highlightStateRow('navitem-states-row','focus');switchStateCode('navitem',4)">Focus</button>
+          <button class="state-tab active" onclick="switchStateCode('navitem',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('navitem',1)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('navitem',2)">Active</button>
+          <button class="state-tab" onclick="switchStateCode('navitem',3)">Disabled</button>
+          <button class="state-tab" onclick="switchStateCode('navitem',4)">Focus</button>
         </div>
-        <div class="state-info" id="navitem-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: transparent</span>
-            <span class="state-info-change">color: var(--text-secondary) — #8B8FA3</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="navitem">
@@ -3191,7 +3080,7 @@ body {
       <div class="state-explorer">
         <!-- Static variants row — NOT clickable -->
         <div class="states-row" id="breadcrumb-states-row" style="align-items:center">
-          <div class="state-row-item highlighted" data-state="with-links">
+          <div class="state-row-item" data-state="with-links">
             <nav class="breadcrumb">
               <a class="breadcrumb-item" href="#" onclick="return false">Dashboard</a>
               <span class="breadcrumb-sep">/</span>
@@ -3210,14 +3099,9 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('breadcrumb-states-row','with-links');switchStateCode('breadcrumb',0)">With Links</button>
-          <button class="state-tab" onclick="highlightStateRow('breadcrumb-states-row','current-only');switchStateCode('breadcrumb',1)">Current Only</button>
+          <button class="state-tab active" onclick="switchStateCode('breadcrumb',0)">With Links</button>
+          <button class="state-tab" onclick="switchStateCode('breadcrumb',1)">Current Only</button>
         </div>
-        <div class="state-info" id="breadcrumb-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">color: var(--text-secondary) — #8B8FA3</span>
-            <span class="state-info-change">.current: color: var(--text-primary) — #FFFFFF</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="breadcrumb">
@@ -3278,7 +3162,7 @@ body {
       <div class="state-explorer">
         <!-- Static variants row — all 4 cards shown side by side, NOT clickable -->
         <div class="states-row" id="cards-states-row" style="align-items:flex-start;flex-wrap:wrap;gap:var(--spacing-12)">
-          <div class="state-row-item highlighted" data-state="metric" style="align-items:flex-start">
+          <div class="state-row-item" data-state="metric" style="align-items:flex-start">
             <div class="card card-metric" style="min-width:160px;max-width:200px;pointer-events:none">
               <div class="card-metric-label">Total Runs</div>
               <div class="card-metric-value">2,847</div>
@@ -3329,17 +3213,11 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('cards-states-row','metric');switchStateCode('cards',0)">Metric</button>
-          <button class="state-tab" onclick="highlightStateRow('cards-states-row','department');switchStateCode('cards',1)">Department</button>
-          <button class="state-tab" onclick="highlightStateRow('cards-states-row','agent');switchStateCode('cards',2)">Agent</button>
-          <button class="state-tab" onclick="highlightStateRow('cards-states-row','run');switchStateCode('cards',3)">Run</button>
+          <button class="state-tab active" onclick="switchStateCode('cards',0)">Metric</button>
+          <button class="state-tab" onclick="switchStateCode('cards',1)">Department</button>
+          <button class="state-tab" onclick="switchStateCode('cards',2)">Agent</button>
+          <button class="state-tab" onclick="switchStateCode('cards',3)">Run</button>
         </div>
-        <div class="state-info" id="cards-info">
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--bg-surface) — #1A1D27</span>
-            <span class="state-info-change">border: 1px solid var(--border-default) — #2E3140</span>
-            <span class="state-info-change">border-radius: var(--radius-12)</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="cards">
@@ -3402,7 +3280,7 @@ body {
         </div>
         <!-- Static states showcase — NOT clickable -->
         <div class="states-row" id="dropdown-states-row">
-          <div class="state-row-item highlighted" data-state="default">
+          <div class="state-row-item" data-state="default">
             <div class="dropdown-wrap" style="width:160px;position:relative">
               <button class="dropdown-trigger" tabindex="-1" style="width:100%">
                 <span>Select option</span>
@@ -3430,16 +3308,10 @@ body {
         </div>
         <!-- Code tabs — CLICKABLE, switch code+description below -->
         <div class="state-tabs" role="tablist">
-          <button class="state-tab active" onclick="highlightStateRow('dropdown-states-row','default');switchStateCode('dropdown',0)">Default</button>
-          <button class="state-tab" onclick="highlightStateRow('dropdown-states-row','hover');switchStateCode('dropdown',1)">Hover</button>
-          <button class="state-tab" onclick="highlightStateRow('dropdown-states-row','open');switchStateCode('dropdown',2)">Open</button>
+          <button class="state-tab active" onclick="switchStateCode('dropdown',0)">Default</button>
+          <button class="state-tab" onclick="switchStateCode('dropdown',1)">Hover</button>
+          <button class="state-tab" onclick="switchStateCode('dropdown',2)">Open</button>
         </div>
-        <div class="state-info" id="dropdown-info">
-          
-          <div class="state-info-changes">
-            <span class="state-info-change">background: var(--dropdown-trigger-default-bg) — #1A1D27</span>
-            <span class="state-info-change">border: 1px solid var(--dropdown-trigger-default-border) — #2E3140</span>
-          </div>
         </div>
       </div>
       <div class="code-block" data-state-code="dropdown">
@@ -3578,30 +3450,6 @@ function injectCodeColorSwatches() {
   });
 }
 
-/* ============================================================
-   HIGHLIGHT STATE ROW ITEM + SYNC TAB
-   ============================================================ */
-function highlightStateRow(rowId, state) {
-  const row = document.getElementById(rowId);
-  if (!row) return;
-
-  // Highlight correct state row item
-  row.querySelectorAll('.state-row-item').forEach(item => {
-    item.classList.toggle('highlighted', item.dataset.state === state);
-  });
-
-  // Also sync the tab highlight in the parent state-explorer
-  const explorer = row.closest('.state-explorer') || row.parentElement;
-  if (explorer) {
-    const tabs = explorer.querySelector('.state-tabs');
-    if (tabs) {
-      tabs.querySelectorAll('.state-tab').forEach(tab => {
-        const matches = tab.textContent.trim().toLowerCase() === state.toLowerCase();
-        tab.classList.toggle('active', matches);
-      });
-    }
-  }
-}
 
 /* ============================================================
    TOAST
@@ -3731,288 +3579,175 @@ const stateCodeData = {
 
   'btn-primary': [
     // Default
-    `<button class="btn btn-primary">Button</button>\n\n/* Default */\n.btn-primary {\n  background: var(--btn-primary-default-bg);   /* #60A5FA */\n  color: var(--btn-primary-default-text);       /* #13151E */\n  border: 1px solid var(--btn-primary-default-border);\n  padding: 8px 16px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n  font-weight: 500;\n}`,
+    `/* Button Primary — Default */\n.btn-primary {\n  background: var(--btn-primary-default-bg);    /* #60A5FA */\n  color: var(--btn-primary-default-text);        /* #13151E */\n  border: 1px solid var(--btn-primary-default-border); /* #60A5FA */\n  padding: 8px 16px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n  font-weight: 500;\n}`,
     // Hover
-    `<button class="btn btn-primary">Button</button>\n\n/* Hover */\n.btn-primary:hover {\n  background: var(--btn-primary-hover-bg);     /* #3B82F6 */\n  border-color: var(--btn-primary-hover-border); /* #3B82F6 */\n  color: var(--btn-primary-hover-text);          /* #13151E */\n}`,
+    `/* Button Primary — Hover */\n.btn-primary:hover {\n  background: var(--btn-primary-hover-bg);      /* #3B82F6 */\n  border-color: var(--btn-primary-hover-border);  /* #3B82F6 */\n  color: var(--btn-primary-hover-text);           /* #13151E */\n}`,
     // Pressed
-    `<button class="btn btn-primary">Button</button>\n\n/* Pressed / Active */\n.btn-primary:active,\n.btn-primary.pressed {\n  background: var(--btn-primary-pressed-bg);     /* #2563EB */\n  border-color: var(--btn-primary-pressed-border); /* #2563EB */\n  color: var(--btn-primary-pressed-text);          /* #FFFFFF */\n}`,
+    `/* Button Primary — Pressed */\n.btn-primary:active,\n.btn-primary.pressed {\n  background: var(--btn-primary-pressed-bg);      /* #2563EB */\n  border-color: var(--btn-primary-pressed-border); /* #2563EB */\n  color: var(--btn-primary-pressed-text);          /* #FFFFFF */\n}`,
     // Disabled
-    `<button class="btn btn-primary" disabled>Button</button>\n\n/* Disabled */\n.btn-primary:disabled,\n.btn-primary.disabled {\n  background: var(--btn-primary-disabled-bg);     /* #1A1D27 */\n  color: var(--btn-primary-disabled-text);         /* #4B5563 */\n  border-color: var(--btn-primary-disabled-border); /* #2E3140 */\n  cursor: not-allowed;\n  pointer-events: none;\n}`,
+    `/* Button Primary — Disabled */\n.btn-primary:disabled,\n.btn-primary.disabled {\n  background: var(--btn-primary-disabled-bg);      /* #1A1D27 */\n  color: var(--btn-primary-disabled-text);          /* #4B5563 */\n  border-color: var(--btn-primary-disabled-border); /* #2E3140 */\n  cursor: not-allowed;\n  pointer-events: none;\n}`,
     // Focus
-    `<button class="btn btn-primary">Button</button>\n\n/* Focus */\n.btn-primary:focus-visible {\n  background: var(--btn-primary-focus-bg);     /* #60A5FA */\n  border-color: var(--btn-primary-focus-border); /* #3B82F6 */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);\n  outline: none;\n}`
+    `/* Button Primary — Focus */\n.btn-primary:focus-visible {\n  background: var(--btn-primary-focus-bg);       /* #60A5FA */\n  border-color: var(--btn-primary-focus-border);   /* #3B82F6 */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);\n  outline: none;\n}`
   ],
 
   'btn-secondary': [
     // Default
-    `<button class="btn btn-secondary">Button</button>\n\n/* Default */\n.btn-secondary {\n  background: var(--btn-secondary-default-bg);   /* #1A1D27 */\n  color: var(--btn-secondary-default-text);       /* #60A5FA */\n  border: 1px solid var(--btn-secondary-default-border); /* #2E3140 */\n}`,
+    `/* Button Secondary — Default */\n.btn-secondary {\n  background: var(--btn-secondary-default-bg);    /* #1A1D27 */\n  color: var(--btn-secondary-default-text);        /* #60A5FA */\n  border: 1px solid var(--btn-secondary-default-border); /* #2E3140 */\n  padding: 8px 16px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n  font-weight: 500;\n}`,
     // Hover
-    `<button class="btn btn-secondary">Button</button>\n\n/* Hover */\n.btn-secondary:hover {\n  background: var(--btn-secondary-hover-bg);     /* #21242F */\n  border-color: var(--btn-secondary-hover-border); /* #3E4150 */\n}`,
+    `/* Button Secondary — Hover */\n.btn-secondary:hover {\n  background: var(--btn-secondary-hover-bg);      /* #21242F */\n  border-color: var(--btn-secondary-hover-border);  /* #3E4150 */\n}`,
     // Pressed
-    `<button class="btn btn-secondary">Button</button>\n\n/* Pressed */\n.btn-secondary:active {\n  background: var(--btn-secondary-pressed-bg);     /* #13151E */\n  border-color: var(--btn-secondary-pressed-border); /* #3B82F6 */\n  color: var(--btn-secondary-pressed-text);          /* #3B82F6 */\n}`,
+    `/* Button Secondary — Pressed */\n.btn-secondary:active {\n  background: var(--btn-secondary-pressed-bg);      /* #13151E */\n  border-color: var(--btn-secondary-pressed-border); /* #3B82F6 */\n  color: var(--btn-secondary-pressed-text);          /* #3B82F6 */\n}`,
     // Disabled
-    `<button class="btn btn-secondary" disabled>Button</button>\n\n/* Disabled */\n.btn-secondary:disabled {\n  background: var(--btn-secondary-disabled-bg);     /* #13151E */\n  color: var(--btn-secondary-disabled-text);         /* #4B5563 */\n  border-color: var(--btn-secondary-disabled-border); /* #1A1D27 */\n  cursor: not-allowed;\n}`,
+    `/* Button Secondary — Disabled */\n.btn-secondary:disabled {\n  background: var(--btn-secondary-disabled-bg);      /* #13151E */\n  color: var(--btn-secondary-disabled-text);          /* #4B5563 */\n  border-color: var(--btn-secondary-disabled-border); /* #1A1D27 */\n  cursor: not-allowed;\n}`,
     // Focus
-    `<button class="btn btn-secondary">Button</button>\n\n/* Focus */\n.btn-secondary:focus-visible {\n  border-color: var(--btn-secondary-focus-border); /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);\n  outline: none;\n}`
+    `/* Button Secondary — Focus */\n.btn-secondary:focus-visible {\n  border-color: var(--btn-secondary-focus-border); /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);\n  outline: none;\n}`
   ],
 
   'btn-ghost': [
     // Default
-    `<button class="btn btn-ghost">Button</button>\n\n/* Default */\n.btn-ghost {\n  background: transparent;\n  color: var(--btn-ghost-default-text);   /* #8B8FA3 */\n  border: 1px solid transparent;\n}`,
+    `/* Button Ghost — Default */\n.btn-ghost {\n  background: transparent;\n  color: var(--btn-ghost-default-text);    /* #8B8FA3 */\n  border: 1px solid transparent;\n  padding: 8px 16px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n  font-weight: 500;\n}`,
     // Hover
-    `<button class="btn btn-ghost">Button</button>\n\n/* Hover */\n.btn-ghost:hover {\n  background: var(--btn-ghost-hover-bg); /* #1A1D27 */\n  color: var(--btn-ghost-hover-text);    /* #FFFFFF */\n}`,
+    `/* Button Ghost — Hover */\n.btn-ghost:hover {\n  background: var(--btn-ghost-hover-bg);  /* #1A1D27 */\n  color: var(--btn-ghost-hover-text);     /* #FFFFFF */\n}`,
     // Pressed
-    `<button class="btn btn-ghost">Button</button>\n\n/* Pressed */\n.btn-ghost:active {\n  background: var(--btn-ghost-pressed-bg); /* #21242F */\n  color: var(--btn-ghost-pressed-text);    /* #FFFFFF */\n}`,
+    `/* Button Ghost — Pressed */\n.btn-ghost:active {\n  background: var(--btn-ghost-pressed-bg);  /* #21242F */\n  color: var(--btn-ghost-pressed-text);     /* #FFFFFF */\n}`,
     // Disabled
-    `<button class="btn btn-ghost" disabled>Button</button>\n\n/* Disabled */\n.btn-ghost:disabled {\n  background: transparent;\n  color: var(--btn-ghost-disabled-text); /* #4B5563 */\n  cursor: not-allowed;\n}`,
+    `/* Button Ghost — Disabled */\n.btn-ghost:disabled {\n  background: transparent;\n  color: var(--btn-ghost-disabled-text);  /* #4B5563 */\n  cursor: not-allowed;\n}`,
     // Focus
-    `<button class="btn btn-ghost">Button</button>\n\n/* Focus */\n.btn-ghost:focus-visible {\n  background: var(--btn-ghost-focus-bg);     /* #1A1D27 */\n  border-color: var(--btn-ghost-focus-border); /* #2E3140 */\n  color: var(--btn-ghost-focus-text);          /* #FFFFFF */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
+    `/* Button Ghost — Focus */\n.btn-ghost:focus-visible {\n  background: var(--btn-ghost-focus-bg);      /* #1A1D27 */\n  border-color: var(--btn-ghost-focus-border);  /* #2E3140 */\n  color: var(--btn-ghost-focus-text);           /* #FFFFFF */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
   ],
 
   'input-filled': [
     // Default
-    `<input class="input-base input-filled" type="text" placeholder="Placeholder...">\n\n/* Default */\n.input-filled {\n  background: var(--textfield-filled-default-bg);   /* #1A1D27 */\n  border: 1px solid var(--textfield-filled-default-border); /* #2E3140 */\n  color: var(--textfield-filled-default-text);\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n}\n.input-filled::placeholder { color: var(--textfield-filled-default-placeholder); /* #4B5563 */ }`,
+    `/* Input Filled — Default */\n.input-filled {\n  background: var(--textfield-filled-default-bg);           /* #1A1D27 */\n  border: 1px solid var(--textfield-filled-default-border);  /* #2E3140 */\n  color: var(--textfield-filled-default-text);              /* #FFFFFF */\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n}\n.input-filled::placeholder {\n  color: var(--textfield-filled-default-placeholder);       /* #4B5563 */\n}`,
     // Filled
-    `<input class="input-base input-filled" type="text" value="Text">\n\n/* Filled — user typed */\n/* Same styles as Default */\n/* value has text, placeholder hidden */\n.input-filled {\n  color: var(--textfield-filled-filled-text); /* #FFFFFF */\n}`,
+    `/* Input Filled — Filled (user typed) */\n.input-filled {\n  color: var(--textfield-filled-filled-text);  /* #FFFFFF */\n  /* placeholder hidden — value present */\n}`,
     // Hover
-    `<input class="input-base input-filled" type="text" placeholder="Placeholder...">\n\n/* Hover */\n.input-filled:hover {\n  background: var(--textfield-filled-hover-bg);     /* #21242F */\n  border-color: var(--textfield-filled-hover-border); /* #3E4150 */\n}`,
+    `/* Input Filled — Hover */\n.input-filled:hover {\n  background: var(--textfield-filled-hover-bg);      /* #21242F */\n  border-color: var(--textfield-filled-hover-border);  /* #3E4150 */\n}`,
     // Error
-    `<input class="input-base input-filled error" type="text" value="Text">\n\n/* Error */\n.input-filled.error {\n  border-color: var(--textfield-filled-error-border); /* #F87171 */\n  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);\n}`,
+    `/* Input Filled — Error */\n.input-filled.error {\n  border-color: var(--textfield-filled-error-border);  /* #F87171 */\n  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);\n}`,
     // Disabled
-    `<input class="input-base input-filled" type="text" placeholder="Placeholder..." disabled>\n\n/* Disabled */\n.input-filled:disabled {\n  background: var(--textfield-filled-disabled-bg);         /* #13151E */\n  color: var(--textfield-filled-disabled-text);             /* #4B5563 */\n  border-color: var(--textfield-filled-disabled-border);    /* #1A1D27 */\n  cursor: not-allowed;\n}`,
+    `/* Input Filled — Disabled */\n.input-filled:disabled {\n  background: var(--textfield-filled-disabled-bg);          /* #13151E */\n  color: var(--textfield-filled-disabled-text);              /* #4B5563 */\n  border-color: var(--textfield-filled-disabled-border);     /* #1A1D27 */\n  cursor: not-allowed;\n}`,
     // Focus
-    `<input class="input-base input-filled" type="text" value="Text">\n\n/* Focus */\n.input-filled:focus {\n  background: var(--textfield-filled-focus-bg);     /* #1A1D27 */\n  border-color: var(--textfield-filled-focus-border); /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
+    `/* Input Filled — Focus */\n.input-filled:focus {\n  background: var(--textfield-filled-focus-bg);      /* #1A1D27 */\n  border-color: var(--textfield-filled-focus-border);  /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
   ],
 
   'input-outlined': [
     // Default
-    `<input class="input-base input-outlined" type="text" placeholder="Placeholder...">\n\n/* Default */\n.input-outlined {\n  background: transparent;\n  border: 1px solid var(--textfield-outlined-default-border); /* #2E3140 */\n  color: var(--text-primary);\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n}\n.input-outlined::placeholder { color: var(--textfield-outlined-default-placeholder); }`,
+    `/* Input Outlined — Default */\n.input-outlined {\n  background: transparent;\n  border: 1px solid var(--textfield-outlined-default-border);  /* #2E3140 */\n  color: var(--textfield-outlined-default-text);               /* #FFFFFF */\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n}\n.input-outlined::placeholder {\n  color: var(--textfield-outlined-default-placeholder);        /* #4B5563 */\n}`,
     // Filled
-    `<input class="input-base input-outlined" type="text" value="Text">\n\n/* Filled — user typed */\n/* Same styles as Default */\n/* value has text, placeholder hidden */`,
+    `/* Input Outlined — Filled (user typed) */\n.input-outlined {\n  color: var(--textfield-outlined-default-text);  /* #FFFFFF */\n  /* placeholder hidden — value present */\n}`,
     // Hover
-    `<input class="input-base input-outlined" type="text" placeholder="Placeholder...">\n\n/* Hover */\n.input-outlined:hover {\n  border-color: var(--textfield-outlined-hover-border); /* #3E4150 */\n}`,
+    `/* Input Outlined — Hover */\n.input-outlined:hover {\n  border-color: var(--textfield-outlined-hover-border);  /* #3E4150 */\n}`,
     // Error
-    `<input class="input-base input-outlined error" type="text" value="Text">\n\n/* Error */\n.input-outlined.error {\n  border-color: var(--textfield-outlined-error-border); /* #F87171 */\n  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);\n}`,
+    `/* Input Outlined — Error */\n.input-outlined.error {\n  border-color: var(--textfield-outlined-error-border);  /* #F87171 */\n  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);\n}`,
     // Disabled
-    `<input class="input-base input-outlined" type="text" placeholder="Placeholder..." disabled>\n\n/* Disabled */\n.input-outlined:disabled {\n  color: var(--textfield-outlined-disabled-text);     /* #4B5563 */\n  border-color: var(--textfield-outlined-disabled-border); /* #1A1D27 */\n  cursor: not-allowed;\n}`,
+    `/* Input Outlined — Disabled */\n.input-outlined:disabled {\n  color: var(--textfield-outlined-disabled-text);          /* #4B5563 */\n  border-color: var(--textfield-outlined-disabled-border);  /* #1A1D27 */\n  cursor: not-allowed;\n}`,
     // Focus
-    `<input class="input-base input-outlined" type="text" value="Text">\n\n/* Focus */\n.input-outlined:focus {\n  border-color: var(--textfield-outlined-focus-border); /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
+    `/* Input Outlined — Focus */\n.input-outlined:focus {\n  border-color: var(--textfield-outlined-focus-border);  /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}`
   ],
 
   'search': [
     // Default
-    `<div class="search-wrap">\n  <span class="search-icon">[svg]</span>\n  <input class="search-input" placeholder="Search...">\n  <span class="search-shortcut">⌘K</span>\n</div>\n\n/* Default */\n.search-input {\n  background: var(--search-default-bg);   /* #1A1D27 */\n  border: 1px solid var(--search-default-border); /* #2E3140 */\n}\n.search-icon { color: var(--search-default-icon); /* #8B8FA3 */ }`,
+    `/* Search — Default */\n.search-input {\n  background: var(--search-default-bg);    /* #1A1D27 */\n  border: 1px solid var(--search-default-border); /* #2E3140 */\n  color: var(--search-default-text);       /* #FFFFFF */\n}\n.search-icon {\n  color: var(--search-default-icon);       /* #8B8FA3 */\n}`,
     // Filled
-    `<div class="search-wrap">\n  <input class="search-input" value="Text">\n</div>\n\n/* Filled — user typed */\n/* Same styles as Default */\n.search-input { color: var(--search-filled-text); /* #FFFFFF */ }`,
+    `/* Search — Filled (user typed) */\n.search-input {\n  color: var(--search-filled-text);  /* #FFFFFF */\n  /* placeholder hidden — value present */\n}`,
     // Focus
-    `<div class="search-wrap">\n  <input class="search-input" value="Text">\n</div>\n\n/* Focus */\n.search-input:focus {\n  border-color: var(--search-focus-border); /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n}\n.search-wrap:focus-within .search-icon {\n  color: var(--search-focus-icon); /* #60A5FA */\n}`
+    `/* Search — Focus */\n.search-input:focus {\n  border-color: var(--search-focus-border);  /* #60A5FA */\n  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);\n  outline: none;\n}\n.search-wrap:focus-within .search-icon {\n  color: var(--search-focus-icon);           /* #60A5FA */\n}`
   ],
 
   'navitem': [
     // Default
-    `<a class="nav-item" href="/page">NavItem</a>\n\n/* Default */\n.nav-item {\n  color: var(--text-secondary); /* #8B8FA3 */\n  background: transparent;\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n}`,
+    `/* Nav Item — Default */\n.nav-item {\n  color: var(--text-secondary);  /* #8B8FA3 */\n  background: transparent;\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n  font-weight: 500;\n}`,
     // Hover
-    `<a class="nav-item" href="/page">NavItem</a>\n\n/* Hover */\n.nav-item:hover {\n  background: var(--bg-elevated); /* #21242F */\n  color: var(--text-primary);     /* #FFFFFF */\n}`,
+    `/* Nav Item — Hover */\n.nav-item:hover {\n  background: var(--bg-elevated);  /* #21242F */\n  color: var(--text-primary);      /* #FFFFFF */\n}`,
     // Active
-    `<a class="nav-item active" href="/page">NavItem</a>\n\n/* Active */\n.nav-item.active {\n  background: rgba(96, 165, 250, 0.08);\n  color: var(--accent-primary); /* #60A5FA */\n}\n.nav-item.active::before {\n  content: '';\n  position: absolute;\n  left: 0; top: 6px; bottom: 6px;\n  width: 3px;\n  background: var(--accent-primary);\n  border-radius: 0 2px 2px 0;\n}`,
+    `/* Nav Item — Active */\n.nav-item.active {\n  background: rgba(96, 165, 250, 0.08);\n  color: var(--accent-primary);  /* #60A5FA */\n}\n.nav-item.active::before {\n  content: '';\n  position: absolute;\n  left: 0; top: 6px; bottom: 6px;\n  width: 3px;\n  background: var(--accent-primary);  /* #60A5FA */\n  border-radius: 0 2px 2px 0;\n}`,
     // Disabled
-    `<a class="nav-item" aria-disabled="true">NavItem</a>\n\n/* Disabled */\n.nav-item.disabled,\n.nav-item[aria-disabled="true"] {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`,
+    `/* Nav Item — Disabled */\n.nav-item.disabled,\n.nav-item[aria-disabled="true"] {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`,
     // Focus
-    `<a class="nav-item" href="/page">NavItem</a>\n\n/* Focus */\n.nav-item:focus-visible {\n  outline: 2px solid var(--accent-primary); /* #60A5FA */\n  outline-offset: 2px;\n  background: var(--bg-elevated);\n  color: var(--text-primary);\n}`
+    `/* Nav Item — Focus */\n.nav-item:focus-visible {\n  outline: 2px solid var(--accent-primary);  /* #60A5FA */\n  outline-offset: 2px;\n  background: var(--bg-elevated);            /* #21242F */\n  color: var(--text-primary);                /* #FFFFFF */\n}`
   ],
 
   'dropdown': [
     // Default
-    `<div class="dropdown-wrap" id="myDropdown">\n  <button class="dropdown-trigger" onclick="toggleDropdown('myDropdown')">\n    Select option\n    <svg class="dropdown-chevron">...</svg>\n  </button>\n  <div class="dropdown-menu">...</div>\n</div>\n\n/* Default */\n.dropdown-trigger {\n  background: var(--dropdown-trigger-default-bg);   /* #1A1D27 */\n  border: 1px solid var(--dropdown-trigger-default-border); /* #2E3140 */\n  color: var(--dropdown-trigger-default-text);       /* #FFFFFF */\n}`,
+    `/* Dropdown — Default */\n.dropdown-trigger {\n  background: var(--dropdown-trigger-default-bg);    /* #1A1D27 */\n  border: 1px solid var(--dropdown-trigger-default-border); /* #2E3140 */\n  color: var(--dropdown-trigger-default-text);        /* #FFFFFF */\n  padding: 8px 12px;\n  border-radius: var(--radius-8);\n  font-size: var(--font-size-13);\n}`,
     // Hover
-    `.dropdown-trigger:hover {\n  background: var(--dropdown-trigger-hover-bg);     /* #21242F */\n  border-color: var(--dropdown-trigger-hover-border); /* #3E4150 */\n}`,
+    `/* Dropdown — Hover */\n.dropdown-trigger:hover {\n  background: var(--dropdown-trigger-hover-bg);      /* #21242F */\n  border-color: var(--dropdown-trigger-hover-border);  /* #3E4150 */\n}`,
     // Open
-    `.dropdown-trigger.open {\n  border-color: var(--dropdown-trigger-open-border); /* #60A5FA */\n}\n.dropdown-chevron { transform: rotate(180deg); }\n\n/* Menu */\n.dropdown-menu {\n  background: var(--dropdown-menu-bg);   /* #21242F */\n  border: 1px solid var(--dropdown-menu-border);\n  border-radius: var(--radius-8);\n  box-shadow: 0 8px 24px rgba(0,0,0,0.4);\n}\n\nfunction toggleDropdown(id) {\n  document.getElementById(id).classList.toggle('open');\n}`
+    `/* Dropdown — Open */\n.dropdown-trigger.open {\n  border-color: var(--dropdown-trigger-open-border);  /* #60A5FA */\n}\n.dropdown-chevron {\n  transform: rotate(180deg);\n}\n.dropdown-menu {\n  background: var(--dropdown-menu-bg);    /* #21242F */\n  border: 1px solid var(--dropdown-menu-border);\n  border-radius: var(--radius-8);\n  box-shadow: 0 8px 24px rgba(0,0,0,0.4);\n}`
   ],
 
   'toggle': [
     // Off
-    `<!-- Off state -->\n<button class="toggle" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle {\n  width: 40px; height: 22px;\n  background: var(--border-strong);   /* Off: #3E4150 */\n  border-radius: var(--radius-full);\n  transition: background 0.2s;\n  position: relative;\n}\n.toggle::after {\n  content: ''; position: absolute; top: 3px; left: 3px;\n  width: 16px; height: 16px; border-radius: 50%;\n  background: white; transition: transform 0.2s;\n}`,
+    `/* Toggle — Off */\n.toggle {\n  width: 40px;\n  height: 22px;\n  background: var(--border-strong);  /* #3E4150 */\n  border-radius: var(--radius-full);\n  transition: background 0.2s;\n  position: relative;\n}\n.toggle::after {\n  content: '';\n  position: absolute;\n  top: 3px; left: 3px;\n  width: 16px; height: 16px;\n  border-radius: 50%;\n  background: white;\n  transition: transform 0.2s;\n}`,
     // On
-    `<!-- On state -->\n<button class="toggle on" onclick="this.classList.toggle('on')"></button>\n\n/* CSS */\n.toggle.on {\n  background: var(--accent-success); /* #34D399 */\n}\n.toggle.on::after {\n  transform: translateX(18px);\n}`,
+    `/* Toggle — On */\n.toggle.on {\n  background: var(--accent-success);  /* #34D399 */\n}\n.toggle.on::after {\n  transform: translateX(18px);\n}`,
     // Disabled
-    `<!-- Disabled state -->\n<button class="toggle" disabled></button>\n\n/* CSS */\n.toggle:disabled,\n.toggle[disabled] {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    `/* Toggle — Disabled */\n.toggle:disabled,\n.toggle[disabled] {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
   ],
 
   'checkbox': [
     // Unchecked
-    `<!-- Unchecked -->\n<label class="checkbox-wrap" onclick="toggleCheckbox(this)">\n  <div class="checkbox">\n    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">\n      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n    </svg>\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox {\n  width: 18px; height: 18px;\n  border-radius: var(--radius-4);\n  border: 1px solid var(--border-strong); /* #3E4150 */\n  background: transparent;\n}\n.checkbox svg { display: none; }`,
+    `/* Checkbox — Unchecked */\n.checkbox {\n  width: 18px;\n  height: 18px;\n  border-radius: var(--radius-4);\n  border: 1px solid var(--border-strong);  /* #3E4150 */\n  background: transparent;\n}\n.checkbox svg {\n  display: none;\n}`,
     // Checked
-    `<!-- Checked -->\n<label class="checkbox-wrap">\n  <div class="checkbox checked">\n    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">\n      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n    </svg>\n  </div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.checked {\n  background: var(--accent-primary); /* #60A5FA */\n  border-color: var(--accent-primary);\n}\n.checkbox.checked svg { display: block; }`,
+    `/* Checkbox — Checked */\n.checkbox.checked {\n  background: var(--accent-primary);   /* #60A5FA */\n  border-color: var(--accent-primary);  /* #60A5FA */\n}\n.checkbox.checked svg {\n  display: block;\n}`,
     // Disabled
-    `<!-- Disabled -->\n<label class="checkbox-wrap" style="cursor:not-allowed;opacity:0.4">\n  <div class="checkbox disabled"></div>\n  Label\n</label>\n\n/* CSS */\n.checkbox.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    `/* Checkbox — Disabled */\n.checkbox.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
   ],
 
   'radio': [
     // Unselected
-    `<!-- Unselected -->\n<div class="radio">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio {\n  width: 18px; height: 18px;\n  border-radius: 50%;\n  border: 2px solid var(--border-strong); /* #3E4150 */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.radio-inner { display: none; }`,
+    `/* Radio — Unselected */\n.radio {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  border: 2px solid var(--border-strong);  /* #3E4150 */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.radio-inner {\n  display: none;\n}`,
     // Selected
-    `<!-- Selected -->\n<div class="radio selected">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio.selected {\n  border-color: var(--accent-success); /* #34D399 */\n}\n.radio-inner {\n  width: 8px; height: 8px; border-radius: 50%;\n  background: var(--accent-success); /* #34D399 */\n}\n.radio.selected .radio-inner { display: block; }`,
+    `/* Radio — Selected */\n.radio.selected {\n  border-color: var(--accent-success);  /* #34D399 */\n}\n.radio-inner {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background: var(--accent-success);    /* #34D399 */\n}\n.radio.selected .radio-inner {\n  display: block;\n}`,
     // Disabled
-    `<!-- Disabled -->\n<div class="radio disabled">\n  <div class="radio-inner"></div>\n</div>\n\n/* CSS */\n.radio.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
+    `/* Radio — Disabled */\n.radio.disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n  pointer-events: none;\n}`
   ],
 
   'badge': [
     // Success
-    `<span class="badge badge-success">\n  <span class="badge-dot"></span>\n  Success\n</span>\n\n/* CSS */\n.badge-success {\n  background: rgba(52, 211, 153, 0.12);\n  color: var(--accent-success);         /* #34D399 */\n  border: 1px solid rgba(52, 211, 153, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    `/* Badge — Success */\n.badge-success {\n  background: rgba(52, 211, 153, 0.12);\n  color: var(--accent-success);          /* #34D399 */\n  border: 1px solid rgba(52, 211, 153, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n  font-weight: 500;\n}`,
     // Running
-    `<span class="badge badge-running">\n  <span class="badge-dot"></span>\n  Running\n</span>\n\n/* CSS */\n.badge-running {\n  background: rgba(96, 165, 250, 0.12);\n  color: var(--accent-primary);         /* #60A5FA */\n  border: 1px solid rgba(96, 165, 250, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    `/* Badge — Running */\n.badge-running {\n  background: rgba(96, 165, 250, 0.12);\n  color: var(--accent-primary);          /* #60A5FA */\n  border: 1px solid rgba(96, 165, 250, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n  font-weight: 500;\n}`,
     // Error
-    `<span class="badge badge-error">\n  <span class="badge-dot"></span>\n  Error\n</span>\n\n/* CSS */\n.badge-error {\n  background: rgba(248, 113, 113, 0.12);\n  color: var(--accent-error);           /* #F87171 */\n  border: 1px solid rgba(248, 113, 113, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`,
+    `/* Badge — Error */\n.badge-error {\n  background: rgba(248, 113, 113, 0.12);\n  color: var(--accent-error);            /* #F87171 */\n  border: 1px solid rgba(248, 113, 113, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n  font-weight: 500;\n}`,
     // Info
-    `<span class="badge badge-neutral">\n  <span class="badge-dot"></span>\n  Info\n</span>\n\n/* CSS */\n.badge-neutral {\n  background: rgba(139, 143, 163, 0.12);\n  color: var(--text-secondary);         /* #8B8FA3 */\n  border: 1px solid rgba(139, 143, 163, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n}`
+    `/* Badge — Info */\n.badge-neutral {\n  background: rgba(139, 143, 163, 0.12);\n  color: var(--text-secondary);          /* #8B8FA3 */\n  border: 1px solid rgba(139, 143, 163, 0.2);\n  padding: 3px 10px;\n  border-radius: var(--radius-full);\n  font-size: var(--font-size-11);\n  font-weight: 500;\n}`
   ],
 
   'statusdot': [
     // Online
-    `<div class="status-dot">\n  <span class="dot dot-online"></span>\n  Online\n</div>\n\n/* CSS */\n.dot { width: 8px; height: 8px; border-radius: 50%; }\n.dot-online {\n  background: var(--accent-success); /* #34D399 */\n  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2);\n}`,
+    `/* Status Dot — Online */\n.dot {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n}\n.dot-online {\n  background: var(--accent-success);  /* #34D399 */\n  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2);\n}`,
     // Busy
-    `<div class="status-dot">\n  <span class="dot dot-busy"></span>\n  Busy\n</div>\n\n/* CSS */\n.dot-busy {\n  background: var(--accent-warning); /* #FBBF24 */\n  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);\n}`,
+    `/* Status Dot — Busy */\n.dot-busy {\n  background: var(--accent-warning);  /* #FBBF24 */\n  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);\n}`,
     // Idle
-    `<div class="status-dot">\n  <span class="dot dot-idle"></span>\n  Idle\n</div>\n\n/* CSS */\n.dot-idle {\n  background: var(--text-disabled); /* #4B5563 */\n}`,
+    `/* Status Dot — Idle */\n.dot-idle {\n  background: var(--text-disabled);  /* #4B5563 */\n}`,
     // Error
-    `<div class="status-dot">\n  <span class="dot dot-error"></span>\n  Error\n</div>\n\n/* CSS */\n.dot-error {\n  background: var(--accent-error); /* #F87171 */\n  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2);\n}`
+    `/* Status Dot — Error */\n.dot-error {\n  background: var(--accent-error);  /* #F87171 */\n  box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2);\n}`
   ],
 
   'breadcrumb': [
     // With Links
-    `<!-- With Links -->\n<nav class="breadcrumb">\n  <a class="breadcrumb-item" href="#">Dashboard</a>\n  <span class="breadcrumb-sep">/</span>\n  <a class="breadcrumb-item" href="#">Agents</a>\n  <span class="breadcrumb-sep">/</span>\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>\n\n/* CSS */\n.breadcrumb-item { color: var(--text-secondary); /* #8B8FA3 */ }\n.breadcrumb-item:hover { color: var(--text-primary); }\n.breadcrumb-item.current { color: var(--text-primary); cursor: default; }\n.breadcrumb-sep { color: var(--text-disabled); }`,
+    `/* Breadcrumb — With Links */\n.breadcrumb-item {\n  color: var(--text-secondary);  /* #8B8FA3 */\n}\n.breadcrumb-item:hover {\n  color: var(--text-primary);    /* #FFFFFF */\n}\n.breadcrumb-item.current {\n  color: var(--text-primary);    /* #FFFFFF */\n  cursor: default;\n}\n.breadcrumb-sep {\n  color: var(--text-disabled);   /* #4B5563 */\n}`,
     // Current Only
-    `<!-- Current Only -->\n<nav class="breadcrumb">\n  <span class="breadcrumb-item current">Trend Scout</span>\n</nav>\n\n/* CSS */\n.breadcrumb-item.current {\n  color: var(--text-primary); /* #FFFFFF */\n  cursor: default;\n}`
+    `/* Breadcrumb — Current Only */\n.breadcrumb-item.current {\n  color: var(--text-primary);  /* #FFFFFF */\n  cursor: default;\n}`
   ],
 
   'cards': [
     // Metric
-    `<!-- Metric Card -->\n<div class="card card-metric">\n  <div class="card-metric-label">Total Runs</div>\n  <div class="card-metric-value">2,847</div>\n  <div class="card-metric-delta">+12.4%</div>\n</div>\n\n/* CSS base */\n.card {\n  background: var(--bg-surface);  /* #1A1D27 */\n  border: 1px solid var(--border-default);\n  border-radius: var(--radius-12);\n  padding: var(--spacing-20);\n}\n.card:hover {\n  border-color: var(--border-strong);\n  box-shadow: 0 4px 24px rgba(0,0,0,0.3);\n}`,
+    `/* Card — Metric */\n.card {\n  background: var(--bg-surface);      /* #1A1D27 */\n  border: 1px solid var(--border-default); /* #2E3140 */\n  border-radius: var(--radius-12);\n  padding: var(--spacing-20);\n}\n.card:hover {\n  border-color: var(--border-strong);  /* #3E4150 */\n  box-shadow: 0 4px 24px rgba(0,0,0,0.3);\n}`,
     // Department
-    `<!-- Department Card -->\n<div class="card card-dept">\n  <div class="card-dept-icon">🔵</div>\n  <div>\n    <div class="card-dept-name">Product Lab</div>\n    <div class="card-dept-count">4 agents active</div>\n  </div>\n</div>\n\n/* CSS */\n.card-dept {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n}\n.card-dept-icon {\n  width: 36px; height: 36px;\n  background: rgba(96, 165, 250, 0.1);\n  border: 1px solid rgba(96, 165, 250, 0.15);\n  border-radius: var(--radius-8);\n  display: flex; align-items: center; justify-content: center;\n}`,
+    `/* Card — Department */\n.card-dept {\n  display: flex;\n  align-items: center;\n  gap: var(--spacing-12);\n}\n.card-dept-icon {\n  width: 36px;\n  height: 36px;\n  background: rgba(96, 165, 250, 0.1);\n  border: 1px solid rgba(96, 165, 250, 0.15);\n  border-radius: var(--radius-8);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}`,
     // Agent
-    `<!-- Agent Card -->\n<div class="card card-agent">\n  <div class="card-agent-header">\n    <div class="card-agent-info">\n      <div class="card-agent-avatar">🔍</div>\n      <div>\n        <div class="card-agent-name">Trend Scout</div>\n        <div class="card-agent-role">Discovery</div>\n      </div>\n    </div>\n    <span class="badge badge-running">\n      <span class="badge-dot"></span>Running\n    </span>\n  </div>\n  <div class="card-agent-last">Last run: 2 min ago</div>\n</div>`,
+    `/* Card — Agent */\n.card-agent-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  margin-bottom: var(--spacing-8);\n}\n.card-agent-avatar {\n  width: 32px;\n  height: 32px;\n  background: rgba(96, 165, 250, 0.1);\n  border: 1px solid rgba(96, 165, 250, 0.15);\n  border-radius: var(--radius-8);\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}`,
     // Run
-    `<!-- Run Card -->\n<div class="card card-run">\n  <div class="card-run-header">\n    <span class="card-run-agent">Ideation Engine</span>\n    <span class="badge badge-success"><span class="badge-dot"></span>Done</span>\n  </div>\n  <div class="card-run-project">Project: AI Manufactury</div>\n  <div class="card-run-footer">\n    <span class="card-run-time">14:32:01</span>\n    <span>3m 14s</span>\n  </div>\n</div>`
+    `/* Card — Run */\n.card-run-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: var(--spacing-4);\n}\n.card-run-footer {\n  display: flex;\n  justify-content: space-between;\n  margin-top: var(--spacing-8);\n  font-size: var(--font-size-12);\n  color: var(--text-secondary);\n}\n.card-run-time {\n  font-family: 'JetBrains Mono', monospace;\n}`
   ]
 
 };
 
 /* ============================================================
-   STATE INFO DATA — per-state info panel content
-   ============================================================ */
-const stateInfoData = {
-
-  'btn-primary': [
-    { changes: ['background: var(--btn-primary-default-bg) — #60A5FA', 'color: var(--btn-primary-default-text) — #13151E', 'border: 1px solid var(--btn-primary-default-border)'] },
-    { changes: ['background: var(--btn-primary-hover-bg) — #3B82F6', 'border-color: var(--btn-primary-hover-border) — #3B82F6', 'transition: 150ms ease'] },
-    { changes: ['background: var(--btn-primary-pressed-bg) — #2563EB', 'border-color: var(--btn-primary-pressed-border) — #2563EB', 'color: var(--btn-primary-pressed-text) — #FFFFFF'] },
-    { changes: ['background: var(--btn-primary-disabled-bg) — #1A1D27', 'color: var(--btn-primary-disabled-text) — #4B5563', 'border-color: var(--btn-primary-disabled-border) — #2E3140', 'cursor: not-allowed; pointer-events: none'] },
-    { changes: ['border: 2px solid var(--btn-primary-focus-border) — #3B82F6', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)', 'outline: none'] }
-  ],
-
-  'btn-secondary': [
-    { changes: ['background: var(--btn-secondary-default-bg) — #1A1D27', 'color: var(--btn-secondary-default-text) — #60A5FA', 'border: 1px solid var(--btn-secondary-default-border) — #2E3140'] },
-    { changes: ['background: var(--btn-secondary-hover-bg) — #21242F', 'border-color: var(--btn-secondary-hover-border) — #3E4150'] },
-    { changes: ['background: var(--btn-secondary-pressed-bg) — #13151E', 'border-color: var(--btn-secondary-pressed-border) — #3B82F6', 'color: var(--btn-secondary-pressed-text) — #3B82F6'] },
-    { changes: ['background: var(--btn-secondary-disabled-bg) — #13151E', 'color: var(--btn-secondary-disabled-text) — #4B5563', 'border-color: var(--btn-secondary-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { changes: ['border-color: var(--btn-secondary-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)', 'outline: none'] }
-  ],
-
-  'btn-ghost': [
-    { changes: ['background: transparent', 'color: var(--btn-ghost-default-text) — #8B8FA3', 'border: 1px solid transparent'] },
-    { changes: ['background: var(--btn-ghost-hover-bg) — #1A1D27', 'color: var(--btn-ghost-hover-text) — #FFFFFF'] },
-    { changes: ['background: var(--btn-ghost-pressed-bg) — #21242F', 'color: var(--btn-ghost-pressed-text) — #FFFFFF'] },
-    { changes: ['color: var(--btn-ghost-disabled-text) — #4B5563', 'cursor: not-allowed'] },
-    { changes: ['background: var(--btn-ghost-focus-bg) — #1A1D27', 'border-color: var(--btn-ghost-focus-border) — #2E3140', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
-  ],
-
-  'input-filled': [
-    { changes: ['background: var(--textfield-filled-default-bg) — #1A1D27', 'border: 1px solid var(--textfield-filled-default-border) — #2E3140'] },
-    { changes: ['value has text — placeholder hidden', 'color: var(--textfield-filled-filled-text) — #FFFFFF'] },
-    { changes: ['background: var(--textfield-filled-hover-bg) — #21242F', 'border-color: var(--textfield-filled-hover-border) — #3E4150'] },
-    { changes: ['border-color: var(--textfield-filled-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
-    { changes: ['background: var(--textfield-filled-disabled-bg) — #13151E', 'color: var(--textfield-filled-disabled-text) — #4B5563', 'border-color: var(--textfield-filled-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { changes: ['background: var(--textfield-filled-focus-bg) — #1A1D27', 'border-color: var(--textfield-filled-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
-  ],
-
-  'input-outlined': [
-    { changes: ['background: transparent', 'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'] },
-    { changes: ['value has text — placeholder hidden', 'color: var(--textfield-outlined-default-text) — #FFFFFF'] },
-    { changes: ['border-color: var(--textfield-outlined-hover-border) — #3E4150'] },
-    { changes: ['border-color: var(--textfield-outlined-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
-    { changes: ['color: var(--textfield-outlined-disabled-text) — #4B5563', 'border-color: var(--textfield-outlined-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { changes: ['border-color: var(--textfield-outlined-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
-  ],
-
-  'search': [
-    { changes: ['background: var(--search-default-bg) — #1A1D27', 'border: 1px solid var(--search-default-border) — #2E3140', 'icon color: var(--search-default-icon) — #8B8FA3'] },
-    { changes: ['value has text — placeholder hidden', 'color: var(--search-filled-text) — #FFFFFF'] },
-    { changes: ['border-color: var(--search-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'icon color: var(--search-focus-icon) — #60A5FA', 'outline: none'] }
-  ],
-
-  'navitem': [
-    { changes: ['background: transparent', 'color: var(--text-secondary) — #8B8FA3'] },
-    { changes: ['background: var(--bg-elevated) — #21242F', 'color: var(--text-primary) — #FFFFFF'] },
-    { changes: ['background: rgba(96, 165, 250, 0.08)', 'color: var(--accent-primary) — #60A5FA', '::before accent bar: left edge, width 3px, blue'] },
-    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] },
-    { changes: ['outline: 2px solid var(--accent-primary) — #60A5FA', 'background: var(--bg-elevated) — #21242F'] }
-  ],
-
-  'dropdown': [
-    { changes: ['background: var(--dropdown-trigger-default-bg) — #1A1D27', 'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'] },
-    { changes: ['background: var(--dropdown-trigger-hover-bg) — #21242F', 'border-color: var(--dropdown-trigger-hover-border) — #3E4150'] },
-    { changes: ['border-color: var(--dropdown-trigger-open-border) — #60A5FA', '.dropdown-chevron: transform: rotate(180deg)', '.dropdown-menu: display: block'] }
-  ],
-
-  'toggle': [
-    { changes: ['background: var(--border-strong) — #3E4150', 'thumb position: left 3px (translateX 0)'] },
-    { changes: ['background: var(--accent-success) — #34D399', 'thumb: transform: translateX(18px)'] },
-    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
-  ],
-
-  'checkbox': [
-    { changes: ['background: transparent', 'border: 1px solid var(--border-strong) — #3E4150', '.checkbox svg: display: none'] },
-    { changes: ['background: var(--accent-primary) — #60A5FA', 'border-color: var(--accent-primary)', '.checkbox svg: display: block'] },
-    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
-  ],
-
-  'radio': [
-    { changes: ['border: 2px solid var(--border-strong) — #3E4150', '.radio-inner: display: none'] },
-    { changes: ['border-color: var(--accent-success) — #34D399', '.radio-inner: display: block, background: #34D399'] },
-    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] }
-  ],
-
-  'badge': [
-    { changes: ['background: rgba(52, 211, 153, 0.12)', 'color: var(--accent-success) — #34D399', 'border: 1px solid rgba(52, 211, 153, 0.2)'] },
-    { changes: ['background: rgba(96, 165, 250, 0.12)', 'color: var(--accent-primary) — #60A5FA', 'border: 1px solid rgba(96, 165, 250, 0.2)'] },
-    { changes: ['background: rgba(248, 113, 113, 0.12)', 'color: var(--accent-error) — #F87171', 'border: 1px solid rgba(248, 113, 113, 0.2)'] },
-    { changes: ['background: rgba(139, 143, 163, 0.12)', 'color: var(--text-secondary) — #8B8FA3', 'border: 1px solid rgba(139, 143, 163, 0.2)'] }
-  ],
-
-  'statusdot': [
-    { changes: ['background: var(--accent-success) — #34D399', 'box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.2)'] },
-    { changes: ['background: var(--accent-warning) — #FBBF24', 'box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2)'] },
-    { changes: ['background: var(--text-disabled) — #4B5563', 'no box-shadow'] },
-    { changes: ['background: var(--accent-error) — #F87171', 'box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2)'] }
-  ],
-
-  'breadcrumb': [
-    { changes: ['.breadcrumb-item: color: var(--text-secondary) — #8B8FA3', '.breadcrumb-item.current: color: var(--text-primary) — #FFFFFF', '.breadcrumb-sep: color: var(--text-disabled)'] },
-    { changes: ['.breadcrumb-item.current: color: var(--text-primary) — #FFFFFF', 'cursor: default'] }
-  ],
-
-  'cards': [
-    { changes: ['background: var(--bg-surface) — #1A1D27', 'border: 1px solid var(--border-default) — #2E3140', 'padding: var(--spacing-20), border-radius: var(--radius-12)'] },
-    { changes: ['card-dept: display: flex, align-items: center, gap: 12px', 'card-dept-icon: 36×36px, rgba(96,165,250,0.1) bg'] },
-    { changes: ['card-agent-header: flex, space-between', 'card-agent-avatar: 32×32px, rgba(96,165,250,0.1) bg', 'badge badge-running inside header'] },
-    { changes: ['card-run-header: flex, space-between', 'card-run-footer: flex, space-between', 'card-run-time: JetBrains Mono font'] }
-  ]
-
-};
-
-/* ============================================================
-   SWITCH STATE CODE — update code block pre + info panel when tab clicked
+   SWITCH STATE CODE — update code block pre when tab clicked
    ============================================================ */
 function switchStateCode(componentId, index) {
   const data = stateCodeData[componentId];
@@ -4038,25 +3773,6 @@ function switchStateCode(componentId, index) {
   });
 
   pre.innerHTML = withSwatches;
-
-  // Update state-info panel
-  const infoData = stateInfoData[componentId];
-  if (infoData && infoData[index]) {
-    const info = infoData[index];
-    // Find the state-info element: it's inside the same .component-block as the code block
-    const componentBlock = codeBlock.closest('.component-block');
-    if (componentBlock) {
-      const infoEl = componentBlock.querySelector('.state-info');
-      if (infoEl) {
-        infoEl.innerHTML = `
-          
-          <div class="state-info-changes">
-            ${info.changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
-          </div>
-        `;
-      }
-    }
-  }
 }
 
 function switchVariant(explorerId, index) {
@@ -4140,20 +3856,6 @@ function toggleRadioVariant(wrap) {
     label.textContent = !isSelected ? 'Selected — click to deselect' : 'Unselected — click to select';
     label.style.color = !isSelected ? 'var(--text-primary)' : 'var(--text-secondary)';
   }
-}
-
-/* ============================================================
-   HELPERS
-   ============================================================ */
-function updateInfoPanel(infoId, title, changes) {
-  const infoEl = document.getElementById(infoId);
-  if (!infoEl) return;
-  infoEl.innerHTML = `
-    
-    <div class="state-info-changes">
-      ${changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
-    </div>
-  `;
 }
 
 /* ============================================================
@@ -4281,6 +3983,20 @@ function applyTheme(theme) {
 })();
 
 /* State sync removed — tabs are independent from live preview interaction */
+
+/* ============================================================
+   INIT STATE CODE BLOCKS — populate all code blocks from stateCodeData[id][0]
+   ============================================================ */
+(function initStateCodeBlocks() {
+  document.querySelectorAll('[data-state-code]').forEach(codeBlock => {
+    const id = codeBlock.getAttribute('data-state-code');
+    const data = stateCodeData[id];
+    if (!data || !data[0]) return;
+    const pre = codeBlock.querySelector('pre');
+    if (!pre) return;
+    pre.textContent = data[0];
+  });
+})();
 
 /* ============================================================
    INIT COLOR SWATCHES ON LOAD
