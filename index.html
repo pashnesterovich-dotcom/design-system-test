@@ -3440,48 +3440,6 @@ function toggleSwitch(el) {
   el.classList.toggle('on');
 }
 
-function updateToggleInfo() {
-  const toggle = document.getElementById('toggle-preview');
-  const label = document.getElementById('toggle-label');
-  if (!toggle || !label) return;
-  const isOn = toggle.classList.contains('on');
-  label.textContent = isOn ? 'On — click to toggle' : 'Off — click to toggle';
-  label.style.color = isOn ? 'var(--text-primary)' : 'var(--text-secondary)';
-}
-
-/* ============================================================
-   CHECKBOX (live interactive)
-   ============================================================ */
-function toggleCheckbox(wrap) {
-  const cb = wrap.querySelector('.checkbox');
-  if (!cb || cb.classList.contains('disabled')) return;
-  cb.classList.toggle('checked');
-  const label = document.getElementById('checkbox-label') || wrap.querySelector('span');
-  if (label) {
-    label.textContent = cb.classList.contains('checked') ? 'Checked — click to toggle' : 'Unchecked — click to toggle';
-    label.style.color = cb.classList.contains('checked')
-      ? 'var(--text-primary)' : 'var(--text-secondary)';
-  }
-}
-
-/* ============================================================
-   RADIO (live interactive)
-   ============================================================ */
-function selectRadio(activeId) {
-  ['radio-a', 'radio-b'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const label = el.closest('.radio-wrap')?.querySelector('span');
-    if (id === activeId) {
-      el.classList.add('selected');
-      if (label) label.style.color = 'var(--text-primary)';
-    } else {
-      el.classList.remove('selected');
-      if (label) label.style.color = 'var(--text-secondary)';
-    }
-  });
-}
-
 /* ============================================================
    VARIANT EXPLORER — data + switcher
    ============================================================ */
@@ -3693,18 +3651,82 @@ const stateCodeData = {
 };
 
 /* ============================================================
-   SWITCH STATE CODE — update code block pre when tab clicked
+   STATE INFO DATA — per-state info panel content
+   ============================================================ */
+const stateInfoData = {
+
+  'btn-primary': [
+    { title: 'State: Default',  changes: ['background: var(--btn-primary-default-bg) — #60A5FA', 'color: var(--btn-primary-default-text) — #13151E', 'border: 1px solid var(--btn-primary-default-border)'] },
+    { title: 'State: Hover',    changes: ['background: var(--btn-primary-hover-bg) — #3B82F6', 'border-color: var(--btn-primary-hover-border) — #3B82F6', 'transition: 150ms ease'] },
+    { title: 'State: Pressed',  changes: ['background: var(--btn-primary-pressed-bg) — #2563EB', 'border-color: var(--btn-primary-pressed-border) — #2563EB', 'color: var(--btn-primary-pressed-text) — #FFFFFF'] },
+    { title: 'State: Disabled', changes: ['background: var(--btn-primary-disabled-bg) — #1A1D27', 'color: var(--btn-primary-disabled-text) — #4B5563', 'border-color: var(--btn-primary-disabled-border) — #2E3140', 'cursor: not-allowed; pointer-events: none'] },
+    { title: 'State: Focus',    changes: ['border: 2px solid var(--btn-primary-focus-border) — #3B82F6', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)', 'outline: none'] }
+  ],
+
+  'btn-secondary': [
+    { title: 'State: Default',  changes: ['background: var(--btn-secondary-default-bg) — #1A1D27', 'color: var(--btn-secondary-default-text) — #60A5FA', 'border: 1px solid var(--btn-secondary-default-border) — #2E3140'] },
+    { title: 'State: Hover',    changes: ['background: var(--btn-secondary-hover-bg) — #21242F', 'border-color: var(--btn-secondary-hover-border) — #3E4150'] },
+    { title: 'State: Pressed',  changes: ['background: var(--btn-secondary-pressed-bg) — #13151E', 'border-color: var(--btn-secondary-pressed-border) — #3B82F6', 'color: var(--btn-secondary-pressed-text) — #3B82F6'] },
+    { title: 'State: Disabled', changes: ['background: var(--btn-secondary-disabled-bg) — #13151E', 'color: var(--btn-secondary-disabled-text) — #4B5563', 'border-color: var(--btn-secondary-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { title: 'State: Focus',    changes: ['border-color: var(--btn-secondary-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)', 'outline: none'] }
+  ],
+
+  'btn-ghost': [
+    { title: 'State: Default',  changes: ['background: transparent', 'color: var(--btn-ghost-default-text) — #8B8FA3', 'border: 1px solid transparent'] },
+    { title: 'State: Hover',    changes: ['background: var(--btn-ghost-hover-bg) — #1A1D27', 'color: var(--btn-ghost-hover-text) — #FFFFFF'] },
+    { title: 'State: Pressed',  changes: ['background: var(--btn-ghost-pressed-bg) — #21242F', 'color: var(--btn-ghost-pressed-text) — #FFFFFF'] },
+    { title: 'State: Disabled', changes: ['color: var(--btn-ghost-disabled-text) — #4B5563', 'cursor: not-allowed'] },
+    { title: 'State: Focus',    changes: ['background: var(--btn-ghost-focus-bg) — #1A1D27', 'border-color: var(--btn-ghost-focus-border) — #2E3140', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+  ],
+
+  'input-filled': [
+    { title: 'State: Default',  changes: ['background: var(--textfield-filled-default-bg) — #1A1D27', 'border: 1px solid var(--textfield-filled-default-border) — #2E3140'] },
+    { title: 'State: Filled',   changes: ['value has text — placeholder hidden', 'color: var(--textfield-filled-filled-text) — #FFFFFF'] },
+    { title: 'State: Hover',    changes: ['background: var(--textfield-filled-hover-bg) — #21242F', 'border-color: var(--textfield-filled-hover-border) — #3E4150'] },
+    { title: 'State: Error',    changes: ['border-color: var(--textfield-filled-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
+    { title: 'State: Disabled', changes: ['background: var(--textfield-filled-disabled-bg) — #13151E', 'color: var(--textfield-filled-disabled-text) — #4B5563', 'border-color: var(--textfield-filled-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { title: 'State: Focus',    changes: ['background: var(--textfield-filled-focus-bg) — #1A1D27', 'border-color: var(--textfield-filled-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+  ],
+
+  'input-outlined': [
+    { title: 'State: Default',  changes: ['background: transparent', 'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'] },
+    { title: 'State: Filled',   changes: ['value has text — placeholder hidden', 'color: var(--textfield-outlined-default-text) — #FFFFFF'] },
+    { title: 'State: Hover',    changes: ['border-color: var(--textfield-outlined-hover-border) — #3E4150'] },
+    { title: 'State: Error',    changes: ['border-color: var(--textfield-outlined-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
+    { title: 'State: Disabled', changes: ['color: var(--textfield-outlined-disabled-text) — #4B5563', 'border-color: var(--textfield-outlined-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { title: 'State: Focus',    changes: ['border-color: var(--textfield-outlined-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+  ],
+
+  'search': [
+    { title: 'State: Default', changes: ['background: var(--search-default-bg) — #1A1D27', 'border: 1px solid var(--search-default-border) — #2E3140', 'icon color: var(--search-default-icon) — #8B8FA3'] },
+    { title: 'State: Filled',  changes: ['value has text — placeholder hidden', 'color: var(--search-filled-text) — #FFFFFF'] },
+    { title: 'State: Focus',   changes: ['border-color: var(--search-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'icon color: var(--search-focus-icon) — #60A5FA', 'outline: none'] }
+  ],
+
+  'navitem': [
+    { title: 'State: Default',  changes: ['background: transparent', 'color: var(--text-secondary) — #8B8FA3'] },
+    { title: 'State: Hover',    changes: ['background: var(--bg-elevated) — #21242F', 'color: var(--text-primary) — #FFFFFF'] },
+    { title: 'State: Active',   changes: ['background: rgba(96, 165, 250, 0.08)', 'color: var(--accent-primary) — #60A5FA', '::before accent bar: left edge, width 3px, blue'] },
+    { title: 'State: Disabled', changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] },
+    { title: 'State: Focus',    changes: ['outline: 2px solid var(--accent-primary) — #60A5FA', 'background: var(--bg-elevated) — #21242F'] }
+  ],
+
+  'dropdown': [
+    { title: 'State: Default', changes: ['background: var(--dropdown-trigger-default-bg) — #1A1D27', 'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'] },
+    { title: 'State: Hover',   changes: ['background: var(--dropdown-trigger-hover-bg) — #21242F', 'border-color: var(--dropdown-trigger-hover-border) — #3E4150'] },
+    { title: 'State: Open',    changes: ['border-color: var(--dropdown-trigger-open-border) — #60A5FA', '.dropdown-chevron: transform: rotate(180deg)', '.dropdown-menu: display: block'] }
+  ]
+
+};
+
+/* ============================================================
+   SWITCH STATE CODE — update code block pre + info panel when tab clicked
    ============================================================ */
 function switchStateCode(componentId, index) {
   const data = stateCodeData[componentId];
   if (!data || data[index] === undefined) return;
 
-  // Find code block: look for element with id = componentId + '-code-block'
-  // Fallback: find the nearest code-block sibling via component-block parent
-  // We use a naming convention: the code block pre is inside .code-block
-  // which is a sibling of .state-explorer inside .component-block
-  // We store the component key as data-state-code on the code block
-
+  // Update code block
   const codeBlock = document.querySelector('[data-state-code="' + componentId + '"]');
   if (!codeBlock) return;
 
@@ -3724,6 +3746,25 @@ function switchStateCode(componentId, index) {
   });
 
   pre.innerHTML = withSwatches;
+
+  // Update state-info panel
+  const infoData = stateInfoData[componentId];
+  if (infoData && infoData[index]) {
+    const info = infoData[index];
+    // Find the state-info element: it's inside the same .component-block as the code block
+    const componentBlock = codeBlock.closest('.component-block');
+    if (componentBlock) {
+      const infoEl = componentBlock.querySelector('.state-info');
+      if (infoEl) {
+        infoEl.innerHTML = `
+          <div class="state-info-name">${info.title}</div>
+          <div class="state-info-changes">
+            ${info.changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
+          </div>
+        `;
+      }
+    }
+  }
 }
 
 function switchVariant(explorerId, index) {
@@ -3810,495 +3851,6 @@ function toggleRadioVariant(wrap) {
 }
 
 /* ============================================================
-   STATE DEFINITIONS
-   ============================================================ */
-
-const btnPrimaryStates = {
-  default: {
-    label: 'Default',
-    classes: [],
-    info: 'State: Default',
-    changes: [
-      'background: var(--btn-primary-default-bg) — #60A5FA',
-      'color: var(--btn-primary-default-text) — #13151E',
-      'border: 1px solid var(--btn-primary-default-border)'
-    ]
-  },
-  hover: {
-    label: 'Save Changes',
-    classes: ['force-hover'],
-    info: 'State: Hover',
-    changes: [
-      'background: var(--btn-primary-hover-bg) — #3B82F6',
-      'border-color: var(--btn-primary-hover-border) — #3B82F6',
-      'transition: 150ms ease'
-    ]
-  },
-  focus: {
-    label: 'Save Changes',
-    classes: ['force-focus'],
-    info: 'State: Focus',
-    changes: [
-      'border: 2px solid var(--btn-primary-focus-border) — #3B82F6',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)',
-      'outline: none'
-    ]
-  },
-  pressed: {
-    label: 'Save Changes',
-    classes: ['force-pressed'],
-    info: 'State: Pressed',
-    changes: [
-      'background: var(--btn-primary-pressed-bg) — #2563EB',
-      'border-color: var(--btn-primary-pressed-border) — #2563EB',
-      'color: var(--btn-primary-pressed-text) — #FFFFFF'
-    ]
-  },
-  disabled: {
-    label: 'Save Changes',
-    classes: ['force-disabled'],
-    info: 'State: Disabled',
-    changes: [
-      'background: var(--btn-primary-disabled-bg) — #1A1D27',
-      'color: var(--btn-primary-disabled-text) — #4B5563',
-      'border-color: var(--btn-primary-disabled-border) — #2E3140',
-      'cursor: not-allowed; pointer-events: none'
-    ]
-  }
-};
-
-const btnSecondaryStates = {
-  default: {
-    label: 'Cancel',
-    classes: [],
-    info: 'State: Default',
-    changes: [
-      'background: var(--btn-secondary-default-bg) — #1A1D27',
-      'color: var(--btn-secondary-default-text) — #60A5FA',
-      'border: 1px solid var(--btn-secondary-default-border) — #2E3140'
-    ]
-  },
-  hover: {
-    label: 'Cancel',
-    classes: ['force-hover'],
-    info: 'State: Hover',
-    changes: [
-      'background: var(--btn-secondary-hover-bg) — #21242F',
-      'border-color: var(--btn-secondary-hover-border) — #3E4150'
-    ]
-  },
-  focus: {
-    label: 'Cancel',
-    classes: ['force-focus'],
-    info: 'State: Focus',
-    changes: [
-      'border-color: var(--btn-secondary-focus-border) — #60A5FA',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)',
-      'outline: none'
-    ]
-  },
-  pressed: {
-    label: 'Cancel',
-    classes: ['force-pressed'],
-    info: 'State: Pressed',
-    changes: [
-      'background: var(--btn-secondary-pressed-bg) — #13151E',
-      'border-color: var(--btn-secondary-pressed-border) — #3B82F6',
-      'color: var(--btn-secondary-pressed-text) — #3B82F6'
-    ]
-  },
-  disabled: {
-    label: 'Cancel',
-    classes: ['force-disabled'],
-    info: 'State: Disabled',
-    changes: [
-      'background: var(--btn-secondary-disabled-bg) — #13151E',
-      'color: var(--btn-secondary-disabled-text) — #4B5563',
-      'border-color: var(--btn-secondary-disabled-border) — #1A1D27',
-      'cursor: not-allowed'
-    ]
-  }
-};
-
-const btnGhostStates = {
-  default: {
-    label: 'Learn more',
-    classes: [],
-    info: 'State: Default',
-    changes: [
-      'background: transparent',
-      'color: var(--btn-ghost-default-text) — #8B8FA3',
-      'border: 1px solid transparent'
-    ]
-  },
-  hover: {
-    label: 'Learn more',
-    classes: ['force-hover'],
-    info: 'State: Hover',
-    changes: [
-      'background: var(--btn-ghost-hover-bg) — #1A1D27',
-      'color: var(--btn-ghost-hover-text) — #FFFFFF'
-    ]
-  },
-  focus: {
-    label: 'Learn more',
-    classes: ['force-focus'],
-    info: 'State: Focus',
-    changes: [
-      'background: var(--btn-ghost-focus-bg) — #1A1D27',
-      'border-color: var(--btn-ghost-focus-border) — #2E3140',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
-      'outline: none'
-    ]
-  },
-  pressed: {
-    label: 'Learn more',
-    classes: ['force-pressed'],
-    info: 'State: Pressed',
-    changes: [
-      'background: var(--btn-ghost-pressed-bg) — #21242F',
-      'color: var(--btn-ghost-pressed-text) — #FFFFFF'
-    ]
-  },
-  disabled: {
-    label: 'Learn more',
-    classes: ['force-disabled'],
-    info: 'State: Disabled',
-    changes: [
-      'color: var(--btn-ghost-disabled-text) — #4B5563',
-      'cursor: not-allowed'
-    ]
-  }
-};
-
-const inputFilledStates = {
-  default: {
-    placeholder: 'Enter value...',
-    value: '',
-    classes: [],
-    disabled: false,
-    info: 'State: Default',
-    changes: [
-      'background: var(--textfield-filled-default-bg) — #1A1D27',
-      'border: 1px solid var(--textfield-filled-default-border) — #2E3140'
-    ]
-  },
-  filled: {
-    placeholder: '',
-    value: 'Hello World',
-    classes: [],
-    disabled: false,
-    info: 'State: Filled',
-    changes: [
-      'value: "Hello World" — user has entered text',
-      'color: var(--textfield-filled-default-text) — #FFFFFF',
-      'placeholder hidden — actual text replaces it'
-    ]
-  },
-  hover: {
-    placeholder: 'Enter value...',
-    value: '',
-    classes: ['force-hover'],
-    disabled: false,
-    info: 'State: Hover',
-    changes: [
-      'background: var(--textfield-filled-hover-bg) — #21242F',
-      'border-color: var(--textfield-filled-hover-border) — #3E4150'
-    ]
-  },
-  focus: {
-    placeholder: '',
-    value: 'Focused value',
-    classes: ['force-focus'],
-    disabled: false,
-    info: 'State: Focus',
-    changes: [
-      'border-color: var(--textfield-filled-focus-border) — #60A5FA',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
-      'outline: none'
-    ]
-  },
-  error: {
-    placeholder: '',
-    value: 'invalid@',
-    classes: ['error'],
-    disabled: false,
-    info: 'State: Error',
-    changes: [
-      'border-color: var(--textfield-filled-error-border) — #F87171',
-      'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'
-    ]
-  },
-  disabled: {
-    placeholder: 'Disabled field',
-    value: '',
-    classes: ['force-disabled'],
-    disabled: true,
-    info: 'State: Disabled',
-    changes: [
-      'background: var(--textfield-filled-disabled-bg) — #13151E',
-      'color: var(--textfield-filled-disabled-text) — #4B5563',
-      'border-color: var(--textfield-filled-disabled-border) — #1A1D27',
-      'cursor: not-allowed'
-    ]
-  }
-};
-
-const inputOutlinedStates = {
-  default: {
-    placeholder: 'Enter value...',
-    value: '',
-    classes: [],
-    disabled: false,
-    info: 'State: Default',
-    changes: [
-      'background: transparent',
-      'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'
-    ]
-  },
-  filled: {
-    placeholder: '',
-    value: 'Hello World',
-    classes: [],
-    disabled: false,
-    info: 'State: Filled',
-    changes: [
-      'value: "Hello World" — user has entered text',
-      'color: var(--textfield-outlined-default-text) — #FFFFFF',
-      'placeholder hidden — actual text replaces it'
-    ]
-  },
-  hover: {
-    placeholder: 'Enter value...',
-    value: '',
-    classes: ['force-hover'],
-    disabled: false,
-    info: 'State: Hover',
-    changes: [
-      'border-color: var(--textfield-outlined-hover-border) — #3E4150'
-    ]
-  },
-  focus: {
-    placeholder: '',
-    value: 'Focused value',
-    classes: ['force-focus'],
-    disabled: false,
-    info: 'State: Focus',
-    changes: [
-      'border-color: var(--textfield-outlined-focus-border) — #60A5FA',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
-      'outline: none'
-    ]
-  },
-  error: {
-    placeholder: '',
-    value: 'invalid@',
-    classes: ['error'],
-    disabled: false,
-    info: 'State: Error',
-    changes: [
-      'border-color: var(--textfield-outlined-error-border) — #F87171',
-      'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'
-    ]
-  },
-  disabled: {
-    placeholder: 'Disabled field',
-    value: '',
-    classes: ['force-disabled'],
-    disabled: true,
-    info: 'State: Disabled',
-    changes: [
-      'color: var(--textfield-outlined-disabled-text) — #4B5563',
-      'border-color: var(--textfield-outlined-disabled-border) — #1A1D27',
-      'cursor: not-allowed'
-    ]
-  }
-};
-
-const navItemStates = {
-  default: {
-    classes: [],
-    info: 'State: Default',
-    changes: [
-      'background: transparent',
-      'color: var(--text-secondary) — #8B8FA3'
-    ]
-  },
-  hover: {
-    classes: ['force-hover'],
-    info: 'State: Hover',
-    changes: [
-      'background: var(--bg-elevated) — #21242F',
-      'color: var(--text-primary) — #FFFFFF'
-    ]
-  },
-  focus: {
-    classes: ['force-focus'],
-    info: 'State: Focus',
-    changes: [
-      'outline: 2px solid var(--accent-primary) — #60A5FA',
-      'background: var(--bg-elevated) — #21242F'
-    ]
-  },
-  active: {
-    classes: ['active'],
-    info: 'State: Active',
-    changes: [
-      'background: rgba(96, 165, 250, 0.08)',
-      'color: var(--accent-primary) — #60A5FA',
-      '::before accent bar: left edge, width 3px, blue'
-    ]
-  },
-  disabled: {
-    classes: ['force-disabled'],
-    info: 'State: Disabled',
-    changes: [
-      'opacity: 0.4',
-      'cursor: not-allowed',
-      'pointer-events: none'
-    ]
-  }
-};
-
-/* ============================================================
-   GENERIC STATE SETTER (for buttons, nav-item)
-   ============================================================ */
-function setComponentState(previewId, state, tabEl, stateMap) {
-  const el = document.getElementById(previewId);
-  if (!el) return;
-
-  const def = stateMap[state];
-  if (!def) return;
-
-  // Remove all force classes and special state classes
-  const allClasses = Object.values(stateMap).flatMap(s => s.classes || []);
-  allClasses.forEach(cls => el.classList.remove(cls));
-
-  // Add new classes
-  (def.classes || []).forEach(cls => el.classList.add(cls));
-
-  // NOTE: button text is intentionally NOT updated here — component label stays static
-
-  // Rebuild info panel
-  const infoId = previewId.replace('-preview', '-info');
-  updateInfoPanel(infoId, def.info, def.changes);
-
-  // Update active tab
-  updateActiveTabs(tabEl);
-}
-
-/* ============================================================
-   INPUT STATE SETTER
-   ============================================================ */
-function setInputState(previewId, state, tabEl, stateMap) {
-  const el = document.getElementById(previewId);
-  if (!el) return;
-
-  const def = stateMap[state];
-  if (!def) return;
-
-  // Remove all force classes
-  const allClasses = Object.values(stateMap).flatMap(s => s.classes || []);
-  allClasses.forEach(cls => el.classList.remove(cls));
-
-  // Apply state
-  (def.classes || []).forEach(cls => el.classList.add(cls));
-  el.disabled = !!def.disabled;
-  el.value = def.value || '';
-  el.placeholder = def.placeholder || '';
-
-  // Update info panel
-  const infoId = previewId.replace('-preview', '-info');
-  updateInfoPanel(infoId, def.info, def.changes);
-
-  updateActiveTabs(tabEl);
-}
-
-/* ============================================================
-   SEARCH STATE SETTER
-   ============================================================ */
-function setSearchState(state, tabEl) {
-  const input = document.getElementById('search-preview');
-  const wrap = document.getElementById('search-wrap-preview');
-  const icon = document.getElementById('search-icon-preview');
-  const infoEl = document.getElementById('search-info');
-  if (!input) return;
-
-  input.classList.remove('force-focus');
-  if (wrap) wrap.classList.remove('force-focus');
-
-  if (state === 'default') {
-    input.value = '';
-    input.placeholder = 'Search agents...';
-    if (icon) icon.style.color = '';
-    updateInfoPanel('search-info', 'State: Default', [
-      'background: var(--search-default-bg) — #1A1D27',
-      'border: 1px solid var(--search-default-border) — #2E3140',
-      'icon color: var(--search-default-icon) — #8B8FA3'
-    ]);
-  } else if (state === 'filled') {
-    input.value = 'Agent Architect';
-    input.placeholder = '';
-    if (icon) icon.style.color = '';
-    updateInfoPanel('search-info', 'State: Filled', [
-      'value: "Agent Architect" — user has entered text',
-      'color: var(--search-default-text) — #FFFFFF',
-      'placeholder hidden — actual text replaces it'
-    ]);
-  } else if (state === 'focus') {
-    input.value = 'Trend Scout';
-    input.placeholder = '';
-    input.classList.add('force-focus');
-    if (wrap) wrap.classList.add('force-focus');
-    if (icon) icon.style.color = 'var(--search-focus-icon)';
-    updateInfoPanel('search-info', 'State: Focus', [
-      'border-color: var(--search-focus-border) — #60A5FA',
-      'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)',
-      'icon color: var(--search-focus-icon) — #60A5FA',
-      'outline: none'
-    ]);
-  }
-
-  updateActiveTabs(tabEl);
-}
-
-/* ============================================================
-   DROPDOWN STATE SETTER
-   ============================================================ */
-function setDropdownState(state, tabEl) {
-  const wrap = document.getElementById('dropdown1');
-  const trigger = document.getElementById('dropdown1-trigger');
-  if (!wrap || !trigger) return;
-
-  // Reset
-  trigger.classList.remove('force-hover', 'force-open', 'open');
-  wrap.classList.remove('open');
-
-  if (state === 'default') {
-    updateInfoPanel('dropdown-info', 'State: Default', [
-      'background: var(--dropdown-trigger-default-bg) — #1A1D27',
-      'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'
-    ]);
-  } else if (state === 'hover') {
-    trigger.classList.add('force-hover');
-    updateInfoPanel('dropdown-info', 'State: Hover', [
-      'background: var(--dropdown-trigger-hover-bg) — #21242F',
-      'border-color: var(--dropdown-trigger-hover-border) — #3E4150'
-    ]);
-  } else if (state === 'open') {
-    wrap.classList.add('open');
-    trigger.classList.add('open');
-    updateInfoPanel('dropdown-info', 'State: Open', [
-      'border-color: var(--dropdown-trigger-open-border) — #60A5FA',
-      '.dropdown-chevron: transform: rotate(180deg)',
-      '.dropdown-menu: display: block'
-    ]);
-  }
-
-  updateActiveTabs(tabEl);
-}
-
-/* ============================================================
    HELPERS
    ============================================================ */
 function updateInfoPanel(infoId, title, changes) {
@@ -4310,14 +3862,6 @@ function updateInfoPanel(infoId, title, changes) {
       ${changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
     </div>
   `;
-}
-
-function updateActiveTabs(activeTab) {
-  if (!activeTab) return;
-  const tabs = activeTab.closest('.state-tabs');
-  if (!tabs) return;
-  tabs.querySelectorAll('.state-tab').forEach(t => t.classList.remove('active'));
-  activeTab.classList.add('active');
 }
 
 /* ============================================================
