@@ -2306,6 +2306,7 @@ body {
           <button class="state-tab" onclick="switchStateCode('btn-primary',3)">Disabled</button>
           <button class="state-tab" onclick="switchStateCode('btn-primary',4)">Focus</button>
         </div>
+        </div>
       <div class="code-block" data-state-code="btn-primary">
         <button class="code-download-btn" onclick="downloadCode(this,'button-primary.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
@@ -3123,12 +3124,15 @@ body {
         <span class="component-block-title">Divider</span>
         <span class="component-block-subtitle">Section separator</span>
       </div>
-      <div class="component-preview">
-        <div style="padding:var(--spacing-8) 0">
-          <p style="font-size:var(--font-size-13);color:var(--text-secondary);margin-bottom:var(--spacing-16)">Content above</p>
-          <hr class="divider">
-          <p style="font-size:var(--font-size-13);color:var(--text-secondary);margin-top:var(--spacing-16)">Content below</p>
+      <div class="state-explorer">
+        <div class="state-preview">
+          <div style="width:100%;max-width:400px">
+            <p style="font-size:var(--font-size-13);color:var(--text-secondary);margin-bottom:var(--spacing-16)">Content above</p>
+            <hr class="divider">
+            <p style="font-size:var(--font-size-13);color:var(--text-secondary);margin-top:var(--spacing-16)">Content below</p>
+          </div>
         </div>
+      </div>
       <div class="code-block">
         <button class="code-download-btn" onclick="downloadCode(this,'divider.css')">Download</button>
         <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
@@ -3160,7 +3164,7 @@ body {
       </div>
       <div class="state-explorer">
         <!-- Static variants row — all 4 cards shown side by side, NOT clickable -->
-        <div class="states-row" id="cards-states-row" style="align-items:flex-start;flex-wrap:wrap;gap:var(--spacing-12)">
+        <div class="states-row" id="cards-states-row" style="align-items:flex-start">
           <div class="state-row-item" data-state="metric" style="align-items:flex-start">
             <div class="card card-metric" style="min-width:160px;max-width:200px;pointer-events:none">
               <div class="card-metric-label">Total Runs</div>
@@ -3259,7 +3263,7 @@ body {
       </div>
       <div class="state-explorer">
         <div class="interactive-hint">Интерактивный элемент — попробуйте навести и кликнуть</div>
-        <div class="state-preview" style="align-items:flex-start;padding-bottom:var(--spacing-24)">
+        <div class="state-preview" style="align-items:flex-start">
           <div class="dropdown-wrap" id="dropdown1">
             <button class="dropdown-trigger" id="dropdown1-trigger" onclick="toggleDropdown('dropdown1')">
               <span id="dropdown1-label">Select agent</span>
