@@ -1757,16 +1757,6 @@ body {
   flex-wrap: wrap;
 }
 
-.state-info-name {
-  font-size: var(--font-size-11);
-  font-weight: 600;
-  color: var(--accent-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  padding-top: 1px;
-  flex-shrink: 0;
-}
 
 .state-info-changes {
   display: flex;
@@ -2342,7 +2332,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('btn-primary-states-row','focus');switchStateCode('btn-primary',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-primary-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: var(--btn-primary-default-bg) — #60A5FA</span>
             <span class="state-info-change">color: var(--btn-primary-default-text) — #13151E</span>
@@ -2419,7 +2409,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('btn-secondary-states-row','focus');switchStateCode('btn-secondary',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-secondary-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: var(--btn-secondary-default-bg) — #1A1D27</span>
             <span class="state-info-change">color: var(--btn-secondary-default-text) — #60A5FA</span>
@@ -2487,7 +2477,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('btn-ghost-states-row','focus');switchStateCode('btn-ghost',4)">Focus</button>
         </div>
         <div class="state-info" id="btn-ghost-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: transparent</span>
             <span class="state-info-change">color: var(--btn-ghost-default-text) — #8B8FA3</span>
@@ -2570,7 +2560,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('input-filled-states-row','focus');switchStateCode('input-filled',5)">Focus</button>
         </div>
         <div class="state-info" id="input-filled-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: var(--textfield-filled-default-bg) — #1A1D27</span>
             <span class="state-info-change">border: 1px solid var(--textfield-filled-default-border) — #2E3140</span>
@@ -2646,7 +2636,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('input-outlined-states-row','focus');switchStateCode('input-outlined',5)">Focus</button>
         </div>
         <div class="state-info" id="input-outlined-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: transparent</span>
             <span class="state-info-change">border: 1px solid var(--textfield-outlined-default-border) — #2E3140</span>
@@ -2731,7 +2721,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('search-states-row','focus');switchStateCode('search',2)">Focus</button>
         </div>
         <div class="state-info" id="search-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: var(--search-default-bg) — #1A1D27</span>
             <span class="state-info-change">border: 1px solid var(--search-default-border) — #2E3140</span>
@@ -3042,7 +3032,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('navitem-states-row','focus');switchStateCode('navitem',4)">Focus</button>
         </div>
         <div class="state-info" id="navitem-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: transparent</span>
             <span class="state-info-change">color: var(--text-secondary) — #8B8FA3</span>
@@ -3254,7 +3244,7 @@ body {
           <button class="state-tab" onclick="highlightStateRow('dropdown-states-row','open');switchStateCode('dropdown',2)">Open</button>
         </div>
         <div class="state-info" id="dropdown-info">
-          <div class="state-info-name">State: Default</div>
+          
           <div class="state-info-changes">
             <span class="state-info-change">background: var(--dropdown-trigger-default-bg) — #1A1D27</span>
             <span class="state-info-change">border: 1px solid var(--dropdown-trigger-default-border) — #2E3140</span>
@@ -3656,65 +3646,65 @@ const stateCodeData = {
 const stateInfoData = {
 
   'btn-primary': [
-    { title: 'State: Default',  changes: ['background: var(--btn-primary-default-bg) — #60A5FA', 'color: var(--btn-primary-default-text) — #13151E', 'border: 1px solid var(--btn-primary-default-border)'] },
-    { title: 'State: Hover',    changes: ['background: var(--btn-primary-hover-bg) — #3B82F6', 'border-color: var(--btn-primary-hover-border) — #3B82F6', 'transition: 150ms ease'] },
-    { title: 'State: Pressed',  changes: ['background: var(--btn-primary-pressed-bg) — #2563EB', 'border-color: var(--btn-primary-pressed-border) — #2563EB', 'color: var(--btn-primary-pressed-text) — #FFFFFF'] },
-    { title: 'State: Disabled', changes: ['background: var(--btn-primary-disabled-bg) — #1A1D27', 'color: var(--btn-primary-disabled-text) — #4B5563', 'border-color: var(--btn-primary-disabled-border) — #2E3140', 'cursor: not-allowed; pointer-events: none'] },
-    { title: 'State: Focus',    changes: ['border: 2px solid var(--btn-primary-focus-border) — #3B82F6', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)', 'outline: none'] }
+    { changes: ['background: var(--btn-primary-default-bg) — #60A5FA', 'color: var(--btn-primary-default-text) — #13151E', 'border: 1px solid var(--btn-primary-default-border)'] },
+    { changes: ['background: var(--btn-primary-hover-bg) — #3B82F6', 'border-color: var(--btn-primary-hover-border) — #3B82F6', 'transition: 150ms ease'] },
+    { changes: ['background: var(--btn-primary-pressed-bg) — #2563EB', 'border-color: var(--btn-primary-pressed-border) — #2563EB', 'color: var(--btn-primary-pressed-text) — #FFFFFF'] },
+    { changes: ['background: var(--btn-primary-disabled-bg) — #1A1D27', 'color: var(--btn-primary-disabled-text) — #4B5563', 'border-color: var(--btn-primary-disabled-border) — #2E3140', 'cursor: not-allowed; pointer-events: none'] },
+    { changes: ['border: 2px solid var(--btn-primary-focus-border) — #3B82F6', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3)', 'outline: none'] }
   ],
 
   'btn-secondary': [
-    { title: 'State: Default',  changes: ['background: var(--btn-secondary-default-bg) — #1A1D27', 'color: var(--btn-secondary-default-text) — #60A5FA', 'border: 1px solid var(--btn-secondary-default-border) — #2E3140'] },
-    { title: 'State: Hover',    changes: ['background: var(--btn-secondary-hover-bg) — #21242F', 'border-color: var(--btn-secondary-hover-border) — #3E4150'] },
-    { title: 'State: Pressed',  changes: ['background: var(--btn-secondary-pressed-bg) — #13151E', 'border-color: var(--btn-secondary-pressed-border) — #3B82F6', 'color: var(--btn-secondary-pressed-text) — #3B82F6'] },
-    { title: 'State: Disabled', changes: ['background: var(--btn-secondary-disabled-bg) — #13151E', 'color: var(--btn-secondary-disabled-text) — #4B5563', 'border-color: var(--btn-secondary-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { title: 'State: Focus',    changes: ['border-color: var(--btn-secondary-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)', 'outline: none'] }
+    { changes: ['background: var(--btn-secondary-default-bg) — #1A1D27', 'color: var(--btn-secondary-default-text) — #60A5FA', 'border: 1px solid var(--btn-secondary-default-border) — #2E3140'] },
+    { changes: ['background: var(--btn-secondary-hover-bg) — #21242F', 'border-color: var(--btn-secondary-hover-border) — #3E4150'] },
+    { changes: ['background: var(--btn-secondary-pressed-bg) — #13151E', 'border-color: var(--btn-secondary-pressed-border) — #3B82F6', 'color: var(--btn-secondary-pressed-text) — #3B82F6'] },
+    { changes: ['background: var(--btn-secondary-disabled-bg) — #13151E', 'color: var(--btn-secondary-disabled-text) — #4B5563', 'border-color: var(--btn-secondary-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { changes: ['border-color: var(--btn-secondary-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2)', 'outline: none'] }
   ],
 
   'btn-ghost': [
-    { title: 'State: Default',  changes: ['background: transparent', 'color: var(--btn-ghost-default-text) — #8B8FA3', 'border: 1px solid transparent'] },
-    { title: 'State: Hover',    changes: ['background: var(--btn-ghost-hover-bg) — #1A1D27', 'color: var(--btn-ghost-hover-text) — #FFFFFF'] },
-    { title: 'State: Pressed',  changes: ['background: var(--btn-ghost-pressed-bg) — #21242F', 'color: var(--btn-ghost-pressed-text) — #FFFFFF'] },
-    { title: 'State: Disabled', changes: ['color: var(--btn-ghost-disabled-text) — #4B5563', 'cursor: not-allowed'] },
-    { title: 'State: Focus',    changes: ['background: var(--btn-ghost-focus-bg) — #1A1D27', 'border-color: var(--btn-ghost-focus-border) — #2E3140', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+    { changes: ['background: transparent', 'color: var(--btn-ghost-default-text) — #8B8FA3', 'border: 1px solid transparent'] },
+    { changes: ['background: var(--btn-ghost-hover-bg) — #1A1D27', 'color: var(--btn-ghost-hover-text) — #FFFFFF'] },
+    { changes: ['background: var(--btn-ghost-pressed-bg) — #21242F', 'color: var(--btn-ghost-pressed-text) — #FFFFFF'] },
+    { changes: ['color: var(--btn-ghost-disabled-text) — #4B5563', 'cursor: not-allowed'] },
+    { changes: ['background: var(--btn-ghost-focus-bg) — #1A1D27', 'border-color: var(--btn-ghost-focus-border) — #2E3140', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
   ],
 
   'input-filled': [
-    { title: 'State: Default',  changes: ['background: var(--textfield-filled-default-bg) — #1A1D27', 'border: 1px solid var(--textfield-filled-default-border) — #2E3140'] },
-    { title: 'State: Filled',   changes: ['value has text — placeholder hidden', 'color: var(--textfield-filled-filled-text) — #FFFFFF'] },
-    { title: 'State: Hover',    changes: ['background: var(--textfield-filled-hover-bg) — #21242F', 'border-color: var(--textfield-filled-hover-border) — #3E4150'] },
-    { title: 'State: Error',    changes: ['border-color: var(--textfield-filled-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
-    { title: 'State: Disabled', changes: ['background: var(--textfield-filled-disabled-bg) — #13151E', 'color: var(--textfield-filled-disabled-text) — #4B5563', 'border-color: var(--textfield-filled-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { title: 'State: Focus',    changes: ['background: var(--textfield-filled-focus-bg) — #1A1D27', 'border-color: var(--textfield-filled-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+    { changes: ['background: var(--textfield-filled-default-bg) — #1A1D27', 'border: 1px solid var(--textfield-filled-default-border) — #2E3140'] },
+    { changes: ['value has text — placeholder hidden', 'color: var(--textfield-filled-filled-text) — #FFFFFF'] },
+    { changes: ['background: var(--textfield-filled-hover-bg) — #21242F', 'border-color: var(--textfield-filled-hover-border) — #3E4150'] },
+    { changes: ['border-color: var(--textfield-filled-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
+    { changes: ['background: var(--textfield-filled-disabled-bg) — #13151E', 'color: var(--textfield-filled-disabled-text) — #4B5563', 'border-color: var(--textfield-filled-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { changes: ['background: var(--textfield-filled-focus-bg) — #1A1D27', 'border-color: var(--textfield-filled-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
   ],
 
   'input-outlined': [
-    { title: 'State: Default',  changes: ['background: transparent', 'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'] },
-    { title: 'State: Filled',   changes: ['value has text — placeholder hidden', 'color: var(--textfield-outlined-default-text) — #FFFFFF'] },
-    { title: 'State: Hover',    changes: ['border-color: var(--textfield-outlined-hover-border) — #3E4150'] },
-    { title: 'State: Error',    changes: ['border-color: var(--textfield-outlined-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
-    { title: 'State: Disabled', changes: ['color: var(--textfield-outlined-disabled-text) — #4B5563', 'border-color: var(--textfield-outlined-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
-    { title: 'State: Focus',    changes: ['border-color: var(--textfield-outlined-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
+    { changes: ['background: transparent', 'border: 1px solid var(--textfield-outlined-default-border) — #2E3140'] },
+    { changes: ['value has text — placeholder hidden', 'color: var(--textfield-outlined-default-text) — #FFFFFF'] },
+    { changes: ['border-color: var(--textfield-outlined-hover-border) — #3E4150'] },
+    { changes: ['border-color: var(--textfield-outlined-error-border) — #F87171', 'box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15)'] },
+    { changes: ['color: var(--textfield-outlined-disabled-text) — #4B5563', 'border-color: var(--textfield-outlined-disabled-border) — #1A1D27', 'cursor: not-allowed'] },
+    { changes: ['border-color: var(--textfield-outlined-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'outline: none'] }
   ],
 
   'search': [
-    { title: 'State: Default', changes: ['background: var(--search-default-bg) — #1A1D27', 'border: 1px solid var(--search-default-border) — #2E3140', 'icon color: var(--search-default-icon) — #8B8FA3'] },
-    { title: 'State: Filled',  changes: ['value has text — placeholder hidden', 'color: var(--search-filled-text) — #FFFFFF'] },
-    { title: 'State: Focus',   changes: ['border-color: var(--search-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'icon color: var(--search-focus-icon) — #60A5FA', 'outline: none'] }
+    { changes: ['background: var(--search-default-bg) — #1A1D27', 'border: 1px solid var(--search-default-border) — #2E3140', 'icon color: var(--search-default-icon) — #8B8FA3'] },
+    { changes: ['value has text — placeholder hidden', 'color: var(--search-filled-text) — #FFFFFF'] },
+    { changes: ['border-color: var(--search-focus-border) — #60A5FA', 'box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15)', 'icon color: var(--search-focus-icon) — #60A5FA', 'outline: none'] }
   ],
 
   'navitem': [
-    { title: 'State: Default',  changes: ['background: transparent', 'color: var(--text-secondary) — #8B8FA3'] },
-    { title: 'State: Hover',    changes: ['background: var(--bg-elevated) — #21242F', 'color: var(--text-primary) — #FFFFFF'] },
-    { title: 'State: Active',   changes: ['background: rgba(96, 165, 250, 0.08)', 'color: var(--accent-primary) — #60A5FA', '::before accent bar: left edge, width 3px, blue'] },
-    { title: 'State: Disabled', changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] },
-    { title: 'State: Focus',    changes: ['outline: 2px solid var(--accent-primary) — #60A5FA', 'background: var(--bg-elevated) — #21242F'] }
+    { changes: ['background: transparent', 'color: var(--text-secondary) — #8B8FA3'] },
+    { changes: ['background: var(--bg-elevated) — #21242F', 'color: var(--text-primary) — #FFFFFF'] },
+    { changes: ['background: rgba(96, 165, 250, 0.08)', 'color: var(--accent-primary) — #60A5FA', '::before accent bar: left edge, width 3px, blue'] },
+    { changes: ['opacity: 0.4', 'cursor: not-allowed', 'pointer-events: none'] },
+    { changes: ['outline: 2px solid var(--accent-primary) — #60A5FA', 'background: var(--bg-elevated) — #21242F'] }
   ],
 
   'dropdown': [
-    { title: 'State: Default', changes: ['background: var(--dropdown-trigger-default-bg) — #1A1D27', 'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'] },
-    { title: 'State: Hover',   changes: ['background: var(--dropdown-trigger-hover-bg) — #21242F', 'border-color: var(--dropdown-trigger-hover-border) — #3E4150'] },
-    { title: 'State: Open',    changes: ['border-color: var(--dropdown-trigger-open-border) — #60A5FA', '.dropdown-chevron: transform: rotate(180deg)', '.dropdown-menu: display: block'] }
+    { changes: ['background: var(--dropdown-trigger-default-bg) — #1A1D27', 'border: 1px solid var(--dropdown-trigger-default-border) — #2E3140'] },
+    { changes: ['background: var(--dropdown-trigger-hover-bg) — #21242F', 'border-color: var(--dropdown-trigger-hover-border) — #3E4150'] },
+    { changes: ['border-color: var(--dropdown-trigger-open-border) — #60A5FA', '.dropdown-chevron: transform: rotate(180deg)', '.dropdown-menu: display: block'] }
   ]
 
 };
@@ -3757,7 +3747,7 @@ function switchStateCode(componentId, index) {
       const infoEl = componentBlock.querySelector('.state-info');
       if (infoEl) {
         infoEl.innerHTML = `
-          <div class="state-info-name">${info.title}</div>
+          
           <div class="state-info-changes">
             ${info.changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
           </div>
@@ -3857,7 +3847,7 @@ function updateInfoPanel(infoId, title, changes) {
   const infoEl = document.getElementById(infoId);
   if (!infoEl) return;
   infoEl.innerHTML = `
-    <div class="state-info-name">${title}</div>
+    
     <div class="state-info-changes">
       ${changes.map(c => `<span class="state-info-change">${c}</span>`).join('')}
     </div>
