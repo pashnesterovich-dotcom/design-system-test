@@ -510,26 +510,31 @@ body {
 }
 
 /* Platform tabs */
+.platform-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 0;
+}
 .platform-tab {
-  padding: 7px 16px;
+  padding: 10px 20px;
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-8);
+  border: none;
+  border-bottom: 2px solid transparent;
   color: var(--text-secondary);
-  font-size: var(--font-size-13);
+  font-size: var(--font-size-14);
   font-family: inherit;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s;
+  margin-bottom: -1px;
 }
 .platform-tab:hover {
   color: var(--text-primary);
-  background: var(--bg-surface);
 }
 .platform-tab.active {
-  color: var(--text-primary);
-  background: var(--bg-surface);
-  border-color: var(--border-default);
+  color: var(--accent-primary);
+  border-bottom-color: var(--accent-primary);
 }
 
 /* Primary download button — for lovable-theme.css */
@@ -2109,17 +2114,17 @@ body {
     <!-- Platform Tabs -->
     <div id="integrationBlock" style="margin-top: var(--spacing-24);">
 
-      <!-- Tabs -->
-      <div style="display: flex; gap: 4px; margin-bottom: var(--spacing-16);">
-        <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
-        <button class="platform-tab" data-platform="react" onclick="switchPlatform('react')">React + Tailwind</button>
-        <button class="platform-tab" data-platform="css" onclick="switchPlatform('css')">CSS / Vanilla</button>
-        <button class="platform-tab" data-platform="ios" onclick="switchPlatform('ios')">iOS (Swift)</button>
-        <button class="platform-tab" data-platform="android" onclick="switchPlatform('android')">Android</button>
-      </div>
-
       <!-- Platform Content -->
       <div style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-12); overflow: hidden;">
+
+        <!-- Tabs -->
+        <div class="platform-tabs">
+          <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
+          <button class="platform-tab" data-platform="react" onclick="switchPlatform('react')">React</button>
+          <button class="platform-tab" data-platform="css" onclick="switchPlatform('css')">CSS</button>
+          <button class="platform-tab" data-platform="ios" onclick="switchPlatform('ios')">iOS</button>
+          <button class="platform-tab" data-platform="android" onclick="switchPlatform('android')">Android</button>
+        </div>
 
         <!-- Files row -->
         <div style="padding: 16px 20px; border-bottom: 1px solid var(--border-default); display: flex; align-items: center; justify-content: space-between;">
