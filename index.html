@@ -2111,34 +2111,21 @@ body {
     <div class="hero-eyebrow">Design System v1.0</div>
     <h1>AI Manufactury · <span>Design System</span></h1>
     <p class="hero-subtitle">Интерактивная документация для разработчиков. Живые компоненты, токены и готовый код.</p>
-    <!-- Platform Tabs -->
-    <div id="integrationBlock" style="margin-top: var(--spacing-24);">
+    <!-- Integration Steps -->
+    <div style="margin-top: var(--spacing-32);">
 
-      <!-- Platform Content -->
-      <div style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-12); overflow: hidden;">
-
-        <!-- Tabs -->
-        <div class="platform-tabs">
-          <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
-          <button class="platform-tab" data-platform="react" onclick="switchPlatform('react')">React</button>
-          <button class="platform-tab" data-platform="css" onclick="switchPlatform('css')">CSS</button>
-          <button class="platform-tab" data-platform="ios" onclick="switchPlatform('ios')">iOS</button>
-          <button class="platform-tab" data-platform="android" onclick="switchPlatform('android')">Android</button>
-        </div>
-
-        <!-- Files row -->
-        <div style="padding: 16px 20px; border-bottom: 1px solid var(--border-default); display: flex; align-items: center; justify-content: space-between;">
-          <div id="platformFiles" class="download-buttons" style="margin: 0;"></div>
-          <button id="copyPromptBtn" onclick="copyPlatformPrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s, background 0.15s;" onmouseover="this.style.borderColor='var(--border-strong)';this.style.color='var(--text-primary)'" onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'">
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Copy Prompt
-          </button>
-        </div>
-
-        <!-- Prompt -->
-        <pre id="platformPrompt" style="margin: 0; padding: 20px; font-size: var(--font-size-12); line-height: 1.7; color: var(--text-secondary); white-space: pre-wrap; max-height: 300px; overflow-y: auto; background: var(--bg-app);"></pre>
-
+      <!-- Platform Tabs -->
+      <div class="platform-tabs" style="border-bottom: none; margin-bottom: var(--spacing-16);">
+        <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
+        <button class="platform-tab" data-platform="react" onclick="switchPlatform('react')">React</button>
+        <button class="platform-tab" data-platform="css" onclick="switchPlatform('css')">CSS</button>
+        <button class="platform-tab" data-platform="ios" onclick="switchPlatform('ios')">iOS</button>
+        <button class="platform-tab" data-platform="android" onclick="switchPlatform('android')">Android</button>
       </div>
+
+      <!-- Steps container -->
+      <div id="stepsContainer"></div>
+
     </div>
 
   </div>
@@ -3539,160 +3526,222 @@ const REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
 const RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
 
 const downloadIcon = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+const copyIcon = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+const linkIcon = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
+/* ============================================================
+   PLATFORM DATA — steps for each platform
+   ============================================================ */
 const PLATFORMS = {
-  lovable: {
-    hasPrompt: true,
-    files: [
-      { name: 'lovable-theme.css', path: 'lovable-theme.css' },
-      { name: 'AGENTS.md', path: 'AGENTS.md' },
-      { name: 'tokens.json', path: 'tokens.json' },
-    ],
-    prompt: `Apply the ${DS_CONFIG.name} Design System. Replace src/index.css with ${RAW_URL}/lovable-theme.css — then update EVERY component file in src/components/ui/ as specified below.
 
-GLOBAL: font ${DS_CONFIG.font}, default radius 8px, NO opacity hover (/90 /80) — use exact colors.
+  lovable: [
+    {
+      title: 'Project Knowledge',
+      desc: 'Open Lovable project → Settings → Knowledge. Paste this text. It will apply to EVERY generation.',
+      type: 'prompt',
+      prompt: `## Design System: ${DS_CONFIG.name}
+
+### Colors (CSS variables, never hardcode)
+- Primary: #60A5FA (blue), hover #3B82F6, pressed #2563EB
+- Success: #34D399 (green), Warning: #FBBF24, Error: #F87171
+- Background: #13151E (app), #1A1D27 (surface), #21242F (elevated)
+- Text: #FFFFFF (primary), #8B8FA3 (secondary), #4B5563 (disabled)
+- Border: #2E3140 (default), #3E4150 (hover)
+
+### Typography
+- Font: ${DS_CONFIG.font}, weights 400-700
+- Scale: 12/13/14/16/18/20/24/30/36px
+
+### Components
+- Buttons: rounded-lg, exact hover colors (NO /90 /80 opacity)
+- Cards: rounded-xl (12px), border #2E3140, shadow-sm
+- Inputs: bg-[#1A1D27], border #2E3140, focus border #60A5FA
+- Switch: rounded-full (pill), checked = GREEN #34D399, NOT blue
+- Badge: rounded-sm (2px), NOT rounded-full
+- Table headers: 12px uppercase tracking-wider text-[#8B8FA3]
+
+### Anti-patterns (NEVER do)
+- No opacity hover modifiers (/90, /80) — use exact hex colors
+- No square switches — always rounded-full
+- disabled:opacity-100 — use exact disabled colors, not opacity fade
+- No inline styles, no hardcoded hex outside tokens`,
+    },
+    {
+      title: 'Replace Theme',
+      desc: 'Copy this prompt → paste in Lovable chat. It will download and apply the CSS theme file.',
+      type: 'prompt',
+      prompt: `Replace the ENTIRE content of src/index.css with the file from this URL:
+${RAW_URL}/lovable-theme.css
+
+This file sets all CSS variables for the ${DS_CONFIG.name} Design System: colors (dark + light theme), border radius, font import (${DS_CONFIG.font}), spacing, shadows, scrollbar, and animations. Do not modify the file, paste it as-is.`,
+    },
+    {
+      title: 'Update Components',
+      desc: 'Copy this prompt → paste in Lovable chat. It will restyle every shadcn/ui component.',
+      type: 'prompt',
+      prompt: `Update EVERY shadcn/ui component in src/components/ui/ to match the ${DS_CONFIG.name} Design System. Use exact hex colors, NO opacity modifiers.
 
 BUTTON (button.tsx):
-variant default: bg-[#60A5FA] text-[#13151E] hover:bg-[#3B82F6] active:bg-[#2563EB] active:text-white disabled:bg-[#1A1D27] disabled:text-[#4B5563] disabled:opacity-100
-variant secondary: bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] hover:border-[#3E4150] disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
-variant ghost: bg-transparent text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white
-variant outline: bg-transparent text-white border border-[#2E3140] hover:bg-[#1A1D27] hover:border-[#3E4150]
-variant destructive: bg-[#F87171] text-white hover:bg-[#EF4444]
-All buttons: rounded-lg font-medium text-sm transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[#60A5FA]/30
+default: bg-[#60A5FA] text-[#13151E] hover:bg-[#3B82F6] active:bg-[#2563EB] active:text-white disabled:bg-[#1A1D27] disabled:text-[#4B5563] disabled:opacity-100
+secondary: bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] hover:border-[#3E4150]
+ghost: bg-transparent text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white
+outline: bg-transparent text-white border border-[#2E3140] hover:bg-[#1A1D27]
+destructive: bg-[#F87171] text-white hover:bg-[#EF4444]
+All: rounded-lg font-medium text-sm transition-all duration-150
 
-INPUT (input.tsx):
-bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg placeholder:text-[#4B5563]
-hover:bg-[#21242F] hover:border-[#3E4150]
-focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/15
-aria-invalid:border-[#F87171]
-disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
-
-TEXTAREA (textarea.tsx): same as input + min-h-[80px] resize-y
-
-SELECT (select.tsx):
-Trigger: bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg, hover:bg-[#21242F], data-[state=open]:border-[#60A5FA]
-Content: bg-[#21242F] border border-[#2E3140] rounded-lg shadow-lg
-Item: text-white text-sm, data-[highlighted]:bg-[#2E3140], data-[state=checked]:text-[#60A5FA]
-
-SWITCH (switch.tsx):
-CRITICAL: rounded-full (pill, NEVER square). w-11 h-6. Thumb: h-5 w-5 rounded-full bg-white.
-Unchecked: bg-[#2E3140]. Checked: bg-[#34D399] (GREEN, not blue!).
-
-CHECKBOX (checkbox.tsx): border border-[#2E3140] rounded hover:border-[#3E4150], checked: bg-[#60A5FA] border-[#60A5FA] text-[#13151E]
-
-CARD (card.tsx): rounded-xl border border-[#2E3140] shadow-sm hover:border-[#3E4150] p-6
-
-BADGE (badge.tsx): rounded-sm (2px NOT rounded-full) text-[13px] font-medium px-2 py-0.5
-default: bg-primary/15 text-primary, success: bg-[#34D399]/15 text-[#34D399], warning: bg-[#FBBF24]/15 text-[#FBBF24], destructive: bg-[#F87171]/15 text-[#F87171]
-
-TABLE (table.tsx):
-Header: text-[12px] font-semibold uppercase tracking-wider text-[#8B8FA3] px-4 py-3 border-b border-[#2E3140]
-Row: hover:bg-[#1A1D27], cell px-4 py-3 text-sm border-b border-[#2E3140]
-
-TABS (tabs.tsx): list border-b border-[#2E3140] bg-transparent, trigger text-[#8B8FA3] hover:text-white, active: text-[#60A5FA] border-b-2 border-[#60A5FA]
-
-DIALOG (dialog.tsx): overlay bg-black/60 backdrop-blur-sm, content bg-[#21242F] border border-[#2E3140] rounded-xl
-SHEET: bg-[#1A1D27] border-[#2E3140]
-TOOLTIP: bg-[#21242F] text-white text-xs border border-[#2E3140] rounded px-2 py-1
-DROPDOWN-MENU: content bg-[#21242F] border border-[#2E3140] rounded-lg, item focus:bg-[#2E3140]
-POPOVER: bg-[#21242F] border border-[#2E3140] rounded-lg
+INPUT (input.tsx): bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg placeholder:text-[#4B5563] hover:bg-[#21242F] hover:border-[#3E4150] focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/15 disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
+TEXTAREA: same as input + min-h-[80px] resize-y
+SELECT trigger: bg-[#1A1D27] border border-[#2E3140] hover:bg-[#21242F] data-[state=open]:border-[#60A5FA]. Content: bg-[#21242F] border border-[#2E3140]. Item hover: bg-[#2E3140], selected text: #60A5FA
+SWITCH: CRITICAL rounded-full (pill). w-11 h-6. Unchecked: bg-[#2E3140]. Checked: bg-[#34D399] GREEN. Thumb: rounded-full bg-white
+CHECKBOX: border border-[#2E3140] rounded, checked: bg-[#60A5FA] text-[#13151E]
+CARD: rounded-xl border border-[#2E3140] shadow-sm hover:border-[#3E4150] p-6
+BADGE: rounded-sm text-[13px] px-2 py-0.5. Variants: default bg-primary/15, success bg-[#34D399]/15, warning bg-[#FBBF24]/15, destructive bg-[#F87171]/15
+TABLE: header text-[12px] uppercase tracking-wider text-[#8B8FA3] border-b border-[#2E3140], row hover:bg-[#1A1D27]
+TABS: list border-b border-[#2E3140], trigger text-[#8B8FA3] hover:text-white, active text-[#60A5FA] border-b-2 border-[#60A5FA]
+DIALOG: overlay bg-black/60 backdrop-blur-sm, content bg-[#21242F] border border-[#2E3140] rounded-xl
+TOOLTIP: bg-[#21242F] text-xs border border-[#2E3140] rounded px-2 py-1
+DROPDOWN-MENU: content bg-[#21242F] border border-[#2E3140], item focus:bg-[#2E3140]
 SEPARATOR: bg-[#2E3140]
-PROGRESS: track bg-[#2E3140] rounded-full, fill bg-[#60A5FA] rounded-full
-AVATAR: rounded-full, fallback bg-[#21242F] text-[#8B8FA3]
-SKELETON: bg-[#21242F] animate-pulse
-LABEL: text-[13px] font-medium text-white
+LABEL: text-[13px] font-medium text-white`,
+    },
+    {
+      title: 'Sidebar & Layout',
+      desc: 'If your project has a sidebar. Copy → paste in Lovable chat.',
+      type: 'prompt',
+      prompt: `Update the sidebar and layout to match the ${DS_CONFIG.name} Design System:
 
-SIDEBAR: bg-[#1A1D27] border-r border-[#2E3140], nav item text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg px-3 py-2 text-sm, active: text-white bg-[#60A5FA]/10, section header: text-[11px] uppercase tracking-widest text-[#4B5563]`,
-  },
+SIDEBAR:
+- Background: bg-[#1A1D27], border-r border-[#2E3140]
+- Nav item default: text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg px-3 py-2 text-sm transition-colors
+- Nav item active: text-white bg-[#60A5FA]/10 font-medium
+- Section header: text-[11px] uppercase tracking-widest text-[#4B5563] font-semibold px-3 py-2
+- Dividers: border-t border-[#2E3140]
 
-  react: {
-    hasPrompt: false,
-    files: [
-      { name: 'index.css', path: 'index.css' },
-      { name: 'tailwind.config.ts', path: 'tailwind.config.ts' },
-      { name: 'tokens.json', path: 'tokens.json' },
-    ],
-    github: REPO_URL,
-    desc: 'Download files and import into your React + Tailwind project. index.css goes into global styles, tailwind.config.ts extends your theme.',
-  },
+LAYOUT:
+- Body background: bg-[#13151E]
+- Content max-width: 1200px, padding 24-32px
+- Card grid gap: 16px
+- Section gap: 32-48px
 
-  css: {
-    hasPrompt: false,
-    files: [
-      { name: 'index.css', path: 'index.css' },
-      { name: 'tokens.json', path: 'tokens.json' },
-    ],
-    github: REPO_URL,
-    desc: 'Download index.css and add to your project via &lt;link&gt; tag or @import. All tokens available as CSS custom properties: var(--bg-surface), var(--accent-primary), etc.',
-  },
+MICRO-INTERACTIONS:
+- Cards: hover:border-[#3E4150] hover:shadow-md transition-all duration-200
+- Buttons: active:scale-[0.98] transition-transform
+- All transitions: duration-150 ease cubic-bezier(0.4, 0, 0.2, 1)`,
+    },
+  ],
 
-  ios: {
-    hasPrompt: false,
-    files: [
-      { name: 'tokens.json', path: 'tokens.json' },
-    ],
-    github: REPO_URL + '/tree/main',
-    desc: 'Download tokens.json and generate Swift Color extensions, spacing and radius constants for SwiftUI.',
-  },
+  react: [
+    {
+      title: 'Files',
+      desc: 'Download these files and add to your project.',
+      type: 'files',
+      files: [
+        { name: 'index.css', path: 'index.css' },
+        { name: 'tailwind.config.ts', path: 'tailwind.config.ts' },
+        { name: 'tokens.json', path: 'tokens.json' },
+      ],
+      github: REPO_URL,
+    },
+  ],
 
-  android: {
-    hasPrompt: false,
-    files: [
-      { name: 'tokens.json', path: 'tokens.json' },
-    ],
-    github: REPO_URL + '/tree/main',
-    desc: 'Download tokens.json and generate Compose Material3 theme, Color.kt and dimens for Android.',
-  },
+  css: [
+    {
+      title: 'Files',
+      desc: 'Download index.css and link it in your HTML. All tokens available as var(--bg-surface), var(--accent-primary), etc.',
+      type: 'files',
+      files: [
+        { name: 'index.css', path: 'index.css' },
+        { name: 'tokens.json', path: 'tokens.json' },
+      ],
+      github: REPO_URL,
+    },
+  ],
+
+  ios: [
+    {
+      title: 'Files',
+      desc: 'Download tokens.json and generate Swift Color extensions, spacing and radius constants.',
+      type: 'files',
+      files: [{ name: 'tokens.json', path: 'tokens.json' }],
+      github: REPO_URL,
+    },
+  ],
+
+  android: [
+    {
+      title: 'Files',
+      desc: 'Download tokens.json and generate Compose Material3 theme, colors and dimensions.',
+      type: 'files',
+      files: [{ name: 'tokens.json', path: 'tokens.json' }],
+      github: REPO_URL,
+    },
+  ],
 };
 
-let currentPlatform = 'lovable';
-
+/* ============================================================
+   RENDER
+   ============================================================ */
 function switchPlatform(platform) {
-  currentPlatform = platform;
   document.querySelectorAll('.platform-tab').forEach(t => {
     t.classList.toggle('active', t.dataset.platform === platform);
   });
 
-  const p = PLATFORMS[platform];
-  if (!p) return;
+  const steps = PLATFORMS[platform];
+  if (!steps) return;
 
-  // Update files
-  const filesEl = document.getElementById('platformFiles');
-  const fileButtons = p.files.map(f =>
-    '<a class="download-btn" href="./' + f.path + '" download="' + f.name + '">' + downloadIcon + ' ' + f.name + '</a>'
-  ).join('');
+  const container = document.getElementById('stepsContainer');
+  container.innerHTML = steps.map((step, i) => {
+    const num = steps.length > 1 ? `<span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:9999px;background:var(--bg-elevated);color:var(--text-secondary);font-size:12px;font-weight:600;flex-shrink:0;">${i + 1}</span>` : '';
 
-  // GitHub link for non-prompt platforms
-  const ghLink = p.github
-    ? '<a class="download-btn" href="' + p.github + '" target="_blank" style="color:var(--text-primary)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> GitHub</a>'
-    : '';
+    if (step.type === 'prompt') {
+      return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:var(--radius-12);overflow:hidden;margin-bottom:12px;">
+          <div style="padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-default);">
+            <div style="display:flex;align-items:center;gap:10px;">
+              ${num}
+              <div>
+                <div style="font-size:14px;font-weight:600;color:var(--text-primary);">${step.title}</div>
+                <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">${step.desc}</div>
+              </div>
+            </div>
+            <button onclick="copyStepPrompt(${i})" class="copy-step-btn" data-step="${i}" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-default);border-radius:var(--radius-8);font-size:12px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all 0.15s;">
+              ${copyIcon} Copy
+            </button>
+          </div>
+          <pre class="step-prompt" data-step="${i}" style="margin:0;padding:16px 20px;font-size:12px;line-height:1.6;color:var(--text-secondary);white-space:pre-wrap;max-height:240px;overflow-y:auto;background:var(--bg-app);">${step.prompt}</pre>
+        </div>`;
+    }
 
-  filesEl.innerHTML = fileButtons + ghLink;
+    if (step.type === 'files') {
+      const fileLinks = step.files.map(f =>
+        `<a class="download-btn" href="./${f.path}" download="${f.name}">${downloadIcon} ${f.name}</a>`
+      ).join('');
+      const ghLink = step.github ? `<a class="download-btn" href="${step.github}" target="_blank" style="color:var(--text-primary)">${linkIcon} GitHub</a>` : '';
 
-  // Copy button — only for Lovable
-  const copyBtn = document.getElementById('copyPromptBtn');
-  copyBtn.style.display = p.hasPrompt ? 'inline-flex' : 'none';
+      return `
+        <div style="background:var(--bg-surface);border:1px solid var(--border-default);border-radius:var(--radius-12);padding:20px;margin-bottom:12px;">
+          <div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">${step.title}</div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-bottom:16px;">${step.desc}</div>
+          <div class="download-buttons" style="margin:0;">${fileLinks}${ghLink}</div>
+        </div>`;
+    }
 
-  // Prompt area — show prompt or description
-  const promptEl = document.getElementById('platformPrompt');
-  if (p.hasPrompt) {
-    promptEl.textContent = p.prompt;
-    promptEl.style.maxHeight = '300px';
-  } else {
-    promptEl.textContent = p.desc.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-    promptEl.style.maxHeight = '80px';
-  }
+    return '';
+  }).join('');
 }
 
-function copyPlatformPrompt() {
-  const text = document.getElementById('platformPrompt').textContent;
-  navigator.clipboard.writeText(text).then(() => showToast('Prompt copied!'));
+function copyStepPrompt(index) {
+  const el = document.querySelector(`.step-prompt[data-step="${index}"]`);
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => showToast('Copied!'));
 }
 
-// Init on load
+// Keep old function name for compatibility
+function copyLovablePrompt() { copyStepPrompt(0); }
+function copyPlatformPrompt() { copyStepPrompt(0); }
+
+// Init
 document.addEventListener('DOMContentLoaded', () => switchPlatform('lovable'));
-
-function copyLovablePrompt() { copyPlatformPrompt(); }
 
 function showToast(msg) {
   const toast = document.getElementById('copyToast');
