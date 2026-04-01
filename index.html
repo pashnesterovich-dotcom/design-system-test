@@ -2111,11 +2111,11 @@ body {
 
       <!-- Tabs -->
       <div style="display: flex; gap: 4px; margin-bottom: var(--spacing-16);">
-        <button class="platform-tab active" onclick="switchPlatform('lovable')">Lovable</button>
-        <button class="platform-tab" onclick="switchPlatform('react')">React + Tailwind</button>
-        <button class="platform-tab" onclick="switchPlatform('css')">CSS / Vanilla</button>
-        <button class="platform-tab" onclick="switchPlatform('ios')">iOS (Swift)</button>
-        <button class="platform-tab" onclick="switchPlatform('android')">Android</button>
+        <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
+        <button class="platform-tab" data-platform="react" onclick="switchPlatform('react')">React + Tailwind</button>
+        <button class="platform-tab" data-platform="css" onclick="switchPlatform('css')">CSS / Vanilla</button>
+        <button class="platform-tab" data-platform="ios" onclick="switchPlatform('ios')">iOS (Swift)</button>
+        <button class="platform-tab" data-platform="android" onclick="switchPlatform('android')">Android</button>
       </div>
 
       <!-- Platform Content -->
@@ -3730,10 +3730,12 @@ let currentPlatform = 'lovable';
 
 function switchPlatform(platform) {
   currentPlatform = platform;
-  document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
+  document.querySelectorAll('.platform-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.platform === platform);
+  });
 
   const p = PLATFORMS[platform];
+  if (!p) return;
 
   // Update files
   const filesEl = document.getElementById('platformFiles');
