@@ -509,6 +509,29 @@ body {
   flex-shrink: 0;
 }
 
+/* Platform tabs */
+.platform-tab {
+  padding: 7px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  color: var(--text-secondary);
+  font-size: var(--font-size-13);
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.platform-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+.platform-tab.active {
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border-color: var(--border-default);
+}
+
 /* Primary download button — for lovable-theme.css */
 .download-btn-primary {
   background: var(--accent-primary);
@@ -2083,53 +2106,34 @@ body {
     <div class="hero-eyebrow">Design System v1.0</div>
     <h1>AI Manufactury · <span>Design System</span></h1>
     <p class="hero-subtitle">Интерактивная документация для разработчиков. Живые компоненты, токены и готовый код.</p>
-    <div class="download-buttons">
-      <a class="download-btn" href="./lovable-theme.css" download="lovable-theme.css">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        lovable-theme.css
-      </a>
-      <a class="download-btn" href="./tokens.json" download="tokens.json">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        tokens.json
-      </a>
-      <a class="download-btn" href="./index.css" download="index.css">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        index.css
-      </a>
-      <a class="download-btn" href="./tailwind.config.ts" download="tailwind.config.ts">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        tailwind.config.ts
-      </a>
-    </div>
+    <!-- Platform Tabs -->
+    <div id="integrationBlock" style="margin-top: var(--spacing-24);">
 
-    <!-- Lovable Prompt -->
-    <div style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-12); padding: var(--spacing-24); margin-top: var(--spacing-24);">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-12);">
-        <div style="font-size: var(--font-size-14); font-weight: 600; color: var(--text-primary);">Lovable Prompt</div>
-        <button onclick="copyLovablePrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s;">
-          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy
-        </button>
+      <!-- Tabs -->
+      <div style="display: flex; gap: 4px; margin-bottom: var(--spacing-16);">
+        <button class="platform-tab active" onclick="switchPlatform('lovable')">Lovable</button>
+        <button class="platform-tab" onclick="switchPlatform('react')">React + Tailwind</button>
+        <button class="platform-tab" onclick="switchPlatform('css')">CSS / Vanilla</button>
+        <button class="platform-tab" onclick="switchPlatform('ios')">iOS (Swift)</button>
+        <button class="platform-tab" onclick="switchPlatform('android')">Android</button>
       </div>
-      <pre id="lovablePrompt" style="background: var(--bg-app); border: 1px solid var(--border-default); border-radius: var(--radius-8); padding: var(--spacing-16); font-size: var(--font-size-12); line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; max-height: 240px; overflow-y: auto; margin: 0;">Apply the AI Manufactury Design System to this project.
 
-Read the full design system specification from this GitHub repo:
-https://github.com/pashnesterovich-dotcom/design-system-test
+      <!-- Platform Content -->
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-12); overflow: hidden;">
 
-Step 1: Replace the ENTIRE content of src/index.css with:
-https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/lovable-theme.css
+        <!-- Files row -->
+        <div style="padding: 16px 20px; border-bottom: 1px solid var(--border-default); display: flex; align-items: center; justify-content: space-between;">
+          <div id="platformFiles" class="download-buttons" style="margin: 0;"></div>
+          <button onclick="copyPlatformPrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s, background 0.15s;" onmouseover="this.style.borderColor='var(--border-strong)';this.style.color='var(--text-primary)'" onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt
+          </button>
+        </div>
 
-Step 2: Read the component guide and update every shadcn/ui component in src/components/ui/:
-https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/AGENTS.md
+        <!-- Prompt -->
+        <pre id="platformPrompt" style="margin: 0; padding: 20px; font-size: var(--font-size-12); line-height: 1.7; color: var(--text-secondary); white-space: pre-wrap; max-height: 300px; overflow-y: auto; background: var(--bg-app);"></pre>
 
-Follow every instruction in AGENTS.md exactly. Key rules:
-- Use EXACT hex colors for hover/focus/active/disabled states — NO opacity modifiers (/90, /80)
-- Switch checked = green #34D399, shape = rounded-full (pill). NEVER square, NEVER blue.
-- Card radius = rounded-xl (12px). Badge radius = rounded-sm (2px).
-- Input = filled style with bg-[#1A1D27], focus ring #60A5FA
-- Sidebar active item = white text + bg-[#60A5FA]/10
-- All disabled states: opacity-100, exact token colors
-- Font: Inter only. Default border-radius: 8px.</pre>
+      </div>
     </div>
 
   </div>
@@ -3518,10 +3522,238 @@ function injectCodeColorSwatches() {
 /* ============================================================
    TOAST
    ============================================================ */
-function copyLovablePrompt() {
-  const text = document.getElementById('lovablePrompt').textContent;
-  navigator.clipboard.writeText(text).then(() => showToast('Lovable prompt copied!'));
+/* ============================================================
+   PROJECT CONFIG — change these when cloning template
+   ============================================================ */
+const DS_CONFIG = {
+  name: 'AI Manufactury',
+  repo: 'pashnesterovich-dotcom/design-system-test',
+  font: 'Inter',
+};
+const REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
+const RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
+
+const downloadIcon = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
+const PLATFORMS = {
+  lovable: {
+    files: [
+      { name: 'lovable-theme.css', path: 'lovable-theme.css' },
+      { name: 'AGENTS.md', path: 'AGENTS.md' },
+      { name: 'tokens.json', path: 'tokens.json' },
+    ],
+    prompt: `Apply the ${DS_CONFIG.name} Design System to this project.
+
+Read the full design system specification and component guide from this GitHub repo:
+${REPO_URL}
+
+Step 1: Replace the ENTIRE content of src/index.css with:
+${RAW_URL}/lovable-theme.css
+
+Step 2: Read the component guide and update every shadcn/ui component in src/components/ui/:
+${RAW_URL}/AGENTS.md
+
+Follow every instruction in AGENTS.md exactly. Key rules:
+- Use EXACT hex colors for hover/focus/active/disabled states — NO opacity modifiers (/90, /80)
+- Switch checked = green #34D399, shape = rounded-full (pill). NEVER square, NEVER blue.
+- Card radius = rounded-xl (12px). Badge radius = rounded-sm (2px).
+- Input = filled style with dark bg, focus border accent-primary with ring
+- Sidebar active item = white text + accent-primary/10 background
+- All disabled states: opacity-100, exact token colors
+- Font: ${DS_CONFIG.font} only. Default border-radius: 8px.`,
+  },
+
+  react: {
+    files: [
+      { name: 'index.css', path: 'index.css' },
+      { name: 'tailwind.config.ts', path: 'tailwind.config.ts' },
+      { name: 'tokens.json', path: 'tokens.json' },
+    ],
+    prompt: `Integrate the ${DS_CONFIG.name} Design System into a React + Tailwind project.
+
+GitHub repo: ${REPO_URL}
+
+Step 1: Download and replace your tailwind.config.ts with:
+${RAW_URL}/tailwind.config.ts
+
+Step 2: Import the CSS custom properties file into your global styles (main.tsx or App.tsx):
+${RAW_URL}/index.css
+
+Step 3: Use token names as Tailwind classes:
+  - Backgrounds: bg-bg-app, bg-bg-surface, bg-bg-elevated
+  - Text: text-text-primary, text-text-secondary
+  - Borders: border-border-default, border-border-strong
+  - Accent: text-accent-primary, bg-accent-success
+  - Spacing: p-16 (16px), gap-8 (8px), m-24 (24px)
+  - Radius: rounded-lg (8px), rounded-xl (12px)
+
+Step 4: For component-specific styling, reference:
+${RAW_URL}/AGENTS.md
+
+Font: ${DS_CONFIG.font} (load from Google Fonts).
+All color tokens are defined as CSS custom properties in index.css.`,
+  },
+
+  css: {
+    files: [
+      { name: 'index.css', path: 'index.css' },
+      { name: 'tokens.json', path: 'tokens.json' },
+    ],
+    prompt: `Integrate the ${DS_CONFIG.name} Design System into your project using pure CSS.
+
+Step 1: Add the CSS file to your HTML:
+<link rel="stylesheet" href="${RAW_URL}/index.css">
+
+Or copy the content of index.css into your global stylesheet.
+
+Step 2: Use CSS custom properties anywhere:
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-8);
+  padding: var(--spacing-16);
+
+  /* Button */
+  background: var(--btn-primary-default-bg);
+  color: var(--btn-primary-default-text);
+
+  /* On hover */
+  background: var(--btn-primary-hover-bg);
+
+Step 3: For dark/light theme switching, toggle [data-theme="light"] on <html>.
+
+Full token reference: ${REPO_URL}
+Font: ${DS_CONFIG.font} — load via Google Fonts.`,
+  },
+
+  ios: {
+    files: [
+      { name: 'tokens.json', path: 'tokens.json' },
+    ],
+    prompt: `Integrate the ${DS_CONFIG.name} Design System into an iOS (SwiftUI) project.
+
+Design tokens source: ${RAW_URL}/tokens.json
+
+Step 1: Create a Colors.swift file with Color extensions:
+
+  import SwiftUI
+
+  extension Color {
+    static let bgApp = Color(hex: "#13151E")
+    static let bgSurface = Color(hex: "#1A1D27")
+    static let bgElevated = Color(hex: "#21242F")
+    static let textPrimary = Color.white
+    static let textSecondary = Color(hex: "#8B8FA3")
+    static let borderDefault = Color(hex: "#2E3140")
+    static let accentPrimary = Color(hex: "#60A5FA")
+    static let accentSuccess = Color(hex: "#34D399")
+    static let accentWarning = Color(hex: "#FBBF24")
+    static let accentError = Color(hex: "#F87171")
+  }
+
+Step 2: Create spacing constants:
+  enum Spacing {
+    static let xs: CGFloat = 4
+    static let sm: CGFloat = 8
+    static let md: CGFloat = 12
+    static let lg: CGFloat = 16
+    static let xl: CGFloat = 24
+    static let xxl: CGFloat = 32
+  }
+
+Step 3: Create radius constants:
+  enum Radius {
+    static let sm: CGFloat = 4
+    static let md: CGFloat = 8
+    static let lg: CGFloat = 12
+    static let xl: CGFloat = 16
+    static let full: CGFloat = 9999
+  }
+
+Step 4: Apply in SwiftUI views:
+  .background(Color.bgSurface)
+  .foregroundColor(.textPrimary)
+  .cornerRadius(Radius.md)
+  .padding(Spacing.lg)
+
+Font: ${DS_CONFIG.font} — add via Info.plist or Swift Package.
+Full spec: ${REPO_URL}`,
+  },
+
+  android: {
+    files: [
+      { name: 'tokens.json', path: 'tokens.json' },
+    ],
+    prompt: `Integrate the ${DS_CONFIG.name} Design System into an Android (Jetpack Compose) project.
+
+Design tokens source: ${RAW_URL}/tokens.json
+
+Step 1: Create a Color.kt file:
+
+  package com.yourapp.ui.theme
+
+  import androidx.compose.ui.graphics.Color
+
+  val BgApp = Color(0xFF13151E)
+  val BgSurface = Color(0xFF1A1D27)
+  val BgElevated = Color(0xFF21242F)
+  val TextPrimary = Color(0xFFFFFFFF)
+  val TextSecondary = Color(0xFF8B8FA3)
+  val BorderDefault = Color(0xFF2E3140)
+  val AccentPrimary = Color(0xFF60A5FA)
+  val AccentSuccess = Color(0xFF34D399)
+  val AccentWarning = Color(0xFFFBBF24)
+  val AccentError = Color(0xFFF87171)
+
+Step 2: Create Theme.kt with Material3:
+
+  private val DarkColorScheme = darkColorScheme(
+    primary = AccentPrimary,
+    onPrimary = BgApp,
+    secondary = BgSurface,
+    background = BgApp,
+    surface = BgSurface,
+    error = AccentError,
+    outline = BorderDefault,
+  )
+
+Step 3: Create spacing and radius:
+  object Spacing { val xs = 4.dp; val sm = 8.dp; val md = 12.dp; val lg = 16.dp; val xl = 24.dp }
+  object Radius { val sm = 4.dp; val md = 8.dp; val lg = 12.dp; val full = 9999.dp }
+
+Font: ${DS_CONFIG.font} — add via Google Fonts dependency.
+Full spec: ${REPO_URL}`,
+  },
+};
+
+let currentPlatform = 'lovable';
+
+function switchPlatform(platform) {
+  currentPlatform = platform;
+  document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const p = PLATFORMS[platform];
+
+  // Update files
+  const filesEl = document.getElementById('platformFiles');
+  filesEl.innerHTML = p.files.map(f =>
+    '<a class="download-btn" href="./' + f.path + '" download="' + f.name + '">' + downloadIcon + ' ' + f.name + '</a>'
+  ).join('');
+
+  // Update prompt
+  document.getElementById('platformPrompt').textContent = p.prompt;
 }
+
+function copyPlatformPrompt() {
+  const text = document.getElementById('platformPrompt').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Prompt copied!'));
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => switchPlatform('lovable'));
+
+function copyLovablePrompt() { copyPlatformPrompt(); }
 
 function showToast(msg) {
   const toast = document.getElementById('copyToast');
