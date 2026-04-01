@@ -2101,6 +2101,37 @@ body {
         tailwind.config.ts
       </a>
     </div>
+
+    <!-- Lovable Prompt -->
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-12); padding: var(--spacing-24); margin-top: var(--spacing-24);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-12);">
+        <div style="font-size: var(--font-size-14); font-weight: 600; color: var(--text-primary);">Lovable Prompt</div>
+        <button onclick="copyLovablePrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s;">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <pre id="lovablePrompt" style="background: var(--bg-app); border: 1px solid var(--border-default); border-radius: var(--radius-8); padding: var(--spacing-16); font-size: var(--font-size-12); line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; max-height: 240px; overflow-y: auto; margin: 0;">Apply the AI Manufactury Design System to this project.
+
+Read the full design system specification from this GitHub repo:
+https://github.com/pashnesterovich-dotcom/design-system-test
+
+Step 1: Replace the ENTIRE content of src/index.css with:
+https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/lovable-theme.css
+
+Step 2: Read the component guide and update every shadcn/ui component in src/components/ui/:
+https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/AGENTS.md
+
+Follow every instruction in AGENTS.md exactly. Key rules:
+- Use EXACT hex colors for hover/focus/active/disabled states — NO opacity modifiers (/90, /80)
+- Switch checked = green #34D399, shape = rounded-full (pill). NEVER square, NEVER blue.
+- Card radius = rounded-xl (12px). Badge radius = rounded-sm (2px).
+- Input = filled style with bg-[#1A1D27], focus ring #60A5FA
+- Sidebar active item = white text + bg-[#60A5FA]/10
+- All disabled states: opacity-100, exact token colors
+- Font: Inter only. Default border-radius: 8px.</pre>
+    </div>
+
   </div>
 
   <!-- =============================================
@@ -3367,39 +3398,6 @@ function toggleDropdown(id) {
     <div class="section-header">
       <h2 class="section-title">How to Use</h2>
       <span class="section-tag">Integration</span>
-    </div>
-
-    <!-- Lovable Prompt Box -->
-    <div style="background: var(--bg-surface); border: 1px solid var(--accent-primary); border-radius: var(--radius-12); padding: var(--spacing-24); margin-bottom: var(--spacing-32);">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-16);">
-        <div>
-          <div style="font-size: var(--font-size-18); font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Lovable Integration — Full Prompt</div>
-          <div style="font-size: var(--font-size-13); color: var(--text-secondary);">Copy this prompt into Lovable chat. It will restyle all components automatically.</div>
-        </div>
-        <button onclick="copyLovablePrompt()" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--accent-primary); color: var(--bg-app); border: none; border-radius: var(--radius-8); font-size: var(--font-size-13); font-weight: 600; cursor: pointer; font-family: inherit;">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Prompt
-        </button>
-      </div>
-      <pre id="lovablePrompt" style="background: var(--bg-app); border: 1px solid var(--border-default); border-radius: var(--radius-8); padding: var(--spacing-16); font-size: var(--font-size-12); line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; max-height: 280px; overflow-y: auto; margin: 0;">Apply the AI Manufactury Design System to this project.
-
-Read the full design system specification from this GitHub repo:
-https://github.com/pashnesterovich-dotcom/design-system-test
-
-Step 1: Replace the ENTIRE content of src/index.css with:
-https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/lovable-theme.css
-
-Step 2: Read the component guide and update every shadcn/ui component in src/components/ui/:
-https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/AGENTS.md
-
-Follow every instruction in AGENTS.md exactly. Key rules:
-- Use EXACT hex colors for hover/focus/active/disabled states — NO opacity modifiers (/90, /80)
-- Switch checked = green #34D399, shape = rounded-full (pill). NEVER square, NEVER blue.
-- Card radius = rounded-xl (12px). Badge radius = rounded-sm (2px).
-- Input = filled style with bg-[#1A1D27], focus ring #60A5FA
-- Sidebar active item = white text + bg-[#60A5FA]/10
-- All disabled states: opacity-100, exact token colors
-- Font: Inter only. Default border-radius: 8px.</pre>
     </div>
 
     <div class="how-grid">
