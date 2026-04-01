@@ -3369,12 +3369,51 @@ function toggleDropdown(id) {
       <span class="section-tag">Integration</span>
     </div>
 
+    <!-- Lovable Prompt Box -->
+    <div style="background: var(--bg-surface); border: 1px solid var(--accent-primary); border-radius: var(--radius-12); padding: var(--spacing-24); margin-bottom: var(--spacing-32);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-16);">
+        <div>
+          <div style="font-size: var(--font-size-18); font-weight: 600; color: var(--text-primary); margin-bottom: 4px;">Lovable Integration — Full Prompt</div>
+          <div style="font-size: var(--font-size-13); color: var(--text-secondary);">Copy this prompt into Lovable chat. It will restyle all components automatically.</div>
+        </div>
+        <button onclick="copyLovablePrompt()" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--accent-primary); color: var(--bg-app); border: none; border-radius: var(--radius-8); font-size: var(--font-size-13); font-weight: 600; cursor: pointer; font-family: inherit;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt
+        </button>
+      </div>
+      <pre id="lovablePrompt" style="background: var(--bg-app); border: 1px solid var(--border-default); border-radius: var(--radius-8); padding: var(--spacing-16); font-size: var(--font-size-12); line-height: 1.6; color: var(--text-secondary); white-space: pre-wrap; max-height: 280px; overflow-y: auto; margin: 0;">Apply the AI Manufactury Design System to this project.
+
+Step 1: Replace src/index.css with the content from:
+https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/lovable-theme.css
+
+Step 2: Read the full component guide and update every shadcn component:
+https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/LOVABLE.md
+
+Key requirements:
+- Button: exact hover colors (#3B82F6), NO opacity modifiers (/90, /80)
+- Switch: green (#34D399) when checked, pill shape (rounded-full), NEVER square
+- Card: rounded-xl (12px radius), shadow, hover border change
+- Badge: rounded-sm (2px), NOT rounded-full
+- Input: filled style bg-[#1A1D27], focus border #60A5FA with ring
+- Select dropdown: dark panel bg-[#21242F], selected item text #60A5FA
+- Table: uppercase 12px headers, row hover bg-[#1A1D27]
+- Tabs: active = blue text + blue bottom border, inactive = #8B8FA3
+- Sidebar: active nav item = white text + bg-[#60A5FA]/10, inactive = #8B8FA3
+- Dialog overlay: bg-black/60 + backdrop-blur-sm, content bg-[#21242F]
+- Toast: bg-[#21242F], rounded-xl, border #2E3140
+- All disabled states: opacity-100, exact colors (not opacity fade)
+- Font: Inter from Google Fonts, no other fonts
+- Default border-radius: 8px (--radius: 0.5rem)
+- Scrollbar: 6px, thumb #2E3140, rounded</pre>
+    </div>
+
     <div class="how-grid">
-      <div class="how-card" style="border-color: var(--accent-primary); box-shadow: 0 0 0 1px var(--accent-primary);">
+      <div class="how-card">
         <div class="how-card-icon">⚡</div>
-        <div class="how-card-title">Lovable (1 file)</div>
+        <div class="how-card-title">Lovable (2 steps)</div>
         <div class="how-card-body">
-          Download <code>lovable-theme.css</code> and replace your <code>src/index.css</code> entirely. Done. All 21 shadcn/ui components change automatically: colors, radius, buttons, inputs, selects, cards, badges, switches, tabs, dialogs, tooltips — every state (hover, focus, pressed, disabled). Dark + Light theme included.
+          <strong>Step 1:</strong> Replace <code>src/index.css</code> with <code>lovable-theme.css</code> (sets CSS variables).<br>
+          <strong>Step 2:</strong> Give Lovable the prompt above or link to <code>LOVABLE.md</code> — it will update all component files with exact colors, sizes, and states.
         </div>
       </div>
       <div class="how-card">
@@ -3485,6 +3524,11 @@ function injectCodeColorSwatches() {
 /* ============================================================
    TOAST
    ============================================================ */
+function copyLovablePrompt() {
+  const text = document.getElementById('lovablePrompt').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Lovable prompt copied!'));
+}
+
 function showToast(msg) {
   const toast = document.getElementById('copyToast');
   toast.textContent = msg;
