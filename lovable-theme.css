@@ -576,16 +576,26 @@ table tbody tr:hover {
 /* ============================================================
    13. COMPONENT: SWITCH
 
-   DS: off = bg #2E3140, on = accent-primary #60A5FA
+   ON = green (success), OFF = gray. Pill shape always.
    ============================================================ */
 [role="switch"] {
+  border-radius: 9999px !important;        /* PILL — never square */
   transition: background-color 150ms ease;
+  position: relative;
+  width: 44px;
+  height: 24px;
+  padding: 0 !important;
+  border: none !important;
+}
+[role="switch"] > span,
+[role="switch"]::before {
+  border-radius: 9999px !important;        /* thumb is round too */
 }
 [role="switch"][data-state="unchecked"] {
-  background-color: #2E3140 !important;    /* border-default */
+  background-color: #2E3140 !important;    /* border-default (gray) */
 }
 [role="switch"][data-state="checked"] {
-  background-color: #60A5FA !important;    /* accent-primary */
+  background-color: #34D399 !important;    /* accent-success (GREEN) */
 }
 
 /* ============================================================
