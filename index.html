@@ -2068,6 +2068,10 @@ body {
     <h1>AI Manufactury · <span>Design System</span></h1>
     <p class="hero-subtitle">Интерактивная документация для разработчиков. Живые компоненты, токены и готовый код.</p>
     <div class="download-buttons">
+      <a class="download-btn" href="https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/lovable-theme.css" download style="background: var(--accent-primary); color: var(--bg-app); border-color: var(--accent-primary); font-weight: 600;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        lovable-theme.css
+      </a>
       <a class="download-btn" href="https://raw.githubusercontent.com/pashnesterovich-dotcom/design-system-test/main/tokens.json" download>
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         tokens.json
@@ -3350,11 +3354,11 @@ function toggleDropdown(id) {
     </div>
 
     <div class="how-grid">
-      <div class="how-card">
+      <div class="how-card" style="border-color: var(--accent-primary); box-shadow: 0 0 0 1px var(--accent-primary);">
         <div class="how-card-icon">⚡</div>
-        <div class="how-card-title">Lovable / v0</div>
+        <div class="how-card-title">Lovable (1 file)</div>
         <div class="how-card-body">
-          Paste <code>index.css</code> in your project's global styles. Reference variables directly: <code>var(--bg-surface)</code>, <code>var(--accent-primary)</code>. All component classes are ready to use.
+          Download <code>lovable-theme.css</code> and replace your <code>src/index.css</code> entirely. Done. All 21 shadcn/ui components change automatically: colors, radius, buttons, inputs, selects, cards, badges, switches, tabs, dialogs, tooltips — every state (hover, focus, pressed, disabled). Dark + Light theme included.
         </div>
       </div>
       <div class="how-card">
@@ -3369,6 +3373,13 @@ function toggleDropdown(id) {
         <div class="how-card-title">JSON Import</div>
         <div class="how-card-body">
           Use <code>tokens.json</code> with Style Dictionary v4. Schema is SD-compatible. Run <code>npx style-dictionary build</code> to regenerate CSS, Tailwind, or any other format from the single source of truth.
+        </div>
+      </div>
+      <div class="how-card">
+        <div class="how-card-icon">📋</div>
+        <div class="how-card-title">CSS Variables</div>
+        <div class="how-card-body">
+          For non-shadcn projects: paste <code>index.css</code> in your global styles. Reference variables directly: <code>var(--bg-surface)</code>, <code>var(--accent-primary)</code>, <code>var(--btn-primary-default-bg)</code>.
         </div>
       </div>
     </div>

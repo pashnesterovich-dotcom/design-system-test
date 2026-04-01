@@ -1,0 +1,805 @@
+/**
+ * AI Manufactury Design System — Lovable Integration (Complete)
+ * =============================================================
+ * Drop-in replacement for src/index.css in any Lovable project.
+ *
+ * WHAT THIS FILE COVERS:
+ * - shadcn/ui CSS variable mapping (dark + light)
+ * - BUTTON: 3 variants × 5 states (default, hover, focus, pressed, disabled)
+ * - INPUT / TEXTFIELD: filled + outlined × 5 states
+ * - TEXTAREA: 5 states
+ * - SELECT / DROPDOWN: trigger + menu + items
+ * - SEARCH: with icon states
+ * - CARD, BADGE, TABLE, DIALOG, TOOLTIP, TABS, SWITCH, CHECKBOX
+ * - Typography (10 classes), Spacing, Radius, Shadows, Animations
+ * - Font: Inter
+ *
+ * HOW TO USE:
+ * 1. Open your Lovable project
+ * 2. Replace the ENTIRE content of src/index.css with this file
+ * 3. Done. All shadcn/ui components will match AIM DS exactly.
+ *
+ * Source: AI Manufactury Design System (studio-ds/tokens.json)
+ * Generated: 2026-04-01
+ */
+
+/* ============================================================
+   FONT
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   1. SHADCN/UI THEME VARIABLES — DARK (default)
+   ============================================================ */
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --radius: 0.5rem;              /* 8px */
+
+    --background: 224 18% 10%;     /* #13151E */
+    --foreground: 0 0% 100%;       /* #FFFFFF */
+    --card: 226 17% 13%;           /* #1A1D27 */
+    --card-foreground: 0 0% 100%;
+    --popover: 225 14% 16%;        /* #21242F */
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 68%;        /* #60A5FA */
+    --primary-foreground: 224 18% 10%;
+    --secondary: 226 17% 13%;      /* #1A1D27 */
+    --secondary-foreground: 217 91% 68%;
+    --muted: 225 14% 16%;          /* #21242F */
+    --muted-foreground: 233 7% 59%;/* #8B8FA3 */
+    --accent: 225 14% 16%;         /* #21242F */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 91% 71%;      /* #F87171 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 15% 22%;         /* #2E3140 */
+    --input: 230 15% 22%;          /* #2E3140 */
+    --ring: 217 91% 68%;           /* #60A5FA */
+
+    --success: 160 60% 52%;        /* #34D399 */
+    --success-foreground: 224 18% 10%;
+    --warning: 43 96% 56%;         /* #FBBF24 */
+    --warning-foreground: 224 18% 10%;
+
+    --sidebar-background: 226 17% 13%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 217 91% 68%;
+    --sidebar-primary-foreground: 224 18% 10%;
+    --sidebar-accent: 225 14% 16%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 230 15% 22%;
+    --sidebar-ring: 217 91% 68%;
+
+    --chart-1: 217 91% 68%;
+    --chart-2: 160 60% 52%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 0 91% 71%;
+    --chart-5: 217 91% 60%;
+  }
+
+  /* ---- LIGHT THEME ---- */
+  .light {
+    --background: 228 33% 98%;     /* #F8F9FC */
+    --foreground: 224 18% 10%;     /* #13151E */
+    --card: 0 0% 100%;             /* #FFFFFF */
+    --card-foreground: 224 18% 10%;
+    --popover: 228 20% 95%;        /* #F0F1F5 */
+    --popover-foreground: 224 18% 10%;
+    --primary: 217 91% 60%;        /* #3B82F6 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 217 91% 60%;
+    --muted: 228 20% 95%;          /* #F0F1F5 */
+    --muted-foreground: 220 9% 46%;/* #6B7280 */
+    --accent: 228 20% 95%;
+    --accent-foreground: 224 18% 10%;
+    --destructive: 0 84% 60%;      /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 223 13% 91%;         /* #E4E6EB */
+    --input: 223 13% 91%;
+    --ring: 217 91% 60%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 48 96% 47%;
+    --warning-foreground: 224 18% 10%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 18% 10%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 20% 95%;
+    --sidebar-accent-foreground: 224 18% 10%;
+    --sidebar-border: 223 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+
+    --chart-1: 217 91% 60%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 48 96% 47%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 217 83% 53%;
+  }
+}
+
+/* ============================================================
+   2. BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2E3140; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3E4150; }
+}
+
+/* ============================================================
+   3. COMPONENT: BUTTON
+
+   shadcn Button has Tailwind classes like bg-primary, bg-secondary etc.
+   We override the EXACT hover/focus/active/disabled colors from our DS
+   using CSS that targets the rendered HTML structure.
+
+   DS tokens used:
+   - Primary:   default #60A5FA → hover #3B82F6 → pressed #2563EB
+   - Secondary: default #1A1D27 → hover #21242F → pressed #13151E
+   - Ghost:     default transparent → hover #1A1D27 → pressed #21242F
+   ============================================================ */
+
+/* --- All buttons: base --- */
+button, [role="button"], a[class*="btn"] {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius);
+}
+
+/* --- PRIMARY BUTTON (bg-primary text-primary-foreground) ---
+   shadcn renders: class="... bg-primary text-primary-foreground hover:bg-primary/90 ..."
+   We override hover:bg-primary/90 with our exact hover color */
+.bg-primary:hover {
+  background-color: #3B82F6 !important;   /* btn-primary-hover-bg */
+  border-color: #3B82F6;
+}
+.bg-primary:focus-visible {
+  background-color: #60A5FA;               /* btn-primary-focus-bg */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);  /* ring with opacity */
+  border-color: #3B82F6;                   /* btn-primary-focus-border */
+}
+.bg-primary:active:not(:disabled) {
+  background-color: #2563EB !important;    /* btn-primary-pressed-bg */
+  color: #FFFFFF !important;               /* btn-primary-pressed-text */
+  border-color: #2563EB;
+  transform: scale(0.98);
+}
+.bg-primary:disabled, .bg-primary[disabled] {
+  background-color: #1A1D27 !important;    /* btn-primary-disabled-bg */
+  color: #4B5563 !important;               /* btn-primary-disabled-text */
+  border-color: #2E3140;
+  opacity: 1;                              /* don't use opacity for disabled */
+  cursor: not-allowed;
+}
+
+/* --- SECONDARY BUTTON (bg-secondary text-secondary-foreground) --- */
+.bg-secondary:hover {
+  background-color: #21242F !important;    /* btn-secondary-hover-bg */
+  border-color: #3E4150;                   /* btn-secondary-hover-border */
+}
+.bg-secondary:focus-visible {
+  outline: none;
+  border-color: #60A5FA;                   /* btn-secondary-focus-border */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+.bg-secondary:active:not(:disabled) {
+  background-color: #13151E !important;    /* btn-secondary-pressed-bg */
+  color: #3B82F6 !important;               /* btn-secondary-pressed-text */
+  border-color: #3B82F6;
+  transform: scale(0.98);
+}
+.bg-secondary:disabled, .bg-secondary[disabled] {
+  background-color: #13151E !important;
+  color: #4B5563 !important;
+  border-color: #1A1D27;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* --- OUTLINE BUTTON (border-input bg-background) --- */
+.border-input.bg-background:hover,
+[class*="variant-outline"]:hover {
+  background-color: #1A1D27 !important;
+  border-color: #3E4150;
+}
+
+/* --- GHOST BUTTON (hover:bg-accent) --- */
+.hover\:bg-accent:hover {
+  background-color: #1A1D27 !important;    /* btn-ghost-hover-bg */
+  color: #FFFFFF !important;               /* btn-ghost-hover-text */
+}
+.hover\:bg-accent:active:not(:disabled) {
+  background-color: #21242F !important;    /* btn-ghost-pressed-bg */
+  color: #FFFFFF !important;
+}
+.hover\:bg-accent:focus-visible {
+  background-color: #1A1D27;
+  border-color: #2E3140;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+/* --- DESTRUCTIVE BUTTON --- */
+.bg-destructive:hover {
+  background-color: #EF4444 !important;    /* red-500 = darker red */
+}
+.bg-destructive:active:not(:disabled) {
+  background-color: #DC2626 !important;    /* even darker on press */
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   4. COMPONENT: INPUT / TEXTFIELD
+
+   DS tokens:
+   - default:  bg #1A1D27, border #2E3140, text #FFFFFF, placeholder #4B5563
+   - hover:    bg #21242F, border #3E4150
+   - focus:    bg #1A1D27, border #60A5FA + ring
+   - error:    border #F87171
+   - disabled: bg #13151E, text #4B5563, border #1A1D27
+   ============================================================ */
+
+/* All text inputs */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([role="combobox"]),
+textarea,
+select,
+[role="combobox"] {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #1A1D27;               /* textfield-filled-default-bg */
+  color: #FFFFFF;                           /* textfield-filled-default-text */
+  border: 1px solid #2E3140;               /* textfield-filled-default-border */
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"])::placeholder,
+textarea::placeholder {
+  color: #4B5563;                           /* textfield-filled-default-placeholder */
+}
+
+/* Hover */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):hover:not(:focus):not(:disabled),
+textarea:hover:not(:focus):not(:disabled),
+select:hover:not(:focus):not(:disabled),
+[role="combobox"]:hover:not(:focus):not(:disabled) {
+  background-color: #21242F;               /* textfield-filled-hover-bg */
+  border-color: #3E4150;                   /* textfield-filled-hover-border */
+}
+
+/* Focus */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):focus,
+textarea:focus,
+select:focus,
+[role="combobox"]:focus,
+[data-state="open"][role="combobox"] {
+  background-color: #1A1D27;               /* textfield-filled-focus-bg */
+  border-color: #60A5FA !important;        /* textfield-filled-focus-border */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+  outline: none;
+}
+
+/* Error state — applied via aria-invalid or data-invalid */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+input[data-invalid],
+textarea[data-invalid],
+.border-destructive input,
+.border-destructive textarea {
+  border-color: #F87171 !important;        /* textfield-filled-error-border */
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
+}
+
+/* Disabled */
+input:disabled, textarea:disabled, select:disabled {
+  background-color: #13151E !important;    /* textfield-filled-disabled-bg */
+  color: #4B5563 !important;               /* textfield-filled-disabled-text */
+  border-color: #1A1D27 !important;        /* textfield-filled-disabled-border */
+  cursor: not-allowed;
+  opacity: 1;
+}
+input:disabled::placeholder, textarea:disabled::placeholder {
+  color: #374151;                           /* textfield-filled-disabled-placeholder */
+}
+
+/* ============================================================
+   5. COMPONENT: TEXTAREA (extends input styles above)
+
+   Additional: min-height, resize
+   ============================================================ */
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* ============================================================
+   6. COMPONENT: SELECT / DROPDOWN
+
+   DS tokens:
+   - Trigger: like secondary button (#1A1D27 bg, #2E3140 border)
+   - Open:    border #60A5FA
+   - Menu:    bg #21242F, border #2E3140
+   - Item hover: bg #2E3140
+   - Item selected: bg #1A1D27, text #60A5FA
+   ============================================================ */
+
+/* Select trigger */
+[role="combobox"],
+button[aria-haspopup="listbox"],
+[data-radix-select-trigger] {
+  background-color: #1A1D27;
+  color: #FFFFFF;
+  border: 1px solid #2E3140;
+  border-radius: var(--radius);
+}
+[role="combobox"]:hover,
+button[aria-haspopup="listbox"]:hover {
+  background-color: #21242F;
+  border-color: #3E4150;
+}
+[data-state="open"][role="combobox"],
+[data-state="open"][aria-haspopup="listbox"] {
+  border-color: #60A5FA;
+}
+
+/* Dropdown / Select menu panel */
+[role="listbox"],
+[data-radix-select-content],
+[data-radix-popper-content-wrapper] [role="listbox"] {
+  background-color: #21242F !important;    /* dropdown-menu-bg */
+  border: 1px solid #2E3140;               /* dropdown-menu-border */
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+}
+
+/* Dropdown items */
+[role="option"],
+[data-radix-select-item] {
+  color: #FFFFFF;                           /* dropdown-item-text */
+  font-size: 14px;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 100ms ease;
+}
+[role="option"]:hover,
+[role="option"][data-highlighted] {
+  background-color: #2E3140 !important;    /* dropdown-item-hover */
+}
+[role="option"][data-state="checked"],
+[role="option"][aria-selected="true"] {
+  background-color: #1A1D27;               /* dropdown-item-selected */
+  color: #60A5FA;                           /* dropdown-item-selected-text */
+}
+
+/* Icon inside dropdown trigger */
+[role="combobox"] svg,
+button[aria-haspopup="listbox"] svg {
+  color: #8B8FA3;                           /* text-secondary for icon */
+  transition: color 150ms ease;
+}
+[data-state="open"] svg {
+  color: #60A5FA;                           /* accent on open */
+}
+
+/* ============================================================
+   7. COMPONENT: SEARCH INPUT
+
+   Same as TextField + icon slot
+   DS: icon default #8B8FA3 → focus #60A5FA
+   ============================================================ */
+input[type="search"],
+input[placeholder*="earch"],
+input[placeholder*="оиск"] {
+  padding-left: 36px;   /* space for icon */
+}
+
+/* Search icon color transition handled by parent */
+.relative > svg + input ~ svg,
+.relative > svg:first-child {
+  color: #8B8FA3;
+  transition: color 150ms ease;
+}
+.relative:focus-within > svg:first-child,
+.relative > svg + input:focus ~ svg {
+  color: #60A5FA;
+}
+
+/* ============================================================
+   8. COMPONENT: CARD
+
+   DS: bg #1A1D27, border #2E3140, radius 12px
+   ============================================================ */
+[class*="rounded-lg"][class*="border"][class*="bg-card"],
+.card, [data-slot="card"] {
+  background-color: hsl(var(--card));
+  border: 1px solid #2E3140;
+  border-radius: 12px;                     /* radius-12 for cards */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+[class*="rounded-lg"][class*="border"][class*="bg-card"]:hover {
+  border-color: #3E4150;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* Card header */
+[class*="card"] > [class*="flex"][class*="flex-col"]:first-child,
+[data-slot="card-header"] {
+  padding: 24px 24px 0;                    /* spacing-24 */
+}
+/* Card content */
+[class*="card"] > [class*="p-6"],
+[data-slot="card-content"] {
+  padding: 24px;
+}
+
+/* ============================================================
+   9. COMPONENT: BADGE
+
+   DS radius: 2px (rounded-sm), font-size: 13px
+   ============================================================ */
+[class*="badge"],
+[data-slot="badge"] {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  border-radius: 2px;                      /* radius-2 */
+  padding: 2px 8px;
+  letter-spacing: 0.01em;
+}
+
+/* Badge variants: success, warning */
+.badge-success, [data-variant="success"] {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.3);
+}
+.badge-warning, [data-variant="warning"] {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.3);
+}
+.badge-error, [data-variant="error"] {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: #F87171;
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+/* ============================================================
+   10. COMPONENT: TABLE
+   ============================================================ */
+table {
+  font-size: 14px;
+}
+table th {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8B8FA3;                           /* text-secondary */
+  padding: 12px 16px;
+  border-bottom: 1px solid #2E3140;
+}
+table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2E3140;
+}
+table tbody tr {
+  transition: background-color 100ms ease;
+}
+table tbody tr:hover {
+  background-color: #1A1D27;               /* bg-surface */
+}
+
+/* ============================================================
+   11. COMPONENT: DIALOG / SHEET / MODAL
+
+   DS: bg-elevated #21242F, radius 12px, overlay black 60%
+   ============================================================ */
+
+/* Overlay */
+[data-state="open"][class*="fixed"][class*="inset"],
+[class*="DialogOverlay"],
+[class*="SheetOverlay"],
+[class*="AlertDialogOverlay"] {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Dialog content */
+[role="dialog"],
+[role="alertdialog"],
+[data-state="open"][class*="fixed"][class*="bg-background"] {
+  background-color: #21242F;               /* bg-elevated */
+  border: 1px solid #2E3140;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.7);
+}
+
+/* Sheet (side drawer) */
+[data-state="open"][class*="fixed"][class*="inset-y"] {
+  background-color: #1A1D27;               /* bg-surface */
+  border-color: #2E3140;
+}
+
+/* ============================================================
+   12. COMPONENT: TABS
+
+   DS: inactive = text-secondary, active = accent-primary + underline
+   ============================================================ */
+[role="tablist"] {
+  border-bottom: 1px solid #2E3140;
+}
+[role="tab"] {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8B8FA3;                           /* text-secondary */
+  padding: 8px 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 150ms ease;
+}
+[role="tab"]:hover {
+  color: #FFFFFF;
+}
+[role="tab"][data-state="active"],
+[role="tab"][aria-selected="true"] {
+  color: #60A5FA;                           /* accent-primary */
+  border-bottom-color: #60A5FA;
+}
+
+/* ============================================================
+   13. COMPONENT: SWITCH
+
+   DS: off = bg #2E3140, on = accent-primary #60A5FA
+   ============================================================ */
+[role="switch"] {
+  transition: background-color 150ms ease;
+}
+[role="switch"][data-state="unchecked"] {
+  background-color: #2E3140 !important;    /* border-default */
+}
+[role="switch"][data-state="checked"] {
+  background-color: #60A5FA !important;    /* accent-primary */
+}
+
+/* ============================================================
+   14. COMPONENT: CHECKBOX
+
+   DS: unchecked border #2E3140, checked bg #60A5FA
+   ============================================================ */
+[role="checkbox"] {
+  border: 1px solid #2E3140;
+  border-radius: 4px;                      /* radius-4 */
+  transition: all 150ms ease;
+}
+[role="checkbox"]:hover {
+  border-color: #3E4150;
+}
+[role="checkbox"][data-state="checked"] {
+  background-color: #60A5FA;
+  border-color: #60A5FA;
+  color: #13151E;
+}
+
+/* ============================================================
+   15. COMPONENT: TOOLTIP
+   ============================================================ */
+[role="tooltip"] {
+  background-color: #21242F;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid #2E3140;
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   16. COMPONENT: POPOVER / DROPDOWN MENU
+   ============================================================ */
+[data-radix-popper-content-wrapper] > div,
+[role="menu"] {
+  background-color: #21242F !important;
+  border: 1px solid #2E3140;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+}
+[role="menuitem"] {
+  font-size: 14px;
+  color: #FFFFFF;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 100ms ease;
+}
+[role="menuitem"]:hover,
+[role="menuitem"][data-highlighted] {
+  background-color: #2E3140 !important;
+}
+[role="menuitem"]:active {
+  background-color: #1A1D27;
+}
+
+/* ============================================================
+   17. COMPONENT: TOAST / SONNER
+   ============================================================ */
+[data-sonner-toast],
+[class*="toast"] {
+  background-color: #21242F !important;
+  border: 1px solid #2E3140;
+  color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   18. COMPONENT: PROGRESS
+   ============================================================ */
+[role="progressbar"] {
+  background-color: #2E3140;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+[role="progressbar"] > div {
+  background-color: #60A5FA;
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+
+/* ============================================================
+   19. COMPONENT: SKELETON
+   ============================================================ */
+.animate-pulse {
+  background-color: #21242F;
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+   20. COMPONENT: SEPARATOR / DIVIDER
+   ============================================================ */
+[data-orientation="horizontal"][role="separator"],
+hr {
+  border-color: #2E3140;
+}
+
+/* ============================================================
+   21. COMPONENT: AVATAR
+   ============================================================ */
+[class*="avatar"] img,
+[class*="relative"][class*="rounded-full"] {
+  border-radius: 9999px;
+}
+[class*="avatar"] [class*="bg-muted"] {
+  background-color: #21242F;
+  color: #8B8FA3;
+}
+
+/* ============================================================
+   22. COMPONENT: ACCORDION
+   ============================================================ */
+[data-state="open"][data-orientation="vertical"] > [role="region"] {
+  animation: accordion-down 200ms ease;
+}
+[data-state="closed"][data-orientation="vertical"] > [role="region"] {
+  animation: accordion-up 200ms ease;
+}
+
+/* ============================================================
+   23. LABEL
+   ============================================================ */
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+}
+label[data-disabled] {
+  color: #4B5563;
+}
+
+/* ============================================================
+   24. FOCUS RING — GLOBAL
+   All interactive elements get our consistent focus ring
+   ============================================================ */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3); /* accent-primary 30% */
+}
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   ============================================================ */
+@layer utilities {
+  .aim-h1      { font-size: 36px; line-height: 44px; font-weight: 700; letter-spacing: -0.02em; }
+  .aim-h2      { font-size: 30px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .aim-h3      { font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em; }
+  .aim-h4      { font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  .aim-body-lg { font-size: 18px; line-height: 28px; font-weight: 400; }
+  .aim-body    { font-size: 14px; line-height: 20px; font-weight: 400; }
+  .aim-body-sm { font-size: 13px; line-height: 20px; font-weight: 400; }
+  .aim-caption { font-size: 12px; line-height: 16px; font-weight: 400; color: #8B8FA3; }
+  .aim-label   { font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: 0.01em; }
+  .aim-overline {
+    font-size: 11px; line-height: 16px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #8B8FA3;
+  }
+}
+
+/* ============================================================
+   SHADOWS
+   ============================================================ */
+@layer utilities {
+  .shadow-aim-sm  { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4); }
+  .shadow-aim-md  { box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5); }
+  .shadow-aim-lg  { box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6); }
+  .shadow-aim-xl  { box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.7); }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes slide-in-from-top {
+  from { transform: translateY(-4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-in-from-bottom {
+  from { transform: translateY(4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   AIM DS RAW TOKENS (for direct access with --aim-* prefix)
+   ============================================================ */
+:root {
+  --aim-blue-400: #60A5FA; --aim-blue-500: #3B82F6; --aim-blue-600: #2563EB;
+  --aim-gray-600: #4B5563; --aim-gray-700: #374151;
+  --aim-green-400: #34D399; --aim-red-400: #F87171; --aim-yellow-400: #FBBF24;
+  --aim-bg-app: #13151E; --aim-bg-surface: #1A1D27; --aim-bg-elevated: #21242F;
+  --aim-border-default: #2E3140; --aim-border-strong: #3E4150;
+  --aim-text-primary: #FFFFFF; --aim-text-secondary: #8B8FA3;
+  --aim-space-4: 4px; --aim-space-8: 8px; --aim-space-12: 12px;
+  --aim-space-16: 16px; --aim-space-24: 24px; --aim-space-32: 32px;
+  --aim-radius-4: 4px; --aim-radius-8: 8px; --aim-radius-12: 12px; --aim-radius-full: 9999px;
+}
