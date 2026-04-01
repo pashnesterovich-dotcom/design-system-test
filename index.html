@@ -2129,7 +2129,7 @@ body {
         <!-- Files row -->
         <div style="padding: 16px 20px; border-bottom: 1px solid var(--border-default); display: flex; align-items: center; justify-content: space-between;">
           <div id="platformFiles" class="download-buttons" style="margin: 0;"></div>
-          <button onclick="copyPlatformPrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s, background 0.15s;" onmouseover="this.style.borderColor='var(--border-strong)';this.style.color='var(--text-primary)'" onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'">
+          <button id="copyPromptBtn" onclick="copyPlatformPrompt()" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: var(--radius-8); font-size: var(--font-size-12); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: border-color 0.15s, color 0.15s, background 0.15s;" onmouseover="this.style.borderColor='var(--border-strong)';this.style.color='var(--text-primary)'" onmouseout="this.style.borderColor='var(--border-default)';this.style.color='var(--text-secondary)'">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copy Prompt
           </button>
@@ -3542,6 +3542,7 @@ const downloadIcon = '<svg width="14" height="14" fill="none" stroke="currentCol
 
 const PLATFORMS = {
   lovable: {
+    hasPrompt: true,
     files: [
       { name: 'lovable-theme.css', path: 'lovable-theme.css' },
       { name: 'AGENTS.md', path: 'AGENTS.md' },
@@ -3569,165 +3570,42 @@ Follow every instruction in AGENTS.md exactly. Key rules:
   },
 
   react: {
+    hasPrompt: false,
     files: [
       { name: 'index.css', path: 'index.css' },
       { name: 'tailwind.config.ts', path: 'tailwind.config.ts' },
       { name: 'tokens.json', path: 'tokens.json' },
     ],
-    prompt: `Integrate the ${DS_CONFIG.name} Design System into a React + Tailwind project.
-
-GitHub repo: ${REPO_URL}
-
-Step 1: Download and replace your tailwind.config.ts with:
-${RAW_URL}/tailwind.config.ts
-
-Step 2: Import the CSS custom properties file into your global styles (main.tsx or App.tsx):
-${RAW_URL}/index.css
-
-Step 3: Use token names as Tailwind classes:
-  - Backgrounds: bg-bg-app, bg-bg-surface, bg-bg-elevated
-  - Text: text-text-primary, text-text-secondary
-  - Borders: border-border-default, border-border-strong
-  - Accent: text-accent-primary, bg-accent-success
-  - Spacing: p-16 (16px), gap-8 (8px), m-24 (24px)
-  - Radius: rounded-lg (8px), rounded-xl (12px)
-
-Step 4: For component-specific styling, reference:
-${RAW_URL}/AGENTS.md
-
-Font: ${DS_CONFIG.font} (load from Google Fonts).
-All color tokens are defined as CSS custom properties in index.css.`,
+    github: REPO_URL,
+    desc: 'Download files and import into your React + Tailwind project. index.css goes into global styles, tailwind.config.ts extends your theme.',
   },
 
   css: {
+    hasPrompt: false,
     files: [
       { name: 'index.css', path: 'index.css' },
       { name: 'tokens.json', path: 'tokens.json' },
     ],
-    prompt: `Integrate the ${DS_CONFIG.name} Design System into your project using pure CSS.
-
-Step 1: Add the CSS file to your HTML:
-<link rel="stylesheet" href="${RAW_URL}/index.css">
-
-Or copy the content of index.css into your global stylesheet.
-
-Step 2: Use CSS custom properties anywhere:
-  background: var(--bg-surface);
-  color: var(--text-primary);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-8);
-  padding: var(--spacing-16);
-
-  /* Button */
-  background: var(--btn-primary-default-bg);
-  color: var(--btn-primary-default-text);
-
-  /* On hover */
-  background: var(--btn-primary-hover-bg);
-
-Step 3: For dark/light theme switching, toggle [data-theme="light"] on <html>.
-
-Full token reference: ${REPO_URL}
-Font: ${DS_CONFIG.font} — load via Google Fonts.`,
+    github: REPO_URL,
+    desc: 'Download index.css and add to your project via &lt;link&gt; tag or @import. All tokens available as CSS custom properties: var(--bg-surface), var(--accent-primary), etc.',
   },
 
   ios: {
+    hasPrompt: false,
     files: [
       { name: 'tokens.json', path: 'tokens.json' },
     ],
-    prompt: `Integrate the ${DS_CONFIG.name} Design System into an iOS (SwiftUI) project.
-
-Design tokens source: ${RAW_URL}/tokens.json
-
-Step 1: Create a Colors.swift file with Color extensions:
-
-  import SwiftUI
-
-  extension Color {
-    static let bgApp = Color(hex: "#13151E")
-    static let bgSurface = Color(hex: "#1A1D27")
-    static let bgElevated = Color(hex: "#21242F")
-    static let textPrimary = Color.white
-    static let textSecondary = Color(hex: "#8B8FA3")
-    static let borderDefault = Color(hex: "#2E3140")
-    static let accentPrimary = Color(hex: "#60A5FA")
-    static let accentSuccess = Color(hex: "#34D399")
-    static let accentWarning = Color(hex: "#FBBF24")
-    static let accentError = Color(hex: "#F87171")
-  }
-
-Step 2: Create spacing constants:
-  enum Spacing {
-    static let xs: CGFloat = 4
-    static let sm: CGFloat = 8
-    static let md: CGFloat = 12
-    static let lg: CGFloat = 16
-    static let xl: CGFloat = 24
-    static let xxl: CGFloat = 32
-  }
-
-Step 3: Create radius constants:
-  enum Radius {
-    static let sm: CGFloat = 4
-    static let md: CGFloat = 8
-    static let lg: CGFloat = 12
-    static let xl: CGFloat = 16
-    static let full: CGFloat = 9999
-  }
-
-Step 4: Apply in SwiftUI views:
-  .background(Color.bgSurface)
-  .foregroundColor(.textPrimary)
-  .cornerRadius(Radius.md)
-  .padding(Spacing.lg)
-
-Font: ${DS_CONFIG.font} — add via Info.plist or Swift Package.
-Full spec: ${REPO_URL}`,
+    github: REPO_URL + '/tree/main',
+    desc: 'Download tokens.json and generate Swift Color extensions, spacing and radius constants for SwiftUI.',
   },
 
   android: {
+    hasPrompt: false,
     files: [
       { name: 'tokens.json', path: 'tokens.json' },
     ],
-    prompt: `Integrate the ${DS_CONFIG.name} Design System into an Android (Jetpack Compose) project.
-
-Design tokens source: ${RAW_URL}/tokens.json
-
-Step 1: Create a Color.kt file:
-
-  package com.yourapp.ui.theme
-
-  import androidx.compose.ui.graphics.Color
-
-  val BgApp = Color(0xFF13151E)
-  val BgSurface = Color(0xFF1A1D27)
-  val BgElevated = Color(0xFF21242F)
-  val TextPrimary = Color(0xFFFFFFFF)
-  val TextSecondary = Color(0xFF8B8FA3)
-  val BorderDefault = Color(0xFF2E3140)
-  val AccentPrimary = Color(0xFF60A5FA)
-  val AccentSuccess = Color(0xFF34D399)
-  val AccentWarning = Color(0xFFFBBF24)
-  val AccentError = Color(0xFFF87171)
-
-Step 2: Create Theme.kt with Material3:
-
-  private val DarkColorScheme = darkColorScheme(
-    primary = AccentPrimary,
-    onPrimary = BgApp,
-    secondary = BgSurface,
-    background = BgApp,
-    surface = BgSurface,
-    error = AccentError,
-    outline = BorderDefault,
-  )
-
-Step 3: Create spacing and radius:
-  object Spacing { val xs = 4.dp; val sm = 8.dp; val md = 12.dp; val lg = 16.dp; val xl = 24.dp }
-  object Radius { val sm = 4.dp; val md = 8.dp; val lg = 12.dp; val full = 9999.dp }
-
-Font: ${DS_CONFIG.font} — add via Google Fonts dependency.
-Full spec: ${REPO_URL}`,
+    github: REPO_URL + '/tree/main',
+    desc: 'Download tokens.json and generate Compose Material3 theme, Color.kt and dimens for Android.',
   },
 };
 
@@ -3744,12 +3622,30 @@ function switchPlatform(platform) {
 
   // Update files
   const filesEl = document.getElementById('platformFiles');
-  filesEl.innerHTML = p.files.map(f =>
+  const fileButtons = p.files.map(f =>
     '<a class="download-btn" href="./' + f.path + '" download="' + f.name + '">' + downloadIcon + ' ' + f.name + '</a>'
   ).join('');
 
-  // Update prompt
-  document.getElementById('platformPrompt').textContent = p.prompt;
+  // GitHub link for non-prompt platforms
+  const ghLink = p.github
+    ? '<a class="download-btn" href="' + p.github + '" target="_blank" style="color:var(--text-primary)"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> GitHub</a>'
+    : '';
+
+  filesEl.innerHTML = fileButtons + ghLink;
+
+  // Copy button — only for Lovable
+  const copyBtn = document.getElementById('copyPromptBtn');
+  copyBtn.style.display = p.hasPrompt ? 'inline-flex' : 'none';
+
+  // Prompt area — show prompt or description
+  const promptEl = document.getElementById('platformPrompt');
+  if (p.hasPrompt) {
+    promptEl.textContent = p.prompt;
+    promptEl.style.maxHeight = '300px';
+  } else {
+    promptEl.textContent = p.desc.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    promptEl.style.maxHeight = '80px';
+  }
 }
 
 function copyPlatformPrompt() {
