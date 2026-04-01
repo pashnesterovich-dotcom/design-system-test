@@ -3548,25 +3548,61 @@ const PLATFORMS = {
       { name: 'AGENTS.md', path: 'AGENTS.md' },
       { name: 'tokens.json', path: 'tokens.json' },
     ],
-    prompt: `Apply the ${DS_CONFIG.name} Design System to this project.
+    prompt: `Apply the ${DS_CONFIG.name} Design System. Replace src/index.css with ${RAW_URL}/lovable-theme.css — then update EVERY component file in src/components/ui/ as specified below.
 
-Read the full design system specification and component guide from this GitHub repo:
-${REPO_URL}
+GLOBAL: font ${DS_CONFIG.font}, default radius 8px, NO opacity hover (/90 /80) — use exact colors.
 
-Step 1: Replace the ENTIRE content of src/index.css with:
-${RAW_URL}/lovable-theme.css
+BUTTON (button.tsx):
+variant default: bg-[#60A5FA] text-[#13151E] hover:bg-[#3B82F6] active:bg-[#2563EB] active:text-white disabled:bg-[#1A1D27] disabled:text-[#4B5563] disabled:opacity-100
+variant secondary: bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] hover:border-[#3E4150] disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
+variant ghost: bg-transparent text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white
+variant outline: bg-transparent text-white border border-[#2E3140] hover:bg-[#1A1D27] hover:border-[#3E4150]
+variant destructive: bg-[#F87171] text-white hover:bg-[#EF4444]
+All buttons: rounded-lg font-medium text-sm transition-all duration-150 focus-visible:ring-2 focus-visible:ring-[#60A5FA]/30
 
-Step 2: Read the component guide and update every shadcn/ui component in src/components/ui/:
-${RAW_URL}/AGENTS.md
+INPUT (input.tsx):
+bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg placeholder:text-[#4B5563]
+hover:bg-[#21242F] hover:border-[#3E4150]
+focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/15
+aria-invalid:border-[#F87171]
+disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
 
-Follow every instruction in AGENTS.md exactly. Key rules:
-- Use EXACT hex colors for hover/focus/active/disabled states — NO opacity modifiers (/90, /80)
-- Switch checked = green #34D399, shape = rounded-full (pill). NEVER square, NEVER blue.
-- Card radius = rounded-xl (12px). Badge radius = rounded-sm (2px).
-- Input = filled style with dark bg, focus border accent-primary with ring
-- Sidebar active item = white text + accent-primary/10 background
-- All disabled states: opacity-100, exact token colors
-- Font: ${DS_CONFIG.font} only. Default border-radius: 8px.`,
+TEXTAREA (textarea.tsx): same as input + min-h-[80px] resize-y
+
+SELECT (select.tsx):
+Trigger: bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg, hover:bg-[#21242F], data-[state=open]:border-[#60A5FA]
+Content: bg-[#21242F] border border-[#2E3140] rounded-lg shadow-lg
+Item: text-white text-sm, data-[highlighted]:bg-[#2E3140], data-[state=checked]:text-[#60A5FA]
+
+SWITCH (switch.tsx):
+CRITICAL: rounded-full (pill, NEVER square). w-11 h-6. Thumb: h-5 w-5 rounded-full bg-white.
+Unchecked: bg-[#2E3140]. Checked: bg-[#34D399] (GREEN, not blue!).
+
+CHECKBOX (checkbox.tsx): border border-[#2E3140] rounded hover:border-[#3E4150], checked: bg-[#60A5FA] border-[#60A5FA] text-[#13151E]
+
+CARD (card.tsx): rounded-xl border border-[#2E3140] shadow-sm hover:border-[#3E4150] p-6
+
+BADGE (badge.tsx): rounded-sm (2px NOT rounded-full) text-[13px] font-medium px-2 py-0.5
+default: bg-primary/15 text-primary, success: bg-[#34D399]/15 text-[#34D399], warning: bg-[#FBBF24]/15 text-[#FBBF24], destructive: bg-[#F87171]/15 text-[#F87171]
+
+TABLE (table.tsx):
+Header: text-[12px] font-semibold uppercase tracking-wider text-[#8B8FA3] px-4 py-3 border-b border-[#2E3140]
+Row: hover:bg-[#1A1D27], cell px-4 py-3 text-sm border-b border-[#2E3140]
+
+TABS (tabs.tsx): list border-b border-[#2E3140] bg-transparent, trigger text-[#8B8FA3] hover:text-white, active: text-[#60A5FA] border-b-2 border-[#60A5FA]
+
+DIALOG (dialog.tsx): overlay bg-black/60 backdrop-blur-sm, content bg-[#21242F] border border-[#2E3140] rounded-xl
+SHEET: bg-[#1A1D27] border-[#2E3140]
+TOOLTIP: bg-[#21242F] text-white text-xs border border-[#2E3140] rounded px-2 py-1
+DROPDOWN-MENU: content bg-[#21242F] border border-[#2E3140] rounded-lg, item focus:bg-[#2E3140]
+POPOVER: bg-[#21242F] border border-[#2E3140] rounded-lg
+SEPARATOR: bg-[#2E3140]
+PROGRESS: track bg-[#2E3140] rounded-full, fill bg-[#60A5FA] rounded-full
+AVATAR: rounded-full, fallback bg-[#21242F] text-[#8B8FA3]
+SKELETON: bg-[#21242F] animate-pulse
+LABEL: text-[13px] font-medium text-white
+
+SIDEBAR: bg-[#1A1D27] border-r border-[#2E3140], nav item text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg px-3 py-2 text-sm, active: text-white bg-[#60A5FA]/10, section header: text-[11px] uppercase tracking-widest text-[#4B5563]`,
   },
 
   react: {
