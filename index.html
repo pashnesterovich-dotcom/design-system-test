@@ -3536,97 +3536,56 @@ const PLATFORMS = {
 
   lovable: [
     {
-      title: 'Project Knowledge',
-      desc: 'Open Lovable project → Settings → Knowledge. Paste this text. It will apply to EVERY generation.',
+      title: 'Knowledge',
+      desc: 'Settings → Project Knowledge → paste. Applies to every generation automatically.',
       type: 'prompt',
       prompt: `## Design System: ${DS_CONFIG.name}
+Source: ${REPO_URL}
 
-### Colors (CSS variables, never hardcode)
-- Primary: #60A5FA (blue), hover #3B82F6, pressed #2563EB
-- Success: #34D399 (green), Warning: #FBBF24, Error: #F87171
-- Background: #13151E (app), #1A1D27 (surface), #21242F (elevated)
-- Text: #FFFFFF (primary), #8B8FA3 (secondary), #4B5563 (disabled)
-- Border: #2E3140 (default), #3E4150 (hover)
+### Tokens
+- Primary: #60A5FA, hover #3B82F6, pressed #2563EB
+- Success: #34D399, Warning: #FBBF24, Error: #F87171
+- Bg: #13151E (app), #1A1D27 (surface), #21242F (elevated)
+- Text: #FFFFFF, #8B8FA3, #4B5563. Border: #2E3140, #3E4150
+- Font: ${DS_CONFIG.font} 400-700. Radius: 8px default.
 
-### Typography
-- Font: ${DS_CONFIG.font}, weights 400-700
-- Scale: 12/13/14/16/18/20/24/30/36px
-
-### Components
-- Buttons: rounded-lg, exact hover colors (NO /90 /80 opacity)
-- Cards: rounded-xl (12px), border #2E3140, shadow-sm
-- Inputs: bg-[#1A1D27], border #2E3140, focus border #60A5FA
-- Switch: rounded-full (pill), checked = GREEN #34D399, NOT blue
-- Badge: rounded-sm (2px), NOT rounded-full
-- Table headers: 12px uppercase tracking-wider text-[#8B8FA3]
-
-### Anti-patterns (NEVER do)
-- No opacity hover modifiers (/90, /80) — use exact hex colors
-- No square switches — always rounded-full
-- disabled:opacity-100 — use exact disabled colors, not opacity fade
-- No inline styles, no hardcoded hex outside tokens`,
+### Rules
+- Exact hover colors, NO /90 /80 opacity modifiers
+- Switch = rounded-full pill, checked GREEN #34D399
+- Badge = rounded-sm (2px). Card = rounded-xl (12px)
+- Table header: 12px uppercase text-[#8B8FA3]
+- Sidebar active: text-white bg-[#60A5FA]/10
+- disabled:opacity-100, use token colors not fade`,
     },
     {
-      title: 'Replace Theme',
-      desc: 'Copy this prompt → paste in Lovable chat. It will download and apply the CSS theme file.',
+      title: 'Prompt',
+      desc: 'Paste in Lovable chat — one time, does everything.',
       type: 'prompt',
-      prompt: `Replace the ENTIRE content of src/index.css with the file from this URL:
-${RAW_URL}/lovable-theme.css
+      prompt: `Apply the ${DS_CONFIG.name} Design System from ${REPO_URL}
 
-This file sets all CSS variables for the ${DS_CONFIG.name} Design System: colors (dark + light theme), border radius, font import (${DS_CONFIG.font}), spacing, shadows, scrollbar, and animations. Do not modify the file, paste it as-is.`,
-    },
-    {
-      title: 'Update Components',
-      desc: 'Copy this prompt → paste in Lovable chat. It will restyle every shadcn/ui component.',
-      type: 'prompt',
-      prompt: `Update EVERY shadcn/ui component in src/components/ui/ to match the ${DS_CONFIG.name} Design System. Use exact hex colors, NO opacity modifiers.
+STEP 1 — THEME: Replace ENTIRE src/index.css with ${RAW_URL}/lovable-theme.css
 
-BUTTON (button.tsx):
-default: bg-[#60A5FA] text-[#13151E] hover:bg-[#3B82F6] active:bg-[#2563EB] active:text-white disabled:bg-[#1A1D27] disabled:text-[#4B5563] disabled:opacity-100
-secondary: bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] hover:border-[#3E4150]
-ghost: bg-transparent text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white
-outline: bg-transparent text-white border border-[#2E3140] hover:bg-[#1A1D27]
-destructive: bg-[#F87171] text-white hover:bg-[#EF4444]
-All: rounded-lg font-medium text-sm transition-all duration-150
+STEP 2 — COMPONENTS: Update every file in src/components/ui/:
 
-INPUT (input.tsx): bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg placeholder:text-[#4B5563] hover:bg-[#21242F] hover:border-[#3E4150] focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/15 disabled:bg-[#13151E] disabled:text-[#4B5563] disabled:opacity-100
+BUTTON: default bg-[#60A5FA] text-[#13151E] hover:bg-[#3B82F6] active:bg-[#2563EB] active:text-white | secondary bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] | ghost bg-transparent text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white | outline bg-transparent text-white border border-[#2E3140] hover:bg-[#1A1D27] | destructive bg-[#F87171] hover:bg-[#EF4444] | All: rounded-lg font-medium text-sm disabled:opacity-100
+
+INPUT: bg-[#1A1D27] text-white border border-[#2E3140] rounded-lg placeholder:text-[#4B5563] hover:bg-[#21242F] hover:border-[#3E4150] focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/15 disabled:bg-[#13151E] disabled:text-[#4B5563]
 TEXTAREA: same as input + min-h-[80px] resize-y
-SELECT trigger: bg-[#1A1D27] border border-[#2E3140] hover:bg-[#21242F] data-[state=open]:border-[#60A5FA]. Content: bg-[#21242F] border border-[#2E3140]. Item hover: bg-[#2E3140], selected text: #60A5FA
-SWITCH: CRITICAL rounded-full (pill). w-11 h-6. Unchecked: bg-[#2E3140]. Checked: bg-[#34D399] GREEN. Thumb: rounded-full bg-white
-CHECKBOX: border border-[#2E3140] rounded, checked: bg-[#60A5FA] text-[#13151E]
-CARD: rounded-xl border border-[#2E3140] shadow-sm hover:border-[#3E4150] p-6
-BADGE: rounded-sm text-[13px] px-2 py-0.5. Variants: default bg-primary/15, success bg-[#34D399]/15, warning bg-[#FBBF24]/15, destructive bg-[#F87171]/15
-TABLE: header text-[12px] uppercase tracking-wider text-[#8B8FA3] border-b border-[#2E3140], row hover:bg-[#1A1D27]
-TABS: list border-b border-[#2E3140], trigger text-[#8B8FA3] hover:text-white, active text-[#60A5FA] border-b-2 border-[#60A5FA]
-DIALOG: overlay bg-black/60 backdrop-blur-sm, content bg-[#21242F] border border-[#2E3140] rounded-xl
-TOOLTIP: bg-[#21242F] text-xs border border-[#2E3140] rounded px-2 py-1
-DROPDOWN-MENU: content bg-[#21242F] border border-[#2E3140], item focus:bg-[#2E3140]
+SELECT: trigger bg-[#1A1D27] border-[#2E3140] hover:bg-[#21242F] open:border-[#60A5FA] | content bg-[#21242F] border-[#2E3140] | item hover bg-[#2E3140] selected text-[#60A5FA]
+SWITCH: rounded-full w-11 h-6 | unchecked bg-[#2E3140] | checked bg-[#34D399] GREEN | thumb rounded-full bg-white
+CHECKBOX: border-[#2E3140] rounded | checked bg-[#60A5FA] text-[#13151E]
+CARD: rounded-xl border-[#2E3140] shadow-sm hover:border-[#3E4150] p-6
+BADGE: rounded-sm text-[13px] px-2 py-0.5 | success bg-[#34D399]/15 text-[#34D399] | warning bg-[#FBBF24]/15 | destructive bg-[#F87171]/15
+TABLE: header text-[12px] uppercase tracking-wider text-[#8B8FA3] border-b border-[#2E3140] | row hover:bg-[#1A1D27]
+TABS: border-b border-[#2E3140] | inactive text-[#8B8FA3] hover:text-white | active text-[#60A5FA] border-b-2 border-[#60A5FA]
+DIALOG: overlay bg-black/60 backdrop-blur-sm | content bg-[#21242F] border-[#2E3140] rounded-xl
+DROPDOWN-MENU: bg-[#21242F] border-[#2E3140] | item focus:bg-[#2E3140]
+TOOLTIP: bg-[#21242F] text-xs border-[#2E3140] rounded px-2 py-1
 SEPARATOR: bg-[#2E3140]
-LABEL: text-[13px] font-medium text-white`,
-    },
-    {
-      title: 'Sidebar & Layout',
-      desc: 'If your project has a sidebar. Copy → paste in Lovable chat.',
-      type: 'prompt',
-      prompt: `Update the sidebar and layout to match the ${DS_CONFIG.name} Design System:
 
-SIDEBAR:
-- Background: bg-[#1A1D27], border-r border-[#2E3140]
-- Nav item default: text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg px-3 py-2 text-sm transition-colors
-- Nav item active: text-white bg-[#60A5FA]/10 font-medium
-- Section header: text-[11px] uppercase tracking-widest text-[#4B5563] font-semibold px-3 py-2
-- Dividers: border-t border-[#2E3140]
+STEP 3 — SIDEBAR: bg-[#1A1D27] border-r border-[#2E3140] | nav text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg px-3 py-2 text-sm | active text-white bg-[#60A5FA]/10 | section header text-[11px] uppercase text-[#4B5563]
 
-LAYOUT:
-- Body background: bg-[#13151E]
-- Content max-width: 1200px, padding 24-32px
-- Card grid gap: 16px
-- Section gap: 32-48px
-
-MICRO-INTERACTIONS:
-- Cards: hover:border-[#3E4150] hover:shadow-md transition-all duration-200
-- Buttons: active:scale-[0.98] transition-transform
-- All transitions: duration-150 ease cubic-bezier(0.4, 0, 0.2, 1)`,
+STEP 4 — POLISH: transitions duration-150, cards hover:shadow-md, buttons active:scale-[0.98]`,
     },
   ],
 
