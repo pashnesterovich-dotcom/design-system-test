@@ -2114,15 +2114,6 @@ body {
     <!-- Integration Steps -->
     <div style="margin-top: var(--spacing-32);">
 
-      <!-- Project Selector -->
-      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--spacing-16);">
-        <span style="font-size: var(--font-size-12); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Project:</span>
-        <select id="projectSelector" onchange="switchProject(this.value)" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-8); color: var(--text-primary); font-size: var(--font-size-13); font-family: inherit; padding: 6px 12px; cursor: pointer;">
-          <option value="aim">AI Manufactury</option>
-          <option value="carwash">CarWash Admin (AutoPlovykla)</option>
-        </select>
-      </div>
-
       <!-- Platform Tabs -->
       <div class="platform-tabs" style="border-bottom: none; margin-bottom: var(--spacing-16);">
         <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
@@ -3526,33 +3517,13 @@ function injectCodeColorSwatches() {
 /* ============================================================
    PROJECT CONFIG — change these when cloning template
    ============================================================ */
-const PROJECTS = {
-  aim: {
-    name: 'AI Manufactury',
-    repo: 'pashnesterovich-dotcom/design-system-test',
-    font: 'Inter',
-    path: '',  // root
-  },
-  carwash: {
-    name: 'AutoPlovykla',
-    repo: 'pashnesterovich-dotcom/design-system-test',
-    font: 'DM Sans',
-    path: 'carwash/',
-  },
+const DS_CONFIG = {
+  name: 'AI Manufactury',
+  repo: 'pashnesterovich-dotcom/design-system-test',
+  font: 'Inter',
 };
-
-let currentProject = 'aim';
-let DS_CONFIG = PROJECTS.aim;
-let REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
-let RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
-let COMP_URL = RAW_URL;
-
-function updateURLs() {
-  DS_CONFIG = PROJECTS[currentProject];
-  REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
-  RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
-  COMP_URL = RAW_URL + (DS_CONFIG.path ? '/' + DS_CONFIG.path : '');
-}
+const REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
+const RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
 
 const downloadIcon = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 const copyIcon = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
