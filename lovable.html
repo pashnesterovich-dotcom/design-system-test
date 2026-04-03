@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Manufactury Design System -- Lovable Integration</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+  h1 { font-size: 28px; border-bottom: 2px solid #333; padding-bottom: 12px; }
+  h2 { font-size: 22px; margin-top: 48px; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
+  h3 { font-size: 18px; margin-top: 32px; color: #0055cc; }
+  pre {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+  .instruction {
+    background: #fffbe6;
+    border-left: 4px solid #e6a700;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-weight: 500;
+  }
+  .critical {
+    background: #fff0f0;
+    border-left: 4px solid #cc0000;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-weight: 600;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+  th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; font-size: 14px; }
+  th { background: #f0f0f0; font-weight: 600; }
+  ul { padding-left: 24px; }
+  li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<h1>AI Manufactury Design System -- Lovable Integration</h1>
+
+<div class="critical">
+IMPORTANT: Read this page completely and apply EVERYTHING below to the project. This is the complete AI Manufactury Design System. Follow all steps in order.
+</div>
+
+<h2>Design System Token Reference</h2>
+
+<table>
+<tr><th>Category</th><th>Token</th><th>Value</th></tr>
+<tr><td>Font</td><td>Primary font</td><td>Inter (weights: 400, 500, 600, 700)</td></tr>
+<tr><td>Primary</td><td>Default / Hover / Pressed</td><td>#60A5FA / #3B82F6 / #2563EB</td></tr>
+<tr><td>Semantic</td><td>Success / Warning / Error</td><td>#34D399 / #FBBF24 / #F87171</td></tr>
+<tr><td>Backgrounds</td><td>App / Surface / Elevated</td><td>#13151E / #1A1D27 / #21242F</td></tr>
+<tr><td>Text</td><td>Primary / Secondary / Disabled</td><td>#FFFFFF / #8B8FA3 / #4B5563</td></tr>
+<tr><td>Borders</td><td>Default / Strong</td><td>#2E3140 / #3E4150</td></tr>
+<tr><td>Radius</td><td>Default / Cards / Badges / Pills</td><td>8px / 12px / 2px / 9999px</td></tr>
+<tr><td>Spacing</td><td>Scale</td><td>2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64</td></tr>
+</table>
+
+<hr>
+
+<h2>Step 1: Replace src/index.css</h2>
+
+<div class="instruction">
+Replace the ENTIRE content of <strong>src/index.css</strong> with the following CSS. Do not merge -- replace completely.
+</div>
+
+<pre><code>/**
+ * AI Manufactury Design System -- Lovable Integration (Complete)
+ * =============================================================
+ * Drop-in replacement for src/index.css in any Lovable project.
+ *
+ * WHAT THIS FILE COVERS:
+ * - shadcn/ui CSS variable mapping (dark + light)
+ * - BUTTON: 3 variants x 5 states (default, hover, focus, pressed, disabled)
+ * - INPUT / TEXTFIELD: filled + outlined x 5 states
+ * - TEXTAREA: 5 states
+ * - SELECT / DROPDOWN: trigger + menu + items
+ * - SEARCH: with icon states
+ * - CARD, BADGE, TABLE, DIALOG, TOOLTIP, TABS, SWITCH, CHECKBOX
+ * - Typography (10 classes), Spacing, Radius, Shadows, Animations
+ * - Font: Inter
+ *
+ * HOW TO USE:
+ * 1. Open your Lovable project
+ * 2. Replace the ENTIRE content of src/index.css with this file
+ * 3. Done. All shadcn/ui components will match AIM DS exactly.
+ *
+ * Source: AI Manufactury Design System (studio-ds/tokens.json)
+ * Generated: 2026-04-01
+ */
+
+/* ============================================================
+   FONT
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   1. SHADCN/UI THEME VARIABLES -- DARK (default)
+   ============================================================ */
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --radius: 0.5rem;              /* 8px */
+
+    --background: 224 18% 10%;     /* #13151E */
+    --foreground: 0 0% 100%;       /* #FFFFFF */
+    --card: 226 17% 13%;           /* #1A1D27 */
+    --card-foreground: 0 0% 100%;
+    --popover: 225 14% 16%;        /* #21242F */
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 68%;        /* #60A5FA */
+    --primary-foreground: 224 18% 10%;
+    --secondary: 226 17% 13%;      /* #1A1D27 */
+    --secondary-foreground: 217 91% 68%;
+    --muted: 225 14% 16%;          /* #21242F */
+    --muted-foreground: 233 7% 59%;/* #8B8FA3 */
+    --accent: 225 14% 16%;         /* #21242F */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 91% 71%;      /* #F87171 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 230 15% 22%;         /* #2E3140 */
+    --input: 230 15% 22%;          /* #2E3140 */
+    --ring: 217 91% 68%;           /* #60A5FA */
+
+    --success: 160 60% 52%;        /* #34D399 */
+    --success-foreground: 224 18% 10%;
+    --warning: 43 96% 56%;         /* #FBBF24 */
+    --warning-foreground: 224 18% 10%;
+
+    --sidebar-background: 226 17% 13%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 217 91% 68%;
+    --sidebar-primary-foreground: 224 18% 10%;
+    --sidebar-accent: 225 14% 16%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 230 15% 22%;
+    --sidebar-ring: 217 91% 68%;
+
+    --chart-1: 217 91% 68%;
+    --chart-2: 160 60% 52%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 0 91% 71%;
+    --chart-5: 217 91% 60%;
+  }
+
+  /* ---- LIGHT THEME ---- */
+  .light {
+    --background: 228 33% 98%;     /* #F8F9FC */
+    --foreground: 224 18% 10%;     /* #13151E */
+    --card: 0 0% 100%;             /* #FFFFFF */
+    --card-foreground: 224 18% 10%;
+    --popover: 228 20% 95%;        /* #F0F1F5 */
+    --popover-foreground: 224 18% 10%;
+    --primary: 217 91% 60%;        /* #3B82F6 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 217 91% 60%;
+    --muted: 228 20% 95%;          /* #F0F1F5 */
+    --muted-foreground: 220 9% 46%;/* #6B7280 */
+    --accent: 228 20% 95%;
+    --accent-foreground: 224 18% 10%;
+    --destructive: 0 84% 60%;      /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 223 13% 91%;         /* #E4E6EB */
+    --input: 223 13% 91%;
+    --ring: 217 91% 60%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 48 96% 47%;
+    --warning-foreground: 224 18% 10%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 18% 10%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 228 20% 95%;
+    --sidebar-accent-foreground: 224 18% 10%;
+    --sidebar-border: 223 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+
+    --chart-1: 217 91% 60%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 48 96% 47%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 217 83% 53%;
+  }
+}
+
+/* ============================================================
+   2. BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2E3140; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #3E4150; }
+}
+
+/* ============================================================
+   3. COMPONENT: BUTTON
+
+   shadcn Button has Tailwind classes like bg-primary, bg-secondary etc.
+   We override the EXACT hover/focus/active/disabled colors from our DS
+   using CSS that targets the rendered HTML structure.
+
+   DS tokens used:
+   - Primary:   default #60A5FA -&gt; hover #3B82F6 -&gt; pressed #2563EB
+   - Secondary: default #1A1D27 -&gt; hover #21242F -&gt; pressed #13151E
+   - Ghost:     default transparent -&gt; hover #1A1D27 -&gt; pressed #21242F
+   ============================================================ */
+
+/* --- All buttons: base --- */
+button, [role="button"], a[class*="btn"] {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius);
+}
+
+/* --- PRIMARY BUTTON (bg-primary text-primary-foreground) ---
+   shadcn renders: class="... bg-primary text-primary-foreground hover:bg-primary/90 ..."
+   We override hover:bg-primary/90 with our exact hover color */
+.bg-primary:hover {
+  background-color: #3B82F6 !important;   /* btn-primary-hover-bg */
+  border-color: #3B82F6;
+}
+.bg-primary:focus-visible {
+  background-color: #60A5FA;               /* btn-primary-focus-bg */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);  /* ring with opacity */
+  border-color: #3B82F6;                   /* btn-primary-focus-border */
+}
+.bg-primary:active:not(:disabled) {
+  background-color: #2563EB !important;    /* btn-primary-pressed-bg */
+  color: #FFFFFF !important;               /* btn-primary-pressed-text */
+  border-color: #2563EB;
+  transform: scale(0.98);
+}
+.bg-primary:disabled, .bg-primary[disabled] {
+  background-color: #1A1D27 !important;    /* btn-primary-disabled-bg */
+  color: #4B5563 !important;               /* btn-primary-disabled-text */
+  border-color: #2E3140;
+  opacity: 1;                              /* don't use opacity for disabled */
+  cursor: not-allowed;
+}
+
+/* --- SECONDARY BUTTON (bg-secondary text-secondary-foreground) --- */
+.bg-secondary:hover {
+  background-color: #21242F !important;    /* btn-secondary-hover-bg */
+  border-color: #3E4150;                   /* btn-secondary-hover-border */
+}
+.bg-secondary:focus-visible {
+  outline: none;
+  border-color: #60A5FA;                   /* btn-secondary-focus-border */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+.bg-secondary:active:not(:disabled) {
+  background-color: #13151E !important;    /* btn-secondary-pressed-bg */
+  color: #3B82F6 !important;               /* btn-secondary-pressed-text */
+  border-color: #3B82F6;
+  transform: scale(0.98);
+}
+.bg-secondary:disabled, .bg-secondary[disabled] {
+  background-color: #13151E !important;
+  color: #4B5563 !important;
+  border-color: #1A1D27;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* --- OUTLINE BUTTON (border-input bg-background) --- */
+.border-input.bg-background:hover,
+[class*="variant-outline"]:hover {
+  background-color: #1A1D27 !important;
+  border-color: #3E4150;
+}
+
+/* --- GHOST BUTTON (hover:bg-accent) --- */
+.hover\:bg-accent:hover {
+  background-color: #1A1D27 !important;    /* btn-ghost-hover-bg */
+  color: #FFFFFF !important;               /* btn-ghost-hover-text */
+}
+.hover\:bg-accent:active:not(:disabled) {
+  background-color: #21242F !important;    /* btn-ghost-pressed-bg */
+  color: #FFFFFF !important;
+}
+.hover\:bg-accent:focus-visible {
+  background-color: #1A1D27;
+  border-color: #2E3140;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+/* --- DESTRUCTIVE BUTTON --- */
+.bg-destructive:hover {
+  background-color: #EF4444 !important;    /* red-500 = darker red */
+}
+.bg-destructive:active:not(:disabled) {
+  background-color: #DC2626 !important;    /* even darker on press */
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   4. COMPONENT: INPUT / TEXTFIELD
+
+   DS tokens:
+   - default:  bg #1A1D27, border #2E3140, text #FFFFFF, placeholder #4B5563
+   - hover:    bg #21242F, border #3E4150
+   - focus:    bg #1A1D27, border #60A5FA + ring
+   - error:    border #F87171
+   - disabled: bg #13151E, text #4B5563, border #1A1D27
+   ============================================================ */
+
+/* All text inputs */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([role="combobox"]),
+textarea,
+select,
+[role="combobox"] {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  background-color: #1A1D27;               /* textfield-filled-default-bg */
+  color: #FFFFFF;                           /* textfield-filled-default-text */
+  border: 1px solid #2E3140;               /* textfield-filled-default-border */
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"])::placeholder,
+textarea::placeholder {
+  color: #4B5563;                           /* textfield-filled-default-placeholder */
+}
+
+/* Hover */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):hover:not(:focus):not(:disabled),
+textarea:hover:not(:focus):not(:disabled),
+select:hover:not(:focus):not(:disabled),
+[role="combobox"]:hover:not(:focus):not(:disabled) {
+  background-color: #21242F;               /* textfield-filled-hover-bg */
+  border-color: #3E4150;                   /* textfield-filled-hover-border */
+}
+
+/* Focus */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):focus,
+textarea:focus,
+select:focus,
+[role="combobox"]:focus,
+[data-state="open"][role="combobox"] {
+  background-color: #1A1D27;               /* textfield-filled-focus-bg */
+  border-color: #60A5FA !important;        /* textfield-filled-focus-border */
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+  outline: none;
+}
+
+/* Error state -- applied via aria-invalid or data-invalid */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+input[data-invalid],
+textarea[data-invalid],
+.border-destructive input,
+.border-destructive textarea {
+  border-color: #F87171 !important;        /* textfield-filled-error-border */
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
+}
+
+/* Disabled */
+input:disabled, textarea:disabled, select:disabled {
+  background-color: #13151E !important;    /* textfield-filled-disabled-bg */
+  color: #4B5563 !important;               /* textfield-filled-disabled-text */
+  border-color: #1A1D27 !important;        /* textfield-filled-disabled-border */
+  cursor: not-allowed;
+  opacity: 1;
+}
+input:disabled::placeholder, textarea:disabled::placeholder {
+  color: #374151;                           /* textfield-filled-disabled-placeholder */
+}
+
+/* ============================================================
+   5. COMPONENT: TEXTAREA (extends input styles above)
+
+   Additional: min-height, resize
+   ============================================================ */
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* ============================================================
+   6. COMPONENT: SELECT / DROPDOWN
+
+   DS tokens:
+   - Trigger: like secondary button (#1A1D27 bg, #2E3140 border)
+   - Open:    border #60A5FA
+   - Menu:    bg #21242F, border #2E3140
+   - Item hover: bg #2E3140
+   - Item selected: bg #1A1D27, text #60A5FA
+   ============================================================ */
+
+/* Select trigger */
+[role="combobox"],
+button[aria-haspopup="listbox"],
+[data-radix-select-trigger] {
+  background-color: #1A1D27;
+  color: #FFFFFF;
+  border: 1px solid #2E3140;
+  border-radius: var(--radius);
+}
+[role="combobox"]:hover,
+button[aria-haspopup="listbox"]:hover {
+  background-color: #21242F;
+  border-color: #3E4150;
+}
+[data-state="open"][role="combobox"],
+[data-state="open"][aria-haspopup="listbox"] {
+  border-color: #60A5FA;
+}
+
+/* Dropdown / Select menu panel */
+[role="listbox"],
+[data-radix-select-content],
+[data-radix-popper-content-wrapper] [role="listbox"] {
+  background-color: #21242F !important;    /* dropdown-menu-bg */
+  border: 1px solid #2E3140;               /* dropdown-menu-border */
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+}
+
+/* Dropdown items */
+[role="option"],
+[data-radix-select-item] {
+  color: #FFFFFF;                           /* dropdown-item-text */
+  font-size: 14px;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 100ms ease;
+}
+[role="option"]:hover,
+[role="option"][data-highlighted] {
+  background-color: #2E3140 !important;    /* dropdown-item-hover */
+}
+[role="option"][data-state="checked"],
+[role="option"][aria-selected="true"] {
+  background-color: #1A1D27;               /* dropdown-item-selected */
+  color: #60A5FA;                           /* dropdown-item-selected-text */
+}
+
+/* Icon inside dropdown trigger */
+[role="combobox"] svg,
+button[aria-haspopup="listbox"] svg {
+  color: #8B8FA3;                           /* text-secondary for icon */
+  transition: color 150ms ease;
+}
+[data-state="open"] svg {
+  color: #60A5FA;                           /* accent on open */
+}
+
+/* ============================================================
+   7. COMPONENT: SEARCH INPUT
+
+   Same as TextField + icon slot
+   DS: icon default #8B8FA3 -&gt; focus #60A5FA
+   ============================================================ */
+input[type="search"],
+input[placeholder*="earch"],
+input[placeholder*="oisk"] {
+  padding-left: 36px;   /* space for icon */
+}
+
+/* Search icon color transition handled by parent */
+.relative &gt; svg + input ~ svg,
+.relative &gt; svg:first-child {
+  color: #8B8FA3;
+  transition: color 150ms ease;
+}
+.relative:focus-within &gt; svg:first-child,
+.relative &gt; svg + input:focus ~ svg {
+  color: #60A5FA;
+}
+
+/* ============================================================
+   8. COMPONENT: CARD
+
+   DS: bg #1A1D27, border #2E3140, radius 12px
+   ============================================================ */
+[class*="rounded-lg"][class*="border"][class*="bg-card"],
+.card, [data-slot="card"] {
+  background-color: hsl(var(--card));
+  border: 1px solid #2E3140;
+  border-radius: 12px;                     /* radius-12 for cards */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+[class*="rounded-lg"][class*="border"][class*="bg-card"]:hover {
+  border-color: #3E4150;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* Card header */
+[class*="card"] &gt; [class*="flex"][class*="flex-col"]:first-child,
+[data-slot="card-header"] {
+  padding: 24px 24px 0;                    /* spacing-24 */
+}
+/* Card content */
+[class*="card"] &gt; [class*="p-6"],
+[data-slot="card-content"] {
+  padding: 24px;
+}
+
+/* ============================================================
+   9. COMPONENT: BADGE
+
+   DS radius: 2px (rounded-sm), font-size: 13px
+   ============================================================ */
+[class*="badge"],
+[data-slot="badge"] {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  border-radius: 2px;                      /* radius-2 */
+  padding: 2px 8px;
+  letter-spacing: 0.01em;
+}
+
+/* Badge variants: success, warning */
+.badge-success, [data-variant="success"] {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: #34D399;
+  border-color: rgba(52, 211, 153, 0.3);
+}
+.badge-warning, [data-variant="warning"] {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FBBF24;
+  border-color: rgba(251, 191, 36, 0.3);
+}
+.badge-error, [data-variant="error"] {
+  background-color: rgba(248, 113, 113, 0.15);
+  color: #F87171;
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+/* ============================================================
+   10. COMPONENT: TABLE
+   ============================================================ */
+table {
+  font-size: 14px;
+}
+table th {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #8B8FA3;                           /* text-secondary */
+  padding: 12px 16px;
+  border-bottom: 1px solid #2E3140;
+}
+table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2E3140;
+}
+table tbody tr {
+  transition: background-color 100ms ease;
+}
+table tbody tr:hover {
+  background-color: #1A1D27;               /* bg-surface */
+}
+
+/* ============================================================
+   11. COMPONENT: DIALOG / SHEET / MODAL
+
+   DS: bg-elevated #21242F, radius 12px, overlay black 60%
+   ============================================================ */
+
+/* Overlay */
+[data-state="open"][class*="fixed"][class*="inset"],
+[class*="DialogOverlay"],
+[class*="SheetOverlay"],
+[class*="AlertDialogOverlay"] {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Dialog content */
+[role="dialog"],
+[role="alertdialog"],
+[data-state="open"][class*="fixed"][class*="bg-background"] {
+  background-color: #21242F;               /* bg-elevated */
+  border: 1px solid #2E3140;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.7);
+}
+
+/* Sheet (side drawer) */
+[data-state="open"][class*="fixed"][class*="inset-y"] {
+  background-color: #1A1D27;               /* bg-surface */
+  border-color: #2E3140;
+}
+
+/* ============================================================
+   12. COMPONENT: TABS
+
+   DS: inactive = text-secondary, active = accent-primary + underline
+   ============================================================ */
+[role="tablist"] {
+  border-bottom: 1px solid #2E3140;
+}
+[role="tab"] {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8B8FA3;                           /* text-secondary */
+  padding: 8px 16px;
+  border-bottom: 2px solid transparent;
+  transition: all 150ms ease;
+}
+[role="tab"]:hover {
+  color: #FFFFFF;
+}
+[role="tab"][data-state="active"],
+[role="tab"][aria-selected="true"] {
+  color: #60A5FA;                           /* accent-primary */
+  border-bottom-color: #60A5FA;
+}
+
+/* ============================================================
+   13. COMPONENT: SWITCH
+
+   ON = green (success), OFF = gray. Pill shape always.
+   ============================================================ */
+[role="switch"] {
+  border-radius: 9999px !important;        /* PILL -- never square */
+  transition: background-color 150ms ease;
+  position: relative;
+  width: 44px;
+  height: 24px;
+  padding: 0 !important;
+  border: none !important;
+}
+[role="switch"] &gt; span,
+[role="switch"]::before {
+  border-radius: 9999px !important;        /* thumb is round too */
+}
+[role="switch"][data-state="unchecked"] {
+  background-color: #2E3140 !important;    /* border-default (gray) */
+}
+[role="switch"][data-state="checked"] {
+  background-color: #34D399 !important;    /* accent-success (GREEN) */
+}
+
+/* ============================================================
+   14. COMPONENT: CHECKBOX
+
+   DS: unchecked border #2E3140, checked bg #60A5FA
+   ============================================================ */
+[role="checkbox"] {
+  border: 1px solid #2E3140;
+  border-radius: 4px;                      /* radius-4 */
+  transition: all 150ms ease;
+}
+[role="checkbox"]:hover {
+  border-color: #3E4150;
+}
+[role="checkbox"][data-state="checked"] {
+  background-color: #60A5FA;
+  border-color: #60A5FA;
+  color: #13151E;
+}
+
+/* ============================================================
+   15. COMPONENT: TOOLTIP
+   ============================================================ */
+[role="tooltip"] {
+  background-color: #21242F;
+  color: #FFFFFF;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid #2E3140;
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   16. COMPONENT: POPOVER / DROPDOWN MENU
+   ============================================================ */
+[data-radix-popper-content-wrapper] &gt; div,
+[role="menu"] {
+  background-color: #21242F !important;
+  border: 1px solid #2E3140;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+}
+[role="menuitem"] {
+  font-size: 14px;
+  color: #FFFFFF;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 100ms ease;
+}
+[role="menuitem"]:hover,
+[role="menuitem"][data-highlighted] {
+  background-color: #2E3140 !important;
+}
+[role="menuitem"]:active {
+  background-color: #1A1D27;
+}
+
+/* ============================================================
+   17. COMPONENT: TOAST / SONNER
+   ============================================================ */
+[data-sonner-toast],
+[class*="toast"] {
+  background-color: #21242F !important;
+  border: 1px solid #2E3140;
+  color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-sans);
+}
+
+/* ============================================================
+   18. COMPONENT: PROGRESS
+   ============================================================ */
+[role="progressbar"] {
+  background-color: #2E3140;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+[role="progressbar"] &gt; div {
+  background-color: #60A5FA;
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+
+/* ============================================================
+   19. COMPONENT: SKELETON
+   ============================================================ */
+.animate-pulse {
+  background-color: #21242F;
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+   20. COMPONENT: SEPARATOR / DIVIDER
+   ============================================================ */
+[data-orientation="horizontal"][role="separator"],
+hr {
+  border-color: #2E3140;
+}
+
+/* ============================================================
+   21. COMPONENT: AVATAR
+   ============================================================ */
+[class*="avatar"] img,
+[class*="relative"][class*="rounded-full"] {
+  border-radius: 9999px;
+}
+[class*="avatar"] [class*="bg-muted"] {
+  background-color: #21242F;
+  color: #8B8FA3;
+}
+
+/* ============================================================
+   22. COMPONENT: ACCORDION
+   ============================================================ */
+[data-state="open"][data-orientation="vertical"] &gt; [role="region"] {
+  animation: accordion-down 200ms ease;
+}
+[data-state="closed"][data-orientation="vertical"] &gt; [role="region"] {
+  animation: accordion-up 200ms ease;
+}
+
+/* ============================================================
+   23. LABEL
+   ============================================================ */
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: 0.01em;
+}
+label[data-disabled] {
+  color: #4B5563;
+}
+
+/* ============================================================
+   24. FOCUS RING -- GLOBAL
+   All interactive elements get our consistent focus ring
+   ============================================================ */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3); /* accent-primary 30% */
+}
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   ============================================================ */
+@layer utilities {
+  .aim-h1      { font-size: 36px; line-height: 44px; font-weight: 700; letter-spacing: -0.02em; }
+  .aim-h2      { font-size: 30px; line-height: 40px; font-weight: 700; letter-spacing: -0.02em; }
+  .aim-h3      { font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -0.01em; }
+  .aim-h4      { font-size: 20px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; }
+  .aim-body-lg { font-size: 18px; line-height: 28px; font-weight: 400; }
+  .aim-body    { font-size: 14px; line-height: 20px; font-weight: 400; }
+  .aim-body-sm { font-size: 13px; line-height: 20px; font-weight: 400; }
+  .aim-caption { font-size: 12px; line-height: 16px; font-weight: 400; color: #8B8FA3; }
+  .aim-label   { font-size: 13px; line-height: 16px; font-weight: 500; letter-spacing: 0.01em; }
+  .aim-overline {
+    font-size: 11px; line-height: 16px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #8B8FA3;
+  }
+}
+
+/* ============================================================
+   SHADOWS
+   ============================================================ */
+@layer utilities {
+  .shadow-aim-sm  { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4); }
+  .shadow-aim-md  { box-shadow: 0 4px 8px -1px rgba(0, 0, 0, 0.5); }
+  .shadow-aim-lg  { box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.6); }
+  .shadow-aim-xl  { box-shadow: 0 16px 48px -4px rgba(0, 0, 0, 0.7); }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes slide-in-from-top {
+  from { transform: translateY(-4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-in-from-bottom {
+  from { transform: translateY(4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   AIM DS RAW TOKENS (for direct access with --aim-* prefix)
+   ============================================================ */
+:root {
+  --aim-blue-400: #60A5FA; --aim-blue-500: #3B82F6; --aim-blue-600: #2563EB;
+  --aim-gray-600: #4B5563; --aim-gray-700: #374151;
+  --aim-green-400: #34D399; --aim-red-400: #F87171; --aim-yellow-400: #FBBF24;
+  --aim-bg-app: #13151E; --aim-bg-surface: #1A1D27; --aim-bg-elevated: #21242F;
+  --aim-border-default: #2E3140; --aim-border-strong: #3E4150;
+  --aim-text-primary: #FFFFFF; --aim-text-secondary: #8B8FA3;
+  --aim-space-4: 4px; --aim-space-8: 8px; --aim-space-12: 12px;
+  --aim-space-16: 16px; --aim-space-24: 24px; --aim-space-32: 32px;
+  --aim-radius-4: 4px; --aim-radius-8: 8px; --aim-radius-12: 12px; --aim-radius-full: 9999px;
+}</code></pre>
+
+<hr>
+
+<h2>Step 2: Replace Component Files</h2>
+
+<div class="instruction">
+For each component below, replace the ENTIRE file at the specified path. These are shadcn/ui components with exact AIM DS colors hardcoded -- no /90 opacity hacks, no default shadcn colors.
+</div>
+
+<!-- ==================== BUTTON ==================== -->
+<h3>button.tsx</h3>
+<p>Replace <strong>src/components/ui/button.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#13151E] disabled:pointer-events-none disabled:bg-[#21242F] disabled:text-[#4B5563] [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[#60A5FA] text-white hover:bg-[#3B82F6] active:bg-[#2563EB]",
+        secondary:
+          "bg-[#1A1D27] text-[#60A5FA] border border-[#2E3140] hover:bg-[#21242F] hover:border-[#3E4150] active:bg-[#2E3140]",
+        ghost:
+          "text-[#8B8FA3] hover:bg-[#1A1D27] hover:text-white active:bg-[#21242F]",
+        outline:
+          "border border-[#2E3140] bg-transparent text-white hover:bg-[#1A1D27] hover:border-[#3E4150] active:bg-[#21242F]",
+        destructive:
+          "bg-[#F87171] text-white hover:bg-[#EF4444] active:bg-[#DC2626]",
+        link: "text-[#60A5FA] underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-lg px-3",
+        lg: "h-11 rounded-lg px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;,
+    VariantProps&lt;typeof buttonVariants&gt; {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef&lt;HTMLButtonElement, ButtonProps&gt;(
+  ({ className, variant, size, asChild = false, ...props }, ref) =&gt; {
+    const Comp = asChild ? Slot : "button"
+    return (
+      &lt;Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      /&gt;
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }</code></pre>
+
+<!-- ==================== INPUT ==================== -->
+<h3>input.tsx</h3>
+<p>Replace <strong>src/components/ui/input.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Input = React.forwardRef&lt;HTMLInputElement, React.ComponentProps&lt;"input"&gt;&gt;(
+  ({ className, type, ...props }, ref) =&gt; {
+    return (
+      &lt;input
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-lg border border-[#2E3140] bg-[#1A1D27] px-3 py-2 text-sm text-white font-[Inter] placeholder:text-[#4B5563] hover:border-[#3E4150] focus-visible:outline-none focus-visible:border-[#60A5FA] focus-visible:ring-2 focus-visible:ring-[#60A5FA]/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:text-[#4B5563] disabled:bg-[#13151E] file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-white transition-colors",
+          className
+        )}
+        ref={ref}
+        {...props}
+      /&gt;
+    )
+  }
+)
+Input.displayName = "Input"
+
+export { Input }</code></pre>
+
+<!-- ==================== TEXTAREA ==================== -->
+<h3>textarea.tsx</h3>
+<p>Replace <strong>src/components/ui/textarea.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Textarea = React.forwardRef&lt;
+  HTMLTextAreaElement,
+  React.ComponentProps&lt;"textarea"&gt;
+&gt;(({ className, ...props }, ref) =&gt; {
+  return (
+    &lt;textarea
+      className={cn(
+        "flex min-h-[80px] w-full resize-y rounded-lg border border-[#2E3140] bg-[#1A1D27] px-3 py-2 text-sm text-white font-[Inter] placeholder:text-[#4B5563] hover:border-[#3E4150] focus-visible:outline-none focus-visible:border-[#60A5FA] focus-visible:ring-2 focus-visible:ring-[#60A5FA]/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:text-[#4B5563] disabled:bg-[#13151E] transition-colors",
+        className
+      )}
+      ref={ref}
+      {...props}
+    /&gt;
+  )
+})
+Textarea.displayName = "Textarea"
+
+export { Textarea }</code></pre>
+
+<!-- ==================== SWITCH ==================== -->
+<h3>switch.tsx</h3>
+<p>Replace <strong>src/components/ui/switch.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as SwitchPrimitives from "@radix-ui/react-switch"
+
+import { cn } from "@/lib/utils"
+
+const Switch = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SwitchPrimitives.Root&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SwitchPrimitives.Root&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;SwitchPrimitives.Root
+    className={cn(
+      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#13151E] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[#34D399] data-[state=unchecked]:bg-[#2E3140]",
+      className
+    )}
+    {...props}
+    ref={ref}
+  &gt;
+    &lt;SwitchPrimitives.Thumb
+      className={cn(
+        "pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+      )}
+    /&gt;
+  &lt;/SwitchPrimitives.Root&gt;
+))
+Switch.displayName = SwitchPrimitives.Root.displayName
+
+export { Switch }</code></pre>
+
+<!-- ==================== CHECKBOX ==================== -->
+<h3>checkbox.tsx</h3>
+<p>Replace <strong>src/components/ui/checkbox.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+import { Check } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Checkbox = React.forwardRef&lt;
+  React.ElementRef&lt;typeof CheckboxPrimitive.Root&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof CheckboxPrimitive.Root&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;CheckboxPrimitive.Root
+    ref={ref}
+    className={cn(
+      "peer h-4 w-4 shrink-0 rounded-[4px] border border-[#2E3140] bg-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#13151E] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[#60A5FA] data-[state=checked]:border-[#60A5FA] data-[state=checked]:text-white hover:border-[#3E4150]",
+      className
+    )}
+    {...props}
+  &gt;
+    &lt;CheckboxPrimitive.Indicator
+      className={cn("flex items-center justify-center text-current")}
+    &gt;
+      &lt;Check className="h-3.5 w-3.5" strokeWidth={3} /&gt;
+    &lt;/CheckboxPrimitive.Indicator&gt;
+  &lt;/CheckboxPrimitive.Root&gt;
+))
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
+export { Checkbox }</code></pre>
+
+<!-- ==================== CARD ==================== -->
+<h3>card.tsx</h3>
+<p>Replace <strong>src/components/ui/card.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div
+    ref={ref}
+    className={cn(
+      "rounded-xl border border-[#2E3140] bg-[var(--surface,#1A1D27)] text-white shadow-sm",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  /&gt;
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight text-white",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div
+    ref={ref}
+    className={cn("text-sm text-[#8B8FA3]", className)}
+    {...props}
+  /&gt;
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div ref={ref} className={cn("p-6 pt-0", className)} {...props} /&gt;
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef&lt;
+  HTMLDivElement,
+  React.HTMLAttributes&lt;HTMLDivElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  /&gt;
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }</code></pre>
+
+<!-- ==================== BADGE ==================== -->
+<h3>badge.tsx</h3>
+<p>Replace <strong>src/components/ui/badge.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const badgeVariants = cva(
+  "inline-flex items-center rounded-sm px-2 py-0.5 text-[13px] font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-offset-2 focus:ring-offset-[#13151E]",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[#60A5FA]/15 text-[#60A5FA]",
+        secondary:
+          "bg-[#2E3140] text-[#8B8FA3]",
+        success:
+          "bg-[#34D399]/15 text-[#34D399]",
+        warning:
+          "bg-[#FBBF24]/15 text-[#FBBF24]",
+        destructive:
+          "bg-[#F87171]/15 text-[#F87171]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+export interface BadgeProps
+  extends React.HTMLAttributes&lt;HTMLDivElement&gt;,
+    VariantProps&lt;typeof badgeVariants&gt; {}
+
+function Badge({ className, variant, ...props }: BadgeProps) {
+  return (
+    &lt;div className={cn(badgeVariants({ variant }), className)} {...props} /&gt;
+  )
+}
+
+export { Badge, badgeVariants }</code></pre>
+
+<!-- ==================== SELECT ==================== -->
+<h3>select.tsx</h3>
+<p>Replace <strong>src/components/ui/select.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as SelectPrimitive from "@radix-ui/react-select"
+import { Check, ChevronDown, ChevronUp } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Select = SelectPrimitive.Root
+
+const SelectGroup = SelectPrimitive.Group
+
+const SelectValue = SelectPrimitive.Value
+
+const SelectTrigger = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.Trigger&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.Trigger&gt;
+&gt;(({ className, children, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "flex h-10 w-full items-center justify-between rounded-lg border border-[#2E3140] bg-[#1A1D27] px-3 py-2 text-sm text-white placeholder:text-[#4B5563] hover:border-[#3E4150] focus:outline-none focus:border-[#60A5FA] focus:ring-2 focus:ring-[#60A5FA]/20 disabled:cursor-not-allowed disabled:opacity-50 transition-colors [&amp;&gt;span]:line-clamp-1",
+      className
+    )}
+    {...props}
+  &gt;
+    {children}
+    &lt;SelectPrimitive.Icon asChild&gt;
+      &lt;ChevronDown className="h-4 w-4 text-[#8B8FA3]" /&gt;
+    &lt;/SelectPrimitive.Icon&gt;
+  &lt;/SelectPrimitive.Trigger&gt;
+))
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+
+const SelectScrollUpButton = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.ScrollUpButton&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.ScrollUpButton&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.ScrollUpButton
+    ref={ref}
+    className={cn(
+      "flex cursor-default items-center justify-center py-1",
+      className
+    )}
+    {...props}
+  &gt;
+    &lt;ChevronUp className="h-4 w-4 text-[#8B8FA3]" /&gt;
+  &lt;/SelectPrimitive.ScrollUpButton&gt;
+))
+SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
+
+const SelectScrollDownButton = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.ScrollDownButton&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.ScrollDownButton&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.ScrollDownButton
+    ref={ref}
+    className={cn(
+      "flex cursor-default items-center justify-center py-1",
+      className
+    )}
+    {...props}
+  &gt;
+    &lt;ChevronDown className="h-4 w-4 text-[#8B8FA3]" /&gt;
+  &lt;/SelectPrimitive.ScrollDownButton&gt;
+))
+SelectScrollDownButton.displayName =
+  SelectPrimitive.ScrollDownButton.displayName
+
+const SelectContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.Content&gt;
+&gt;(({ className, children, position = "popper", ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.Portal&gt;
+    &lt;SelectPrimitive.Content
+      ref={ref}
+      className={cn(
+        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-lg border border-[#2E3140] bg-[#21242F] text-white shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        position === "popper" &amp;&amp;
+          "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+        className
+      )}
+      position={position}
+      {...props}
+    &gt;
+      &lt;SelectScrollUpButton /&gt;
+      &lt;SelectPrimitive.Viewport
+        className={cn(
+          "p-1",
+          position === "popper" &amp;&amp;
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+        )}
+      &gt;
+        {children}
+      &lt;/SelectPrimitive.Viewport&gt;
+      &lt;SelectScrollDownButton /&gt;
+    &lt;/SelectPrimitive.Content&gt;
+  &lt;/SelectPrimitive.Portal&gt;
+))
+SelectContent.displayName = SelectPrimitive.Content.displayName
+
+const SelectLabel = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.Label&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.Label&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.Label
+    ref={ref}
+    className={cn("py-1.5 pl-8 pr-2 text-[13px] font-medium text-[#8B8FA3]", className)}
+    {...props}
+  /&gt;
+))
+SelectLabel.displayName = SelectPrimitive.Label.displayName
+
+const SelectItem = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.Item&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.Item&gt;
+&gt;(({ className, children, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex w-full cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-white outline-none focus:bg-[#2E3140] focus:text-[#60A5FA] data-[state=checked]:text-[#60A5FA] data-[disabled]:pointer-events-none data-[disabled]:opacity-50 transition-colors",
+      className
+    )}
+    {...props}
+  &gt;
+    &lt;span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"&gt;
+      &lt;SelectPrimitive.ItemIndicator&gt;
+        &lt;Check className="h-4 w-4" /&gt;
+      &lt;/SelectPrimitive.ItemIndicator&gt;
+    &lt;/span&gt;
+    &lt;SelectPrimitive.ItemText&gt;{children}&lt;/SelectPrimitive.ItemText&gt;
+  &lt;/SelectPrimitive.Item&gt;
+))
+SelectItem.displayName = SelectPrimitive.Item.displayName
+
+const SelectSeparator = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SelectPrimitive.Separator&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SelectPrimitive.Separator&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;SelectPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-[#2E3140]", className)}
+    {...props}
+  /&gt;
+))
+SelectSeparator.displayName = SelectPrimitive.Separator.displayName
+
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  SelectScrollUpButton,
+  SelectScrollDownButton,
+}</code></pre>
+
+<!-- ==================== TABS ==================== -->
+<h3>tabs.tsx</h3>
+<p>Replace <strong>src/components/ui/tabs.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as TabsPrimitive from "@radix-ui/react-tabs"
+
+import { cn } from "@/lib/utils"
+
+const Tabs = TabsPrimitive.Root
+
+const TabsList = React.forwardRef&lt;
+  React.ElementRef&lt;typeof TabsPrimitive.List&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof TabsPrimitive.List&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;TabsPrimitive.List
+    ref={ref}
+    className={cn(
+      "inline-flex h-10 items-center gap-4 border-b border-[#2E3140] w-full",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TabsList.displayName = TabsPrimitive.List.displayName
+
+const TabsTrigger = React.forwardRef&lt;
+  React.ElementRef&lt;typeof TabsPrimitive.Trigger&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof TabsPrimitive.Trigger&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;TabsPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "inline-flex items-center justify-center whitespace-nowrap px-1 pb-3 pt-1 text-sm font-medium text-[#8B8FA3] transition-colors hover:text-white border-b-2 border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#13151E] disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-[#60A5FA] data-[state=active]:border-b-[#60A5FA] -mb-px",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+
+const TabsContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof TabsPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof TabsPrimitive.Content&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;TabsPrimitive.Content
+    ref={ref}
+    className={cn(
+      "mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#60A5FA] focus-visible:ring-offset-2 focus-visible:ring-offset-[#13151E]",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TabsContent.displayName = TabsPrimitive.Content.displayName
+
+export { Tabs, TabsList, TabsTrigger, TabsContent }</code></pre>
+
+<!-- ==================== TABLE ==================== -->
+<h3>table.tsx</h3>
+<p>Replace <strong>src/components/ui/table.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Table = React.forwardRef&lt;
+  HTMLTableElement,
+  React.HTMLAttributes&lt;HTMLTableElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;div className="relative w-full overflow-auto"&gt;
+    &lt;table
+      ref={ref}
+      className={cn("w-full caption-bottom text-sm", className)}
+      {...props}
+    /&gt;
+  &lt;/div&gt;
+))
+Table.displayName = "Table"
+
+const TableHeader = React.forwardRef&lt;
+  HTMLTableSectionElement,
+  React.HTMLAttributes&lt;HTMLTableSectionElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;thead ref={ref} className={cn("[&amp;_tr]:border-b [&amp;_tr]:border-[#2E3140]", className)} {...props} /&gt;
+))
+TableHeader.displayName = "TableHeader"
+
+const TableBody = React.forwardRef&lt;
+  HTMLTableSectionElement,
+  React.HTMLAttributes&lt;HTMLTableSectionElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;tbody
+    ref={ref}
+    className={cn("[&amp;_tr:last-child]:border-0", className)}
+    {...props}
+  /&gt;
+))
+TableBody.displayName = "TableBody"
+
+const TableFooter = React.forwardRef&lt;
+  HTMLTableSectionElement,
+  React.HTMLAttributes&lt;HTMLTableSectionElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;tfoot
+    ref={ref}
+    className={cn(
+      "border-t border-[#2E3140] bg-[#1A1D27] font-medium text-white [&amp;&gt;tr]:last:border-b-0",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TableFooter.displayName = "TableFooter"
+
+const TableRow = React.forwardRef&lt;
+  HTMLTableRowElement,
+  React.HTMLAttributes&lt;HTMLTableRowElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;tr
+    ref={ref}
+    className={cn(
+      "border-b border-[#2E3140] transition-colors hover:bg-[#1A1D27] data-[state=selected]:bg-[#1A1D27]",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TableRow.displayName = "TableRow"
+
+const TableHead = React.forwardRef&lt;
+  HTMLTableCellElement,
+  React.ThHTMLAttributes&lt;HTMLTableCellElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;th
+    ref={ref}
+    className={cn(
+      "h-12 px-4 text-left align-middle text-[12px] font-medium uppercase tracking-wider text-[#8B8FA3] [&amp;:has([role=checkbox])]:pr-0",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TableHead.displayName = "TableHead"
+
+const TableCell = React.forwardRef&lt;
+  HTMLTableCellElement,
+  React.TdHTMLAttributes&lt;HTMLTableCellElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;td
+    ref={ref}
+    className={cn(
+      "p-4 align-middle text-white [&amp;:has([role=checkbox])]:pr-0",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TableCell.displayName = "TableCell"
+
+const TableCaption = React.forwardRef&lt;
+  HTMLTableCaptionElement,
+  React.HTMLAttributes&lt;HTMLTableCaptionElement&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;caption
+    ref={ref}
+    className={cn("mt-4 text-sm text-[#8B8FA3]", className)}
+    {...props}
+  /&gt;
+))
+TableCaption.displayName = "TableCaption"
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+}</code></pre>
+
+<!-- ==================== DIALOG ==================== -->
+<h3>dialog.tsx</h3>
+<p>Replace <strong>src/components/ui/dialog.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+
+const DialogTrigger = DialogPrimitive.Trigger
+
+const DialogPortal = DialogPrimitive.Portal
+
+const DialogClose = DialogPrimitive.Close
+
+const DialogOverlay = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Overlay&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Overlay&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      "fixed inset-0 z-50 bg-black/60 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+
+const DialogContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Content&gt;
+&gt;(({ className, children, ...props }, ref) =&gt; (
+  &lt;DialogPortal&gt;
+    &lt;DialogOverlay /&gt;
+    &lt;DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-xl border border-[#2E3140] bg-[#21242F] p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        className
+      )}
+      {...props}
+    &gt;
+      {children}
+      &lt;DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm text-[#8B8FA3] opacity-70 ring-offset-[#21242F] transition-opacity hover:opacity-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#60A5FA] focus:ring-offset-2 disabled:pointer-events-none"&gt;
+        &lt;X className="h-4 w-4" /&gt;
+        &lt;span className="sr-only"&gt;Close&lt;/span&gt;
+      &lt;/DialogPrimitive.Close&gt;
+    &lt;/DialogPrimitive.Content&gt;
+  &lt;/DialogPortal&gt;
+))
+DialogContent.displayName = DialogPrimitive.Content.displayName
+
+const DialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes&lt;HTMLDivElement&gt;) =&gt; (
+  &lt;div
+    className={cn(
+      "flex flex-col space-y-1.5 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  /&gt;
+)
+DialogHeader.displayName = "DialogHeader"
+
+const DialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes&lt;HTMLDivElement&gt;) =&gt; (
+  &lt;div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  /&gt;
+)
+DialogFooter.displayName = "DialogFooter"
+
+const DialogTitle = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Title&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Title&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DialogPrimitive.Title
+    ref={ref}
+    className={cn(
+      "text-lg font-semibold leading-none tracking-tight text-white",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+DialogTitle.displayName = DialogPrimitive.Title.displayName
+
+const DialogDescription = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Description&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Description&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-[#8B8FA3]", className)}
+    {...props}
+  /&gt;
+))
+DialogDescription.displayName = DialogPrimitive.Description.displayName
+
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+}</code></pre>
+
+<!-- ==================== DROPDOWN-MENU ==================== -->
+<h3>dropdown-menu.tsx</h3>
+<p>Replace <strong>src/components/ui/dropdown-menu.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import { Check, ChevronRight, Circle } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const DropdownMenu = DropdownMenuPrimitive.Root
+
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+
+const DropdownMenuGroup = DropdownMenuPrimitive.Group
+
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal
+
+const DropdownMenuSub = DropdownMenuPrimitive.Sub
+
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+
+const DropdownMenuSubTrigger = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.SubTrigger&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.SubTrigger&gt; &amp; {
+    inset?: boolean
+  }
+&gt;(({ className, inset, children, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.SubTrigger
+    ref={ref}
+    className={cn(
+      "flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm text-white outline-none focus:bg-[#2E3140] data-[state=open]:bg-[#2E3140]",
+      inset &amp;&amp; "pl-8",
+      className
+    )}
+    {...props}
+  &gt;
+    {children}
+    &lt;ChevronRight className="ml-auto h-4 w-4" /&gt;
+  &lt;/DropdownMenuPrimitive.SubTrigger&gt;
+))
+DropdownMenuSubTrigger.displayName =
+  DropdownMenuPrimitive.SubTrigger.displayName
+
+const DropdownMenuSubContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.SubContent&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.SubContent&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.SubContent
+    ref={ref}
+    className={cn(
+      "z-50 min-w-[8rem] overflow-hidden rounded-lg border border-[#2E3140] bg-[#21242F] p-1 text-white shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+DropdownMenuSubContent.displayName =
+  DropdownMenuPrimitive.SubContent.displayName
+
+const DropdownMenuContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.Content&gt;
+&gt;(({ className, sideOffset = 4, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.Portal&gt;
+    &lt;DropdownMenuPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 min-w-[8rem] overflow-hidden rounded-lg border border-[#2E3140] bg-[#21242F] p-1 text-white shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props}
+    /&gt;
+  &lt;/DropdownMenuPrimitive.Portal&gt;
+))
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
+
+const DropdownMenuItem = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.Item&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.Item&gt; &amp; {
+    inset?: boolean
+  }
+&gt;(({ className, inset, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm text-white outline-none transition-colors focus:bg-[#2E3140] focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      inset &amp;&amp; "pl-8",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName
+
+const DropdownMenuCheckboxItem = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.CheckboxItem&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.CheckboxItem&gt;
+&gt;(({ className, children, checked, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.CheckboxItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-white outline-none transition-colors focus:bg-[#2E3140] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    checked={checked}
+    {...props}
+  &gt;
+    &lt;span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"&gt;
+      &lt;DropdownMenuPrimitive.ItemIndicator&gt;
+        &lt;Check className="h-4 w-4" /&gt;
+      &lt;/DropdownMenuPrimitive.ItemIndicator&gt;
+    &lt;/span&gt;
+    {children}
+  &lt;/DropdownMenuPrimitive.CheckboxItem&gt;
+))
+DropdownMenuCheckboxItem.displayName =
+  DropdownMenuPrimitive.CheckboxItem.displayName
+
+const DropdownMenuRadioItem = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.RadioItem&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.RadioItem&gt;
+&gt;(({ className, children, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-white outline-none transition-colors focus:bg-[#2E3140] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    )}
+    {...props}
+  &gt;
+    &lt;span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"&gt;
+      &lt;DropdownMenuPrimitive.ItemIndicator&gt;
+        &lt;Circle className="h-2 w-2 fill-current" /&gt;
+      &lt;/DropdownMenuPrimitive.ItemIndicator&gt;
+    &lt;/span&gt;
+    {children}
+  &lt;/DropdownMenuPrimitive.RadioItem&gt;
+))
+DropdownMenuRadioItem.displayName =
+  DropdownMenuPrimitive.RadioItem.displayName
+
+const DropdownMenuLabel = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.Label&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.Label&gt; &amp; {
+    inset?: boolean
+  }
+&gt;(({ className, inset, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.Label
+    ref={ref}
+    className={cn(
+      "px-2 py-1.5 text-[13px] font-semibold text-[#8B8FA3]",
+      inset &amp;&amp; "pl-8",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName
+
+const DropdownMenuSeparator = React.forwardRef&lt;
+  React.ElementRef&lt;typeof DropdownMenuPrimitive.Separator&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DropdownMenuPrimitive.Separator&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DropdownMenuPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-[#2E3140]", className)}
+    {...props}
+  /&gt;
+))
+DropdownMenuSeparator.displayName =
+  DropdownMenuPrimitive.Separator.displayName
+
+const DropdownMenuShortcut = ({
+  className,
+  ...props
+}: React.HTMLAttributes&lt;HTMLSpanElement&gt;) =&gt; {
+  return (
+    &lt;span
+      className={cn("ml-auto text-xs tracking-widest text-[#4B5563]", className)}
+      {...props}
+    /&gt;
+  )
+}
+DropdownMenuShortcut.displayName = "DropdownMenuShortcut"
+
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+}</code></pre>
+
+<!-- ==================== TOOLTIP ==================== -->
+<h3>tooltip.tsx</h3>
+<p>Replace <strong>src/components/ui/tooltip.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+
+import { cn } from "@/lib/utils"
+
+const TooltipProvider = TooltipPrimitive.Provider
+
+const Tooltip = TooltipPrimitive.Root
+
+const TooltipTrigger = TooltipPrimitive.Trigger
+
+const TooltipContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof TooltipPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof TooltipPrimitive.Content&gt;
+&gt;(({ className, sideOffset = 4, ...props }, ref) =&gt; (
+  &lt;TooltipPrimitive.Content
+    ref={ref}
+    sideOffset={sideOffset}
+    className={cn(
+      "z-50 overflow-hidden rounded border border-[#2E3140] bg-[#21242F] px-3 py-1.5 text-xs text-white shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props}
+  /&gt;
+))
+TooltipContent.displayName = TooltipPrimitive.Content.displayName
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }</code></pre>
+
+<!-- ==================== SEPARATOR ==================== -->
+<h3>separator.tsx</h3>
+<p>Replace <strong>src/components/ui/separator.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as SeparatorPrimitive from "@radix-ui/react-separator"
+
+import { cn } from "@/lib/utils"
+
+const Separator = React.forwardRef&lt;
+  React.ElementRef&lt;typeof SeparatorPrimitive.Root&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof SeparatorPrimitive.Root&gt;
+&gt;(
+  (
+    { className, orientation = "horizontal", decorative = true, ...props },
+    ref
+  ) =&gt; (
+    &lt;SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-[#2E3140]",
+        orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+        className
+      )}
+      {...props}
+    /&gt;
+  )
+)
+Separator.displayName = SeparatorPrimitive.Root.displayName
+
+export { Separator }</code></pre>
+
+<!-- ==================== LABEL ==================== -->
+<h3>label.tsx</h3>
+<p>Replace <strong>src/components/ui/label.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const labelVariants = cva(
+  "text-[13px] font-medium leading-none text-white peer-disabled:cursor-not-allowed peer-disabled:text-[#4B5563]"
+)
+
+const Label = React.forwardRef&lt;
+  React.ElementRef&lt;typeof LabelPrimitive.Root&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof LabelPrimitive.Root&gt; &amp;
+    VariantProps&lt;typeof labelVariants&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;LabelPrimitive.Root
+    ref={ref}
+    className={cn(labelVariants(), className)}
+    {...props}
+  /&gt;
+))
+Label.displayName = LabelPrimitive.Root.displayName
+
+export { Label }</code></pre>
+
+<!-- ==================== POPOVER ==================== -->
+<h3>popover.tsx</h3>
+<p>Replace <strong>src/components/ui/popover.tsx</strong> with:</p>
+<pre><code>import * as React from "react"
+import * as PopoverPrimitive from "@radix-ui/react-popover"
+
+import { cn } from "@/lib/utils"
+
+const Popover = PopoverPrimitive.Root
+
+const PopoverTrigger = PopoverPrimitive.Trigger
+
+const PopoverAnchor = PopoverPrimitive.Anchor
+
+const PopoverContent = React.forwardRef&lt;
+  React.ElementRef&lt;typeof PopoverPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof PopoverPrimitive.Content&gt;
+&gt;(({ className, align = "center", sideOffset = 4, ...props }, ref) =&gt; (
+  &lt;PopoverPrimitive.Portal&gt;
+    &lt;PopoverPrimitive.Content
+      ref={ref}
+      align={align}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 w-72 rounded-lg border border-[#2E3140] bg-[#21242F] p-4 text-white shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props}
+    /&gt;
+  &lt;/PopoverPrimitive.Portal&gt;
+))
+PopoverContent.displayName = PopoverPrimitive.Content.displayName
+
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }</code></pre>
+
+<hr>
+
+<h2>Step 3: Sidebar Styling</h2>
+
+<div class="instruction">
+Apply these exact Tailwind classes to the sidebar container and its elements. Do NOT use default shadcn sidebar colors.
+</div>
+
+<p>The sidebar uses CSS variables defined in Step 1. Apply these rules:</p>
+
+<ul>
+<li><strong>Sidebar container:</strong> <code>bg-[#1A1D27] border-r border-[#2E3140]</code></li>
+<li><strong>Sidebar header/logo area:</strong> <code>p-4 border-b border-[#2E3140]</code></li>
+<li><strong>Navigation items (inactive):</strong> <code>text-[#8B8FA3] hover:bg-[#21242F] hover:text-white rounded-lg px-3 py-2 transition-colors</code></li>
+<li><strong>Navigation items (active):</strong> <code>bg-[#21242F] text-[#60A5FA] rounded-lg px-3 py-2</code></li>
+<li><strong>Section labels:</strong> <code>text-[11px] uppercase tracking-wider text-[#8B8FA3] font-semibold px-3 mb-2</code></li>
+<li><strong>Sidebar footer:</strong> <code>border-t border-[#2E3140] p-4</code></li>
+<li><strong>Icons in nav:</strong> <code>h-4 w-4</code> with same color as text</li>
+</ul>
+
+<p>Example nav item structure:</p>
+<pre><code>&lt;a className="flex items-center gap-3 text-[#8B8FA3] hover:bg-[#21242F] hover:text-white rounded-lg px-3 py-2 transition-colors"&gt;
+  &lt;IconComponent className="h-4 w-4" /&gt;
+  &lt;span className="text-sm font-medium"&gt;Page Name&lt;/span&gt;
+&lt;/a&gt;
+
+{/* Active state */}
+&lt;a className="flex items-center gap-3 bg-[#21242F] text-[#60A5FA] rounded-lg px-3 py-2"&gt;
+  &lt;IconComponent className="h-4 w-4" /&gt;
+  &lt;span className="text-sm font-medium"&gt;Active Page&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+
+<hr>
+
+<h2>Step 4: Verification Checklist</h2>
+
+<div class="instruction">
+After applying all changes, verify each of these items. Every item MUST pass.
+</div>
+
+<ol>
+<li><strong>Switch component</strong> -- must be <code>rounded-full</code> pill shape (9999px radius), green <code>#34D399</code> when checked, gray <code>#2E3140</code> when unchecked. White circular thumb. Never square or rectangular.</li>
+<li><strong>Buttons use exact hover colors</strong> -- Primary: default <code>#60A5FA</code>, hover <code>#3B82F6</code>, pressed <code>#2563EB</code>. No <code>/90</code> opacity anywhere on buttons.</li>
+<li><strong>Cards</strong> -- <code>rounded-xl</code> (12px border-radius), background <code>#1A1D27</code>, border <code>#2E3140</code>.</li>
+<li><strong>Table headers</strong> -- <code>uppercase</code>, <code>12px</code> font size, <code>tracking-wider</code>, color <code>#8B8FA3</code>.</li>
+<li><strong>Font</strong> -- Inter loaded from Google Fonts, applied globally via <code>--font-sans</code>.</li>
+<li><strong>Input fields</strong> -- background <code>#1A1D27</code>, border <code>#2E3140</code>, focus border <code>#60A5FA</code> with ring. Placeholder <code>#4B5563</code>.</li>
+<li><strong>Badge</strong> -- <code>rounded-sm</code> (2px radius), 13px font size.</li>
+<li><strong>Dialog/Modal</strong> -- background <code>#21242F</code>, <code>rounded-xl</code> (12px), overlay <code>bg-black/60</code> with backdrop blur.</li>
+<li><strong>Tabs</strong> -- inactive text <code>#8B8FA3</code>, active text and underline <code>#60A5FA</code>.</li>
+<li><strong>Dropdown menus</strong> -- background <code>#21242F</code>, item hover <code>#2E3140</code>.</li>
+<li><strong>App background</strong> -- <code>#13151E</code> (dark mode default).</li>
+<li><strong>Sidebar</strong> -- background <code>#1A1D27</code>, active item uses <code>#60A5FA</code> text.</li>
+<li><strong>Focus rings</strong> -- all interactive elements use <code>#60A5FA</code> at 30% opacity for focus ring.</li>
+<li><strong>Disabled states</strong> -- no opacity dimming, uses explicit disabled colors (<code>#4B5563</code> text, <code>#13151E</code> bg).</li>
+<li><strong>Checkbox</strong> -- checked state uses <code>#60A5FA</code> background.</li>
+<li><strong>Separator/Divider</strong> -- color <code>#2E3140</code>.</li>
+</ol>
+
+<hr>
+
+<p style="margin-top: 48px; color: #666; font-size: 13px;">
+AI Manufactury Design System v1.0 | Generated 2026-04-01 | Source: studio-ds/tokens.json
+</p>
+
+</body>
+</html>

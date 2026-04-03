@@ -2114,6 +2114,15 @@ body {
     <!-- Integration Steps -->
     <div style="margin-top: var(--spacing-32);">
 
+      <!-- Project Selector -->
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: var(--spacing-16);">
+        <span style="font-size: var(--font-size-12); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">Project:</span>
+        <select id="projectSelector" onchange="switchProject(this.value)" style="background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-8); color: var(--text-primary); font-size: var(--font-size-13); font-family: inherit; padding: 6px 12px; cursor: pointer;">
+          <option value="aim">AI Manufactury</option>
+          <option value="carwash">CarWash Admin (AutoPlovykla)</option>
+        </select>
+      </div>
+
       <!-- Platform Tabs -->
       <div class="platform-tabs" style="border-bottom: none; margin-bottom: var(--spacing-16);">
         <button class="platform-tab active" data-platform="lovable" onclick="switchPlatform('lovable')">Lovable</button>
@@ -3517,13 +3526,33 @@ function injectCodeColorSwatches() {
 /* ============================================================
    PROJECT CONFIG — change these when cloning template
    ============================================================ */
-const DS_CONFIG = {
-  name: 'AI Manufactury',
-  repo: 'pashnesterovich-dotcom/design-system-test',
-  font: 'Inter',
+const PROJECTS = {
+  aim: {
+    name: 'AI Manufactury',
+    repo: 'pashnesterovich-dotcom/design-system-test',
+    font: 'Inter',
+    path: '',  // root
+  },
+  carwash: {
+    name: 'AutoPlovykla',
+    repo: 'pashnesterovich-dotcom/design-system-test',
+    font: 'DM Sans',
+    path: 'carwash/',
+  },
 };
-const REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
-const RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
+
+let currentProject = 'aim';
+let DS_CONFIG = PROJECTS.aim;
+let REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
+let RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
+let COMP_URL = RAW_URL;
+
+function updateURLs() {
+  DS_CONFIG = PROJECTS[currentProject];
+  REPO_URL = `https://github.com/${DS_CONFIG.repo}`;
+  RAW_URL  = `https://raw.githubusercontent.com/${DS_CONFIG.repo}/main`;
+  COMP_URL = RAW_URL + (DS_CONFIG.path ? '/' + DS_CONFIG.path : '');
+}
 
 const downloadIcon = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
 const copyIcon = '<svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
@@ -3536,60 +3565,12 @@ const PLATFORMS = {
 
   lovable: [
     {
-      title: 'Knowledge',
-      desc: 'Settings → Project Knowledge → paste. Applies to every generation automatically.',
-      type: 'prompt',
-      prompt: `## Design System: ${DS_CONFIG.name}
-Source: ${REPO_URL}
-
-### Tokens
-- Primary: #60A5FA, hover #3B82F6, pressed #2563EB
-- Success: #34D399, Warning: #FBBF24, Error: #F87171
-- Bg: #13151E (app), #1A1D27 (surface), #21242F (elevated)
-- Text: #FFFFFF, #8B8FA3, #4B5563. Border: #2E3140, #3E4150
-- Font: ${DS_CONFIG.font} 400-700. Radius: 8px default.
-
-### Rules
-- Exact hover colors, NO /90 /80 opacity modifiers
-- Switch = rounded-full pill, checked GREEN #34D399
-- Badge = rounded-sm (2px). Card = rounded-xl (12px)
-- Table header: 12px uppercase text-[#8B8FA3]
-- Sidebar active: text-white bg-[#60A5FA]/10
-- disabled:opacity-100, use token colors not fade`,
-    },
-    {
       title: 'Prompt',
-      desc: 'Paste in Lovable chat — one time, does everything.',
+      desc: 'Paste in Lovable chat — it will read the page and apply everything.',
       type: 'prompt',
-      prompt: `Apply the ${DS_CONFIG.name} Design System to this project.
+      prompt: `Read this page and apply the complete design system to this project. The page contains the CSS theme file, all 16 component source files, sidebar styles, and a verification checklist. Follow every instruction on the page exactly:
 
-1. Replace the ENTIRE content of src/index.css with the file from:
-${RAW_URL}/lovable-theme.css
-
-2. Replace each component file in src/components/ui/ with the matching file from:
-${RAW_URL}/components/
-
-Replace these files:
-- src/components/ui/button.tsx → ${RAW_URL}/components/button.tsx
-- src/components/ui/input.tsx → ${RAW_URL}/components/input.tsx
-- src/components/ui/textarea.tsx → ${RAW_URL}/components/textarea.tsx
-- src/components/ui/switch.tsx → ${RAW_URL}/components/switch.tsx
-- src/components/ui/checkbox.tsx → ${RAW_URL}/components/checkbox.tsx
-- src/components/ui/card.tsx → ${RAW_URL}/components/card.tsx
-- src/components/ui/badge.tsx → ${RAW_URL}/components/badge.tsx
-- src/components/ui/select.tsx → ${RAW_URL}/components/select.tsx
-- src/components/ui/tabs.tsx → ${RAW_URL}/components/tabs.tsx
-- src/components/ui/table.tsx → ${RAW_URL}/components/table.tsx
-- src/components/ui/dialog.tsx → ${RAW_URL}/components/dialog.tsx
-- src/components/ui/dropdown-menu.tsx → ${RAW_URL}/components/dropdown-menu.tsx
-- src/components/ui/tooltip.tsx → ${RAW_URL}/components/tooltip.tsx
-- src/components/ui/separator.tsx → ${RAW_URL}/components/separator.tsx
-- src/components/ui/label.tsx → ${RAW_URL}/components/label.tsx
-- src/components/ui/popover.tsx → ${RAW_URL}/components/popover.tsx
-
-Download each file from the URL and replace the corresponding file in the project. Do not modify the files, use them exactly as-is.
-
-3. Update sidebar (if exists): bg-[#1A1D27] border-r border-[#2E3140], nav items text-[#8B8FA3] hover:text-white hover:bg-[#21242F] rounded-lg, active item text-white bg-[#60A5FA]/10.`,
+https://pashnesterovich-dotcom.github.io/design-system-test/lovable.html`,
     },
   ],
 
